@@ -94,7 +94,6 @@ class SchoolController extends ApiController
 
     }
 
-
     // assign subject to teacher
     public function assignSubject(Request $request){
         try {
@@ -103,7 +102,6 @@ class SchoolController extends ApiController
             return $this->fail("Unable to assign Subject to, Please try again.");
         }
     }
-
 
     public function viewSubjectsForClass(Request $request){
         try {

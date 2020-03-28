@@ -15,7 +15,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 // route to generate confirmation mail for school admin
 Route::post('send/mail', 'SchoolController@createAdminMail');
 
@@ -40,7 +39,6 @@ Route::post('view/students', 'UserController@ViewAllStudents');
 
 //route to view all students in a specific class
 Route::post('view/students/class', 'UserController@ViewStudentsInClass');
-
 
 //route to view all teachers
 Route::post('view/teachers', 'UserController@viewAllTeachers');
