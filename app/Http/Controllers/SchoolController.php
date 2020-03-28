@@ -94,7 +94,8 @@ class SchoolController extends ApiController
 
     }
 
-    
+
+    // assign subject to teacher
     public function assignSubject(Request $request){
         try {
 
