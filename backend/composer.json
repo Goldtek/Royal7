@@ -52,5 +52,8 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
+    },
+    "require": {
+        "laravel/passport": "^7.5"
     }
 }

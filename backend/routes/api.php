@@ -11,9 +11,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')->group( function () {
+  
 });
+
+
 
 // route to generate confirmation mail for school admin
 Route::post('send/mail', 'SchoolController@createAdminMail');

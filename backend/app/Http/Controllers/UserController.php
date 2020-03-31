@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Models\RolePermission;
+use App\Models\Role;
+use App\Models\Permission;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends ApiController
@@ -45,7 +49,7 @@ class UserController extends ApiController
             $users = User::where('roleId', '=', 2)->paginate(15);
 
         } catch (\Exception $e) {
-            return $this->fail("Error viewing all teachers. ".$e);
+            return $this->fail("Error viewing all teachers. ".$e->getMessage());
         }
     }
 
@@ -54,7 +58,7 @@ class UserController extends ApiController
             $users = User::where('roleId', '=', 3)->paginate(15);
 
         } catch (\Exception $e) {
-            return $this->fail("Error viewing all students. ".$e);
+            return $this->fail("Error viewing all students. ".$e->getMessage());
         }
     }
 
@@ -63,8 +67,79 @@ class UserController extends ApiController
 
 
         } catch (\Exception $e) {
-            return $this->fail("Error viewing all students in a class. ".$e);
+            return $this->fail("Error viewing all students in a class. ".$e->getMessage());
         }
+    }
+
+    public function createPermission(Request $request){ 
+        try {
+            if(empty($request->name)){
+                return $this->missingField("The Permission Name is required!");
+             }
+             $permission = new Permission;
+             $permission->name = $request->name;
+             if($permission->save()){
+                return $this->success($request->name.' Permission has been successfully created'); 
+             }
+
+        } catch (\Exception $e) {
+            return $this->fail("Error fetching permissions for Role. ".$e->getMessage());
+        }
+    }
+
+    public function UpdatePermission(Request $request){ 
+        try {
+            if(empty($request->id)){
+                return $this->missingField("The Permission id is required!");
+             } else if(empty($request->name)){
+                return $this->missingField("The Permission  name is required for update.");
+             }
+             $permission = Permission::find($request->id);
+             if(!$permission){
+                return $this->fail("Permission does not exist");
+             }
+             
+             if($permission->update($request)){
+                return $this->success($request->name.' Permission has been successfully created'); 
+             }
+
+        } catch (\Exception $e) {
+            return $this->fail("Error updating permission. ".$e->getMessage());
+        }
+    }
+
+    public function FetchPermissionsForRole(Request $request){ 
+        try {
+            if(empty($request->roleId)){
+                return $this->missingField("The Role Id is required!");
+             }
+             $permissions = RolePermission::where('role_id', '=',$request->roleId)->get();
+             // pass it into a resource
+
+        } catch (\Exception $e) {
+            return $this->fail("Error fetching permissions for Role. ".$e->getMessage());
+        }
+    }
+
+    public function login(Request $request){
+    
+        $credentials = $request->only('email', 'password'); 
+        
+        if(Auth::attempt($crendentials,$request->remember)){ 
+            // get user details and permission of the user based on the role
+            return response()->json([
+                'user' => Auth()->user(),
+                'permission' => Auth()->user()->UserRoles(),
+            ]);
+        }
+
+        return $this->fail("User Login failed");
+  
+    }
+
+    public function logOut(){
+        Auth::logout();
+        return $this->success('User logged Out');
     }
     
 }

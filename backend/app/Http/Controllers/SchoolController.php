@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SchoolAdministrator;
 use App\Models\CreateAccount;
+use App\Models\RolePermission;
 
 
 class SchoolController extends ApiController
@@ -27,7 +28,7 @@ class SchoolController extends ApiController
         Mail::to($email)->send(new SchoolAdministrator($email,$code));
 
          //store in database
-        $createAccount = new CreateAccount;
+        $createAccount = new CreateAccount();
         $createAccount->code = $email;
         $createAccount->email = $code;
         $createAccount->save();
@@ -76,7 +77,7 @@ class SchoolController extends ApiController
             $school->phone = $request->phone;
 
             if($school->save()) {
-                $user = new User;
+                $user = new User();
                 $user->school_id = $school->id;
                 $user->email = $email;
                 if(!empty($request->classId)){
@@ -89,7 +90,7 @@ class SchoolController extends ApiController
                 return $this->success('School account has been successfully created.');
             }
         } catch (\Exception $e) {
-            return $this->fail("Error: ".$e);
+            return $this->fail("Error: ".$e->getMessage());
         }
 
     }
@@ -108,9 +109,28 @@ class SchoolController extends ApiController
 
 
         } catch (\Exception $e) {
-            return $this->fail("Error viewing subjects. ".$e);
+            return $this->fail("Error viewing subjects. ".$e->getMessage());
         }
     }
+
+
+    public function createRolePermission (Request $request) {
+        try {
+            if(empty($request->permissions)){
+                return $this->notFound("permissions are required");
+            }
+            foreach($request->permissions as $data) {
+                $pem = new RolePermission();
+                $pem ->role_id = $data['rolePermission']['roleId'];
+                $row ->permission_id = $data['rolePermission']['permissionId'];
+                $row->save();   
+            }
+            return $this->success('Role Permissions successfully created.');
+        } catch (\Exception $e) {
+            return $this->fail("Error creating role permissions. ".$e->getMessage());
+        }
+   
+   }
 
     public function destroy($id){
 

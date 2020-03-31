@@ -5,10 +5,11 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -44,20 +45,24 @@ class User extends Authenticatable
 
 
     public function AssignedSubjects() {
-        return $this->hasMany('App/Models/AssignedSubject');
+        return $this->hasMany('App\Models\AssignedSubject');
     }
 
     //realtionship for pulling a students examgrades for each term
     public function ExamGrade() {
-        return $this->hasMany('App/Models/ExamGrade');
+        return $this->hasMany('Ap\Models\ExamGrade');
     }
 
     public function TestGrade() {
-        return $this->hasMany('App/Models/TestGrade');
+        return $this->hasMany('App\Models\TestGrade');
     }
 
     public function Subjects() {
-        return $this->hasMany('App/Models/Subject');
+        return $this->hasMany('App\Models\Subject');
+    }
+
+    public function UserRoles(){
+        return $this->hasMany('App\Models\RolePermission');
     }
 
 
