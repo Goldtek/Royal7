@@ -38,7 +38,7 @@ class SchoolAdministrator extends Mailable
         ->subject('School Admininstratoer Email Confirmation')
         ->markdown('emails.admin.confirmation')
         ->with([
-            'link' => 'https:/www.royal7.com/get-started/'.$this->email.'/'.$this->code,
+            'link' => 'https:/www.royal7.com/get-started/'.$this->code,
             'email' => $this->email,
         ]);
     }
