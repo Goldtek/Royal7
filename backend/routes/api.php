@@ -30,6 +30,12 @@ Route::post('school/admin', 'SchoolController@createSchool');
 //route to create use[teacher/student/staff]
 Route::post('user/create', 'UserController@createUser');
 
+//route to login
+Route::post('user/login', 'UserController@login');
+
+//route to logout
+Route::post('user/logout', 'UserController@logOut');
+
 //route to assign teacher to course
 Route::post('assign/subject', 'SchoolController@assignSubject');
 
@@ -44,3 +50,9 @@ Route::post('view/students/class', 'UserController@ViewStudentsInClass');
 
 //route to view all teachers
 Route::post('view/teachers', 'UserController@viewAllTeachers');
+
+// route create permission
+Route::post('permission/create', 'UserController@createPermission');
+
+// route to Update Permission setting
+Route::post('permission/create', 'UserController@UpdatePermission');
