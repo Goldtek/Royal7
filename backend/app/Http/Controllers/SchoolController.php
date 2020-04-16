@@ -29,8 +29,8 @@ class SchoolController extends ApiController
 
          //store in database
         $createAccount = new CreateAccount();
-        $createAccount->code = $email;
-        $createAccount->email = $code;
+        $createAccount->code = $code;
+        $createAccount->email = $request->email;
         $createAccount->save();
        
         return $this->success('Email has been successfully sent to '.$email.'.');
