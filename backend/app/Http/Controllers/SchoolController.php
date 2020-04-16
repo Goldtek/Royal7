@@ -10,8 +10,12 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 use App\Mail\SchoolAdministrator;
 use App\Models\CreateAccount;
+use App\Models\RolePermission;
+use App\Models\ClassInfo;
+use App\Models\Subject;
 
 
 class SchoolController extends ApiController
@@ -28,8 +32,8 @@ class SchoolController extends ApiController
 
          //store in database
         $createAccount = new CreateAccount;
-        $createAccount->code = $email;
-        $createAccount->email = $code;
+        $createAccount->code = $code;
+        $createAccount->email = $email;
         $createAccount->save();
        
         return $this->success('Email has been successfully sent to '.$email.'.');
@@ -37,15 +41,18 @@ class SchoolController extends ApiController
 
     public function confirmEmail(Request $request) {
         if(empty($request->email)) {
-            return $this->missingField("email is required!");
+            return $this->missingField("email Field is required!");
         } else if(empty($request->code)){
-            return $this->missingField("email is required!");
+            return $this->missingField("code Field is required!");
         } 
         try {
-            $account =  CreateAccount::where('code',$request->email)->where('email',$request->code)->get();
-            // delete this account 
-            $account->delete();
-            return $this->success('Email Confirmation complete');
+            $account =  DB::table('create_accounts')->where('email',$request->email)->where('code',$request->code)->first();
+            if($account) {
+                DB::table('create_accounts')->where('email',$request->email)->where('code',$request->code)->delete();
+                return $this->success('Email Confirmation complete');
+            } else {
+                return $this->fail("Invalid confirmation code.");
+            }
         } catch (\Exception $e) {
             return $this->fail("Invalid Account, Please Try Again.");
         }
@@ -55,7 +62,7 @@ class SchoolController extends ApiController
     public function createSchool(Request $request){
       
         if(empty($request->schoolName)) {
-            return $this->missingField("name of school is required!");
+            return $this->missingField("shool name of school is required!");
         } else if(empty($request->email)){
             return $this->missingField("email address is required!");
         } else if(empty($request->address)){
@@ -70,7 +77,7 @@ class SchoolController extends ApiController
 
         try {
             $school = new School;
-            $school->name = $request->name;
+            $school->name = $request->schoolName;
             $school->address = $request->address;
             $school->about = $request->about;
             $school->phone = $request->phone;
@@ -78,7 +85,7 @@ class SchoolController extends ApiController
             if($school->save()) {
                 $user = new User;
                 $user->school_id = $school->id;
-                $user->email = $email;
+                $user->email = $request->email;
                 if(!empty($request->classId)){
                     // if the user is a student, he will have a class id
                     $user->classId = $request->classId;
@@ -93,7 +100,6 @@ class SchoolController extends ApiController
         }
 
     }
-
     // assign subject to teacher
     public function assignSubject(Request $request){
         try {
@@ -108,7 +114,62 @@ class SchoolController extends ApiController
 
 
         } catch (\Exception $e) {
-            return $this->fail("Error viewing subjects. ".$e);
+            return $this->fail("Error viewing subjects. ".$e->getMessage());
+        }
+    }
+
+
+    public function createRolePermission (Request $request) {
+        try {
+            if(empty($request->permissions)){
+                return $this->notFound("permissions are required");
+            }
+            foreach($request->permissions as $data) {
+                $pem = new RolePermission();
+                $pem ->role_id = $data['rolePermission']['roleId'];
+                $row ->permission_id = $data['rolePermission']['permissionId'];
+                $row->save();   
+            }
+            return $this->success('Role Permissions successfully created.');
+        } catch (\Exception $e) {
+            return $this->fail("Error creating role permissions. ".$e->getMessage());
+        }
+   
+   }
+
+   public function createClass(Request $request){
+    if(empty($request->name)){
+        return $this->missingField('Name Field is missing.');
+    }
+
+    try {
+        $class = new ClassInfo;
+        $class->name = $request->name;
+        
+        if($class->save()){
+            return $this->success('Class has been created for '.$request->name);
+            }
+        } catch (\Exception $e) {
+            return $this->fail("Unable to create Class ".$e->getMessage());
+        }
+    }
+
+    public function createSubject(Request $request){
+        if(empty($request->name)){
+            return $this->missingField('Name Field is missing.');
+        }
+
+        try {
+            $subject = new Subject;
+            $subject->name = $request->name;
+            $subject->school_id = $request->schoolId;
+            $subject->createdBy = $request->userId;
+            
+            if($subject->save()){
+                return $this->success(''.$request->name." has been created.");
+            }
+        } catch (\Exception $e) {
+            return $this->fail("Unable to create subject ".$e->getMessage());
         }
     }
 
