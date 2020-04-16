@@ -8,6 +8,7 @@ use App\Models\RolePermission;
 use App\Models\Role;
 use App\Models\Permission;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends ApiController
@@ -37,10 +38,10 @@ class UserController extends ApiController
             $user->password = Hash::make($request->password);
             
             if($user->save()){
-                return $this->success('Account has been created for '.$firstname." ".$lastname);
+                return $this->success('Account has been created for '.$request->firstname." ".$request->lastname);
             }
         } catch (\Exception $e) {
-            return $this->fail("Unable to create user Account, Please try again.");
+            return $this->fail("Unable to create user Account, Please try again.".$e->getMessage());
         }
     }
 
@@ -122,19 +123,24 @@ class UserController extends ApiController
     }
 
     public function login(Request $request){
-    
-        $credentials = $request->only('email', 'password'); 
-        
-        if(Auth::attempt($crendentials,$request->remember)){ 
-            // get user details and permission of the user based on the role
-            return response()->json([
-                'user' => Auth()->user(),
-                'permission' => Auth()->user()->UserRoles(),
-            ]);
-        }
+        try {
+            $credentials = $request->only('email', 'password'); 
+            $token =  Hash::make($request->password);
+            if(Auth::attempt($credentials)){ 
+                // get user details and permission of the user based on the role
+                return response()->json([
+                    'user' => Auth()->user(),
+                    'token' => $token,
+                    'permissions' => Auth()->user()->UserRoles(),
+                     'success' => true,
+                ]);
+            }
 
-        return $this->fail("User Login failed");
-  
+            return $this->fail("User Login failed");
+        } catch (\Exception $e) {
+            return $this->fail("Error Logging in. ".$e->getMessage());
+        }
+    
     }
 
     public function logOut(){
