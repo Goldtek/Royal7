@@ -1,0 +1,10 @@
+/* ALL CUSTOM CSS GO IN HERE ###########################################  STARTS */
+
+.logo{
+    max-width: 20%;
+    height: auto;
+    padding: 0;
+    border: 2px solid red;
+    display: none;
+}
+/* ALL CUSTOM CSS GO IN HERE ###########################################  ENDS*/
