@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\DB;
 use App\Mail\SchoolAdministrator;
 use App\Models\CreateAccount;
 use App\Models\RolePermission;
+use App\Models\ClassInfo;
+use App\Models\Subject;
 
 
 class SchoolController extends ApiController
@@ -134,6 +136,42 @@ class SchoolController extends ApiController
         }
    
    }
+
+   public function createClass(Request $request){
+    if(empty($request->name)){
+        return $this->missingField('Name Field is missing.');
+    }
+
+    try {
+        $class = new ClassInfo;
+        $class->name = $request->name;
+        
+        if($class->save()){
+            return $this->success('Class has been created for '.$request->name);
+            }
+        } catch (\Exception $e) {
+            return $this->fail("Unable to create Class ".$e->getMessage());
+        }
+    }
+
+    public function createSubject(Request $request){
+        if(empty($request->name)){
+            return $this->missingField('Name Field is missing.');
+        }
+
+        try {
+            $subject = new Subject;
+            $subject->name = $request->name;
+            $subject->school_id = $request->schoolId;
+            $subject->createdBy = $request->userId;
+            
+            if($subject->save()){
+                return $this->success(''.$request->name." has been created.");
+            }
+        } catch (\Exception $e) {
+            return $this->fail("Unable to create subject ".$e->getMessage());
+        }
+    }
 
     public function destroy($id){
 
