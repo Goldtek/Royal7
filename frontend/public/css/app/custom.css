@@ -1,10 +1,17 @@
-/* ALL CUSTOM CSS GO IN HERE ###########################################  STARTS */
-
-.logo{
-    max-width: 20%;
-    height: auto;
-    padding: 0;
-    border: 2px solid red;
-    display: none;
+.content-section-a {
+    width: 100%;
+    background: #fff;
+    padding-top: 1rem;
+    padding-bottom: 4rem;
 }
-/* ALL CUSTOM CSS GO IN HERE ###########################################  ENDS*/
+
+
+.center-block {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .vid-background{
+      background-color: #f5f5f5;
+  }
