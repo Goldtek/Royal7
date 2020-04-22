@@ -54,6 +54,7 @@
         ]
     },
     "require": {
-        "laravel/passport": "^7.5"
+        "laravel/passport": "^7.5",
+        "s-ichikawa/laravel-sendgrid-driver": "~2.0"
     }
 }

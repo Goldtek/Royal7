@@ -1,7 +1,7 @@
 import React from 'react'
-import NavBar from "../app/header"
-import Parallax from "../app/parallax"
-import Footer from "../app/footer"
+import NavBar from "../custom/header"
+import Parallax from "../custom/parallax"
+import Footer from "../custom/footer"
  const IndexPage = ()=> {
     return (
        <>
