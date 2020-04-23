@@ -15,10 +15,11 @@
   <!-- WEB PASGE STYLES STARTS-->
   <link href="css/vendor/all.css" rel="stylesheet">
   <link href="css/app/app.css" rel="stylesheet">
+  <!-- <link href="css/app/bootstrap.min.css" rel="stylesheet"> -->
 
   <!-- CUSTOM CSS STYLES -->
   <link rel="stylesheet" href="css/app/custom.css"/>
-
+  
   <link
   rel="stylesheet"
   href="https://video-react.github.io/assets/video-react.css"
@@ -35,6 +36,8 @@
 <title></title>
 </head>
 <body>
+  <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root"></div>
 
@@ -57,8 +60,27 @@
 <script src="js/app/media.js"></script>
 <script src="js/app/messages.js"></script>
 <script src="js/app/maps.js"></script>
-<script src="js/app/charts.js"></script>
-<script src="js/app/main.js"></script>
+<!-- <script src="js/app/charts.js"></script> -->
 <!-- type writer effect js -->
+
+<!-- CUSTOM JS FUNCTIONS -->
+<!-- SCROLL TO TOP##################### -->
+<script>
+  // ===== Scroll to Top ==== 
+$(window).scroll(function() {
+    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+        $('#return-to-top').fadeIn(200);    // Fade in the arrow
+    } else {
+        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+    }
+});
+$('#return-to-top').click(function() {      // When arrow is clicked
+    $('body,html').animate({
+        scrollTop : 0                       // Scroll to top of body
+    }, 500);
+});
+
+</script>
+<!-- CUSTOM JS FUNCTIONS -->
 </body>
 </html>

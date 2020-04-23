@@ -21,59 +21,70 @@ return (
 <div className="content-section-a">
 <div className="container-fluid">
 <div className="row">
-<div className="col-lg-5 col-sm-6">
-<hr className="section-heading-spacer"/>
+
+<div className="margintop"></div>
+<div className="col-lg-5 col-sm-6 ">
+{/* <hr className="section-heading-spacer"/> */}
 <div className="clearfix"></div>
 <h2 className="section-heading">Death to the Stock Photo:<br/>Special Thanks</h2>
 <p className="lead">A special thanks to <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> for providing the photographs that you see in this template. Visit their website to become a member.</p>
 </div>
+
 <div className="col-lg-5 col-lg-offset-2 col-sm-6">
 <img className="img-responsive" src="images/img-hero-remote.jpg" alt=""/>
 </div>
+
+
+
+<div className="clearfix"></div>
+<div className="margintop col-lg-12 col-sm-12"></div>
 <div className="col-lg-8 col-sm-6 col-lg-offset-2">
 {/* <hr className="section-heading-spacer"/> */}
 <div className="clearfix"></div>
 <h1 className="section-heading" align="center">Break out of the inbox</h1>
 <p className="lead">A special thanks to <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> for providing the photographs that you see in this template. Visit their website to become a member.</p>
+<section className="vid">
 <Videojs/>
+</section>
 </div>
 
-<br/>
+<div className="clearfix"></div>
+<div className="margintop col-lg-12 col-sm-12"></div>
+<div className="margintop col-lg-2 col-sm-2"></div>
 
-<div className="col-lg-4 col-sm-4">
-<div className="clearfix"></div>
-<h2 className="section-heading"> <i className="fa fa-flag"></i><br/>Special Thanks</h2>
-<p className="lead">A special thanks to <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> for providing the photographs that you see in this template. Visit their website to become a member.</p>
-</div>
-<div className="col-lg-4 col-sm-4">
-<div className="clearfix"></div>
-<h2 className="section-heading"> <i className="fa fa-flag"></i><br/>Special Thanks</h2>
-<p className="lead">A special thanks to <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> for providing the photographs that you see in this template. Visit their website to become a member.</p>
-</div>
-<div className="col-lg-4 col-sm-4">
+<div className="col-lg-3 col-sm-4">
 <div className="clearfix"></div>
 <h2 className="section-heading"> <i className="fa fa-flag"></i><br/>Special Thanks</h2>
 <p className="lead">A special thanks to <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> for providing the photographs that you see in this template. Visit their website to become a member.</p>
 </div>
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<div className="row">
+
+
+<div className="col-lg-3 col-sm-4">
+<div className="clearfix"></div>
+<h2 className="section-heading"> <i className="fa fa-flag"></i><br/>Special Thanks</h2>
+<p className="lead">A special thanks to <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> for providing the photographs that you see in this template. Visit their website to become a member.</p>
+</div>
+<div className="col-lg-3 col-sm-4">
+<div className="clearfix"></div>
+<h2 className="section-heading"> <i className="fa fa-flag"></i><br/>Special Thanks</h2>
+<p className="lead">A special thanks to <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> for providing the photographs that you see in this template. Visit their website to become a member.</p>
+</div>
+
+
+
+<div className="margintop col-lg-12 col-sm-12"></div>
 <div className="col-lg-5 col-sm-6 mt-5" >
 {/* <hr className="section-heading-spacer"/> */}
 <div className="clearfix"></div>
+<img className="img-responsive" src="images/Where work happens - Slack_2.gif" alt=""/>
+
+</div>
+<div className="col-lg-5 col-lg-offset-2 col-sm-6">
 <h2 className="section-heading">Death to the Stock Photo:<br/>Special Thanks</h2>
 <p className="lead">A special thanks to <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> for providing the photographs that you see in this template. Visit their website to become a member.</p>
 </div>
-<div className="col-lg-5 col-lg-offset-2 col-sm-6">
-<img className="img-responsive" src="images/img-hero-remote.jpg" alt=""/>
 </div>
-</div>
-</div>
-
 </div>
 </div>
 {/* <Typing>
