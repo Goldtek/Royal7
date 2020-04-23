@@ -4,7 +4,7 @@ import {Helmet} from "react-helmet";
 
 //############### IMPORT COMPNENTS FROM THE INDEXED EXPORT STARTS
 // import setUpComponent from "./welcome";
-import IndexPage from "../components/index"
+import IndexPage from "../index"
 //############### IMPORT COMPNENTS FROM THE INDEXED EXPORT ENDS
 
 function App() {
