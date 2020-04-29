@@ -19,7 +19,7 @@ function App() {
             render={() => (
               <>
                 <Helmet>
-                  <title>Royal7-welcome</title>
+                  <title>Royal</title>
                 </Helmet>
              <IndexPage/>
               </>
