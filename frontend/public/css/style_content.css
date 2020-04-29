@@ -71,7 +71,7 @@
 }
 
 .mail-section .image-content img{
-    margin:150px 0 130px 0;
+    margin:160px 0 130px 0;
     width:100%;
 }
 
@@ -83,13 +83,12 @@
 
 .confirm_main_section .content{
     background: #ffffff;
-    padding:180px 40px 50px 40px;
-    border:1px solid #333;
+    padding:180px 40px 0 40px;
 }
 
 .content .fields{
     white-space:nowrap;
-    padding:20px 22% 20px 22%;
+    padding:20px 22% 20px 21%;
     width:100%;
     height:100%;
 }
@@ -127,12 +126,12 @@ input[type=text]:focus, input[type=checkbox]:focus{
 .confirm_main_section .content h4{
    font-size:18px;
    font-weight:bold;
-   padding:0 22% 0 22%
+   padding:0 22% 0 21%
 }
 
 .confirm_main_section .content p{
    font-size:14px;
-   padding:0 22% 0 22%;
+   padding:0 22% 0 21%;
    font-weight:bold;
 }
 
@@ -142,6 +141,7 @@ input[type=text]:focus, input[type=checkbox]:focus{
 }
 
 .confirm_main_section .content img{
-    padding:0 45% 0 45%;
-    margin-bottom:20px;
+    padding:0 45% 0 44%;
+    margin-bottom:0;
+    margin-top:40px
 }

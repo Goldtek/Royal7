@@ -9,7 +9,6 @@ export default function validateInput(data){
     }else if(!Validator.isEmail(data.email)){
         errors.email = "Invalid email address";
     }
-    
     return {
         errors,
         isValid: isEmpty(errors)

@@ -48,7 +48,7 @@ class Mail extends Component{
     }
     
     render(){
-        const { email, feed, errors } = this.state;
+        const { email, checked, errors } = this.state;
         return(
             <div>
                 <section className="mail-section">
@@ -73,7 +73,7 @@ class Mail extends Component{
                                             placeholder={'Enter your email'}/>
                                             {errors.email && <span className="form-text">{errors.email}</span>}
                                         </div>
-                                        <div className="form-group">
+                                        <div className='form-group'>
                                             <div className="form-check">
                                                 <label className="form-check-label">
                                                 <input 
