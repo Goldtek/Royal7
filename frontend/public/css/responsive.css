@@ -1,0 +1,67 @@
+/* Smaller than standard 992 */
+@media only screen and (max-width: 991px) {
+
+    .content .fields .txt_nme1, 
+    .content .fields .txt_nme2, 
+    .content .fields .txt_nme3, 
+    .content .fields .txt_nme4, 
+    .content .fields .txt_nme5, 
+    .content .fields .txt_nme6{
+       width:15%;
+    }
+
+    .confirm_main_section .content{
+        padding-left:0px !important;
+        padding-right:0px !important;
+        padding-top:100px !important;
+    }
+
+    .confirm_main_section .content h4{
+        padding:0 15% 0 15% !important
+    }
+     
+    .confirm_main_section .content p{
+        padding:0 15% 0 15% !important;
+    }
+
+    .content .fields{
+       margin-top:20px;
+       margin-bottom:25px;
+       padding:0 15% 0 15% !important;
+    }
+
+}
+
+/* Tablet Portrait Size */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .mail-section .col-parz{
+        margin-top:20px !important
+    }
+}
+
+/* All Mobile Sizes */
+@media only screen and (max-width: 767px) {
+
+}
+
+/* Mobile Landscape Size */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .mail-section .col-parz{
+        margin-top:20px !important
+    }
+
+    .confirm_main_section .content{
+        padding-top:100px !important;
+    }
+}
+
+/* Mobile Portrait Size */
+@media only screen and (max-width: 479px){
+    .mail-section .col-parz{
+        margin-top:20px !important
+    }
+}   
+    
+@media (max-width: 320px) {
+	
+}
