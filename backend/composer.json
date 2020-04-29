@@ -54,6 +54,7 @@
         ]
     },
     "require": {
+        "barryvdh/laravel-cors": "^1.0",
         "laravel/passport": "^7.5"
     }
 }
