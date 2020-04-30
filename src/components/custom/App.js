@@ -6,6 +6,8 @@ import {Helmet} from "react-helmet";
 // import setUpComponent from "./welcome";
 import IndexPage from "../index"
 //############### IMPORT COMPNENTS FROM THE INDEXED EXPORT ENDS
+import mailConfirm from '../main/emails/mailConfirmation';
+import InvitationMail from '../main/invitationMail';
 
 function App() {
   return (
@@ -26,7 +28,9 @@ function App() {
             )}
           />
           {/* <Route path="/setup" component={setUpComponent} /> */}
-         
+
+          <Route path="/emailConfirmation" component={mailConfirm} />
+          <Route path="/invitation-mail" component={InvitationMail} /> 
         </Switch>
       </BrowserRouter>
     </Fragment>

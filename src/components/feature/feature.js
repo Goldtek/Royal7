@@ -43,7 +43,7 @@ return (
 <div className="clearfix"></div>
 <h1 className="section-heading" align="center">Break out of the inbox</h1>
 <p className="lead">A special thanks to <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> for providing the photographs that you see in this template. Visit their website to become a member.</p>
-<section className="vid">
+<section className="vid" style={{border:"2px solid blue !important"}}>
 <Videojs/>
 </section>
 </div>
