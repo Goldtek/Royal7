@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Player, PosterImage,LoadingSpinner  } from 'video-react';
+import "../../../node_modules/video-react/dist/video-react.css";
 
 export default props => {
 // set the poster image url to `poster` property
