@@ -32,7 +32,7 @@ function App() {
           {/* <Route path="/setup" component={setUpComponent} /> */}
 
           <Route path="/emailConfirmation" component={mailConfirm} />
-          <Route path="/invitation-mail" component={InvitationMail} /> 
+          <Route path="/getting-started" component={InvitationMail} /> 
           <Route path="/create-account" component={createAccount} />
           <Route path="/terms-conditions" component={termsConditions} />
         </Switch>
