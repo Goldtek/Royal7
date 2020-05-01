@@ -1,5 +1,4 @@
 .content-section-a {
-<<<<<<< HEAD
     width: 100%;
     background: #fff;
     padding-top: 1rem;
@@ -401,37 +400,14 @@ h3 i{color: #444;} */
     border-radius: 5px;
 }
 
-.effect {
-    text-align: center;
-    display: inline-block;
-    position: relative;
-    text-decoration: none;
-    /* color: #fff; */
-    text-transform: capitalize;
-    /* background-color: - add your own background-color */
-    font-family: "Roboto", sans-serif;
-    /* put your font-family */
-    font-size: 18px;
-    padding: 20px 0px;
-    width: 150px;
-    border-radius: 6px;
-    overflow: hidden;
-}
+
 
 /* effect-1 styles */
 .effect.effect-1 {
-    -webkit-transition: all 0.2s linear 0s;
-    transition: all 0.2s linear 0s;
+    font-weight: 400;
+    font-size: 1.5rem;
 }
-.effect.effect-1:before {
-=======
-  width: 100%;
-  background: #fff;
-  padding-top: 1rem;
-  padding-bottom: 4rem;
-  }
-  
-  
+
   .center-block {
   display: block;
   margin-right: auto;
@@ -646,7 +622,7 @@ h3 i{color: #444;} */
       margin:20px 0px;
   }
   
-  .fa{
+  .icon-card.fa{
       color:#4183D7;
   }
   
@@ -849,7 +825,6 @@ h3 i{color: #444;} */
     transition: all 0.2s linear 0s;
   }
   .effect.effect-1:before {
->>>>>>> footer
     content: "\f178";
     font-family: FontAwesome;
     font-size: 15px;
@@ -857,15 +832,12 @@ h3 i{color: #444;} */
     display: -webkit-box;
     display: flex;
     -webkit-box-align: center;
-<<<<<<< HEAD
     align-items: center;
     -webkit-box-pack: center;
     justify-content: center;
-=======
             align-items: center;
     -webkit-box-pack: center;
             justify-content: center;
->>>>>>> footer
     right: 0;
     top: 0;
     opacity: 0;
@@ -873,15 +845,8 @@ h3 i{color: #444;} */
     width: 40px;
     -webkit-transition: all 0.2s linear 0s;
     transition: all 0.2s linear 0s;
-<<<<<<< HEAD
 }
-.effect.effect-1:hover {
-    text-indent: -20px;
-}
-.effect.effect-1:hover:before {
-    opacity: 1;
-    text-indent: 0px;
-}
+
 
 /* .clear-both{
   height: 20vh;
@@ -1028,6 +993,9 @@ h3 i{color: #444;} */
       padding-left: 50px;
       padding-right: 50px;
   }
+  .half-div{
+  display: none;
+  }
  }
  @media (max-width: 575px) {
   .login-section-wrapper {
@@ -1035,14 +1003,17 @@ h3 i{color: #444;} */
       padding-bottom: 20px;
       min-height: 100vh;
   }
+
+  .login-wrapper {
+    width: 100%;
+}
+.half-div{
+ display: none;
+ }
  }
 
  
-@media (max-width: 575px) {
- .login-wrapper {
-     width: 100%;
- }
-}
+
 
 .example3 ul li a{
   font-weight: 600 !important;
@@ -1055,16 +1026,8 @@ h3 i{color: #444;} */
   font-weight: 800;
 }
 /* CREATE ACCOUNT PAGE CSS  #################################*/
-=======
-  }
-  .effect.effect-1:hover {
-    text-indent: -20px;
-  }
-  .effect.effect-1:hover:before {
-    opacity: 1;
-    text-indent: 0px;
-  }
   
+ 
   /* FOOTER */
   
   /* 
@@ -1273,4 +1236,16 @@ h3 i{color: #444;} */
     height: 20vh;
     width: 100%;
   } */
->>>>>>> footer
+.navbar-default{
+  background-color: #fff !important;
+  font-weight: 600 !important;
+}
+#navbar3 ul li a{
+/* color: red !important; */
+  font-weight: 600 !important;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+  color: #ffffff;
+  background-color: #8dceb8;
+}

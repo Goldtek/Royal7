@@ -56,7 +56,7 @@ class Mail extends Component {
                 style={{ overflow: "hidden", width: "100%", padding: 0 }}
             >
                 <div className="row">
-                    <div className="col-sm-6 col-xs-6 col-lg-4 col-md-4 login-section-wrapper">
+                    <div className="col-sm-12 col-xs-12 col-lg-4 col-md-4 login-section-wrapper">
                         <div className="brand-wrapper">
                             <img
                                 src="images/logo/logo.png"
@@ -107,7 +107,7 @@ class Mail extends Component {
                             </form>
                         </div>
                     </div>
-                    <div className="col-sm-6 col-xs-6 col-lg-8 col-md-8">
+                    <div className="col-sm-6 col-xs-6 col-lg-8 col-md-8 half-div">
                         <img
                             src="images/assets/login.jpg"
                             alt="login_image"
