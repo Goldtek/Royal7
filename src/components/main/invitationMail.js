@@ -5,7 +5,7 @@ import FooterComponent from "../footer/footer";
 import HeaderComponent from "../header/navbar";
 import { sendMailRequest } from '../../Actions/mailAction';
 import classnames from 'classnames';
-import validateInput from '../main/validator/emailValidator';
+import validate from '../main/validator/validatorCheck';
 
 class Mail extends Component{
     constructor(props){
@@ -26,7 +26,7 @@ class Mail extends Component{
     }
     
     isValid(){
-        const { errors, isValid } = validateInput(this.state);
+        const { errors, isValid } = validate.emailVal(this.state);
 
         if(!isValid){
             this.setState({errors});
@@ -58,7 +58,7 @@ class Mail extends Component{
                             <div className="col-md-6 col-pars">
                                 <div className="part-1">
                                     <div className="img-logo">
-                                       <img src="images/logo.png"/>
+                                      
                                     </div>
                                     <div className="part-1-center">
                                         <p>First, enter your email.</p>

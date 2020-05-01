@@ -30,6 +30,18 @@
        padding:0 15% 0 15% !important;
     }
 
+    .account-section .acc_1{
+        padding:250px 40px 250px 40px;
+    }
+
+    .account-section .acc_2{
+        padding:200px 40px 250px 40px;
+    }
+
+    .account-section .acc_2 img{
+        width:100%;
+    }
+
 }
 
 /* Tablet Portrait Size */
@@ -59,6 +71,17 @@
 @media only screen and (max-width: 479px){
     .mail-section .col-parz{
         margin-top:20px !important
+    }
+    .account-section .acc_1{
+        padding:200px 40px 100px 40px !important;
+    }
+
+    .account-section .acc_2{
+        padding:200px 40px 150px 40px !important;
+    }
+
+    .account-section .acc_2 img{
+        width:100%;
     }
 }   
     
