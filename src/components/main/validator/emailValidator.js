@@ -5,9 +5,9 @@ export default function validateInput(data){
     let errors = {};
 
     if(Validator.isEmpty(data.email)){
-        errors.email = "This field is required";
+        errors.email = "this field is required";
     }else if(!Validator.isEmail(data.email)){
-        errors.email = "Invalid email address";
+        errors.email = "invalid email address";
     }
     return {
         errors,
