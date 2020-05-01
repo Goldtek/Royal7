@@ -30,6 +30,7 @@ function App() {
           />
           {/* <Route path="/setup" component={setUpComponent} /> */}
 
+<<<<<<< HEAD:src/components/App.js
           {/* EMAIL CONFIRMATION PATH */}
           <Route path="/confirm-email" component={mailConfirm} />
           {/* EMAIL CONFIRMATION PATH */}
@@ -41,6 +42,12 @@ function App() {
           {/* ERROR 404 PAGE */}
           <Route path="*" component={ErrorPage} />
           {/* ERROR 404 PAGE */}
+=======
+          <Route path="/emailConfirmation" component={mailConfirm} />
+          <Route path="/getting-started" component={InvitationMail} /> 
+          <Route path="/create-account" component={createAccount} />
+          <Route path="/terms-conditions" component={termsConditions} />
+>>>>>>> develop:src/components/custom/App.js
         </Switch>
       </BrowserRouter>
     </Fragment>
