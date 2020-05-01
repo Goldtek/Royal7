@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -7,16 +6,6 @@ import { connect } from "react-redux";
 import { sendMailRequest } from "../../Actions/mailAction";
 import classnames from "classnames";
 import validateInput from "../main/validator/emailValidator";
-=======
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import FooterComponent from "../footer/footer";
-import HeaderComponent from "../header/navbar";
-import { sendMailRequest } from '../../Actions/mailAction';
-import classnames from 'classnames';
-import validate from '../main/validator/validatorCheck';
->>>>>>> 84a2dcf1fc2d7bffc7d66a260fc6b3bdae92c0e9
 
 class Mail extends Component {
     constructor(props) {
@@ -32,21 +21,12 @@ class Mail extends Component {
         this.setState({ [e.target.name]: e.target.value });
     };
 
-<<<<<<< HEAD
     checkboxHandler = (e) => {
         this.setState({ checked: e.target.checked });
     };
 
     isValid() {
         const { errors, isValid } = validateInput(this.state);
-=======
-    checkboxHandler = e =>{
-        this.setState({checked: e.target.checked})
-    }
-    
-    isValid(){
-        const { errors, isValid } = validate.emailVal(this.state);
->>>>>>> 84a2dcf1fc2d7bffc7d66a260fc6b3bdae92c0e9
 
         if (!isValid) {
             this.setState({ errors });
@@ -66,7 +46,6 @@ class Mail extends Component {
                     console.log("Not send Oops!");
                 });
         }
-<<<<<<< HEAD
     };
 
     render() {
@@ -110,38 +89,6 @@ class Mail extends Component {
                                 </div>
 
                                 {/* <div className='form-group'>
-=======
-    }
-    
-    render(){
-        const { email, checked, errors } = this.state;
-        return(
-            <div>
-                <HeaderComponent/>
-                <section className="mail-section">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-6 col-pars">
-                                <div className="part-1">
-                                    <div className="img-logo">
-                                      
-                                    </div>
-                                    <div className="part-1-center">
-                                        <p>First, enter your email.</p>
-                                        <p>Just one more mail- a quik confirmation<br/> - before you say good bye to overstuffed<br/> inboxes for good</p>
-                                        <div className={classnames('form-group', {'has-error': errors.email })}>
-                                            <label>Your email address</label>
-                                            <input 
-                                            type="text"
-                                            name="email" 
-                                            value={this.state.email}
-                                            onChange={this.onChange}
-                                            className="form-control"
-                                            placeholder={'Enter your email'}/>
-                                            {errors.email && <span className="form-text">{errors.email}</span>}
-                                        </div>
-                                        <div className='form-group'>
->>>>>>> 84a2dcf1fc2d7bffc7d66a260fc6b3bdae92c0e9
                                             <div className="form-check">
                                                 <label className="form-check-label">
                                                 <input 
