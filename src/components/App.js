@@ -35,7 +35,7 @@ function App() {
           {/* EMAIL CONFIRMATION PATH */}
 
           {/* GETTING STARTED PAGE  URL*/}
-          <Route path="/getting-started" component={createAccount} /> 
+          <Route path="/create" component={createAccount} /> 
           {/* GETTING STARTED PAGE */}
 
           {/* ERROR 404 PAGE */}
