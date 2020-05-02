@@ -41,7 +41,7 @@ data-animated role="navigation">
               
             </ul>
           </li>
-          <li >< Link to="/getting-started">Getting Started</Link></li>
+          <li ><Link to="/create">Getting Started</Link></li>
         </ul>
       </div>
       {/* <!--/.nav-collapse --> */}
