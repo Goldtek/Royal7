@@ -31,11 +31,11 @@ function App() {
           {/* <Route path="/setup" component={setUpComponent} /> */}
 
           {/* EMAIL CONFIRMATION PATH URL */}
-          <Route path="/confirm-email" component={mailConfirm} />
+          <Route exact path="/confirm-email" component={mailConfirm} />
           {/* EMAIL CONFIRMATION PATH */}
 
           {/* GETTING STARTED PAGE  URL*/}
-          <Route path="/create" component={createAccount} /> 
+          <Route exact path="/create" component={createAccount} /> 
           {/* GETTING STARTED PAGE */}
 
           {/* ERROR 404 PAGE */}
