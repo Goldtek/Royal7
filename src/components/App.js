@@ -4,12 +4,11 @@ import {Helmet} from "react-helmet";
 
 //############### IMPORT COMPNENTS FROM THE INDEXED EXPORT STARTS
 // import setUpComponent from "./welcome";
-import IndexPage from "../index"
+import IndexPage from "./index"
 //############### IMPORT COMPNENTS FROM THE INDEXED EXPORT ENDS
-import mailConfirm from '../main/emails/mailConfirmation';
-import InvitationMail from '../main/invitationMail';
-import createAccount from '../main/createAccount';
-import termsConditions from '../main/terms-conditions';
+import mailConfirm from './main/emails/mailConfirmation';
+import createAccount from './main/invitationMail';
+import ErrorPage from "./errorpage"
 
 function App() {
   return (
@@ -31,10 +30,17 @@ function App() {
           />
           {/* <Route path="/setup" component={setUpComponent} /> */}
 
-          <Route path="/emailConfirmation" component={mailConfirm} />
-          <Route path="/getting-started" component={InvitationMail} /> 
-          <Route path="/create-account" component={createAccount} />
-          <Route path="/terms-conditions" component={termsConditions} />
+          {/* EMAIL CONFIRMATION PATH */}
+          <Route path="/confirm-email" component={mailConfirm} />
+          {/* EMAIL CONFIRMATION PATH */}
+
+          {/* GETTING STARTED PAGE */}
+          <Route path="/getting-started" component={createAccount} /> 
+          {/* GETTING STARTED PAGE */}
+
+          {/* ERROR 404 PAGE */}
+          <Route path="*" component={ErrorPage} />
+          {/* ERROR 404 PAGE */}
         </Switch>
       </BrowserRouter>
     </Fragment>

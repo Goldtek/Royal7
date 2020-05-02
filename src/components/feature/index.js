@@ -1,1 +1,1 @@
-export {default} from "./feature";
+export {default} from "./featureComponent";

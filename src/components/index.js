@@ -1,12 +1,12 @@
 import React from 'react'
-import HeaderComponent from "./header"
+import NavBarComponent from "./navbar"
 import ParallaxComponent from "./parallax"
 import FeatureComponent from "./feature"
 import FooterComponent from "./footer"
  const IndexPage = ()=> {
     return (
        <>
-       <HeaderComponent/>
+       <NavBarComponent/>
        <ParallaxComponent/>
        <FeatureComponent/>
        <FooterComponent/>

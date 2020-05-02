@@ -1,1 +1,1 @@
-export {default} from "./parallax"
+export {default} from "./parallaxComponent"
