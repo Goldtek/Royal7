@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from "react-router-dom"
-const HeaderComponent=()=> {
+const navBarComponent=()=> {
 return (
 //   <!-- Fixed navbar -->
 
@@ -41,6 +41,7 @@ data-animated role="navigation">
               
             </ul>
           </li>
+          <li ><Link to="/create">Getting Started</Link></li>
         </ul>
       </div>
       {/* <!--/.nav-collapse --> */}
@@ -52,4 +53,4 @@ data-animated role="navigation">
 )
 }
 
-export default HeaderComponent
+export default navBarComponent

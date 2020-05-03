@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { confirmMail_1 } from '../../../Actions/mailAction';
-import FooterComponent from "../../footer/footer";
-import HeaderComponent from "../../header/navbar";
 import PropTypes from 'prop-types';
 
 class mailConfirmation extends Component{
@@ -44,7 +42,7 @@ class mailConfirmation extends Component{
     render(){
         return(
             <div>
-                <HeaderComponent/>
+            
                 <section className="confirm_main_section">
                     <div className="container">
                         <div className="row">
@@ -107,13 +105,13 @@ class mailConfirmation extends Component{
                                         Remember to try your spam folder!.
                                     </p>
 
-                                    <img src="images/bottom_1.png"/>
+                                    <img src="images/bottom_1.png" alt=""/>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <FooterComponent/>
+                
             </div>
         );
     }
