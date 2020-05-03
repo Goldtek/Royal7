@@ -220,3 +220,108 @@ input[type=text]:focus, input[type=checkbox]:focus{
 .account-section #psd{
     display:none;
 }
+
+/* ================== Terms and Conditions =======================*/
+
+.terms-section{
+    padding-top:80px;
+    margin-bottom:40px;
+}
+
+.terms-section .container-fluid{
+    margin-left:0 !important;
+    margin-right:0 !important;
+}
+
+.terms-section .jumbotron{
+    margin-top:0 !important;
+    margin-bottom:0 !important;
+}
+
+.terms-section .top_1{
+    padding:20px 150px 20px 150px;
+}
+
+.terms-section .top_1 h4{
+    text-align:center;
+    font-size:40px;
+    font-weight:bold;
+}
+
+.terms-section .term-left_1, .terms-section .term-right_2{
+    padding-top:50px;
+    background:#fff;
+    padding-bottom:50px;
+    margin-bottom:100px;
+}
+
+.terms-section .term-right_2{
+    padding-right:40px;
+}
+
+.terms-section .term-left_1 ul{
+    margin-left:40px;
+}
+
+
+.terms-section .term-left_1 ul li a{
+    color:#333;
+}
+
+.terms-section .term-left_1 ul li a:hover{
+    text-decoration:underline;
+    color:#128ef2;
+}
+
+.terms-section .term-left_1 h5{
+    margin-left:80px;
+    margin-bottom:20px;
+    font-weight:bold
+}
+
+.terms-section .term-left_1 h5 a{
+    color:#333;
+}
+
+
+.terms-section .term-left_1 h5 a:hover{
+    color:#128ef2;
+}
+
+.terms-section .term-left_1 ul li{
+    list-style:none;
+    margin-bottom:20px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.terms-section .row{
+    background:#fff;
+    padding-bottom:100px;
+}
+
+.terms-section .term-right_2 p{
+    font-size:14px;
+    font-weight:bold;
+    margin-left:40px;
+    line-height:22px;
+}
+
+.terms-section .term-right_2 h4{
+    font-size:18px;
+    font-weight:bold;
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-left:40px;
+}
+
+.terms-section .term-right_2 h5{
+    font-size:16px;
+    font-weight:bold;
+    margin-left:40px;
+}
+
+.terms-section .col-md-8{
+    height:auto;
+}
+
