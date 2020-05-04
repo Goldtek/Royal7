@@ -6,7 +6,8 @@ import ContinuationScreen from "./screens/createAccount"
 import history from "./history"
 import EmailSentNotificationScreen from "./screens/emailSent"
 import EmailActivationScreen from "./screens/emailConfirmation"
+import TermsConditions from "./screens/terms-conditions";
 
 export{
-    CreateAccountScreen,Mail,Error404Page,MailConfirm,ContinuationScreen,history,EmailSentNotificationScreen,EmailActivationScreen
+    CreateAccountScreen,Mail,Error404Page,MailConfirm,ContinuationScreen,history,EmailSentNotificationScreen,EmailActivationScreen,TermsConditions
 }

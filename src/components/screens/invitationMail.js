@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import history from "../history";
 // import FooterComponent from "../footer/footer";
 // import HeaderComponent from "../header/navbar";
-import { sendMailRequest } from "../../Actions/mailAction";
+import { sendMailRequest } from "../../actions/mailAction";
 import classnames from "classnames";
 import validateInput from "../screens/validator/emailValidator";
 
@@ -41,11 +41,10 @@ class Mail extends Component {
             this.props
                 .sendMailRequest(email)
                 .then((response) => {
-                    history.push('/sent')
+                    history.push("/sent");
                 })
                 .catch((err) => {
-                    history.push('/sent')
-
+                    history.push("/sent");
                 });
         }
     };
@@ -71,10 +70,16 @@ class Mail extends Component {
                                 Welcome, we are glad you are here
                             </h1>
                             <p className="login-p">
-                                We will require your email to create your account - please fill in your official email below to get started.
+                                We will require your email to create your
+                                account - please fill in your official email
+                                below to get started.
                             </p>
-                            <form >
-                                <div className={classnames('form-group', {'has-error': errors.email })}>
+                            <form>
+                                <div
+                                    className={classnames("form-group", {
+                                        "has-error": errors.email,
+                                    })}
+                                >
                                     <label for="email">
                                         your email address
                                     </label>
@@ -85,24 +90,32 @@ class Mail extends Component {
                                         value={this.state.email}
                                         onChange={this.onChange}
                                         className="form-control"
-                                        placeholder={'you@official-email.com'}
+                                        placeholder={"you@official-email.com"}
                                     />
-                                    {errors.email && <span className="form-text">{errors.email}</span>}
+                                    {errors.email && (
+                                        <span className="form-text">
+                                            {errors.email}
+                                        </span>
+                                    )}
                                 </div>
 
                                 {/* <div className='form-group'>
-                                            <div className="form-check">
-                                                <label className="form-check-label">
-                                                <input 
-                                                type="checkbox"
-                                                className="form-check-input"
-                                                checked={this.state.checked}
-                                                onChange={this.checkboxHandler}
-                                                /> It's okay to send me update emails.
-                                                </label>
-                                            </div>
-                                        </div> */}
-                                <button className="btn btn-md login-btn center-block" onClick={this.sendMail} type="button">
+<div className="form-check">
+<label className="form-check-label">
+<input 
+type="checkbox"
+className="form-check-input"
+checked={this.state.checked}
+onChange={this.checkboxHandler}
+/> It's okay to send me update emails.
+</label>
+</div>
+</div> */}
+                                <button
+                                    className="btn btn-md login-btn center-block"
+                                    onClick={this.sendMail}
+                                    type="button"
+                                >
                                     Next <i className="fa fa-arrow-right"></i>
                                 </button>
                                 {/* <input name="login" id="login" className="btn btn-block login-btn" type="button" value="Login"/> */}

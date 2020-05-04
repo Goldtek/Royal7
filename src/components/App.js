@@ -20,6 +20,7 @@ import {
     history,
     EmailSentNotificationScreen,
     EmailActivationScreen,
+    TermsConditions
 } from "./exports";
 
 const App = () => (
@@ -71,7 +72,15 @@ const App = () => (
             </Route>
             {/* Notification for email action success screen End path */}
 
-            {/* ERROR 404 path */}
+            
+            {/* Notification for email action success screen START path */}
+            <Route path="/terms-conditions">
+                <TermsConditions />
+            </Route>
+            {/* Notification for email action success screen End path */}
+
+
+              {/* ERROR 404 path */}
             <Route path="*">
                 <Error404Page />
             </Route>
