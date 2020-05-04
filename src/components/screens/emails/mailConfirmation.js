@@ -4,8 +4,7 @@ import axios from 'axios';
 // import { confirmMail_1 } from '../../../actions/mailAction';
 import PropTypes from 'prop-types';
 
-const api_url = process.env.REACT_APP_API_URL;
-
+const api_url = process.env.REACT_APP_BASEURL;
 class mailConfirmation extends Component{
     constructor(props){
         super(props);

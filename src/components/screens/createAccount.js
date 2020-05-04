@@ -9,7 +9,7 @@ import isEmpty from "lodash/isEmpty";
 import "./screens.css";
 
 
-const api_url = process.env.REACT_APP_API_URL;
+const api_url = process.env.REACT_APP_BASEURL;
 
 class CreateAccount extends Component{
     constructor(props){

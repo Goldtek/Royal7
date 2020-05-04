@@ -9,7 +9,7 @@ import history from "../history";
 import classnames from "classnames";
 import validateInput from "../screens/validator/emailValidator";
 
-const api_url = process.env.REACT_APP_API_URL;
+const api_url = process.env.REACT_APP_BASEURL;
 class Mail extends Component {
     constructor(props) {
         super(props);
