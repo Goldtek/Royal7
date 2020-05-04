@@ -1,11 +1,12 @@
 import Mail from "./screens/invitationMail";
-import createAccount from "./screens/invitationMail";
+import CreateAccountScreen from "./screens/invitationMail";
 import Error404Page from "./errorpage";
-import mailConfirm from "./screens/emails/mailConfirmation"
-import continuation from "./screens/createAccount"
+import MailConfirm from "./screens/emails/mailConfirmation"
+import ContinuationScreen from "./screens/createAccount"
 import history from "./history"
-import emailSentNotification from "./screens/emailSent"
+import EmailSentNotificationScreen from "./screens/emailSent"
+import EmailActivationScreen from "./screens/emailConfirmation"
 
 export{
-    createAccount,Mail,Error404Page,mailConfirm,continuation,history,emailSentNotification
+    CreateAccountScreen,Mail,Error404Page,MailConfirm,ContinuationScreen,history,EmailSentNotificationScreen,EmailActivationScreen
 }

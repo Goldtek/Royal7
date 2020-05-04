@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
@@ -6,55 +6,78 @@ import { Helmet } from "react-helmet";
 // import setUpComponent from "./welcome";
 import IndexPage from "./index";
 //############### IMPORT COMPNENTS FROM THE INDEXED EXPORT ENDS
+
+/*
+
+NOTE:Use PascalCase for React components, or lowercase for HTML elements. DUE TO THE ROUTING PATTERN PLEASE USE PascalCasing to avoid error
+
+*/
 import {
-    mailConfirm,
-    createAccount,
-    continuation,
+    MailConfirm,
+    CreateAccountScreen,
+    ContinuationScreen,
     Error404Page,
     history,
-    emailSentNotification
+    EmailSentNotificationScreen,
+    EmailActivationScreen,
 } from "./exports";
 
 const App = () => (
-    
-        <Router forceRefresh={true} history={history}>
-            <Switch>
-                <Route
-                    exact
-                    path="/"
-                    render={() => (
-                        <>
-                            <Helmet>
-                                <title>Royal</title>
-                            </Helmet>
-                            <IndexPage />
-                        </>
-                    )}
-                />
-                {/* <Route path="/setup" component={setUpComponent} /> */}
+    <Router forceRefresh={true} history={history}>
+        <Switch>
+            <Route
+                exact
+                path="/"
+                render={() => (
+                    <>
+                        <Helmet>
+                            <title>Royal</title>
+                        </Helmet>
+                        <IndexPage />
+                    </>
+                )}
+            />
+            {/* <Route path="/setup" component={setUpComponent} /> */}
 
-                {/* EMAIL CONFIRMATION PATH URL */}
-                <Route path="/confirm-email" component={mailConfirm} />
-                {/* EMAIL CONFIRMATION PATH */}
+            {/* Screen for user to input confirmation code start path */}
+            <Route path="/confirm-email">
+                <MailConfirm />
+            </Route>
+            {/* Screen for user to input confirmation code start path */}
 
-                {/* GETTING STARTED PAGE */}
-                <Route path="/create" component={createAccount} />
-                {/* GETTING STARTED PAGE */}
+            {/* Getting Started Account Creation Start path */}
+            <Route path="/create">
+                <CreateAccountScreen />
+            </Route>
+            {/* Getting Started Account Creation Start path */}
 
-                {/* GETTING STARTED PAGE */}
-                <Route path="/continue" component={continuation} />
-                {/* GETTING STARTED PAGE */}
+            {/* Registration Screen after email confirmation START path */}
+            <Route path="/continue">
+                <ContinuationScreen />
+            </Route>
+            {/* Registration Screen after email confirmation End path */}
 
-                {/* GETTING STARTED PAGE */}
-                <Route path="/sent" component={emailSentNotification} />
-                {/* GETTING STARTED PAGE */}
+            {/* Notification for email action success screen START path */}
+            <Route path="/sent">
+                <EmailSentNotificationScreen />
+            </Route>
+            {/* Notification for email action success screen End path */}
 
-                {/* ERROR 404 PAGE */}
-                <Route path="*" component={Error404Page} />
-                {/* ERROR 404 PAGE */}
-            </Switch>
-        </Router>
-    
+
+            
+            {/* Notification for email action success screen START path */}
+            <Route path="/email-activated">
+                <EmailActivationScreen />
+            </Route>
+            {/* Notification for email action success screen End path */}
+
+            {/* ERROR 404 path */}
+            <Route path="*">
+                <Error404Page />
+            </Route>
+            {/* ERROR 404 path */}
+        </Switch>
+    </Router>
 );
 
 export default App;
