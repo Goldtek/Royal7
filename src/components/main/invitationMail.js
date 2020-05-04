@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 // import FooterComponent from "../footer/footer";
 // import HeaderComponent from "../header/navbar";
-import { sendMailRequest } from "../../Actions/mailAction";
+import { sendMailRequest } from "../../actions/mailAction";
 import classnames from "classnames";
 import validateInput from "../main/validator/emailValidator";
 
