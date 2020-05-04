@@ -335,4 +335,4 @@ CreateAccount.contextTypes = {
     router: PropTypes.object.isRequired
 }
 
-export default connect(null, {create_account, loginUser})(CreateAccount);
+export default CreateAccount;

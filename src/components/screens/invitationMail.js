@@ -149,4 +149,4 @@ Mail.propTypes = {
     sendMailRequest: PropTypes.func.isRequired,
 };
 
-export default connect(null, { sendMailRequest })(Mail);
+export default Mail;

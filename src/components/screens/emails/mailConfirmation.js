@@ -134,4 +134,4 @@ mailConfirmation.propTypes = {
 }
 
 
-export default connect(null)(mailConfirmation);
+export default mailConfirmation;
