@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Player, PosterImage,LoadingSpinner  } from 'video-react';
+// import PropTypes from 'prop-types';
+import { Player,LoadingSpinner  } from 'video-react';
 import "../../../node_modules/video-react/dist/video-react.css";
 
 export default props => {
@@ -15,11 +15,4 @@ src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
 </Player>
 
 );
-
-PosterImage.propTypes = {
-
-    // The poster image url
-    poster: PropTypes.string,
-  
-  }
 };

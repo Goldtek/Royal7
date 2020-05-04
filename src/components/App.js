@@ -1,55 +1,92 @@
-import React, { Fragment } from "react";
-import { BrowserRouter , Route, Switch } from "react-router-dom";
-import {Helmet} from "react-helmet";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 //############### IMPORT COMPNENTS FROM THE INDEXED EXPORT STARTS
 // import setUpComponent from "./welcome";
-import IndexPage from "./index"
+import IndexPage from "./index";
 //############### IMPORT COMPNENTS FROM THE INDEXED EXPORT ENDS
-import mailConfirm from './main/emails/mailConfirmation';
-import createAccount from './main/invitationMail';
-import termsConditions from './main/terms-conditions';
-import ErrorPage from "./errorpage"
 
-function App() {
-  return (
-    <Fragment>
-      <BrowserRouter  forceRefresh={true}>
+/*
+
+NOTE:Use PascalCase for React components, or lowercase for HTML elements. DUE TO THE ROUTING PATTERN PLEASE USE PascalCasing to avoid error
+
+*/
+import {
+    MailConfirm,
+    CreateAccountScreen,
+    ContinuationScreen,
+    Error404Page,
+    history,
+    EmailSentNotificationScreen,
+    EmailActivationScreen,
+    TermsConditions
+} from "./exports";
+
+const App = () => (
+    <Router forceRefresh={true} history={history}>
         <Switch>
-          <Route
-            exact
-            path="/"
+            <Route
+                exact
+                path="/"
+                render={() => (
+                    <>
+                        <Helmet>
+                            <title>Royal</title>
+                        </Helmet>
+                        <IndexPage />
+                    </>
+                )}
+            />
+            {/* <Route path="/setup" component={setUpComponent} /> */}
 
-            render={() => (
-              <>
-                <Helmet>
-                  <title>Royal</title>
-                </Helmet>
-             <IndexPage/>
-              </>
-            )}
-          />
-          {/* <Route path="/setup" component={setUpComponent} /> */}
+            {/* Screen for user to input confirmation code start path */}
+            <Route path="/confirm-email">
+                <MailConfirm />
+            </Route>
+            {/* Screen for user to input confirmation code start path */}
 
-          {/* EMAIL CONFIRMATION PATH URL */}
-          <Route exact path="/confirm-email" component={mailConfirm} />
-          {/* EMAIL CONFIRMATION PATH */}
+            {/* Getting Started Account Creation Start path */}
+            <Route path="/create">
+                <CreateAccountScreen />
+            </Route>
+            {/* Getting Started Account Creation Start path */}
 
-          {/* GETTING STARTED PAGE  URL*/}
-          <Route exact path="/create" component={createAccount} /> 
-          {/* GETTING STARTED PAGE */}
+            {/* Registration Screen after email confirmation START path */}
+            <Route path="/continue">
+                <ContinuationScreen />
+            </Route>
+            {/* Registration Screen after email confirmation End path */}
 
-          {/* GETTING STARTED PAGE  URL*/}
-          <Route exact path="/terms-conditions" component={termsConditions} /> 
-          {/* GETTING STARTED PAGE */}
+            {/* Notification for email action success screen START path */}
+            <Route path="/sent">
+                <EmailSentNotificationScreen />
+            </Route>
+            {/* Notification for email action success screen End path */}
 
-          {/* ERROR 404 PAGE */}
-          <Route path="*" component={ErrorPage} />
-          {/* ERROR 404 PAGE */}
+
+            
+            {/* Notification for email action success screen START path */}
+            <Route path="/email-activated">
+                <EmailActivationScreen />
+            </Route>
+            {/* Notification for email action success screen End path */}
+
+            
+            {/* Notification for email action success screen START path */}
+            <Route path="/terms-conditions">
+                <TermsConditions />
+            </Route>
+            {/* Notification for email action success screen End path */}
+
+
+              {/* ERROR 404 path */}
+            <Route path="*">
+                <Error404Page />
+            </Route>
+            {/* ERROR 404 path */}
         </Switch>
-      </BrowserRouter>
-    </Fragment>
-  );
-}
+    </Router>
+);
 
 export default App;

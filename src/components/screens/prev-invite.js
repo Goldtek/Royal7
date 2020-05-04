@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import FooterComponent from "../footer/footer";
-import HeaderComponent from "../header/navbar";
 import { create_account, loginUser } from '../../Actions/mailAction';
 import validate from '../main/validator/validatorCheck';
 import classnames from 'classnames';
@@ -114,7 +112,7 @@ class CreateAccount extends Component{
         const { schoolName, email, address, phone, about, password, errors} = this.state;
         return(
             <div>
-                <HeaderComponent />
+                
                 <section className="account-section">
                     <div className="container">
                         <div className="row">
@@ -215,7 +213,7 @@ class CreateAccount extends Component{
                         </div>
                     </div>
                 </section>
-                <FooterComponent />
+                
             </div>
         );
     }
