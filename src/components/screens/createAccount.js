@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { create_account, loginUser } from '../../actions/mailAction';
+// import { create_account, loginUser } from '../../actions/mailAction';
 import validate from '../screens/validator/validatorCheck';
 import classnames from 'classnames';
 import isEmpty from "lodash/isEmpty";
