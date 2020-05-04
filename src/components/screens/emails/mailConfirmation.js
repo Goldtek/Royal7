@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { confirmMail_1 } from '../../../actions/mailAction';
+import axios from 'axios';
+// import { confirmMail_1 } from '../../../actions/mailAction';
 import PropTypes from 'prop-types';
+
+const api_url = process.env.REACT_APP_API_URL;
 
 class mailConfirmation extends Component{
     constructor(props){
@@ -18,6 +21,14 @@ class mailConfirmation extends Component{
 
     onChange = (e) =>{
         this.setState({[e.target.name]: e.target.value})
+    }
+
+     confirmMail = data => {
+        try{ 
+        return axios.post(`${api_url}/api/admin/confirm`, {data});
+        } catch (error) {
+            console.log(`error confirming email ${error}`);
+        }
     }
 
     sendConfirm = () =>{
