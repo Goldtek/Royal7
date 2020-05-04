@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import axios from 'axios';
 import history from "../history";
 // import FooterComponent from "../footer/footer";
 // import HeaderComponent from "../header/navbar";
-import { sendMailRequest } from "../../actions/mailAction";
+// import { sendMailRequest } from "../../actions/mailAction";
 import classnames from "classnames";
 import validateInput from "../screens/validator/emailValidator";
 
+const api_url = process.env.REACT_APP_API_URL;
 class Mail extends Component {
     constructor(props) {
         super(props);
@@ -16,6 +18,14 @@ class Mail extends Component {
             checked: false,
             errors: "",
         };
+    }
+
+    sendMail = (email) => {
+        try {
+            return axios.post(`${api_url}/api/send/mail`, {email});
+            } catch (error) {
+                console.log(`error sending invitation ${error}`);
+            }
     }
 
     onChange = (e) => {
