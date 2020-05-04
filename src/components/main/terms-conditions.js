@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import FooterComponent from "../footer/footer";
-import HeaderComponent from "../header/navbar";
+import FooterComponent from "../footer/footerComponent";
+import HeaderComponent from "../navbar/navbarComponent";
 
 class TermsConditions extends Component{
     render(){
