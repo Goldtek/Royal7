@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import { create_account, loginUser } from '../../actions/mailAction';
 import validate from '../screens/validator/validatorCheck';
 import classnames from 'classnames';
 import isEmpty from "lodash/isEmpty";
-import "./screens.css"
+import "./screens.css";
+
+
+const api_url = process.env.REACT_APP_API_URL;
 
 class CreateAccount extends Component{
     constructor(props){
@@ -19,6 +23,28 @@ class CreateAccount extends Component{
             pwrd: "",
             cpwrd: "",
             errors: ""
+        }
+    }
+
+   create_account = data => {
+        try {
+            return axios.post(`${api_url}/api/school/admin`, {
+                schoolName: data.schoolName,
+                phone: data.phone,
+                address: data.address,
+                email: data.email,
+                about: data.about,
+                password: data.password
+            });
+        } catch (error) {
+            console.log(`error creating school account ${error}`);
+        }
+    }
+    loginUser = (data) => {
+        try {
+            return axios.post(`${api_url}/api/user/login`, {email:data.email, password:data.password});
+        } catch (error) {
+            console.log(`error logging in user ${error}`);
         }
     }
 
