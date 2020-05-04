@@ -8,6 +8,7 @@ import IndexPage from "./index"
 //############### IMPORT COMPNENTS FROM THE INDEXED EXPORT ENDS
 import mailConfirm from './main/emails/mailConfirmation';
 import createAccount from './main/invitationMail';
+import termsConditions from './main/terms-conditions';
 import ErrorPage from "./errorpage"
 
 function App() {
@@ -30,12 +31,16 @@ function App() {
           />
           {/* <Route path="/setup" component={setUpComponent} /> */}
 
-          {/* EMAIL CONFIRMATION PATH */}
-          <Route path="/confirm-email" component={mailConfirm} />
+          {/* EMAIL CONFIRMATION PATH URL */}
+          <Route exact path="/confirm-email" component={mailConfirm} />
           {/* EMAIL CONFIRMATION PATH */}
 
+          {/* GETTING STARTED PAGE  URL*/}
+          <Route exact path="/create" component={createAccount} /> 
           {/* GETTING STARTED PAGE */}
-          <Route path="/create" component={createAccount} /> 
+
+          {/* GETTING STARTED PAGE  URL*/}
+          <Route exact path="/terms-conditions" component={termsConditions} /> 
           {/* GETTING STARTED PAGE */}
 
           {/* ERROR 404 PAGE */}
