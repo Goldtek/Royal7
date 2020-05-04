@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import history from "../history";
 // import FooterComponent from "../footer/footer";
 // import HeaderComponent from "../header/navbar";
 import { sendMailRequest } from "../../Actions/mailAction";
 import classnames from "classnames";
-import validateInput from "../main/validator/emailValidator";
+import validateInput from "../screens/validator/emailValidator";
 
 class Mail extends Component {
     constructor(props) {
@@ -40,10 +41,11 @@ class Mail extends Component {
             this.props
                 .sendMailRequest(email)
                 .then((response) => {
-                    console.log(response);
+                    history.push('/sent')
                 })
                 .catch((err) => {
-                    console.log("Not send Oops!");
+                    history.push('/sent')
+
                 });
         }
     };
@@ -109,7 +111,7 @@ class Mail extends Component {
                     </div>
                     <div className="col-sm-6 col-xs-6 col-lg-8 col-md-8 half-div">
                         <img
-                            src="images/assets/login.jpg"
+                            src="images/screens/education.png"
                             alt="login_image"
                             className="login-img"
                         />
