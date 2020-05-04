@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { confirmMail_1 } from '../../../Actions/mailAction';
+import { confirmMail_1 } from '../../../actions/mailAction';
 import PropTypes from 'prop-types';
 
 class mailConfirmation extends Component{
