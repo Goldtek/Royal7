@@ -20,7 +20,8 @@ import {
     history,
     EmailSentNotificationScreen,
     EmailActivationScreen,
-    TermsConditions
+    TermsConditions,
+    AccountSettingScreen
 } from "./exports";
 
 const App = () => (
@@ -76,6 +77,13 @@ const App = () => (
             {/* Notification for email action success screen START path */}
             <Route path="/terms-conditions">
                 <TermsConditions />
+            </Route>
+            {/* Notification for email action success screen End path */}
+
+
+             {/* Notification for email action success screen START path */}
+             <Route path="/settings">
+                <AccountSettingScreen />
             </Route>
             {/* Notification for email action success screen End path */}
 

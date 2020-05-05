@@ -41,6 +41,8 @@ data-animated role="navigation">
               
             </ul>
           </li>
+          <li ><a href="/terms-conditions">Terms & Conditions</a></li>
+          <li ><a href="/settings">Account Settings</a></li>
           <li ><a href="/create">Getting Started</a></li>
         </ul>
       </div>
