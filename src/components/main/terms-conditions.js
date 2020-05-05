@@ -50,7 +50,7 @@ class TermsConditions extends Component{
                                         viverrLink semper.
                                     </p>
                                     <h4>First Things First</h4>
-                                    <p>These "Customers Terms" form Link Part of Link Binding "Contract". 
+                                    <p>These "Customers Terms" form Link Part of Link Binding "Cntract". 
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                                         Praesent et neque bibendum, dignissim augue molestie, porttitor nisl. 
                                         In in aliquam ipsum. Pellentesque imperdiet, nunc eu scelerisque bibendum, 
