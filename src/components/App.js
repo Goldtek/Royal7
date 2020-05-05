@@ -9,8 +9,8 @@ import IndexPage from "./index"
 import mailConfirm from './main/emails/mailConfirmation';
 import createAccount from './main/invitationMail';
 import termsConditions from './main/terms-conditions';
-import accountSettings from './main/account-settings'
-import ErrorPage from "./errorpage"
+import accountSettings from './main/account-settings';
+import ErrorPage from './errorpage';
 
 function App() {
   return (
@@ -26,7 +26,7 @@ function App() {
                 <Helmet>
                   <title>Royal</title>
                 </Helmet>
-             <IndexPage/>
+                <IndexPage/>
               </>
             )}
           />
