@@ -115,6 +115,22 @@
         padding:0 !important;
     }
 
+    /*.set_2 .tab-content .cont_tab p,
+    .set_2 .tab-content .cont_tab2 p,
+    .set_2 .tab-content .cont_tab3 p,
+    .set_2 .tab-content .cont_tab4 p,
+    .set_2 .tab-content .cont_tab5 p{
+        width:100% !important;
+    }*/
+
+    /*.set_2 .tab-content .cont_tab button,
+    .set_2 .tab-content .cont_tab2 button,
+    .set_2 .tab-content .cont_tab3 button,
+    .set_2 .tab-content .cont_tab4 button,
+    .set_2 .tab-content .cont_tab5 button{
+        float:none !important;
+    }*/
+
 }
     
 @media (max-width: 320px) {

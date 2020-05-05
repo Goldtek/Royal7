@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import FooterComponent from "../footer/footerComponent";
-import HeaderComponent from "../navbar/navbarComponent";
-
+import { Link } from 'react-router-dom';
 class TermsConditions extends Component{
     render(){
         return(
             <div>
-                <HeaderComponent />
                 <section className="terms-section">
                     <div className="jumbotron">
                         <div className="top_1">
@@ -19,58 +14,63 @@ class TermsConditions extends Component{
                         <div className="row">
                             <div className="col-md-4">
                                 <div className="term-left_1">
-                                    <h5><a href="#">Get started</a></h5>
+                                    <h5><Link to="#">Get started</Link></h5>
                                     <ul>
-                                        <li><a href="#">Terms</a></li>
-                                        <li><a href="#">User Terms of Servive</a></li>
-                                        <li><a href="#">Customer-Specific Supply</a></li>
-                                        <li><a href="#">Api Terms of Service</a></li>
-                                        <li><a href="#">Service Level Agreement</a></li>
-                                        <li><a href="#">Terms</a></li>
-                                        <li><a href="#">User Terms of Servive</a></li>
-                                        <li><a href="#">Customer-Specific Supply</a></li>
-                                        <li><a href="#">Api Terms of Service</a></li>
-                                        <li><a href="#">Service Level Agreement</a></li>
-                                        <li><a href="#">Terms</a></li>
-                                        <li><a href="#">User Terms of Servive</a></li>
-                                        <li><a href="#">Customer-Specific Supply</a></li>
-                                        <li><a href="#">Api Terms of Service</a></li>
-                                        <li><a href="#">Service Level Agreement</a></li>
-                                        <li><a href="#">Terms</a></li>
-                                        <li><a href="#">User Terms of Servive</a></li>
-                                        <li><a href="#">Customer-Specific Supply</a></li>
-                                        <li><a href="#">Api Terms of Service</a></li>
-                                        <li><a href="#">Service Level Agreement</a></li>
+                                        <li><Link to="#">Terms</Link></li>
+                                        <li><Link to="#">User Terms of Servive</Link></li>
+                                        <li><Link to="#">Customer-Specific Supply</Link></li>
+                                        <li><Link to="#">Api Terms of Service</Link></li>
+                                        <li><Link to="#">Service Level Agreement</Link></li>
+                                        <li><Link to="#">Terms</Link></li>
+                                        <li><Link to="#">User Terms of Servive</Link></li>
+                                        <li><Link to="#">Customer-Specific Supply</Link></li>
+                                        <li><Link to="#">Api Terms of Service</Link></li>
+                                        <li><Link to="#">Service Level Agreement</Link></li>
+                                        <li><Link to="#">Terms</Link></li>
+                                        <li><Link to="#">User Terms of Servive</Link></li>
+                                        <li><Link to="#">Customer-Specific Supply</Link></li>
+                                        <li><Link to="#">Api Terms of Service</Link></li>
+                                        <li><Link to="#">Service Level Agreement</Link></li>
+                                        <li><Link to="#">Terms</Link></li>
+                                        <li><Link to="#">User Terms of Servive</Link></li>
+                                        <li><Link to="#">Customer-Specific Supply</Link></li>
+                                        <li><Link to="#">Api Terms of Service</Link></li>
+                                        <li><Link to="#">Service Level Agreement</Link></li>
                                     </ul>
                                 </div>
                             </div>
                             <div className="col-md-8">
                                 <div className="term-right_2">
                                     <h5>Effective: 31th, May 2020</h5>
-                                    <p>How are u</p>
+                                    <p>
+                                        Praesent et neque bibendum, dignissim augue molestie, porttitor nisl. 
+                                        In in aliquam ipsum. Pellentesque imperdiet, nunc eu scelerisque bibendum, 
+                                        nunc ante scelerisque tellus, ac scelerisque dolor metus eu nisi. 
+                                        Pellentesque faucibus feugiat maximus. Integer imperdiet dolor id
+                                        viverrLink semper.
+                                    </p>
                                     <h4>First Things First</h4>
-                                    <p>These "Customers Terms" form a Part of a Binding "Cntract". 
+                                    <p>These "Customers Terms" form Link Part of Link Binding "Cntract". 
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                                         Praesent et neque bibendum, dignissim augue molestie, porttitor nisl. 
                                         In in aliquam ipsum. Pellentesque imperdiet, nunc eu scelerisque bibendum, 
                                         nunc ante scelerisque tellus, ac scelerisque dolor metus eu nisi. 
                                         Pellentesque faucibus feugiat maximus. Integer imperdiet dolor id
-                                        viverra semper. Nunc in tortor tortor. Aenean facilisis feugiat ultricies. 
-                                        Nulla feugiat nisi id lorem imperdiet luctus. Donec tristique magna eu 
+                                        viverrLink semper. Nunc in tortor tortor. Aenean facilisis feugiat ultricies. 
+                                        NullLink feugiat nisi id lorem imperdiet luctus. Donec tristique magnLink eu 
                                         sodales gravida.</p>
                                     <p>Aenean ut tellus sed sem ultrices malesuada. Praesent et sollicitudin tortor. 
                                        Donec tempus quam in erat rhoncus fringilla. Pellentesque tempor nisi vitae 
                                        ex eleifend, nec suscipit libero tempor. Morbi luctus ullamcorper venenatis. 
-                                       Maecenas eu tortor condimentum, vehicula mi iaculis, tempus augue. 
-                                       Maecenas a erat tellus. Nullam aliquam turpis sit amet massa pulvinar, 
-                                       quis tristique neque interdum. Nulla facilisi.</p>
+                                       Maecenas eu tortor condimentum, vehiculLink mi iaculis, tempus augue. 
+                                       Maecenas Link erat tellus. Nullam aliquam turpis sit amet massLink pulvinar, 
+                                       quis tristique neque interdum. NullLink facilisi.</p>
                                     <p>Your Agreement On Behalf of "Customer"</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <FooterComponent />
             </div>
         );
     }
