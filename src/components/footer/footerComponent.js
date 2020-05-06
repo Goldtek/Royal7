@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import {Link} from "react-router-dom";
 
 const FooterComponent=()=> {
 return (
@@ -17,12 +18,10 @@ return (
           <div class="Footer-nav">
             <h3>Campaign</h3>
             <ul class="footer-link">
-              <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i> Campaign</a></li>
               <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i> Pricing </a></li>
               <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i> Support</a></li>
               <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i> Discover</a></li>
-              <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i> Terms of Use</a></li>
-              <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i> Checkout</a></li>
+              <li><Link to="#"><i class="fas fa-long-arrow-alt-right"></i> Terms of Use</Link></li>
             </ul>
           </div>
         </div>
@@ -34,8 +33,6 @@ return (
               <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i> Fashion</a></li>
               <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i> Health</a></li>
               <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i> Innovation</a></li>
-              <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i> Nonprofit</a></li>
-              <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i> Travels</a></li>
             </ul>
           </div>
         </div>
