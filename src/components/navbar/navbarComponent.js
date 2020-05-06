@@ -20,15 +20,15 @@ data-animated role="navigation">
       </div>
       <div id="navbar3" className="navbar-collapse collapse">
         <ul className="nav navbar-nav navbar-right">
-          <li className="active">< Link to="#">Home</Link></li>
-          <li>< Link to ="#">Solutions</Link></li>
-          <li>< Link to ="#">Resources</Link></li>
+          <li className="active">< Link to="/">Home</Link></li>
+          <li><Link to ="#">Solutions</Link></li>
+          <li><Link to ="#">Resources</Link></li>
           <li className="dropdown">
             < Link to ="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Expertise <span className="caret"></span></Link>
             <ul className="dropdown-menu" role="menu">
-              <li>< Link to ="#">Action</Link></li>
-              <li>< Link to ="#">Another action</Link></li>
-              <li>< Link to ="#">Something else here</Link></li>
+              <li><Link to ="#">Action</Link></li>
+              <li><Link to ="#">Another action</Link></li>
+              <li><Link to ="#">Something else here</Link></li>
               
             </ul>
           </li>
