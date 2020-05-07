@@ -21,7 +21,7 @@ return (
               <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i> Pricing </a></li>
               <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i> Support</a></li>
               <li><a href="#"><i class="fas fa-long-arrow-alt-right"></i> Discover</a></li>
-              <li><Link to="#"><i class="fas fa-long-arrow-alt-right"></i> Terms of Use</Link></li>
+              <li><Link to="/terms-conditions"><i class="fas fa-long-arrow-alt-right"></i> Terms of Use</Link></li>
             </ul>
           </div>
         </div>

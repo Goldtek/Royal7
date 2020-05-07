@@ -231,12 +231,12 @@ input[type=text]:focus, input[type=checkbox]:focus{
 .terms-section .jumbotron{
     margin-top:0 !important;
     margin-bottom:0 !important;
-    background:#26a69a !important;
+    background:#d3d3d3 !important;
 }
 
 .terms-section .top_1{
-    padding:20px 150px 20px 150px;
-    color:#fff;
+    padding:80px 150px 20px 150px;
+    color:#555;
 }
 
 .terms-section .top_1 h4{
@@ -262,11 +262,15 @@ input[type=text]:focus, input[type=checkbox]:focus{
 
 
 .terms-section .term-left_1 ul li a{
-    color:#fff;
+    color:#555 !important;
+    font-size:17px;
+    font-weight:bold;
 }
 
 .terms-section .term-left_1 ul li a:hover{
     text-decoration:underline;
+    color:#fff;
+    cursor:pointer;
 }
 
 .terms-section .term-left_1 h5{
@@ -276,18 +280,25 @@ input[type=text]:focus, input[type=checkbox]:focus{
 }
 
 .terms-section .term-left_1{
-    background:#F26522;
+    background: #d3d3d3;
     margin-top:20px;
     border-radius:5px;
-    border:2px dashed #128ef2;
+    box-shadow: 2px 1px 2px 3px #26a69a;
 }
 
 .terms-section .term-left_1 h5 a{
-    color:#fff;
+    color:#333;
+    font-size:17px;
+    font-weight:bold;
 }
 
 .terms-section .term-left_1 h5 a:hover{
     color:#fff;
+}
+
+.terms-section .term-left_1 .side-header{
+    margin-left:15px;
+    color:#333;
 }
 
 .terms-section .term-left_1 ul li{
@@ -315,14 +326,14 @@ input[type=text]:focus, input[type=checkbox]:focus{
     margin-top:10px;
     margin-bottom:10px;
     margin-left:40px;
-    color:#128ef2
+    color:#003366;
 }
 
 .terms-section .term-right_2 h5{
     font-size:16px;
     font-weight:bold;
     margin-left:40px;
-    color:#128ef2;
+    color:#003366;
 }
 
 .terms-section .col-md-8{
@@ -333,7 +344,7 @@ input[type=text]:focus, input[type=checkbox]:focus{
 
 .settings-section{
     padding-top:80px;
-    background:#ddd;
+    background: #d3d3d3;
 }
 
 .settings-section .col-md-7{
@@ -347,11 +358,11 @@ input[type=text]:focus, input[type=checkbox]:focus{
 .settings-section .set_1{
     padding-top:20px;
     padding-bottom:40px;
-    background:#F26522;
+    background: #d3d3d3;
     color:#fff;
     border-radius:5px;
     margin-top:20px;
-    border:2px solid #777;
+    box-shadow: 1px 1px 2px 3px;
 }
 
 .settings-section .set_2{
@@ -368,7 +379,7 @@ input[type=text]:focus, input[type=checkbox]:focus{
     height:40px;
     width:40px;
     border-radius:5px;
-    margin-left:20px
+    margin-left:38px
 }
 
 .settings-section .set_1 p .user_name{
@@ -421,7 +432,7 @@ input[type=text]:focus, input[type=checkbox]:focus{
 }
 
 .set_2 .nav-tabs > li > a{ 
-    color:#F26522;
+    color:#003366;
     font-size:15px;
     font-weight:bold;
 }
@@ -443,7 +454,6 @@ input[type=text]:focus, input[type=checkbox]:focus{
 .set_2 .tab-content{
     color:#666;
     padding:20px;
-    border:2px solid #777 !important
 }
 
 .set_2 .tab-content .cont_tab,
@@ -486,8 +496,8 @@ input[type=text]:focus, input[type=checkbox]:focus{
 }
 
 .set_2 .tab-content .cont_tab4 button{
-    background:#F26522 !important;
-    color:#fff;
+    background:#003366 !important;
+    color:#fff !important;
 }
 
 .set_2 .tab-content .cont_tab button,

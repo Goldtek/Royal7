@@ -14,14 +14,14 @@ class AccountSettings extends Component{
                                 <div className="set_1">
                                     <img src="images/place3.jpg"/>
                                     <p><span>SIGNED IN AS</span> <br/><span className="user_name">OKEKE EMMANUEL</span></p>
-                                    <ul className="list_1">
-                                        <li>Account</li>
+                                    <ul className=" sidebar-menu list_1">
+                                        <li><a>Account</a></li>
                                         <li><Link to="#"><i className="fa fa-home"></i>&nbsp;&nbsp;Home</Link></li>
                                         <li><Link to="#"><i className="fa fa-user"></i>&nbsp;&nbsp;Account & Profile</Link></li>
                                     </ul>
 
-                                    <ul className="list_2">
-                                        <li>Others</li>
+                                    <ul className="list_2 sidebar-menu">
+                                        <li><a>Others</a></li>
                                         <li><Link to="#">Tour</Link></li>
                                         <li><Link to="#">Download App</Link></li>
                                     </ul>
