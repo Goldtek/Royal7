@@ -84,20 +84,16 @@ const FeatureComponent = () => {
                         <div className="icon-card">
                             <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <div className="box-part text-center">
-                                    <i
-                                        className="fa fa-instagram fa-3x"
-                                        aria-hidden="true"
-                                    ></i>
+                                <i class="fa fa-weixin fa-3x" aria-hidden="true"></i>
 
                                     <div className="title">
-                                        <h4>Instagram</h4>
+                                        <h4>Conversations, organized</h4>
                                     </div>
 
                                     <div className="text">
                                         <span>
-                                            Lorem ipsum dolor sit amet, id quo
-                                            eruditi eloquentiam. Assum decore te
-                                            sed. Elitr scripta ocurreret qui ad.
+                                        Instead of a single overstuffed inbox, conversations in 
+                                        Slack happen in dedicated spaces called channels.
                                         </span>
                                     </div>
 
@@ -107,20 +103,20 @@ const FeatureComponent = () => {
 
                             <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <div className="box-part text-center">
-                                    <i
-                                        className="fa fa-twitter fa-3x"
-                                        aria-hidden="true"
-                                    ></i>
+                                <i class="fa fa-newspaper-o fa-3x" aria-hidden="true"></i>
 
                                     <div className="title">
-                                        <h4>Twitter</h4>
+                                        <h4> Get looped in, not out</h4>
                                     </div>
 
                                     <div className="text">
                                         <span>
-                                            Lorem ipsum dolor sit amet, id quo
-                                            eruditi eloquentiam. Assum decore te
-                                            sed. Elitr scripta ocurreret qui ad.
+                                       
+                                     Slack makes it simple to follow 
+                                     conversations or find important information 
+                                     in an easily searchable archive.
+
+
                                         </span>
                                     </div>
 
@@ -129,20 +125,18 @@ const FeatureComponent = () => {
                             </div>
                             <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                 <div className="box-part text-center">
-                                    <i
-                                        className="fa fa-facebook fa-3x"
-                                        aria-hidden="true"
-                                    ></i>
+                                <i class="fa fa-bullseye fa-3x" aria-hidden="true"></i>
 
                                     <div className="title">
-                                        <h4>Facebook</h4>
+                                        <h4> Give focus a chance</h4>
                                     </div>
 
                                     <div className="text">
                                         <span>
-                                            Lorem ipsum dolor sit amet, id quo
-                                            eruditi eloquentiam. Assum decore te
-                                            sed. Elitr scripta ocurreret qui ad.
+                                       
+                                Unlike email, Slack lets you 
+                                choose which conversations are
+                                most important — and which can wait.
                                         </span>
                                     </div>
 

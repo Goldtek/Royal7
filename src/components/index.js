@@ -7,7 +7,7 @@ import FooterComponent from "./footer"
     return (
        <>
        <NavBarComponent/>
-       <ParallaxComponent/>
+       {/* <ParallaxComponent/> */}
        <FeatureComponent/>
        <FooterComponent/>
        </>

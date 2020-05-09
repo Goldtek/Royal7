@@ -12,6 +12,9 @@ import IndexPage from "./index";
 NOTE:Use PascalCase for React components, or lowercase for HTML elements. DUE TO THE ROUTING PATTERN PLEASE USE PascalCasing to avoid error
 
 */
+/*
+GENERAL IMPORT STARTS HERE ##################
+*/  
 import {
     MailConfirm,
     CreateAccountScreen,
@@ -20,8 +23,18 @@ import {
     history,
     EmailSentNotificationScreen,
     EmailActivationScreen,
-    TermsConditions
+    TermsConditions,
 } from "./exports";
+/*
+GENERAL IMPORT ENDS HERE ##################
+*/
+
+
+
+/* ADMIN DASHBOARD IMPORT STARTS HERE #####################################*/
+import {DashboardComponent} from "./dashboard"
+/* ADMIN DASHBOARD IMPORT STARTS HERE #####################################*/
+
 
 const App = () => (
     <Router forceRefresh={true} history={history}>
@@ -80,7 +93,24 @@ const App = () => (
             {/* Notification for email action success screen End path */}
 
 
+
+{/* DASHBOARD ROUTES GOES STARTS HERE ############################################################### */}
+<Route
+                exact
+                path="/dashboard"
+                render={() => (
+                    <>
+                        <Helmet>
+                            <title>Admin</title>
+                        </Helmet>
+                        <DashboardComponent />
+                    </>
+                )}
+            />
+{/* DASHBOARD ROUTES GOES STARTS HERE ############################################################### */}
               {/* ERROR 404 path */}
+
+
             <Route path="*">
                 <Error404Page />
             </Route>
