@@ -95,8 +95,8 @@ header .overlay {
 }
 .navbar-brand > img {
   height: 100%;
-  padding: 5px;
-  width: auto;
+  padding: 15px;
+  width: 50%;
 }
 
 /* 
