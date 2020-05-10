@@ -42,7 +42,7 @@ data-animated role="navigation">
               
             </ul>
           </li>
-          <li ><a href="/settings">Accunting Settings</a></li>
+          <li ><a href="/settings">Account Settings</a></li>
           <li ><a href="/create">Getting Started</a></li>
         </ul>
       </div>
