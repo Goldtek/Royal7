@@ -42,6 +42,10 @@
         width:100%;
     }
 
+    .user-section .img-section{
+        margin-top:30px;
+    }
+
 }
 
 /* Tablet Portrait Size */
@@ -80,6 +84,11 @@
     .terms-section .term-left_1 h5{
         margin-left:40px !important;
     }
+    
+    /* Add User*/
+    .user-section .img-section, .user-section .user_create{
+        height:100% !important;
+    }
 }
 
 /* Mobile Landscape Size */
@@ -114,6 +123,22 @@
     .terms-section .top_1{
         padding:0 !important;
     }
+
+    /*.set_2 .tab-content .cont_tab p,
+    .set_2 .tab-content .cont_tab2 p,
+    .set_2 .tab-content .cont_tab3 p,
+    .set_2 .tab-content .cont_tab4 p,
+    .set_2 .tab-content .cont_tab5 p{
+        width:100% !important;
+    }*/
+
+    /*.set_2 .tab-content .cont_tab button,
+    .set_2 .tab-content .cont_tab2 button,
+    .set_2 .tab-content .cont_tab3 button,
+    .set_2 .tab-content .cont_tab4 button,
+    .set_2 .tab-content .cont_tab5 button{
+        float:none !important;
+    }*/
 
 }
     

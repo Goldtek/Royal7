@@ -42,6 +42,7 @@ data-animated role="navigation">
               
             </ul>
           </li>
+          <li ><a href="/settings">Accunting Settings</a></li>
           <li ><a href="/create">Getting Started</a></li>
         </ul>
       </div>
@@ -52,56 +53,56 @@ data-animated role="navigation">
 </div>
 
 
-<div class="row">
-            <div id="homeSlider" class="carousel slide" data-ride="carousel">
-                {/* <!-- Indicators --> */}
-                <ol class="carousel-indicators">
-                    <li data-target="#homeSlider" data-slide-to="0" class="active"></li>
-                    <li data-target="#homeSlider" data-slide-to="1"></li>
-					<li data-target="#homeSlider" data-slide-to="2"></li>
-                </ol>
+    <div class="row">
+        <div id="homeSlider" class="carousel slide" data-ride="carousel">
+            {/* <!-- Indicators --> */}
+            <ol class="carousel-indicators">
+                <li data-target="#homeSlider" data-slide-to="0" class="active"></li>
+                <li data-target="#homeSlider" data-slide-to="1"></li>
+                <li data-target="#homeSlider" data-slide-to="2"></li>
+            </ol>
 
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <img src="assets/img/slider/slide4.jpg" alt="slide1"/>
-                        <div class="carousel-caption">
-							<h4><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
-                            <h2>CHOOSE <span><i class="fa fa-trophy"></i>BEST</span> FOR YOUR CHILD</h2>
-                            <p>We here at <strong>PATHSHALA</strong> provides best education <br /> to your little one</p>
-                            <a href="#"><i class="fa fa-paper-plane"></i>KNOW MORE</a>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <img src="assets/img/slider/slide5.jpg" alt="slide2"/>
-                        <div class="carousel-caption">
-							<h4><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
-                            <h2>LET YOUR CHILD <span><i class="fa fa-line-chart"></i>GROW</span></h2>
-                            <p>We here at <strong>PATHSHALA</strong> provides best education <br /> to your little one</p>
-                            <a href="#"><i class="fa fa-paper-plane"></i>KNOW MORE</a>
-                        </div>
-                    </div>
-					<div class="item">
-                        <img src="assets/img/slider/slide6.jpg" alt="slide2"/>
-                        <div class="carousel-caption">
-                            <h4><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
-                            <h2>GIVE <span><i class="fa fa-rocket"></i>BOOST</span> TO YOUR CHILD</h2>
-							<p>We here at <strong>PATHSHALA</strong> provides best education <br /> to your little one</p>
-                            <a href="#"><i class="fa fa-paper-plane"></i>KNOW MORE</a>
-                        </div>
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="assets/img/slider/slide4.jpg" alt="slide1"/>
+                    <div class="carousel-caption">
+                        <h4><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
+                        <h2>CHOOSE <span><i class="fa fa-trophy"></i>BEST</span> FOR YOUR CHILD</h2>
+                        <p>We here at <strong>PATHSHALA</strong> provides best education <br /> to your little one</p>
+                        <a href="#"><i class="fa fa-paper-plane"></i>KNOW MORE</a>
                     </div>
                 </div>
 
-                <a class="left carousel-control" href="#homeSlider" role="button" data-slide="prev">
-                    <span class="fa fa-arrow-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#homeSlider" role="button" data-slide="next">
-                    <span class="fa fa-arrow-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                <div class="item">
+                    <img src="assets/img/slider/slide5.jpg" alt="slide2"/>
+                    <div class="carousel-caption">
+                        <h4><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
+                        <h2>LET YOUR CHILD <span><i class="fa fa-line-chart"></i>GROW</span></h2>
+                        <p>We here at <strong>PATHSHALA</strong> provides best education <br /> to your little one</p>
+                        <a href="#"><i class="fa fa-paper-plane"></i>KNOW MORE</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="assets/img/slider/slide6.jpg" alt="slide2"/>
+                    <div class="carousel-caption">
+                        <h4><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
+                        <h2>GIVE <span><i class="fa fa-rocket"></i>BOOST</span> TO YOUR CHILD</h2>
+                        <p>We here at <strong>PATHSHALA</strong> provides best education <br /> to your little one</p>
+                        <a href="#"><i class="fa fa-paper-plane"></i>KNOW MORE</a>
+                    </div>
+                </div>
             </div>
+
+            <a class="left carousel-control" href="#homeSlider" role="button" data-slide="prev">
+                <span class="fa fa-arrow-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#homeSlider" role="button" data-slide="next">
+                <span class="fa fa-arrow-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
+    </div>
 </Fragment>
 )
 }

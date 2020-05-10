@@ -24,6 +24,7 @@ import {
     EmailSentNotificationScreen,
     EmailActivationScreen,
     TermsConditions,
+    AccountSettingScreen
 } from "./exports";
 /*
 GENERAL IMPORT ENDS HERE ##################
@@ -92,10 +93,16 @@ const App = () => (
             </Route>
             {/* Notification for email action success screen End path */}
 
+             {/* Notification for email action success screen START path */}
+             <Route path="/settings">
+                <AccountSettingScreen />
+            </Route>
+            {/* Notification for email action success screen End path */}
 
 
-{/* DASHBOARD ROUTES GOES STARTS HERE ############################################################### */}
-<Route
+
+            {/* DASHBOARD ROUTES GOES STARTS HERE ############################################################### */}
+            <Route
                 exact
                 path="/dashboard"
                 render={() => (
@@ -107,7 +114,7 @@ const App = () => (
                     </>
                 )}
             />
-{/* DASHBOARD ROUTES GOES STARTS HERE ############################################################### */}
+            {/* DASHBOARD ROUTES GOES STARTS HERE ############################################################### */}
               {/* ERROR 404 path */}
 
 

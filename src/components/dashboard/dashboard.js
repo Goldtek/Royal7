@@ -5,15 +5,17 @@ import HeaderComponent from "./header"
 import SidebarComponent from "./sidebar"
 import ContentComponent from "./content"
 import FooterComponent from "./footer"
+import AddUserComponent from "./addUser"
 /*COMPONENT IMPORTS  STARTS HERE #######*/
 function dashboard() {
 return (
 <Fragment>
 <HeaderComponent/>
 <div className="parent-wrapper" id="outer-wrapper">
-<SidebarComponent/>
+<SidebarComponent />
 <div className="main-content" id="content-wrapper">
-<ContentComponent/>
+{/*<ContentComponent/>*/}
+<AddUserComponent/>
 <FooterComponent/>
 </div>
 </div>

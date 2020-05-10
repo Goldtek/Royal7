@@ -42,8 +42,34 @@ const accountVal = data => {
     }
 }
 
+const userAddVal = data => {
+    let errors = {};
+
+    if(Validator.isEmpty(data.firstname)){
+        errors.firstname = "This field is required";
+    }else if(Validator.isEmpty(data.lastname)){
+        errors.lastname = "This field is required";
+    }else if(Validator.isEmpty(data.roleld)){
+        errors.roleld = "This field is required";
+    }else if(Validator.isEmpty(data.schoolld)){
+        errors.schoolld = "This field is required";
+    }else if(Validator.isEmpty(data.email)){
+        errors.email = "This field is required";
+    }else if(!Validator.isEmail(data.email)){
+        errors.email = "Invalid email address";
+    }else if(Validator.isEmpty(data.password)){
+        errors.password = "This field is required";
+    }
+
+    return {
+        errors,
+        isValid: isEmpty(errors)
+    }
+}
+
 
 export default({
     emailVal,
-    accountVal
+    accountVal,
+    userAddVal
 })

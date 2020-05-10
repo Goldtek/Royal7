@@ -14,7 +14,7 @@ const sidebar=()=> {
 						</a>
 						<ul className="dropdown-menu">
 							<li>							
-								<a href="admin-add-student.html"><i className="fa fa-caret-right"></i>ADD</a>
+								<a href="admin-add-student.html"><i className="fa fa-caret-right"></i>ADD USER</a>
 							</li>
 							<li>
 								<a href="admin-student-list.html"><i className="fa fa-caret-right"></i>ALL STUDENT  </a>
