@@ -897,7 +897,7 @@ background-color: #fff;
 .login-wrapper {
 width: 100%;
 max-width: 100%;
-margin: 200px auto;
+margin: 150px auto;
 /* padding-bottom: 24px; */
 /* border:2px solid red; */
 padding: 20px;
@@ -934,7 +934,8 @@ color: #b0adad;
 color: #b0adad;
 } */
 .login-wrapper .login-btn {
-padding: 10px 20px;
+  margin-top: 50px;
+padding: 10px 30px;
 background-color: #1f8d82;
 border-radius: 0;
 font-size: 15px;
@@ -1016,12 +1017,24 @@ display: none;
 }
 
 
-
-
 .example3 ul li a{
 font-weight: 600 !important;
 }
+.example3 .navbar-brand {
+  height: 70px;
+}
 
+.example3 .nav >li >a {
+  padding-top: 25px;
+  padding-bottom: 25px;
+
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+  color: #fff !important;
+  background-color: #08a0d4 !important;
+
+}
 .form-text{
 font-size: 1rem;
 color: #f44336;
