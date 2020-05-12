@@ -5,12 +5,12 @@ function header() {
        <Fragment>
            <div className="row dashboard-top-nav">
 			<div className="col-sm-3 logo">
-				<h5><i className="fa fa-book"></i>PATHSHALA</h5>
+				<h5><i class="fa fa-university" aria-hidden="true"></i>PATHSHALA</h5>
 			</div>
-			<div className="col-sm-4 top-search">
-				<div className="search">
-					<i className="fa fa-search"></i>
-					<input type="text" placeholder="Search"/>
+			<div className="col-sm-4">
+				<div>
+					{/* <i className="fa fa-search"></i> */}
+					{/* <input type="text" placeholder="Search"/> */}
 				</div>
 			</div>
 			<div className="col-sm-5 notification-area">
