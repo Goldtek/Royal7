@@ -927,3 +927,63 @@ table.dataTable > tbody > tr.child span.dtr-title i {
 .ui-datepicker-current-day {
 	border: 1px solid #eee;
 }
+
+  /* NAVIGATION */
+  nav {
+	/* width: 80%; */
+	margin: 0 auto;
+	background: #fff;
+	/* padding: 50px 0; */
+	box-shadow: 0px 5px 0px #dedede;
+  }
+ 
+  /* .navbar-nav > li > .dropdown-menu {
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    display: block;
+    transform: scale(0);
+    transition: ease-out 0.3s;
+}
+.dropdown:hover .dropdown-menu {
+    transform: scale(1);
+}
+ */
+
+/* ============ only desktop view ============ */
+@media all and (min-width: 992px) {
+	.navbar-nav > li > .dropdown-menu {
+		margin-top: 0;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		display: block;
+		transform: scale(0);
+		transition: ease-out 0.3s;
+	}
+	.dropdown:hover .dropdown-menu {
+		transform: scale(1);
+	}
+
+	
+	ul a:hover{
+	  color:#009ddc;
+	}
+	
+	li > a:after{
+		content: '';
+		display: block;
+		height: 1.5px;
+		background: #009ddc;
+		transform: scaleX(0);
+		transition: transform .3s;
+	}
+	li > a:hover:after{
+		transform: scaleX(1);
+		transition: transform .3s;
+	}
+	/* .active{
+		color: #FBC02D !important;
+	} */
+}		
+/* ============ desktop view .end// ============ */ 
+/* EXTRA CSS */

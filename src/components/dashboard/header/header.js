@@ -13,7 +13,7 @@ function header() {
 					{/* <input type="text" placeholder="Search"/> */}
 				</div>
 			</div>
-			<div className="col-sm-5 notification-area">
+			<div className="col-sm-5 notification-area stroke">
 				<ul className="top-nav-list">
 					<li className="notification dropdown">
 						<a href="#" className="dropdown-toggle" data-toggle="dropdown">
