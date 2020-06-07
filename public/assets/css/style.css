@@ -390,11 +390,13 @@ img {
     border-radius: 0;
     background: #fff;
     padding: 15px 20px;
-    box-shadow: none;
+	box-shadow: none;
+	/* border:2px solid red; */
+	
 }
 .navbar .dropdown-menu>li>a {
     color: #07253F;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: 1px;
     padding: 5px 0;
@@ -1221,49 +1223,7 @@ img {
 }
 
 /************************** 11. Page Title Section ************************/
-.page-title{
-	padding: 140px 0 80px;
-	color: #fff;
-	text-align: center;
-}
-.page-title-events {
-	background: url('img/page-title-events.jpg');
-	background-attachment: fixed;
-	background-size: contain;
-}
-.page-title-about {
-	background: url('img/page-title-about.jpg');
-	background-attachment: fixed;
-	background-size: contain;
-}
-.page-title-preschool {
-	background: url('img/page-title-preschool.jpg');
-	background-attachment: fixed;
-	background-size: contain;
-}
-.page-title h2 {
-	margin: 0;
-	font-weight: 800;
-	letter-spacing: 1px;
-}
-.page-title h2 i {
-	margin-right: 10px;
-}
-.teacher-about-row {
-	margin: 0;
-}
-.teacher-about-row-inner {
-	border: 1px solid #eee;
-}
-.apply-know-row {
-	background: #27AE60;
-	padding: 60px 0;
-	color: #fff;
-}
-.apply-know-row h3 {
-	font-weight: 700;
-	margin-top: 0;
-}
+
 .apply-know-row  .admission-row a {
 	font-size: 14px;
 	display: inline-block;

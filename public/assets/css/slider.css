@@ -1,20 +1,34 @@
-/**
-*
-* Last Modified: 16-07-2017
-* Description: Stylesheet used by Pathshala Dashboard
-*
-**/
 
-/*********************************************************
-	TABLE OF CONTENTS
-	1. DASHBOARD
-	2. SIDE MENU
-	3. DASHBOARD STATS
-	4. USER DETAILS
-	5. CHART STYLES
-	6. DATATABLE STYLES
-**********************************************************/
-
+:root {
+    --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #dc3545;
+    --orange: #fd7e14;
+    --yellow: #ffc107;
+    --green: #28a745;
+    --teal: #20c997;
+    --cyan: #17a2b8;
+    --white: #fff;
+    --gray: #6c757d;
+    --gray-dark: #343a40;
+    --primary: #007bff;
+    --secondary: #6c757d;
+    --success: #28a745;
+    --info: #17a2b8;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #f8f9fa;
+    --dark: #343a40;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
 /*********************** 1 DASHBOARD *****************************/
 html, body {
 	font-family: 'Open Sans', sans-serif;
@@ -27,7 +41,7 @@ html, body {
 }
 .dashboard-top-nav {
 	padding: 5px 45px;
-	background: #07253F;
+	background:#009DDC;
 	color: #fff;
 }
 .dashboard-top-nav .logo h5 {
@@ -35,6 +49,7 @@ html, body {
 	letter-spacing: 1px;
 	margin: 13px 0 0;
 	line-height: 1;
+	font-size: 1.5em;
 }
 .dashboard-top-nav .logo h5 i {
 	margin-right: 5px;
@@ -63,7 +78,7 @@ html, body {
 }
 .dash-form label {
 	display: block;
-	color: #81878C;
+	color: #212529;
 	font-size: 12px;
 	font-weight: 600;
 	margin-top: 20px;
@@ -108,13 +123,13 @@ html, body {
 	color: #fff;
 }
 .notification-area .top-nav-list>li a:hover {
-	color: #81878C;
+	color: #212529;
 }
 .notification-area .top-nav-list .nav-badge {
 	position: absolute;
 	top: -10px;
 	left: 10px;
-	background: #ff0000;
+	background: #dc3545;;
 }
 .list-msg  {
 	padding: 15px;
@@ -139,14 +154,14 @@ html, body {
 	font-size: 13px;
 }
 .list-msg .desc h5 a:hover {
-	color: #81878C;
+	color: #212529;
 }
 .list-msg .desc h6 {
-	color: #81878C;
+	color: #212529;
 	margin-bottom: 0;
 }
 .list-msg .desc p {
-	color: #81878C;
+	color: #212529;
 	line-height: 2;
 	font-size: 12px;
 	margin: 5px 0 0;
@@ -195,7 +210,7 @@ html, body {
 .top-search {
 	padding: 5px 20px;
 	border-radius: 5px;
-	background: #0a365c;
+	/* background: #0a365c; */
 	margin-top: 4px;
 }
 .top-search i {
@@ -227,16 +242,16 @@ html, body {
 }
 .dash-item .inner-item  .msg-desc {
 	font-size: 13px;
-	color: #81878C;
+	color: #212529;
 }
 .dash-item .inner-item .sent-by {
 	font-size: 10px;
-	color: #81878C;
+	color: #212529;
 	font-weight: 600;
 }
 .dash-item .inner-item .timestamp {
 	font-size: 12px;
-	color: #81878C;
+	color: #212529;
 }
 .dash-item .inner-item  p {
 	line-height: 1.6;
@@ -248,7 +263,7 @@ html, body {
 }
 .dash-item .inner-item .class-teacher {
 	font-size: 10px;
-	color: #81878C;
+	color: #212529;
 	font-weight: 600;
 }
 .dash-item .inner-item .timetable-item  .time{
@@ -290,7 +305,7 @@ html, body {
 	font-size: 13px;
 }
 .announcement-item h6 {
-	color: #81878C;
+	color: #212529;
 }
 .announcement-item h6 i {
 	margin-right: 5px;
@@ -306,7 +321,7 @@ html, body {
 }
 .announcement-item p {
 	line-height: 2 !important;
-	color: #81878C;
+	color: #212529;
 	font-size: 13px;
 }
 .dashboard-tabs .nav-tabs > li > a i {
@@ -450,13 +465,13 @@ html, body {
 .sidebar-nav li a{
     display: block;
     text-decoration: none;
-    color: #07253F;
+    color: #009DDC;
 	padding: 15px;
 	font-size: 12px;
 	font-weight: 600;
 }
 .sidebar-nav li a .menu-icon {
-	color: #27AE60;
+	color: #009DDC;
 }
 .sidebar-nav li i {
 	margin: 0 5px;
@@ -474,13 +489,13 @@ html, body {
 	background: transparent;
 }
 .sidebar-nav .open>a {
-	background: #07253F;
+	background: #343a40;;
 	color: #fff;
 }
-.sidebar-nav li a:hover {
+/* .sidebar-nav li a:hover {
     text-decoration: none;
-    color: #27AE60;
-}
+    color: #343a40;;
+} */
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
     text-decoration: none;
@@ -493,7 +508,7 @@ html, body {
 .menu-togggle-btn a {
 	color: #fff;
 	padding: 5px 10px;
-	background: #27AE60;
+	background-color: #212529;
 }
 @media(min-width:768px) {
     .parent-wrapper {
@@ -543,7 +558,7 @@ html, body {
 }
 .stat-item .count p {
 	font-size: 12px;
-	color: #81878C;
+	color: #212529;
 	font-weight: 600;
 	line-height: 2;
 	margin: 10px 0 15px;
@@ -585,7 +600,7 @@ html, body {
 	content: '';
 	position: absolute;
 	width: 60px;
-	background: #27AE60;
+	background: #009DDC;
 	height: 5px;
 	left: 0px;
 	top: -3px;
@@ -619,7 +634,7 @@ html, body {
 	font-size: 12px;
 }
 .profile-intro h6{
-	color: #81878C;
+	color: #212529;
 }
 .profile-details .detail-row {
 	padding: 0px 15px 15px;
@@ -627,7 +642,7 @@ html, body {
 }
 .profile-details .detail-row span{
 	font-size: 11px;
-	color: #81878C;
+	color: #212529;
 	display: block;
 	margin-top: 15px;
 }
@@ -668,7 +683,7 @@ html, body {
 }
 .chart-title .bottom-title {
 	font-weight: 700;
-	color: #81878C;
+	color: #212529;
 	margin: 25px 0 0;
 }
 .item-header {
@@ -678,7 +693,7 @@ html, body {
 .item-header h6 {
 	margin: 0;
 	font-weight: 700;
-	color: #81878C;
+	color: #212529;
 }
 .tbl-row {
 	padding: 15px 0;
@@ -686,13 +701,13 @@ html, body {
 }
 .tbl-row h6 {
 	margin: 0;
-	color: #81878C;
+	color: #212529;
 }
 
 /****************************** Datatable styles ****************************/
 .dash-search-form label {
 	display: block;
-	color: #81878C;
+	color: #212529;
 	font-size: 12px;
 	font-weight: 600;
 	margin-bottom: 8px;
@@ -722,7 +737,7 @@ html, body {
 	margin-right: 10px;
 }
 .dataTables_wrapper label {
-	color: #81878C;
+	color: #212529;
 	font-weight: normal;
 }
 .dataTables_wrapper .dataTables_filter {
@@ -737,7 +752,7 @@ table.dataTable thead th {
 	border-bottom: 1px solid #eee;
 	font-size: 12px;
 	font-weight: 700;
-	color: #81878C;
+	color: #212529;
 	padding: 15px;
 }
 table.dataTable thead th i {
@@ -746,7 +761,7 @@ table.dataTable thead th i {
 table.dataTable tbody td {
 	padding: 15px;
 	font-size: 13px;
-	color: #81878C;
+	color: #212529;
 }
 table.dataTable.display tbody td {
 	border-top: none;
@@ -771,15 +786,15 @@ table.dataTable tbody .text-danger {
 	color: #FF7676;
 }
 .dataTables_wrapper .dataTables_info {
-	color: #81878C;
+	color: #212529;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
-	color: #81878C;
+	color: #212529;
 	border: 1px solid #eee;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
 .dataTables_wrapper .dataTables_paginate .paginate_button {
-	color: #81878C;
+	color: #212529;
 }
 table.dataTable thead th {
     position: relative;
@@ -875,7 +890,7 @@ table.dataTable > tbody > tr.child span.dtr-title i {
 }
 .ui-datepicker-title {
 	text-align: center;
-	color: #81878C;
+	color: #212529;
 }
 .ui-datepicker-prev {
 	float: left;
@@ -885,7 +900,7 @@ table.dataTable > tbody > tr.child span.dtr-title i {
 }
 .ui-datepicker-next,
 .ui-datepicker-prev {
-	color: #81878C;
+	color: #212529;
 	cursor: pointer;
 }
 .ui-datepicker-next:hover,
@@ -894,7 +909,7 @@ table.dataTable > tbody > tr.child span.dtr-title i {
 	color: #07253F;
 }
 .ui-datepicker-calendar th {
-	color: #81878C;
+	color: #212529;
 	font-weight: 600;
 	padding: 8px;
 }
@@ -903,7 +918,7 @@ table.dataTable > tbody > tr.child span.dtr-title i {
 	text-align: center;
 }
 .ui-datepicker-calendar td a {
-	color: #81878C;
+	color: #212529;
 }
 .ui-datepicker-calendar td a:hover {
 	text-decoration: none;
@@ -912,3 +927,63 @@ table.dataTable > tbody > tr.child span.dtr-title i {
 .ui-datepicker-current-day {
 	border: 1px solid #eee;
 }
+
+  /* NAVIGATION */
+  nav {
+	/* width: 80%; */
+	margin: 0 auto;
+	background: #fff;
+	/* padding: 50px 0; */
+	box-shadow: 0px 5px 0px #dedede;
+  }
+ 
+  /* .navbar-nav > li > .dropdown-menu {
+    margin-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    display: block;
+    transform: scale(0);
+    transition: ease-out 0.3s;
+}
+.dropdown:hover .dropdown-menu {
+    transform: scale(1);
+}
+ */
+
+/* ============ only desktop view ============ */
+@media all and (min-width: 992px) {
+	.navbar-nav > li > .dropdown-menu {
+		margin-top: 0;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		display: block;
+		transform: scale(0);
+		transition: ease-out 0.3s;
+	}
+	.dropdown:hover .dropdown-menu {
+		transform: scale(1);
+	}
+
+	
+	ul a:hover{
+	  color:#009ddc;
+	}
+	
+	li > a:after{
+		content: '';
+		display: block;
+		height: 1.5px;
+		background: #009ddc;
+		transform: scaleX(0);
+		transition: transform .3s;
+	}
+	li > a:hover:after{
+		transform: scaleX(1);
+		transition: transform .3s;
+	}
+	/* .active{
+		color: #FBC02D !important;
+	} */
+}		
+/* ============ desktop view .end// ============ */ 
+/* EXTRA CSS */

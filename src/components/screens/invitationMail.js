@@ -1,81 +1,45 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import axios from 'axios';
-import history from "../history";
-// import FooterComponent from "../footer/footer";
-// import HeaderComponent from "../header/navbar";
+import React, { Fragment } from "react";
+import { useHistory } from "react-router-dom";
+// import PropTypes from "prop-types";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+// import { connect } from "react-redux";
+import axios from "axios";
 // import { sendMailRequest } from "../../actions/mailAction";
-import classnames from "classnames";
-import validateInput from "../screens/validator/emailValidator";
 
-const api_url = process.env.REACT_APP_BASEURL;
-class Mail extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: "",
-            checked: false,
-            errors: "",
-        };
-    }
+const api_url = process.env.REACT_APP_BASE_URL;
 
-    sendMail = (email) => {
-        try {
-            return axios.post(`${api_url}/api/send/mail`, {email});
-            } catch (error) {
-                console.log(`error sending invitation ${error}`);
-            }
-    }
-
-    onChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value });
-    };
-
-    checkboxHandler = (e) => {
-        this.setState({ checked: e.target.checked });
-    };
-
-    isValid() {
-        const { errors, isValid } = validateInput(this.state);
-
-        if (!isValid) {
-            this.setState({ errors });
-        }
-        return isValid;
-    }
-
-    sendMail = () => {
-        const { email } = this.state;
-        if (this.isValid()) {
-            this.props
-                .sendMailRequest(email)
-                .then((response) => {
-                    history.push("/sent");
-                })
-                .catch((err) => {
-                    history.push("/sent");
-                });
-        }
-    };
-
-    render() {
-        const { errors } = this.state;
-        return (
+const Mail = () => {
+    let history = useHistory();
+    return (
+        <Fragment>
+            <ToastContainer />
             <div
-                className="container-fluid main-wrapper"
-                style={{ overflow: "hidden", width: "100%", padding: 0 }}
+                className="container-fluid"
+                style={{
+                    overflow: "hidden",
+                    width: "100%",
+                    padding: 0,
+                }}
             >
                 <div className="row">
-                    <div className="col-sm-12 col-xs-12 col-lg-4 col-md-4 login-section-wrapper">
-                        <div className="brand-wrapper">
+                    <div className="col-sm-12 col-xs-12 col-lg-4 col-md-4">
+                        {/* <div className="brand-wrapper">
                             <img
-                                src="images/logo/logo.png"
+                                src="images/logo/logo-edcollab.png"
                                 alt="logo"
                                 className="logo"
                             />
-                        </div>
+                        </div> */}
                         <div className="login-wrapper">
+                            <div className="brand-wrapper">
+                                <img
+                                    src="images/logo/logo-edcollab.png"
+                                    alt="logo"
+                                    className="logo"
+                                />
+                            </div>
                             <h1 className="login-title">
                                 Welcome, we are glad you are here
                             </h1>
@@ -84,69 +48,122 @@ class Mail extends Component {
                                 account - please fill in your official email
                                 below to get started.
                             </p>
-                            <form>
-                                <div
-                                    className={classnames("form-group", {
-                                        "has-error": errors.email,
-                                    })}
-                                >
-                                    <label for="email">
-                                        your email address
-                                    </label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        id="email"
-                                        value={this.state.email}
-                                        onChange={this.onChange}
-                                        className="form-control"
-                                        placeholder={"you@official-email.com"}
-                                    />
-                                    {errors.email && (
-                                        <span className="form-text">
-                                            {errors.email}
-                                        </span>
-                                    )}
-                                </div>
 
-                                {/* <div className='form-group'>
-<div className="form-check">
-<label className="form-check-label">
-<input 
-type="checkbox"
-className="form-check-input"
-checked={this.state.checked}
-onChange={this.checkboxHandler}
-/> It's okay to send me update emails.
-</label>
-</div>
-</div> */}
-                                <button
-                                    className="btn btn-md login-btn center-block"
-                                    onClick={this.sendMail}
-                                    type="button"
-                                >
-                                    Next <i className="fa fa-arrow-right"></i>
-                                </button>
-                                {/* <input name="login" id="login" className="btn btn-block login-btn" type="button" value="Login"/> */}
-                            </form>
+                            <Formik
+                                initialValues={{ email: "" }}
+                                validate={(values) => {
+                                    const errors = {};
+                                    if (!values.email) {
+                                        errors.email = "field is required";
+                                    } else if (
+                                        !/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}/gi.test(
+                                            values.email
+                                        )
+                                    ) {
+                                        errors.email = "invalid email address";
+                                    }
+                                    return errors;
+                                }}
+                                onSubmit={(
+                                    values,
+                                    { setSubmitting, resetForm }
+                                ) => {
+                                    // setTimeout(() => {
+                                    //     alert(JSON.stringify(email, null, 2));
+                                    //     setSubmitting(false);
+                                    // }, 400);
+
+                                    // axios
+                                    //     .post(`${api_url}/api/send/mail`, {
+                                    //         values,
+                                    //     })
+                                    axios({
+                                        method: "POST",
+                                        url: `${api_url}/api/send/mail`,
+                                        data: {
+                                            email: values.email,
+                                        },
+                                    })
+                                        .then((response) => {
+                                            toast.success(`Message Sent!`, {
+                                                position: "top-right",
+                                                autoClose: 15000,
+                                                hideProgressBar: false,
+                                                closeOnClick: true,
+                                                pauseOnHover: true,
+                                                draggable: true,
+                                                progress: undefined,
+                                            });
+
+                                            resetForm();
+                                            history.push(
+                                                `/sent/${values.email}`,
+                                                true
+                                            );
+                                        })
+                                        .catch((error) => {
+                                            toast.error(`${error}`, {
+                                                position: "top-right",
+                                                autoClose: 15000,
+                                                hideProgressBar: false,
+                                                closeOnClick: true,
+                                                pauseOnHover: true,
+                                                draggable: true,
+                                                progress: undefined,
+                                            });
+                                            resetForm();
+                                        });
+                                }}
+                            >
+                                {({ isSubmitting }) => (
+                                    <Form>
+                                        <Field
+                                            type="email"
+                                            name="email"
+                                            className="form-control"
+                                            placeholder="you@email.com"
+                                        />
+                                        <ErrorMessage
+                                            name="email"
+                                            component="div"
+                                            style={{
+                                                color: "red",
+                                                fontWeight: "bold",
+                                                fontSize: "1.2rem",
+                                            }}
+                                        />
+
+                                        <button
+                                            type="submit"
+                                            className="btn btn-lg login-btn center-block"
+                                            disabled={isSubmitting}
+                                        >
+                                            Next{" "}
+                                            <i className="fa fa-arrow-right"></i>
+                                        </button>
+                                    </Form>
+                                )}
+                            </Formik>
                         </div>
                     </div>
-                    <div className="col-sm-6 col-xs-6 col-lg-8 col-md-8 half-div">
+                    <div
+                        className="col-sm-12 col-xs-12 col-lg-8 col-md-8 hidden-sm hidden-xs"
+                        style={{ padding: 0, overflow: "hidden" }}
+                    >
                         <img
-                            src="images/screens/education.png"
+                            src="images/screens/screen1.jpg"
                             alt="login_image"
                             className="login-img"
                         />
                     </div>
                 </div>
             </div>
-        );
-    }
-}
-
-Mail.propTypes = {
-    sendMailRequest: PropTypes.func.isRequired,
+        </Fragment>
+    );
 };
+
+// Mail.propTypes = {
+//     sendMailRequest: PropTypes.func.isRequired,
+// };
 
 export default Mail;

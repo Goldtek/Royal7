@@ -14,7 +14,8 @@ NOTE:Use PascalCase for React components, or lowercase for HTML elements. DUE TO
 */
 /*
 GENERAL IMPORT STARTS HERE ##################
-*/  
+*/
+
 import {
     MailConfirm,
     CreateAccountScreen,
@@ -29,12 +30,9 @@ import {
 GENERAL IMPORT ENDS HERE ##################
 */
 
-
-
 /* ADMIN DASHBOARD IMPORT STARTS HERE #####################################*/
-import {DashboardComponent} from "./dashboard"
+import { DashboardComponent } from "./dashboard";
 /* ADMIN DASHBOARD IMPORT STARTS HERE #####################################*/
-
 
 const App = () => (
     <Router forceRefresh={true} history={history}>
@@ -54,9 +52,9 @@ const App = () => (
             {/* <Route path="/setup" component={setUpComponent} /> */}
 
             {/* Screen for user to input confirmation code start path */}
-            <Route path="/confirm-email">
+            {/* <Route path="/confirm-email">
                 <MailConfirm />
-            </Route>
+            </Route> */}
             {/* Screen for user to input confirmation code start path */}
 
             {/* Getting Started Account Creation Start path */}
@@ -77,25 +75,20 @@ const App = () => (
             </Route>
             {/* Notification for email action success screen End path */}
 
-
-            
             {/* Notification for email action success screen START path */}
             <Route path="/email-activated">
                 <EmailActivationScreen />
             </Route>
             {/* Notification for email action success screen End path */}
 
-            
             {/* Notification for email action success screen START path */}
             <Route path="/terms-conditions">
                 <TermsConditions />
             </Route>
             {/* Notification for email action success screen End path */}
 
-
-
-{/* DASHBOARD ROUTES GOES STARTS HERE ############################################################### */}
-<Route
+            {/* DASHBOARD ROUTES GOES STARTS HERE ############################################################### */}
+            <Route
                 exact
                 path="/dashboard"
                 render={() => (
@@ -107,9 +100,8 @@ const App = () => (
                     </>
                 )}
             />
-{/* DASHBOARD ROUTES GOES STARTS HERE ############################################################### */}
-              {/* ERROR 404 path */}
-
+            {/* DASHBOARD ROUTES GOES STARTS HERE ############################################################### */}
+            {/* ERROR 404 path */}
 
             <Route path="*">
                 <Error404Page />

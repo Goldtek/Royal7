@@ -1,6 +1,6 @@
 import React, {Fragment, useState,useEffect } from 'react';
 import {Redirect} from "react-router-dom"
-import history from "../history";
+// import history from "../history";
 function EmailSent(){
 // Declare a new state variable, which we'll call "count"
 const [counter, setCounter] = useState(10);

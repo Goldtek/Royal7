@@ -142,7 +142,7 @@ class CreateAccount extends Component{
         <div className="container-fluid" style={{padding:0, overflow:"hidden"}}>
                 <section className="wizard-section">
             <div className="row no-gutters">
-                <div className="col-lg-7 col-md-7 col-xs-12 col-sm-12">
+                <div className="col-lg-7 col-md-7 col-xs-12 col-sm-12" style={{padding:0}}>
                     <div className="wizard-content-left d-flex justify-content-center align-items-center center-block ">
                         <h1>Complete Your Account Set-up</h1>
                     </div>
@@ -308,7 +308,7 @@ class CreateAccount extends Component{
                                 </div>
                             </fieldset>	
                             <fieldset className="wizard-fieldset">
-                            <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                            <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12" >
                     <div className="image-kite center-block ">
                     <img src="/images/screens/download.png" alt="mine"></img>
                     <h1>Account Setup Complete Please Proceed to <a href="/">Login page</a> </h1> 
