@@ -1,210 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="theme-color" content="#000000" />
-<meta name="description" content="Web site created using create-react-app"/>
-<base href="/" />
-<link rel="apple-touch-icon" href="images/logo/logo.png" />
-<link rel="images/logo/logo.png" href="%PUBLIC_URL%/gloryplus.png" />
-<!-- Favicon -->
-<link href="images/logo/logo.png" rel="shortcut icon" />
-<!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
-  <!-- WEB PASGE STYLES STARTS-->
-  <!-- <link href="css/vendor/all.css" rel="stylesheet">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta
+            name="description"
+            content="Web site created using create-react-app"
+        />
+        <base href="/" />
+        <link rel="apple-touch-icon" href="images/logo/logo-edcollab.png" />
+        <link
+            rel="images/logo/logo-edcollab.png"
+            href="%PUBLIC_URL%/gloryplus.png"
+        />
+        <!-- Favicon -->
+        <link href="images/logo/logo-edcollab.png" rel="shortcut icon" />
+        <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
+        <!-- WEB PASGE STYLES STARTS-->
+        <!-- <link href="css/vendor/all.css" rel="stylesheet">
   <link href="css/app/app.css" rel="stylesheet"> -->
-  <linkrel="stylesheet" href="https://video-react.github.io/assets/video-react.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/fontawesome.min.css"/>
+        <link
+            rel="stylesheet"
+            href="https://video-react.github.io/assets/video-react.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/fontawesome.min.css"
+        />
 
-  <!-- CUSTOM CSS STYLES -->
-  <link rel="stylesheet" href="css/app/custom.css"/>
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
-  <link href="assets/css/chartist.min.css" rel="stylesheet" media="screen">
-  <link href="assets/css/owl.carousel.min.css" rel="stylesheet" media="screen">
-  <link href="assets/css/owl.theme.default.min.css" rel="stylesheet" media="screen">
-  <link href="assets/css/style.css" rel="stylesheet" media="screen">
-  <link href="assets/css/slider.css" rel="stylesheet" media="screen">
+        <!-- CUSTOM CSS STYLES -->
+        <link rel="stylesheet" href="css/app/custom.css" />
+        <link
+            href="assets/css/bootstrap.min.css"
+            rel="stylesheet"
+            media="screen"
+        />
+        <link
+            href="assets/css/chartist.min.css"
+            rel="stylesheet"
+            media="screen"
+        />
+        <link
+            href="assets/css/owl.carousel.min.css"
+            rel="stylesheet"
+            media="screen"
+        />
+        <link
+            href="assets/css/owl.theme.default.min.css"
+            rel="stylesheet"
+            media="screen"
+        />
+        <link href="assets/css/style.css" rel="stylesheet" media="screen" />
+        <link href="assets/css/slider.css" rel="stylesheet" media="screen" />
 
-  <!-- Fonts -->
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-  <link href="assets/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" media="screen">
-  <!-- WEB PAGE STYLES ENDS -->
-<title></title>
-</head>
-<body>
-  <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+        <!-- Fonts -->
+        <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="assets/fonts/font-awesome/css/font-awesome.min.css"
+            rel="stylesheet"
+            media="screen"
+        />
+        <!-- WEB PAGE STYLES ENDS -->
+        <title></title>
+    </head>
+    <body>
+        <a href="javascript:" id="return-to-top"
+            ><i class="fa fa-chevron-up"></i
+        ></a>
 
-<noscript>You need to enable JavaScript to run this app.</noscript>
-<div id="root"></div>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<script src="https://use.fontawesome.com/92d34845bc.js"></script>
-<script src="https://use.fontawesome.com/92d34845bc.js"></script>
-<script src="assets/js/jquery-ui.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/plugins/owl.carousel.min.js"></script>
-<script src="assets/plugins/Chart.min.js"></script>
-<script src="assets/plugins/jquery.dataTables.min.js"></script>
-<script src="assets/plugins/dataTables.responsive.min.js"></script>
-<script src="assets/js/js.js"></script>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id="root"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://use.fontawesome.com/92d34845bc.js"></script>
+        <script src="https://use.fontawesome.com/92d34845bc.js"></script>
+        <script src="assets/js/jquery-ui.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/plugins/owl.carousel.min.js"></script>
+        <script src="assets/plugins/Chart.min.js"></script>
+        <script src="assets/plugins/jquery.dataTables.min.js"></script>
+        <script src="assets/plugins/dataTables.responsive.min.js"></script>
+        <script src="assets/js/js.js"></script>
 
+        <!-- CUSTOM JS FUNCTIONS -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <!-- SCROLL TO TOP##################### -->
+        <script>
+            // ===== Scroll to Top ====
+            // ===== Scroll to Top ====
+            $(window).scroll(function () {
+                if ($(this).scrollTop() >= 50) {
+                    // If page is scrolled more than 50px
+                    $("#return-to-top").fadeIn(200); // Fade in the arrow
+                } else {
+                    $("#return-to-top").fadeOut(200); // Else fade out the arrow
+                }
+            });
+            $("#return-to-top").click(function () {
+                // When arrow is clicked
+                $("body,html").animate(
+                    {
+                        scrollTop: 0, // Scroll to top of body
+                    },
+                    500
+                );
+            });
 
-<!-- CUSTOM JS FUNCTIONS -->
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<!-- SCROLL TO TOP##################### -->
-<script>
-  // ===== Scroll to Top ==== 
-// ===== Scroll to Top ==== 
-$(window).scroll(function() {
-    if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
-        $('#return-to-top').fadeIn(200);    // Fade in the arrow
-    } else {
-        $('#return-to-top').fadeOut(200);   // Else fade out the arrow
-    }
-});
-$('#return-to-top').click(function() {      // When arrow is clicked
-    $('body,html').animate({
-        scrollTop : 0                       // Scroll to top of body
-    }, 500);
-});
+            /*WIZARD FORM*/
+            jQuery(document).ready(function () {
+                // click on next button
+                jQuery(".form-wizard-next-btn").click(function () {
+                    var parentFieldset = jQuery(this).parents(
+                        ".wizard-fieldset"
+                    );
+                    var currentActiveStep = jQuery(this)
+                        .parents(".form-wizard")
+                        .find(".form-wizard-steps .active");
+                    var next = jQuery(this);
+                    var nextWizardStep = true;
+                    parentFieldset.find(".wizard-required").each(function () {
+                        var thisValue = jQuery(this).val();
 
+                        if (thisValue == "") {
+                            jQuery(this)
+                                .siblings(".wizard-form-error")
+                                .slideDown();
+                            nextWizardStep = false;
+                        } else {
+                            jQuery(this)
+                                .siblings(".wizard-form-error")
+                                .slideUp();
+                        }
+                    });
+                    if (nextWizardStep) {
+                        next.parents(".wizard-fieldset").removeClass(
+                            "show",
+                            "400"
+                        );
+                        currentActiveStep
+                            .removeClass("active")
+                            .addClass("activated")
+                            .next()
+                            .addClass("active", "400");
+                        next.parents(".wizard-fieldset")
+                            .next(".wizard-fieldset")
+                            .addClass("show", "400");
+                        jQuery(document)
+                            .find(".wizard-fieldset")
+                            .each(function () {
+                                if (jQuery(this).hasClass("show")) {
+                                    var formAtrr = jQuery(this).attr(
+                                        "data-tab-content"
+                                    );
+                                    jQuery(document)
+                                        .find(
+                                            ".form-wizard-steps .form-wizard-step-item"
+                                        )
+                                        .each(function () {
+                                            if (
+                                                jQuery(this).attr(
+                                                    "data-attr"
+                                                ) == formAtrr
+                                            ) {
+                                                jQuery(this).addClass("active");
+                                                var innerWidth = jQuery(
+                                                    this
+                                                ).innerWidth();
+                                                var position = jQuery(
+                                                    this
+                                                ).position();
+                                                jQuery(document)
+                                                    .find(
+                                                        ".form-wizard-step-move"
+                                                    )
+                                                    .css({
+                                                        left: position.left,
+                                                        width: innerWidth,
+                                                    });
+                                            } else {
+                                                jQuery(this).removeClass(
+                                                    "active"
+                                                );
+                                            }
+                                        });
+                                }
+                            });
+                    }
+                });
+                //click on previous button
+                jQuery(".form-wizard-previous-btn").click(function () {
+                    var counter = parseInt(jQuery(".wizard-counter").text());
+                    var prev = jQuery(this);
+                    var currentActiveStep = jQuery(this)
+                        .parents(".form-wizard")
+                        .find(".form-wizard-steps .active");
+                    prev.parents(".wizard-fieldset").removeClass("show", "400");
+                    prev.parents(".wizard-fieldset")
+                        .prev(".wizard-fieldset")
+                        .addClass("show", "400");
+                    currentActiveStep
+                        .removeClass("active")
+                        .prev()
+                        .removeClass("activated")
+                        .addClass("active", "400");
+                    jQuery(document)
+                        .find(".wizard-fieldset")
+                        .each(function () {
+                            if (jQuery(this).hasClass("show")) {
+                                var formAtrr = jQuery(this).attr(
+                                    "data-tab-content"
+                                );
+                                jQuery(document)
+                                    .find(
+                                        ".form-wizard-steps .form-wizard-step-item"
+                                    )
+                                    .each(function () {
+                                        if (
+                                            jQuery(this).attr("data-attr") ==
+                                            formAtrr
+                                        ) {
+                                            jQuery(this).addClass("active");
+                                            var innerWidth = jQuery(
+                                                this
+                                            ).innerWidth();
+                                            var position = jQuery(
+                                                this
+                                            ).position();
+                                            jQuery(document)
+                                                .find(".form-wizard-step-move")
+                                                .css({
+                                                    left: position.left,
+                                                    width: innerWidth,
+                                                });
+                                        } else {
+                                            jQuery(this).removeClass("active");
+                                        }
+                                    });
+                            }
+                        });
+                });
+                //click on form submit button
+                jQuery(document).on(
+                    "click",
+                    ".form-wizard .form-wizard-submit",
+                    function () {
+                        var parentFieldset = jQuery(this).parents(
+                            ".wizard-fieldset"
+                        );
+                        var currentActiveStep = jQuery(this)
+                            .parents(".form-wizard")
+                            .find(".form-wizard-steps .active");
+                        parentFieldset
+                            .find(".wizard-required")
+                            .each(function () {
+                                var thisValue = jQuery(this).val();
+                                if (thisValue == "") {
+                                    jQuery(this)
+                                        .siblings(".wizard-form-error")
+                                        .slideDown();
+                                } else {
+                                    jQuery(this)
+                                        .siblings(".wizard-form-error")
+                                        .slideUp();
+                                }
+                            });
+                    }
+                );
+                // focus on input field check empty or not
+                jQuery(".form-control")
+                    .on("focus", function () {
+                        var tmpThis = jQuery(this).val();
+                        if (tmpThis == "") {
+                            jQuery(this).parent().addClass("focus-input");
+                        } else if (tmpThis != "") {
+                            jQuery(this).parent().addClass("focus-input");
+                        }
+                    })
+                    .on("blur", function () {
+                        var tmpThis = jQuery(this).val();
+                        if (tmpThis == "") {
+                            jQuery(this).parent().removeClass("focus-input");
+                            jQuery(this)
+                                .siblings(".wizard-form-error")
+                                .slideDown("3000");
+                        } else if (tmpThis != "") {
+                            jQuery(this).parent().addClass("focus-input");
+                            jQuery(this)
+                                .siblings(".wizard-form-error")
+                                .slideUp("3000");
+                        }
+                    });
+            });
+            /*WIZARD FORM*/
 
-/*WIZARD FORM*/
-jQuery(document).ready(function() {
-	// click on next button
-	jQuery('.form-wizard-next-btn').click(function() {
-		var parentFieldset = jQuery(this).parents('.wizard-fieldset');
-		var currentActiveStep = jQuery(this).parents('.form-wizard').find('.form-wizard-steps .active');
-		var next = jQuery(this);
-		var nextWizardStep = true;
-		parentFieldset.find('.wizard-required').each(function(){
-			var thisValue = jQuery(this).val();
+            $(document).ready(function () {
+                $(".toggle-pwrd").click(function () {
+                    var passwordInput = document.getElementById("pwrd");
+                    var passStatus = document.getElementById("pwrd-status");
 
-			if( thisValue == "") {
-				jQuery(this).siblings(".wizard-form-error").slideDown();
-				nextWizardStep = false;
-			}
-			else {
-				jQuery(this).siblings(".wizard-form-error").slideUp();
-			}
-		});
-		if( nextWizardStep) {
-			next.parents('.wizard-fieldset').removeClass("show","400");
-			currentActiveStep.removeClass('active').addClass('activated').next().addClass('active',"400");
-			next.parents('.wizard-fieldset').next('.wizard-fieldset').addClass("show","400");
-			jQuery(document).find('.wizard-fieldset').each(function(){
-				if(jQuery(this).hasClass('show')){
-					var formAtrr = jQuery(this).attr('data-tab-content');
-					jQuery(document).find('.form-wizard-steps .form-wizard-step-item').each(function(){
-						if(jQuery(this).attr('data-attr') == formAtrr){
-							jQuery(this).addClass('active');
-							var innerWidth = jQuery(this).innerWidth();
-							var position = jQuery(this).position();
-							jQuery(document).find('.form-wizard-step-move').css({"left": position.left, "width": innerWidth});
-						}else{
-							jQuery(this).removeClass('active');
-						}
-					});
-				}
-			});
-		}
-	});
-	//click on previous button
-	jQuery('.form-wizard-previous-btn').click(function() {
-		var counter = parseInt(jQuery(".wizard-counter").text());;
-		var prev =jQuery(this);
-		var currentActiveStep = jQuery(this).parents('.form-wizard').find('.form-wizard-steps .active');
-		prev.parents('.wizard-fieldset').removeClass("show","400");
-		prev.parents('.wizard-fieldset').prev('.wizard-fieldset').addClass("show","400");
-		currentActiveStep.removeClass('active').prev().removeClass('activated').addClass('active',"400");
-		jQuery(document).find('.wizard-fieldset').each(function(){
-			if(jQuery(this).hasClass('show')){
-				var formAtrr = jQuery(this).attr('data-tab-content');
-				jQuery(document).find('.form-wizard-steps .form-wizard-step-item').each(function(){
-					if(jQuery(this).attr('data-attr') == formAtrr){
-						jQuery(this).addClass('active');
-						var innerWidth = jQuery(this).innerWidth();
-						var position = jQuery(this).position();
-						jQuery(document).find('.form-wizard-step-move').css({"left": position.left, "width": innerWidth});
-					}else{
-						jQuery(this).removeClass('active');
-					}
-				});
-			}
-		});
-	});
-	//click on form submit button
-	jQuery(document).on("click",".form-wizard .form-wizard-submit" , function(){
-		var parentFieldset = jQuery(this).parents('.wizard-fieldset');
-		var currentActiveStep = jQuery(this).parents('.form-wizard').find('.form-wizard-steps .active');
-		parentFieldset.find('.wizard-required').each(function() {
-			var thisValue = jQuery(this).val();
-			if( thisValue == "" ) {
-				jQuery(this).siblings(".wizard-form-error").slideDown();
-			}
-			else {
-				jQuery(this).siblings(".wizard-form-error").slideUp();
-			}
-		});
-	});
-	// focus on input field check empty or not
-	jQuery(".form-control").on('focus', function(){
-		var tmpThis = jQuery(this).val();
-		if(tmpThis == '' ) {
-			jQuery(this).parent().addClass("focus-input");
-		}
-		else if(tmpThis !='' ){
-			jQuery(this).parent().addClass("focus-input");
-		}
-	}).on('blur', function(){
-		var tmpThis = jQuery(this).val();
-		if(tmpThis == '' ) {
-			jQuery(this).parent().removeClass("focus-input");
-			jQuery(this).siblings('.wizard-form-error').slideDown("3000");
-		}
-		else if(tmpThis !='' ){
-			jQuery(this).parent().addClass("focus-input");
-			jQuery(this).siblings('.wizard-form-error').slideUp("3000");
-		}
-	});
-});
-/*WIZARD FORM*/
+                    if (passwordInput.type == "password") {
+                        passwordInput.type = "text";
+                        passStatus.className =
+                            "fa fa-eye-slash field-icon toggle-password";
+                    } else {
+                        passwordInput.type = "password";
+                        passStatus.className =
+                            "fa fa-fw fa-eye field-icon toggle-pwrd";
+                    }
+                });
+                $(".toggle-cpwrd").click(function () {
+                    var passwordInput = document.getElementById("cpwrd");
+                    var passStatus = document.getElementById("cpwrd-status");
 
-$(document).ready(function(){
-	
-  $(".toggle-pwrd").click(function() {
-  var passwordInput = document.getElementById('pwrd');
-  var passStatus = document.getElementById('pwrd-status');
- 
-  if (passwordInput.type == 'password'){
-    passwordInput.type='text';
-    passStatus.className='fa fa-eye-slash field-icon toggle-password';
-    
-  }
-  else{
-    passwordInput.type='password';
-    passStatus.className='fa fa-fw fa-eye field-icon toggle-pwrd';
-  }
-
-});
-  $(".toggle-cpwrd").click(function() {
-  var passwordInput = document.getElementById('cpwrd');
-  var passStatus = document.getElementById('cpwrd-status');
- 
-  if (passwordInput.type == 'password'){
-    passwordInput.type='text';
-    passStatus.className='fa fa-eye-slash field-icon toggle-cpwrd';
-    
-  }
-  else{
-    passwordInput.type='password';
-    passStatus.className='fa fa-fw fa-eye field-icon toggle-cpwrd';
-  }
-
-});
-})
-</script>
-<!-- CUSTOM JS FUNCTIONS -->
-</body>
+                    if (passwordInput.type == "password") {
+                        passwordInput.type = "text";
+                        passStatus.className =
+                            "fa fa-eye-slash field-icon toggle-cpwrd";
+                    } else {
+                        passwordInput.type = "password";
+                        passStatus.className =
+                            "fa fa-fw fa-eye field-icon toggle-cpwrd";
+                    }
+                });
+            });
+        </script>
+        <!-- CUSTOM JS FUNCTIONS -->
+    </body>
 </html>

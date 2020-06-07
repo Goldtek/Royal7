@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
+    "formik": "^2.1.4",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
@@ -18,11 +19,13 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
+    "react-toastify": "^6.0.5",
     "react-typing-animation": "^1.6.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "validator": "^13.0.0",
-    "video-react": "^0.14.1"
+    "video-react": "^0.14.1",
+    "yup": "^0.29.1"
   },
   "scripts": {
     "start": "react-scripts start",
