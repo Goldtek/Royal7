@@ -77,13 +77,24 @@ const Mail = () => {
                                     //     .post(`${api_url}/api/send/mail`, {
                                     //         values,
                                     //     })
-                                    axios({
-                                        method: "POST",
-                                        url: `${api_url}api/send/mail`,
-                                        data: {
-                                            email: values.email,
-                                        },
-                                    })
+                                    // axios({
+                                    //     method: "POST",
+                                    //     url: `${api_url}api/send/mail`,
+                                    //     data: {
+                                    //         email: values.email,
+                                    //     },
+                                    // })
+                                    axios
+                                        .post(
+                                            `${api_url}/api/send/mail`,
+                                            { values },
+                                            {
+                                                headers: {
+                                                    "Cont-Type":
+                                                        "application.json",
+                                                },
+                                            }
+                                        )
                                         .then((response) => {
                                             toast.success(`Message Sent!`, {
                                                 position: "top-right",
