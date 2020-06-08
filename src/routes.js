@@ -94,7 +94,7 @@ const Routes = () => (
 
             <Route
                 exact
-                path="/email-activated/:email/:code"
+                path="/confirm/:email/:code"
                 render={(props) => (
                     <Fragment>
                         <Helmet>
