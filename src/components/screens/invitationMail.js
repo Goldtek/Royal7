@@ -79,7 +79,7 @@ const Mail = () => {
                                     //     })
                                     axios({
                                         method: "POST",
-                                        url: `${api_url}/api/send/mail`,
+                                        url: `${api_url}api/send/mail`,
                                         data: {
                                             email: values.email,
                                         },
