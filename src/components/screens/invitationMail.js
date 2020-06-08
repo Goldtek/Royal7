@@ -7,10 +7,9 @@ import "react-toastify/dist/ReactToastify.css";
 // import { connect } from "react-redux";
 import axios from "axios";
 // import { sendMailRequest } from "../../actions/mailAction";
+// const api_url = process.env.REACT_APP_BASE_URL;
 
-const api_url = process.env.REACT_APP_BASE_URL;
-
-const Mail = () => {
+const SendMail = () => {
     let history = useHistory();
     return (
         <Fragment>
@@ -77,24 +76,13 @@ const Mail = () => {
                                     //     .post(`${api_url}/api/send/mail`, {
                                     //         values,
                                     //     })
-                                    // axios({
-                                    //     method: "POST",
-                                    //     url: `${api_url}api/send/mail`,
-                                    //     data: {
-                                    //         email: values.email,
-                                    //     },
-                                    // })
-                                    axios
-                                        .post(
-                                            `${api_url}/api/send/mail`,
-                                            { values },
-                                            {
-                                                headers: {
-                                                    "Cont-Type":
-                                                        "application.json",
-                                                },
-                                            }
-                                        )
+                                    axios({
+                                        method: "POST",
+                                        url: `/api/send/mail`,
+                                        data: {
+                                            email: values.email,
+                                        },
+                                    })
                                         .then((response) => {
                                             toast.success(`Message Sent!`, {
                                                 position: "top-right",
@@ -177,4 +165,4 @@ const Mail = () => {
 //     sendMailRequest: PropTypes.func.isRequired,
 // };
 
-export default Mail;
+export default SendMail;
