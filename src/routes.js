@@ -59,19 +59,34 @@ const Routes = () => (
 
             {/* Getting Started Account Creation Start path */}
             <Route path="/create">
-                <CreateAccountScreen />
+                <Fragment>
+                    <Helmet>
+                        <title>Create Account</title>
+                    </Helmet>
+                    <CreateAccountScreen />
+                </Fragment>
             </Route>
             {/* Getting Started Account Creation Start path */}
 
             {/* Registration Screen after email confirmation START path */}
             <Route path="/continue">
-                <ContinuationScreen />
+                <Fragment>
+                    <Helmet>
+                        <title>Continue Registration</title>
+                    </Helmet>
+                    <ContinuationScreen />
+                </Fragment>
             </Route>
             {/* Registration Screen after email confirmation End path */}
 
             {/* Notification for email action success screen START path */}
             <Route path="/sent/:email">
-                <EmailSentNotificationScreen />
+                <Fragment>
+                    <Helmet>
+                        <title>Email Sent</title>
+                    </Helmet>
+                    <EmailSentNotificationScreen />
+                </Fragment>
             </Route>
             {/* Notification for email action success screen End path */}
 
@@ -79,11 +94,11 @@ const Routes = () => (
 
             <Route
                 exact
-                path="/email-activated/:id"
+                path="/email-activated/:email/:code"
                 render={(props) => (
                     <Fragment>
                         <Helmet>
-                            <title>Email Sent</title>
+                            <title>Email Verification</title>
                         </Helmet>
                         <EmailActivationScreen {...props} />
                     </Fragment>
@@ -115,7 +130,10 @@ const Routes = () => (
             {/* ERROR 404 path */}
 
             <Route path="*">
-                <Error404Page />
+                <Fragment>
+                    <title>Error 404 </title>
+                    <Error404Page />
+                </Fragment>
             </Route>
             {/* ERROR 404 path */}
         </Switch>

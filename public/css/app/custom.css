@@ -631,7 +631,7 @@ span {
     color: #4183d7;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:400, 100, 900);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400);
 
 .wrapper {
     display: table;
@@ -891,7 +891,7 @@ width: 100%;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     flex-direction: column;
-    padding: 68px 100px;
+    /* padding: 68px 6s0px; */
     background-color: #fff;
     /* border: 2px solid red; */
 }
@@ -899,7 +899,7 @@ width: 100%;
 .login-wrapper {
     width: 100%;
     max-width: 100%;
-    margin: 150px auto;
+    margin: 120px auto;
     /* padding-bottom: 24px; */
     /* border:2px solid red; */
     padding: 20px;
@@ -935,7 +935,7 @@ color: #b0adad;
 color: #b0adad;
 } */
 .login-wrapper .login-btn {
-    margin-top: 50px;
+    margin-top: 100px;
     padding: 10px 30px;
     /* background-color: #1f8d82; */
     background-color: #0e8cad;
@@ -943,7 +943,7 @@ color: #b0adad;
     font-size: 15px;
     font-weight: bold;
     color: #fff;
-    margin-bottom: 14px;
+    /* margin-bottom: 14px; */
     border-radius: 5px;
 }
 .login-wrapper .login-btn:hover {
