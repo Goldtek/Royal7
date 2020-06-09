@@ -1,5 +1,10 @@
 import React, { Fragment } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+    Redirect,
+} from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 //############### IMPORT COMPNENTS FROM THE INDEXED EXPORT STARTS
@@ -53,8 +58,8 @@ const Routes = () => (
 
             {/* Screen for user to input confirmation code start path */}
             {/* <Route path="/confirm-email">
-                <MailConfirm />
-            </Route> */}
+<MailConfirm />
+</Route> */}
             {/* Screen for user to input confirmation code start path */}
 
             {/* Getting Started Account Creation Start path */}
@@ -85,6 +90,7 @@ const Routes = () => (
                     <Helmet>
                         <title>Email Sent</title>
                     </Helmet>
+                    {/* <Redirect from="/sent" to="/" exact /> */}
                     <EmailSentNotificationScreen />
                 </Fragment>
             </Route>
