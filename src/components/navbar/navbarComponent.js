@@ -7,7 +7,7 @@ return (
 <Fragment>
     <div className="example3">
   <nav className="navbar navbar-default navbar-size-large navbar-size-xlarge paper-shadow" data-z="0"
-data-animated role="navigation">
+  data-animated role="navigation">
     <div className="container">
       <div className="navbar-header">
         <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar3">
@@ -42,7 +42,7 @@ data-animated role="navigation">
               
             </ul>
           </li>
-          <li ><a href="/create">Getting Started</a></li>
+          <li ><Link to="/create">Getting Started</Link></li>
         </ul>
       </div>
       {/* <!--/.nav-collapse --> */}
@@ -52,7 +52,7 @@ data-animated role="navigation">
 </div>
 
 
-<div class="row">
+    <div class="row">
             <div id="homeSlider" class="carousel slide" data-ride="carousel">
                 {/* <!-- Indicators --> */}
                 <ol class="carousel-indicators">
@@ -68,7 +68,7 @@ data-animated role="navigation">
 							<h4><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
                             <h2>CHOOSE <span><i class="fa fa-trophy"></i>BEST</span> FOR YOUR CHILD</h2>
                             <p>We here at <strong>PATHSHALA</strong> provides best education <br /> to your little one</p>
-                            <a href="#"><i class="fa fa-paper-plane"></i>KNOW MORE</a>
+                            <Link to="#"><i class="fa fa-paper-plane"></i>KNOW MORE</Link>
                         </div>
                     </div>
 
@@ -78,7 +78,7 @@ data-animated role="navigation">
 							<h4><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
                             <h2>LET YOUR CHILD <span><i class="fa fa-line-chart"></i>GROW</span></h2>
                             <p>We here at <strong>PATHSHALA</strong> provides best education <br /> to your little one</p>
-                            <a href="#"><i class="fa fa-paper-plane"></i>KNOW MORE</a>
+                            <Link to="#"><i class="fa fa-paper-plane"></i>KNOW MORE</Link>
                         </div>
                     </div>
 					<div class="item">
@@ -87,19 +87,19 @@ data-animated role="navigation">
                             <h4><i class="fa fa-star-o"></i>WE ARE BEST<i class="fa fa-star-o"></i></h4>
                             <h2>GIVE <span><i class="fa fa-rocket"></i>BOOST</span> TO YOUR CHILD</h2>
 							<p>We here at <strong>PATHSHALA</strong> provides best education <br /> to your little one</p>
-                            <a href="#"><i class="fa fa-paper-plane"></i>KNOW MORE</a>
+                            <Link to="#"><i class="fa fa-paper-plane"></i>KNOW MORE</Link>
                         </div>
                     </div>
                 </div>
 
-                <a class="left carousel-control" href="#homeSlider" role="button" data-slide="prev">
+                <Link class="left carousel-control" to="#homeSlider" role="button" data-slide="prev">
                     <span class="fa fa-arrow-left" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#homeSlider" role="button" data-slide="next">
+                </Link>
+                <Link class="right carousel-control" to="#homeSlider" role="button" data-slide="next">
                     <span class="fa fa-arrow-right" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
-                </a>
+                </Link>
             </div>
         </div>
 </Fragment>
