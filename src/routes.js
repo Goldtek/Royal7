@@ -7,19 +7,8 @@ import {
 } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
-//############### IMPORT COMPNENTS FROM THE INDEXED EXPORT STARTS
-// import setUpComponent from "./welcome";
 import IndexPage from "./components/index";
-//############### IMPORT COMPNENTS FROM THE INDEXED EXPORT ENDS
-
-/*
-
-NOTE:Use PascalCase for React components, or lowercase for HTML elements. DUE TO THE ROUTING PATTERN PLEASE USE PascalCasing to avoid error
-
-*/
-/*
-GENERAL IMPORT STARTS HERE ##################
-*/
+import { PrivateRoute } from './components/custom';
 
 import {
     MailConfirm,
@@ -120,7 +109,7 @@ const Routes = () => (
             {/* Notification for email action success screen End path */}
 
             {/* DASHBOARD ROUTES GOES STARTS HERE ############################################################### */}
-            <Route
+            <PrivateRoute
                 exact
                 path="/dashboard"
                 render={() => (
