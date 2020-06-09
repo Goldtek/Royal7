@@ -428,3 +428,10 @@
 }
 
 /* EMAIL SENT#################### */
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .form-wizard {
+        /* background-color: red; */
+        margin-top: 20vh !important;
+    }
+}
