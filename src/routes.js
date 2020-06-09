@@ -111,7 +111,7 @@ const Routes = () => (
             {/* DASHBOARD ROUTES GOES STARTS HERE ############################################################### */}
             <PrivateRoute
                 exact
-                path="/dashboard"
+                path="/dashboard/:id"
                 render={() => (
                     <>
                         <Helmet>
