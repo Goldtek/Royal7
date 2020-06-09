@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 // import { connect } from "react-redux";
 import axios from "axios";
 // import { sendMailRequest } from "../../actions/mailAction";
-// const api_url = process.env.REACT_APP_BASE_URL;
+const api_url = process.env.REACT_APP_BASE_URL;
 
 const SendMail = () => {
     let history = useHistory();
@@ -76,9 +76,16 @@ const SendMail = () => {
                                     //     .post(`${api_url}/api/send/mail`, {
                                     //         values,
                                     //     })
+                                    // axios({
+                                    //     method: "POST",
+                                    //     url: `http://localhost:5000/email`,
+                                    //     data: {
+                                    //         email: values.email,
+                                    //     },
+                                    // })
                                     axios({
                                         method: "POST",
-                                        url: `/api/send/mail`,
+                                        url: `${api_url}/api/send/mail`,
                                         data: {
                                             email: values.email,
                                         },
