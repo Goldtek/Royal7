@@ -7,6 +7,7 @@ import validate from '../screens/validator/validatorCheck';
 import classnames from 'classnames';
 import isEmpty from "lodash/isEmpty";
 import "./screens.css";
+import { login, create_account } from "../actions";
 
 
 const api_url = process.env.REACT_APP_BASEURL;
@@ -26,27 +27,7 @@ class CreateAccount extends Component{
         }
     }
 
-   create_account = data => {
-        try {
-            return axios.post(`${api_url}/api/school/admin`, {
-                schoolName: data.schoolName,
-                phone: data.phone,
-                address: data.address,
-                email: data.email,
-                about: data.about,
-                password: data.password
-            });
-        } catch (error) {
-            console.log(`error creating school account ${error}`);
-        }
-    }
-    loginUser = (data) => {
-        try {
-            return axios.post(`${api_url}/api/user/login`, {email:data.email, password:data.password});
-        } catch (error) {
-            console.log(`error logging in user ${error}`);
-        }
-    }
+  
 
     onChange = e =>{
         this.setState({[e.target.name]: e.target.value})
@@ -110,6 +91,7 @@ class CreateAccount extends Component{
     }
 
     handleCreateAccount = () =>{
+        
         const { schoolName, email, address, phone, about, password} = this.state
         let data = {
             schoolName,
@@ -119,21 +101,7 @@ class CreateAccount extends Component{
             about,
             password
         }
-        this.props.create_account(data)
-        .then(response =>{
-            if(response){
-                this.props.loginUser(response.data)
-                .then(res =>{
-                    this.context.router.push("/dashboard")
-                })
-                .catch(err =>{
-                    console.log("can't login user in, try again later");
-                })
-            }
-        })
-        .then(err =>{
-            console.log("Error occured");
-        })
+        this.props.CreateAccount(data); 
     }
 
     render(){
@@ -304,7 +272,7 @@ class CreateAccount extends Component{
                                 <div className="form-group clearfix">
                                     <button className="form-wizard-previous-btn float-left" type="button"> <i className="fa fa-arrow-left" aria-hidden="true"> &nbsp;</i>Previous</button>
                                     &nbsp;&nbsp;&nbsp;
-                                    <button className="form-wizard-next-btn float-right" type="button">Submit  &nbsp;<i className="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                    <button className="form-wizard-next-btn float-right" type="button" onClick={this.handleCreateAccount}>Submit  &nbsp;<i className="fa fa-paper-plane" aria-hidden="true"></i></button>
                                 </div>
                             </fieldset>	
                             <fieldset className="wizard-fieldset">
@@ -335,4 +303,12 @@ CreateAccount.contextTypes = {
     router: PropTypes.object.isRequired
 }
 
-export default CreateAccount;
+const mapDispatchToProps = (dispatch) => {
+   return {
+        CreateAccount: (data) => {
+            dispatch(create_account(data));
+        },
+    }
+  };
+
+export default connect(null,mapDispatchToProps)(CreateAccount);
