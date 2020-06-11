@@ -4,15 +4,21 @@ import React, { Fragment, Component } from "react";
 import "react-toastify/dist/ReactToastify.css";
 // import { connect } from "react-redux";
 import "./screens.css";
-// import axios from "axios";
+import axios from "axios";
 import serializeForm from "form-serialize";
-// const api_url = process.env.REACT_APP_BASE_URL;
+const api_url = process.env.REACT_APP_BASE_URL;
 
 class CreateAccount extends Component {
     handleRegister = (e) => {
         e.preventDefault();
-        const loginValues = serializeForm(e.target, { hash: true });
-        console.log(loginValues);
+        const userObj = serializeForm(e.target, { hash: true });
+        console.log(userObj);
+
+        axios.post(`${api_url}/api/school/admin`,{userObj}).then((response)=>{
+            console.log(response)
+        }).catch((error)=>{
+            console.log(error)
+        })
     };
 
     render() {
@@ -104,22 +110,8 @@ class CreateAccount extends Component {
                                             </div>
 
                                             <div className="form-group clearfix">
-                                                <button
-                                                    className="form-wizard-previous-btn float-left"
-                                                    type="button"
-                                                >
-                                                    {" "}
-                                                    <i
-                                                        className="fa fa-arrow-left"
-                                                        aria-hidden="true"
-                                                    >
-                                                        {" "}
-                                                        &nbsp;
-                                                    </i>
-                                                    Previous
-                                                </button>
-                                                &nbsp;&nbsp;&nbsp;
-                                                <button
+                                            
+                                                                           <button
                                                     className="form-wizard-next-btn float-right"
                                                     type="button"
                                                 >
@@ -145,20 +137,7 @@ class CreateAccount extends Component {
                                             </div>
 
                                             <div className="form-group clearfix">
-                                                <button
-                                                    className="form-wizard-previous-btn float-left"
-                                                    type="button"
-                                                >
-                                                    {" "}
-                                                    <i
-                                                        className="fa fa-arrow-left"
-                                                        aria-hidden="true"
-                                                    >
-                                                        {" "}
-                                                        &nbsp;
-                                                    </i>
-                                                    Previous
-                                                </button>
+                                              
                                                 &nbsp;&nbsp;&nbsp;
                                                 <button
                                                     className="form-wizard-next-btn float-right"
@@ -186,20 +165,7 @@ class CreateAccount extends Component {
                                             </div>
 
                                             <div className="form-group clearfix">
-                                                <button
-                                                    className="form-wizard-previous-btn float-left"
-                                                    type="button"
-                                                >
-                                                    {" "}
-                                                    <i
-                                                        className="fa fa-arrow-left"
-                                                        aria-hidden="true"
-                                                    >
-                                                        {" "}
-                                                        &nbsp;
-                                                    </i>
-                                                    Previous
-                                                </button>
+                                               
                                                 &nbsp;&nbsp;&nbsp;
                                                 <button
                                                     className="form-wizard-next-btn float-right"
@@ -228,20 +194,7 @@ class CreateAccount extends Component {
                                             </div>
 
                                             <div className="form-group clearfix">
-                                                <button
-                                                    className="form-wizard-previous-btn float-left"
-                                                    type="button"
-                                                >
-                                                    {" "}
-                                                    <i
-                                                        className="fa fa-arrow-left"
-                                                        aria-hidden="true"
-                                                    >
-                                                        {" "}
-                                                        &nbsp;
-                                                    </i>
-                                                    Previous
-                                                </button>
+                                               
                                                 &nbsp;&nbsp;&nbsp;
                                                 <button
                                                     className="form-wizard-next-btn float-right"
@@ -260,9 +213,9 @@ class CreateAccount extends Component {
                                             <div className="form-group">
                                                 <input
                                                     className="form-control wizard-required"
-                                                    id="pwrd"
+                                                    id="password"
                                                     type="password"
-                                                    name="pwrd"
+                                                    name="password"
                                                     placeholder="enter password"
                                                 />
                                                 <span
@@ -273,25 +226,9 @@ class CreateAccount extends Component {
                                                 <div className="wizard-form-error"></div>
                                             </div>
 
-                                            <div className="form-group">
-                                                <input
-                                                    className="form-control wizard-required"
-                                                    id="cpwrd"
-                                                    type="password"
-                                                    name="cpwrd"
-                                                    placeholder="confirm password"
-                                                />
-                                                <span
-                                                    id="cpwrd-status"
-                                                    className="fa fa-fw fa-eye fa-md field-icon toggle-cpwrd"
-                                                ></span>
-
-                                                {/* <label htmlFor="bname" className="wizard-form-text-label">Confirm Password</label> */}
-                                                <div className="wizard-form-error"></div>
-                                            </div>
 
                                             <div className="form-group clearfix">
-                                                <button
+                                                {/* <button
                                                     className="form-wizard-previous-btn float-left"
                                                     type="button"
                                                 >
@@ -304,7 +241,7 @@ class CreateAccount extends Component {
                                                         &nbsp;
                                                     </i>
                                                     Previous
-                                                </button>
+                                                </button> */}
                                                 &nbsp;&nbsp;&nbsp;
                                                 <button
                                                     className="form-wizard-next-btn float-right"
