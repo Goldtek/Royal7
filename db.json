@@ -1,0 +1,43 @@
+{
+  "Users": [
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc12",
+      "id": 1
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc123",
+      "id": 2
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "acvb",
+      "id": 3
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc123",
+      "role": "ADMIN",
+      "id": 4
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc123",
+      "role": "ADMIN",
+      "id": 5
+    },
+    {
+      "email": "ielemson@gmail.com",
+      "password": "abc",
+      "role": "ADMINS",
+      "id": 6
+    }
+  ],
+  "sendEmail": {
+    "email": "ielemson@gmail.com",
+    "created": 1596641400193
+  },
+  "schools": [],
+  "newadmin": []
+}
