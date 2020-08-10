@@ -27,9 +27,9 @@ import rootReducer from "./redux/reducers/rootReducer";
 import { persistStore, persistReducer } from "redux-persist";
 
 const persistConfig = {
-  key: "User",
+  key: "authentication",
   storage: storage,
-  whitelist: ["User"], // which reducer want to store
+  whitelist: ["authentication"], // which reducer want to store
 };
 const initialState = {};
 

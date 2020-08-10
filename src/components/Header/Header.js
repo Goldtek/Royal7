@@ -1,88 +1,88 @@
-import React, { useState } from 'react';
-
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import AppBar from '@material-ui/core/AppBar';
-import Badge from '@material-ui/core/Badge';
-import Collapse from '@material-ui/core/Collapse';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import FullscreenIcon from '@material-ui/icons/Fullscreen';
-import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import AppBar from "@material-ui/core/AppBar";
+import Badge from "@material-ui/core/Badge";
+import Collapse from "@material-ui/core/Collapse";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import FullscreenIcon from "@material-ui/icons/Fullscreen";
+import Hidden from "@material-ui/core/Hidden";
+import IconButton from "@material-ui/core/IconButton";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import Menu from "@material-ui/core/Menu";
+import MenuIcon from "@material-ui/icons/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 // import MoreVertIcon from '@material-ui/icons/MoreVert';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import NotificationsOffIcon from '@material-ui/icons/NotificationsOff';
-import PropTypes from 'prop-types';
-import SearchIcon from '@material-ui/icons/Search';
-import SettingsIcon from '@material-ui/icons/Settings';
-import Toolbar from '@material-ui/core/Toolbar';
-import classNames from 'classnames';
-import { makeStyles } from '@material-ui/core/styles';
-import PersonIcon from '@material-ui/icons/Person';
-const useStyles = makeStyles(theme => ({
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import NotificationsOffIcon from "@material-ui/icons/NotificationsOff";
+import PropTypes from "prop-types";
+import SearchIcon from "@material-ui/icons/Search";
+import SettingsIcon from "@material-ui/icons/Settings";
+import Toolbar from "@material-ui/core/Toolbar";
+import classNames from "classnames";
+import { makeStyles } from "@material-ui/core/styles";
+import PersonIcon from "@material-ui/icons/Person";
+const useStyles = makeStyles((theme) => ({
   appBar: {
-    boxShadow: '0 1px 8px rgba(0,0,0,.3)',
-    position: 'relative',
+    boxShadow: "0 1px 8px rgba(0,0,0,.3)",
+    position: "relative",
     zIndex: theme.zIndex.drawer + 100,
-    [theme.breakpoints.down('sm')]: {
-      position: 'fixed'
-    }
+    [theme.breakpoints.down("sm")]: {
+      position: "fixed",
+    },
   },
   toolBar: {
     paddingLeft: theme.spacing(1) / 2,
-    paddingRight: theme.spacing(1) / 2
+    paddingRight: theme.spacing(1) / 2,
   },
   branding: {
-    display: 'flex',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    margin: 'auto 0',
-    lineHeight: '50px',
-    padding: `0 64px 0 0`
+    display: "flex",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    margin: "auto 0",
+    lineHeight: "50px",
+    padding: `0 64px 0 0`,
   },
   logo: {
-    margin: 'auto',
-    [theme.breakpoints.down('sm')]: {
-      maxWidth: '80px'
-    }
+    margin: "auto",
+    [theme.breakpoints.down("sm")]: {
+      maxWidth: "80px",
+    },
   },
   searchWrapper: {
-    flex: '1 1 0%',
-    boxSizing: ' border-box'
+    flex: "1 1 0%",
+    boxSizing: " border-box",
   },
   searchForm: {
-    background: 'white',
-    position: 'relative',
+    background: "white",
+    position: "relative",
     borderRadius: theme.shape.borderRadius,
     marginRight: theme.spacing(1) * 2,
-    display: 'block',
-    maxWidth: '800px'
+    display: "block",
+    maxWidth: "800px",
   },
   searchInput: {
-    fontSize: '1rem',
+    fontSize: "1rem",
     padding: theme.spacing(1) * 1.9,
-    [theme.breakpoints.down('xs')]: {
-      padding: theme.spacing(1) * 1.2
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing(1) * 1.2,
     },
-    cursor: 'text',
-    textIndent: '30px',
-    border: 'none',
-    background: 'transparent',
-    width: '100%',
-    outline: '0'
+    cursor: "text",
+    textIndent: "30px",
+    border: "none",
+    background: "transparent",
+    width: "100%",
+    outline: "0",
   },
   searchIcon: {
-    position: 'absolute',
-    top: '50%',
-    left: '0',
-    marginTop: '-24px',
-    color: 'rgba(0,0,0,.87)'
-  }
+    position: "absolute",
+    top: "50%",
+    left: "0",
+    marginTop: "-24px",
+    color: "rgba(0,0,0,.87)",
+  },
 }));
 
 const Header = ({
@@ -90,13 +90,13 @@ const Header = ({
   logoAltText,
   toggleFullscreen,
   toggleDrawer,
-  toogleNotifications
+  toogleNotifications,
 }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [searchExpanded, setSearchExpanded] = useState(false);
-
-  const handleSettingdToggle = event => setAnchorEl(event.currentTarget);
+  let history = useHistory();
+  const handleSettingdToggle = (event) => setAnchorEl(event.currentTarget);
 
   const handleCloseMenu = () => setAnchorEl(null);
 
@@ -112,8 +112,15 @@ const Header = ({
     if (searchExpanded) handleSearchExpandToggle();
   };
 
+  const sigOut = () => {
+    history.push("/signin");
+  };
   return (
-    <AppBar position="static" className={classes.appBar} style={{ backgroundColor: "#343a40" }}>
+    <AppBar
+      position="static"
+      className={classes.appBar}
+      style={{ backgroundColor: "#343a40" }}
+    >
       <Toolbar className={classes.toolBar}>
         <IconButton
           color="inherit"
@@ -129,8 +136,7 @@ const Header = ({
 
         <Hidden xsDown>
           <div className={classes.searchWrapper}>
-            <form className={classes.searchForm}>
-            </form>
+            <form className={classes.searchForm}></form>
           </div>
         </Hidden>
 
@@ -143,7 +149,8 @@ const Header = ({
             color="inherit"
             onClick={handleSearchExpandToggle}
             aria-expanded={searchExpanded}
-            aria-label="Show searchbar">
+            aria-label="Show searchbar"
+          >
             <SearchIcon />
           </IconButton>
         </Hidden>
@@ -162,10 +169,11 @@ const Header = ({
 
         <IconButton
           aria-label="User Settings"
-          aria-owns={anchorEl ? 'user-menu' : null}
+          aria-owns={anchorEl ? "user-menu" : null}
           aria-haspopup="true"
           color="inherit"
-          onClick={handleSettingdToggle}>
+          onClick={handleSettingdToggle}
+        >
           <PersonIcon />
         </IconButton>
 
@@ -173,7 +181,8 @@ const Header = ({
           id="user-menu"
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
-          onClose={handleCloseMenu}>
+          onClose={handleCloseMenu}
+        >
           <MenuItem onClick={handleCloseMenu}>
             <ListItemIcon>
               <SettingsIcon />
@@ -192,7 +201,7 @@ const Header = ({
             </ListItemIcon>
             <ListItemText primary="Disable notifications" />
           </MenuItem>
-          <MenuItem onClick={handleCloseMenu}>
+          <MenuItem onClick={sigOut}>
             <ListItemIcon>
               <ExitToAppIcon />
             </ListItemIcon>
@@ -204,7 +213,7 @@ const Header = ({
         <Collapse in={searchExpanded} timeout="auto" unmountOnExit>
           <Toolbar className={classes.toolBar}>
             <div className={classes.searchWrapper}>
-              <form className={classNames(classes.searchForm, 'mr-0')}>
+              <form className={classNames(classes.searchForm, "mr-0")}>
                 <IconButton aria-label="Search" className={classes.searchIcon}>
                   <SearchIcon />
                 </IconButton>
@@ -225,7 +234,7 @@ const Header = ({
 
 Header.prototypes = {
   logo: PropTypes.string,
-  logoAltText: PropTypes.string
+  logoAltText: PropTypes.string,
 };
 
 export default Header;

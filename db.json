@@ -1,43 +1,256 @@
 {
-  "Users": [
+  "users": [
     {
-      "email": "ielemson@gmail.com",
-      "password": "abc12",
-      "id": 1
+      "firstName": "Bone",
+      "lastName": "Ebele",
+      "middleName": "ifeanyi",
+      "email": "bone@gmail.com",
+      "gender": "male",
+      "dob": "2017-05-25",
+      "phone": 333223333,
+      "religion": "christian",
+      "photo": "C:\\fakepath\\logo.jpeg",
+      "address": "1222222 aba aia",
+      "bloodgrp": "3",
+      "tclass": "3",
+      "idno": "22222",
+      "section": "3",
+      "shortbio": "",
+      "role": "teacher",
+      "id": 12
     },
     {
-      "email": "ielemson@gmail.com",
-      "password": "abc123",
-      "id": 2
+      "firstName": "Soft",
+      "lastName": "Elemson",
+      "middleName": "Ebere",
+      "email": "ebere@gmail.com",
+      "gender": "male",
+      "dob": "2017-05-25",
+      "phone": 22344555,
+      "religion": "christian",
+      "photo": "C:\\fakepath\\precious.jpeg",
+      "address": "dddddddd@fff",
+      "bloodgrp": "2",
+      "tclass": "2",
+      "idno": "ddddd",
+      "section": "3",
+      "shortbio": "",
+      "role": "teacher",
+      "id": 13
     },
     {
-      "email": "ielemson@gmail.com",
-      "password": "acvb",
-      "id": 3
+      "email": "joe@gmail.com",
+      "password": "abc111",
+      "role": "admin",
+      "id": 14
     },
     {
-      "email": "ielemson@gmail.com",
-      "password": "abc123",
-      "role": "ADMIN",
-      "id": 4
+      "firstName": "Chisom",
+      "lastName": "Bless",
+      "middleName": "Dike",
+      "email": "chisom@gmai.com",
+      "gender": "male",
+      "dob": "2017-05-31",
+      "phone": 8067545677,
+      "religion": "christian",
+      "photo": "C:\\fakepath\\logo.jpeg",
+      "address": "sodipo street Lagos",
+      "bloodgrp": "2",
+      "tclass": "3",
+      "idno": "2222",
+      "section": "3",
+      "shortbio": "This is a short bio",
+      "role": "teacher",
+      "id": 15
     },
     {
-      "email": "ielemson@gmail.com",
-      "password": "abc123",
-      "role": "ADMIN",
-      "id": 5
+      "firstName": "Franca",
+      "lastName": "C",
+      "middleName": "Chinasa",
+      "email": "chinasa@gmail.com",
+      "gender": "female",
+      "dob": "2017-05-31",
+      "phone": 907650455,
+      "religion": "christian",
+      "photo": "C:\\fakepath\\logo.jpeg",
+      "address": "Chinasa address",
+      "bloodgrp": "3",
+      "tclass": "3",
+      "idno": "12",
+      "section": "3",
+      "shortbio": "my short bio",
+      "role": "teacher",
+      "id": 16
     },
     {
+      "firstName": "Chisom",
+      "lastName": "Ibe",
+      "middleName": "Ibe",
+      "email": "ibe@gmail.com",
+      "gender": "male",
+      "dob": "1997-02-25",
+      "phone": 807607544,
+      "religion": "christian",
+      "photo": "C:\\fakepath\\logo.jpeg",
+      "address": "my address",
+      "bloodgrp": "2",
+      "tclass": "3",
+      "idno": "2234",
+      "section": "2",
+      "shortbio": "my short bio",
+      "role": "teacher",
+      "id": 17
+    },
+    {
+      "firstName": "Patrick",
+      "lastName": "Francis",
+      "middleName": "Azuibike",
+      "email": "patrick@gmail.com",
+      "gender": "male",
+      "dob": "2017-05-26",
+      "phone": 70656523456,
+      "religion": "christian",
+      "photo": "C:\\fakepath\\logo.jpeg",
+      "address": "Ikota Ajah",
+      "bloodgrp": "2",
+      "tclass": "2",
+      "idno": "22",
+      "section": "3",
+      "shortbio": "big fat man",
+      "role": "teacher",
+      "id": 18
+    },
+    {
+      "firstName": "John",
+      "lastName": "Ejiofor",
+      "email": "john@gmail.com",
+      "phone": "0807654389",
+      "bio": "Short Bio",
+      "bloodgrp": "2",
+      "stdclass": "4",
+      "admissionID": "2020/01",
+      "role": "student",
+      "id": 19
+    },
+    {
+      "firstName": "Lava",
+      "lastName": "Mary",
+      "email": "mary@jmail.com",
+      "phone": "0832456786",
+      "bio": "my short bio",
+      "bloodgrp": "2",
+      "stdclass": "4",
+      "admissionID": "345",
+      "role": "student",
+      "id": 21
+    },
+    {
+      "firstName": "Ola",
+      "lastName": "Oluebube",
+      "email": "ola@jmail.com",
+      "phone": "02345765478",
+      "bio": "my short bio",
+      "bloodgrp": "2",
+      "stdclass": "4",
+      "admissionID": "345",
+      "role": "student",
+      "id": 22
+    },
+    {
+      "firstName": "Maya",
+      "lastName": "Nelson",
+      "email": "nelson@jmail.com",
+      "phone": "12340765478",
+      "bio": "my short bio",
+      "bloodgrp": "2",
+      "stdclass": "4",
+      "admissionID": "305",
+      "role": "student",
+      "id": 23
+    },
+    {
+      "firstName": "Seal",
+      "lastName": "Kelvin",
+      "email": "seal@jmail.com",
+      "phone": "089754765478",
+      "bio": "my short bio",
+      "bloodgrp": "2",
+      "stdclass": "4",
+      "admissionID": "045",
+      "role": "student",
+      "id": 24
+    },
+    {
+      "firstName": "Kelechi",
+      "lastName": "Chidera",
+      "email": "chiera@jmail.com",
+      "phone": "98765765478",
+      "bio": "my short bio",
+      "bloodgrp": "2",
+      "stdclass": "4",
+      "admissionID": "315",
+      "role": "student",
+      "id": 25
+    },
+    {
+      "firstName": "Chukube",
+      "lastName": "Afam",
+      "email": "afam@jmail.com",
+      "phone": "071234565478",
+      "bio": "my short bio",
+      "bloodgrp": "2",
+      "stdclass": "4",
+      "admissionID": "350",
+      "role": "student",
+      "id": 20
+    },
+    {
+      "firstName": "Chris",
+      "lastName": "jane",
+      "email": "jane@jmail.com",
+      "phone": "765478",
+      "bio": "my short bio",
+      "bloodgrp": "2",
+      "stdclass": "4",
+      "admissionID": "345",
+      "role": "student",
+      "id": 20
+    },
+    {
+      "firstName": "Elemson",
+      "lastName": "Ifeanyi",
       "email": "ielemson@gmail.com",
-      "password": "abc",
-      "role": "ADMINS",
-      "id": 6
+      "phone": "080674560987",
+      "password": "abc1234",
+      "bio": "My Short bio",
+      "bloodgrp": "2",
+      "stdclass": "4",
+      "admissionID": "3234",
+      "role": "admin",
+      "id": 26
+    },
+    {
+      "email": "ihunaya@gmail.com",
+      "id": 27
     }
   ],
-  "sendEmail": {
-    "email": "ielemson@gmail.com",
-    "created": 1596641400193
-  },
   "schools": [],
-  "newadmin": []
+  "newadmin": [
+    {
+      "email": "ielemson@gmail.com",
+      "schoolName": "soft school",
+      "phone": "08067406444",
+      "address": "my address",
+      "about": "my school",
+      "password": "abc1234",
+      "id": 1
+    }
+  ],
+  "sendEmail": [
+    {
+      "email": "kiss@gmail.com",
+      "created": 1596784308092,
+      "id": 1
+    }
+  ]
 }

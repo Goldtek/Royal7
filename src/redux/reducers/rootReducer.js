@@ -1,6 +1,12 @@
 import { combineReducers } from "redux";
-import User from "./userReducer";
+import { authentication } from "./authReducer";
+import alert from "./alertReducer";
+import teachers from "./teachersReducer";
+import students from "./studentReducer";
 const rootReducer = combineReducers({
-  User,
+  authentication,
+  alert,
+  teachers,
+  students,
 });
 export default rootReducer;

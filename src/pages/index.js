@@ -1,8 +1,8 @@
 // Home
 import Home from "./Home/Home";
 import IndexPage from "./Index/IndexPage";
-// Authentication
 
+// Authentication
 import PasswordReset from "./Authentication/PasswordReset";
 import Signin from "./Authentication/Signin";
 // Error
@@ -10,14 +10,14 @@ import NotFound from "./Errors/NotFound";
 
 //CUSTOM IMPORTS :::::::::::::::::::::::::::::::::::
 // TEACHER
-import CreateTeachers from "./Teachers/Create";
-import ListTeachers from "./Teachers/List";
+import CreateTeachers from "./Teachers/CreateTeacher";
+import TeacherLists from "./Teachers/TeacherLists";
 //STUDENT
-import CreateStudents from "./Students/Create";
-import ListStudents from "./Students/List";
+import CreateStudents from "./Students/CreateStudent";
+import StudentLists from "./Students/StudentLists";
 
 //PARENT
-import CreateParent from "./Parent/Create";
+import CreateParent from "./Parent/CreateParent";
 
 // SCREENS
 import CreateAccount from "./Screens/createAccount";
@@ -33,12 +33,12 @@ export {
   NotFound,
   IndexPage,
   CreateTeachers,
-  ListTeachers,
+  TeacherLists,
   CreateStudents,
   ValidateEmail,
   CreateAccount,
   EmailSent,
   EmailConfirmation,
   CreateParent,
-  ListStudents,
+  StudentLists,
 };

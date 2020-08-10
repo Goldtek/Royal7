@@ -17,14 +17,14 @@ import Dashboard from "../containers/Dashboard";
 
 const AppRoutes = () => {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL} forceRefresh={true}>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route exact path="/" component={IndexPage} />
 
         <PrivateRoute
           path="/dashboard"
           component={Dashboard}
-          roles={[Role.ADMIN, Role.STUDENT, Role.TEACHERS]}
+          roles={[Role.admin, Role.student, Role.teacher]}
         />
         {/*SCREEN ROUTES */}
         <Route exact path="/create" component={ValidateEmail} />

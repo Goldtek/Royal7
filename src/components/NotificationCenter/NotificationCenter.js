@@ -1,29 +1,19 @@
 import React, { useState } from "react";
-import {
-  formatPrice,
-  getStocks,
-  getWeather,
-  getWeatherIcon,
-} from "../../helpers";
 import { mockNotifications, mockStats, mockTodo } from "../../utils/mock";
-
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import PropTypes from "prop-types";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import Typography from "@material-ui/core/Typography";
-// import classNames from "classnames";
 import format from "date-fns/format";
 import { makeStyles } from "@material-ui/core/styles";
 import { notificationCenterWidth } from "../../styleVariables";
-// import useMountEffect from "../../mountEffect";
 
 const useStyles = makeStyles((theme) => ({
   drawerPaper: {

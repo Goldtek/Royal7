@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 // import clsx from 'clsx';
 import PropTypes from "prop-types";
-// import Moment from "react-moment";
-import "react-perfect-scrollbar/dist/css/styles.css";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import "react-perfect-scrollbar/dist/css/styles.css";
 import { withStyles } from "@material-ui/core/styles";
-// import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
-import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
-// import Icon from '@material-ui/core/Icon';
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import EditTwoToneIcon from "@material-ui/icons/EditTwoTone";
+// import Anchor from "@material-ui/icons/Anch/"
 import {
   Card,
   CardActions,
@@ -50,50 +49,47 @@ const styles = (theme) => ({
   },
 });
 
-const TeacherTables = ({ classes, candidates }) => {
-  const [selectedCandidates, setselectedCandidates] = useState([]);
+const TeacherTables = ({ classes, teachers }) => {
+  const [selectedTeachers, setselectedTeachers] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [page, setPage] = useState(0);
 
   const handleSelectAll = (event) => {
-    // const { candidates } = props;
+    // const { teachers } = props;
 
-    let selectedCandidates;
+    let selectedTeachers;
 
     if (event.target.checked) {
-      selectedCandidates = candidates.map((candidate) => candidate.id);
+      selectedTeachers = teachers.map((teacher) => teacher.id);
     } else {
-      selectedCandidates = [];
+      selectedTeachers = [];
     }
 
-    setselectedCandidates(selectedCandidates);
+    setselectedTeachers(selectedTeachers);
   };
 
   const handleSelectOne = (event, id) => {
-    const selectedIndex = selectedCandidates.indexOf(id);
-    let newselectedCandidates = [];
+    const selectedIndex = selectedTeachers.indexOf(id);
+    let newselectedTeachers = [];
 
     if (selectedIndex === -1) {
-      newselectedCandidates = newselectedCandidates.concat(
-        selectedCandidates,
-        id
-      );
+      newselectedTeachers = newselectedTeachers.concat(selectedTeachers, id);
     } else if (selectedIndex === 0) {
-      newselectedCandidates = newselectedCandidates.concat(
-        selectedCandidates.slice(1)
+      newselectedTeachers = newselectedTeachers.concat(
+        selectedTeachers.slice(1)
       );
-    } else if (selectedIndex === selectedCandidates.length - 1) {
-      newselectedCandidates = newselectedCandidates.concat(
-        selectedCandidates.slice(0, -1)
+    } else if (selectedIndex === selectedTeachers.length - 1) {
+      newselectedTeachers = newselectedTeachers.concat(
+        selectedTeachers.slice(0, -1)
       );
     } else if (selectedIndex > 0) {
-      newselectedCandidates = newselectedCandidates.concat(
-        selectedCandidates.slice(0, selectedIndex),
-        selectedCandidates.slice(selectedIndex + 1)
+      newselectedTeachers = newselectedTeachers.concat(
+        selectedTeachers.slice(0, selectedIndex),
+        selectedTeachers.slice(selectedIndex + 1)
       );
     }
 
-    setselectedCandidates(newselectedCandidates);
+    setselectedTeachers(newselectedTeachers);
   };
 
   const handlePageChange = (event, page) => {
@@ -114,41 +110,36 @@ const TeacherTables = ({ classes, candidates }) => {
                 <TableRow>
                   <TableCell padding="checkbox">
                     <Checkbox
-                      checked={selectedCandidates.length === candidates.length}
+                      checked={selectedTeachers.length === teachers.length}
                       color="primary"
                       indeterminate={
-                        selectedCandidates.length > 0 &&
-                        selectedCandidates.length < candidates.length
+                        selectedTeachers.length > 0 &&
+                        selectedTeachers.length < teachers.length
                       }
                       onChange={handleSelectAll}
                     />
                   </TableCell>
                   <TableCell>Name</TableCell>
-                  <TableCell>Email</TableCell>
-                  <TableCell>Location</TableCell>
+                  <TableCell>Class</TableCell>
                   <TableCell>Phone</TableCell>
-                  <TableCell>Registration date</TableCell>
+                  <TableCell>View</TableCell>
                   <TableCell>Edit</TableCell>
                   <TableCell>Delete</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {candidates.slice(0, rowsPerPage).map((candidate) => (
+                {teachers.slice(0, rowsPerPage).map((teacher) => (
                   <TableRow
                     className={classes.tableRow}
                     hover
-                    key={candidate.id}
-                    selected={selectedCandidates.indexOf(candidate.id) !== -1}
+                    key={teacher.id}
+                    selected={selectedTeachers.indexOf(teacher.id) !== -1}
                   >
                     <TableCell padding="checkbox">
                       <Checkbox
-                        checked={
-                          selectedCandidates.indexOf(candidate.id) !== -1
-                        }
+                        checked={selectedTeachers.indexOf(teacher.id) !== -1}
                         color="primary"
-                        onChange={(event) =>
-                          handleSelectOne(event, candidate.id)
-                        }
+                        onChange={(event) => handleSelectOne(event, teacher.id)}
                         value="true"
                       />
                     </TableCell>
@@ -156,46 +147,45 @@ const TeacherTables = ({ classes, candidates }) => {
                       <div className={classes.nameContainer}>
                         <Avatar
                           className={classes.avatar}
-                          src={candidate.avatarUrl}
+                          src={teacher.avatarUrl}
                         >
-                          {/* {getInitials(candidate.name)} */}
+                          {/* {getInitials(teacher.name)} */}
                         </Avatar>
                         <Typography variant="body1">
-                          {candidate.name}
+                          {teacher.firstName} {teacher.lastName}
                         </Typography>
                       </div>
                     </TableCell>
-                    <TableCell>{candidate.email}</TableCell>
+                    <TableCell>{teacher.email}</TableCell>
+
+                    <TableCell>{teacher.phone}</TableCell>
                     <TableCell>
-                      {/* {candidate.address.city}, {candidate.address.state},{' '}
-                      {candidate.address.country} */}
-                    </TableCell>
-                    <TableCell>{candidate.phone}</TableCell>
-                    <TableCell>
-                      {/* <Moment format="D MMM YYYY" withTitle>
-                        {candidate.gpaDate}
-                      </Moment> */}
-                      date
-                    </TableCell>
-                    <TableCell>
-                      <Button
-                        variant="contained"
+                      <IconButton
+                        className={classes.button}
+                        aria-label="Delete"
                         color="primary"
-                        className={classes.button}
-                        startIcon={<EditTwoToneIcon />}
                       >
-                        Edit
-                      </Button>
+                        <PhotoCamera />
+                      </IconButton>
+                    </TableCell>
+
+                    <TableCell>
+                      <IconButton
+                        className={classes.button}
+                        aria-label="Delete"
+                        color="primary"
+                      >
+                        <EditTwoToneIcon />
+                      </IconButton>
                     </TableCell>
                     <TableCell>
-                      <Button
-                        variant="contained"
-                        color="secondary"
+                      <IconButton
                         className={classes.button}
-                        startIcon={<DeleteIcon />}
+                        aria-label="Delete"
+                        color="secondary"
                       >
-                        Delete
-                      </Button>
+                        <DeleteIcon />
+                      </IconButton>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -207,7 +197,7 @@ const TeacherTables = ({ classes, candidates }) => {
       <CardActions className={classes.actions}>
         <TablePagination
           component="div"
-          count={candidates.length}
+          count={teachers.length}
           onChangePage={handlePageChange}
           onChangeRowsPerPage={handleRowsPerPageChange}
           page={page}
@@ -219,9 +209,9 @@ const TeacherTables = ({ classes, candidates }) => {
   );
 };
 
-TeacherTables.propTypes = {
-  className: PropTypes.string,
-  candidates: PropTypes.array.isRequired,
-};
+// TeacherTables.propTypes = {
+//   className: PropTypes.string,
+//   teachers: PropTypes.array.isRequired,
+// };
 
 export default withStyles(styles)(TeacherTables);

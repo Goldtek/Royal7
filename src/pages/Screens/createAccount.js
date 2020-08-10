@@ -1,6 +1,6 @@
 import React, { useState, Fragment, useEffect } from "react";
 import axios from "axios";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   Stepper,
   Step,
@@ -43,7 +43,7 @@ const CreateAccount = (props) => {
   const [activeStep, setActiveStep] = useState(0);
   const classes = useStyles();
   const [counter, setCounter] = useState(10);
-  const [userEmail, setEmail] = useState("ielemson@gmail.com");
+  const [userEmail, setEmail] = useState("");
   const alert = useAlert();
   let history = useHistory();
 

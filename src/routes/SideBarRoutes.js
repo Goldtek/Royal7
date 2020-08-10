@@ -2,10 +2,10 @@
 import {
   Home,
   CreateTeachers,
-  ListTeachers,
+  TeacherLists,
   CreateStudents,
   CreateParent,
-  ListStudents,
+  StudentLists,
 } from "../pages";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import SchoolIcon from "@material-ui/icons/School";
@@ -34,17 +34,18 @@ export default {
       path: "/dashboard/teachers",
       name: "Teachers",
       type: "submenu",
+
       icon: AccountCircleIcon,
       children: [
         {
           path: "/create",
-          name: "Add",
+          name: "Add Teacher",
           component: CreateTeachers,
         },
         {
           path: "/view",
           name: "All Teachers",
-          component: ListTeachers,
+          component: TeacherLists,
         },
         {
           path: "/assign",
@@ -63,13 +64,13 @@ export default {
       children: [
         {
           path: "/create",
-          name: "Add",
+          name: "Add Student",
           component: CreateStudents,
         },
         {
           path: "/view",
           name: "All Students",
-          component: ListStudents,
+          component: StudentLists,
         },
         {
           path: "/grade",
@@ -78,54 +79,54 @@ export default {
         },
       ],
     },
-    {
-      path: "/dashboard/student",
-      name: "Grade",
-      type: "submenu",
-      icon: ConfirmationNumberIcon,
+    // {
+    //   path: "/dashboard/student",
+    //   name: "Grade",
+    //   type: "submenu",
+    //   icon: ConfirmationNumberIcon,
 
-      children: [
-        {
-          path: "/create",
-          name: "Add",
-          component: CreateStudents,
-        },
-        {
-          path: "/view",
-          name: "All Students",
-          component: ListStudents,
-        },
-        {
-          path: "/grade",
-          name: "Grade",
-          component: CreateStudents,
-        },
-      ],
-    },
-    {
-      path: "/dashboard/student",
-      name: "Assignment",
-      type: "submenu",
-      icon: SchoolIcon,
+    //   children: [
+    //     {
+    //       path: "/create",
+    //       name: "Add",
+    //       component: CreateStudents,
+    //     },
+    //     {
+    //       path: "/view",
+    //       name: "All Students",
+    //       component: StudentLists,
+    //     },
+    //     {
+    //       path: "/grade",
+    //       name: "Grade",
+    //       component: CreateStudents,
+    //     },
+    //   ],
+    // },
+    // {
+    //   path: "/dashboard/student",
+    //   name: "Assignment",
+    //   type: "submenu",
+    //   icon: SchoolIcon,
 
-      children: [
-        {
-          path: "/create",
-          name: "Add",
-          component: CreateStudents,
-        },
-        {
-          path: "/view",
-          name: "All Students",
-          component: ListStudents,
-        },
-        {
-          path: "/grade",
-          name: "Grade",
-          component: CreateStudents,
-        },
-      ],
-    },
+    //   children: [
+    //     {
+    //       path: "/create",
+    //       name: "Add",
+    //       component: CreateStudents,
+    //     },
+    //     {
+    //       path: "/view",
+    //       name: "All Students",
+    //       component: StudentLists,
+    //     },
+    //     {
+    //       path: "/grade",
+    //       name: "Grade",
+    //       component: CreateStudents,
+    //     },
+    //   ],
+    // },
     {
       path: "/dashboard/parent",
       name: "Parents",
@@ -134,19 +135,14 @@ export default {
 
       children: [
         {
-          path: "/view",
-          name: "All Parents",
-          component: CreateParent,
-        },
-        {
-          path: "/view",
-          name: "Parent Details",
-          component: CreateStudents,
-        },
-        {
           path: "/create",
           name: "Add Parents",
           component: CreateParent,
+        },
+        {
+          path: "/view",
+          name: "All Parent",
+          component: CreateStudents,
         },
       ],
     },

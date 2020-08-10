@@ -1,12 +1,5 @@
 export const Role = {
-  SA: "SA",
-  ADMIN: "ADMIN",
-  STUDENT: "STUDENTS",
-  TEACHERS: "TEACHERS",
+  admin: "admin",
+  student: "student",
+  teacher: "teacher",
 };
-
-/*
-SA :super admin
-
-
- */

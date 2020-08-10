@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-// import axios from "axios";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -11,15 +10,13 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
-import { ToastContainer, toast } from "react-toastify";
-import { connect } from "react-redux";
-import { userLogin, userLogout } from "../../redux/actions/LoginAction";
-import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin, userLogout } from "../../redux/actions/userActions";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 import { Formik } from "formik";
 import * as Yup from "yup";
-// import { useHistory } from "react-router-dom";
-import PropTypes from "prop-types";
-const API_URL = process.env.REACT_APP_BASEURL;
 
 const validationSchema = Yup.object().shape({
   password: Yup.string().required("required"),
@@ -31,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
   },
   image: {
-    // backgroundImage: `url(${process.env.PUBLIC_URL}/static/images/screens/screen1.jpg)`,
     backgroundImage: `url(${process.env.PUBLIC_URL}/static/images/logo/login.png)`,
     backgroundRepeat: "no-repeat",
     backgroundColor:
@@ -80,9 +76,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   background: {
-    // backgroundColor: theme.palette.primary.main,
-    // backgroundImage: `url(${process.env.PUBLIC_URL}/static/images/logo/login.png)`,
-    // backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === "light"
         ? theme.palette.grey[50]
@@ -97,21 +90,45 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
   },
+  wrapper: {
+    margin: theme.spacing(1),
+    position: "relative",
+  },
+
+  buttonProgress: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    marginTop: -12,
+    marginLeft: -12,
+  },
 }));
 
-const Login = (props) => {
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+const LoginPage = (props) => {
   const classes = useStyles();
-  // const history = useHistory();
-  const { userLogout, userLogin } = props;
+  const loggingIn = useSelector((state) => state.authentication.loggingIn);
+  const alert = useSelector((state) => state.alert);
+  const [statInfo, setSateInfo] = React.useState("");
+  const dispatch = useDispatch();
+
+  let stateAlert = props.location.state;
+  let alerts = stateAlert === undefined ? null : stateAlert;
+  // console.log(statInfo);
+
+  const [open, setOpen] = React.useState(false);
+  // reset login status
   useEffect(() => {
-    // setStatus(props.location.state);
-    userLogout();
-  }, [userLogout]);
-  // console.log(props.User);
+    dispatch(userLogout());
+    setSateInfo(alerts);
+    setOpen(true);
+  }, [dispatch]);
 
   return (
     <Grid container component="main" className={classes.root}>
-      <ToastContainer />
       <CssBaseline />
       <Grid
         item
@@ -127,14 +144,13 @@ const Login = (props) => {
           <Formik
             initialValues={{ password: "", email: "" }}
             validationSchema={validationSchema}
-            onSubmit={(values, { setSubmitting, resetForm }) => {
-              setSubmitting(true);
+            onSubmit={(values) => {
               const data = {
                 email: values.email,
                 password: values.password,
-                role: "ADMINS",
+                role: "admin",
               };
-              userLogin(data);
+              dispatch(userLogin(data));
             }}
           >
             {({
@@ -156,6 +172,40 @@ const Login = (props) => {
                   <Typography variant="h6">
                     Sign in with your details to continue.
                   </Typography>
+                  {alert.type === "alert-danger" ? (
+                    <React.Fragment>
+                      <Snackbar
+                        open={open}
+                        anchorOrigin={{
+                          vertical: "top",
+                          horizontal: "left",
+                        }}
+                        autoHideDuration={6000}
+                      >
+                        <Alert severity="error">
+                          {"Error: Email or Password is incorrect, try again"}
+                          {/* {dispatch(alertActions.clear())} */}
+                        </Alert>
+                      </Snackbar>
+                    </React.Fragment>
+                  ) : statInfo !== null ? (
+                    <React.Fragment>
+                      <Snackbar
+                        open={open}
+                        anchorOrigin={{
+                          vertical: "top",
+                          horizontal: "left",
+                        }}
+                        autoHideDuration={6000}
+                      >
+                        <Alert severity="error">
+                          {statInfo ? statInfo.info : ""}
+                        </Alert>
+                      </Snackbar>
+                    </React.Fragment>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <TextField
                   id="email"
@@ -190,15 +240,24 @@ const Login = (props) => {
                   label="Stayed logged in"
                   className={classes.fullWidth}
                 />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  type="submit"
-                  disabled={isSubmitting}
-                >
-                  Login
-                </Button>
+
+                <div className={classes.wrapper}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    type="submit"
+                    disabled={loggingIn}
+                  >
+                    Login
+                  </Button>
+                  {loggingIn && (
+                    <CircularProgress
+                      size={24}
+                      className={classes.buttonProgress}
+                    />
+                  )}
+                </div>
                 <div className="pt-1 text-md-center">
                   <Link to="/forgot">
                     <Button>Forgot password?</Button>
@@ -214,26 +273,4 @@ const Login = (props) => {
   );
 };
 
-Login.propTypes = {
-  userLogin: PropTypes.func.isRequired,
-  User: PropTypes.object.isRequired,
-  userLogout: PropTypes.func.isRequired,
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    userLogin: (data) => {
-      dispatch(userLogin(data));
-    },
-
-    userLogout: () => {
-      dispatch(userLogout());
-    },
-  };
-};
-
-const mapStateToProps = (state) => ({
-  User: state.User,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default LoginPage;
