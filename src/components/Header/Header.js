@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import AppBar from "@material-ui/core/AppBar";
 import Badge from "@material-ui/core/Badge";
-import Collapse from "@material-ui/core/Collapse";
+// import Collapse from "@material-ui/core/Collapse";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
 import Hidden from "@material-ui/core/Hidden";
@@ -14,15 +14,19 @@ import Menu from "@material-ui/core/Menu";
 import MenuIcon from "@material-ui/icons/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 // import MoreVertIcon from '@material-ui/icons/MoreVert';
+// import { green } from "@material-ui/core/colors";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import NotificationsOffIcon from "@material-ui/icons/NotificationsOff";
 import PropTypes from "prop-types";
 import SearchIcon from "@material-ui/icons/Search";
 import SettingsIcon from "@material-ui/icons/Settings";
 import Toolbar from "@material-ui/core/Toolbar";
-import classNames from "classnames";
+import Tooltip from "@material-ui/core/Tooltip";
+// import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 import PersonIcon from "@material-ui/icons/Person";
+import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded";
+import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles((theme) => ({
   appBar: {
     boxShadow: "0 1px 8px rgba(0,0,0,.3)",
@@ -31,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       position: "fixed",
     },
+    // backgroundColor: "#343a40",
   },
   toolBar: {
     paddingLeft: theme.spacing(1) / 2,
@@ -63,26 +68,26 @@ const useStyles = makeStyles((theme) => ({
     display: "block",
     maxWidth: "800px",
   },
-  searchInput: {
-    fontSize: "1rem",
-    padding: theme.spacing(1) * 1.9,
-    [theme.breakpoints.down("xs")]: {
-      padding: theme.spacing(1) * 1.2,
-    },
-    cursor: "text",
-    textIndent: "30px",
-    border: "none",
-    background: "transparent",
-    width: "100%",
-    outline: "0",
-  },
-  searchIcon: {
-    position: "absolute",
-    top: "50%",
-    left: "0",
-    marginTop: "-24px",
-    color: "rgba(0,0,0,.87)",
-  },
+  // searchInput: {
+  //   fontSize: "1rem",
+  //   padding: theme.spacing(1) * 1.9,
+  //   [theme.breakpoints.down("xs")]: {
+  //     padding: theme.spacing(1) * 1.2,
+  //   },
+  //   cursor: "text",
+  //   textIndent: "30px",
+  //   border: "none",
+  //   background: "transparent",
+  //   width: "100%",
+  //   outline: "0",
+  // },
+  // searchIcon: {
+  //   position: "absolute",
+  //   top: "50%",
+  //   left: "0",
+  //   marginTop: "-24px",
+  //   color: "rgba(0,0,0,.87)",
+  // },
 }));
 
 const Header = ({
@@ -112,14 +117,14 @@ const Header = ({
     if (searchExpanded) handleSearchExpandToggle();
   };
 
-  const sigOut = () => {
+  const Logout = () => {
     history.push("/signin");
   };
   return (
     <AppBar
       position="static"
       className={classes.appBar}
-      style={{ backgroundColor: "#343a40" }}
+      // style={{ backgroundColor: "#343a40" }}
     >
       <Toolbar className={classes.toolBar}>
         <IconButton
@@ -131,7 +136,10 @@ const Header = ({
         </IconButton>
 
         <div className={classes.branding}>
-          <img src={logo} alt={logoAltText} className={classes.logo} />
+          {/* <img src={logo} alt={logoAltText} className={classes.logo} /> */}
+          <Typography variant="body1" className="flexSpacer">
+            EDCOLLAB
+          </Typography>
         </div>
 
         <Hidden xsDown>
@@ -160,23 +168,38 @@ const Header = ({
             <FullscreenIcon />
           </IconButton>
         </Hidden>
-
-        <IconButton color="inherit" onClick={handleNotificationToggle}>
-          <Badge badgeContent={5} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-
-        <IconButton
-          aria-label="User Settings"
-          aria-owns={anchorEl ? "user-menu" : null}
-          aria-haspopup="true"
-          color="inherit"
-          onClick={handleSettingdToggle}
-        >
-          <PersonIcon />
-        </IconButton>
-
+        <Tooltip title="Notfication">
+          <IconButton color="inherit" onClick={handleNotificationToggle}>
+            <Badge badgeContent={5} color="secondary">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Profile">
+          <IconButton
+            aria-label="User Settings"
+            aria-owns={anchorEl ? "user-menu" : null}
+            aria-haspopup="true"
+            color="inherit"
+            onClick={handleSettingdToggle}
+          >
+            <PersonIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Logout">
+          <IconButton
+            color="inherit"
+            onClick={Logout}
+            style={{
+              backgroundColor: "white",
+              fontSize: "0.875rem",
+              fontWeight: "800",
+            }}
+            size="small"
+          >
+            <ExitToAppRoundedIcon color="primary" />
+          </IconButton>
+        </Tooltip>
         <Menu
           id="user-menu"
           anchorEl={anchorEl}
@@ -201,7 +224,7 @@ const Header = ({
             </ListItemIcon>
             <ListItemText primary="Disable notifications" />
           </MenuItem>
-          <MenuItem onClick={sigOut}>
+          <MenuItem onClick={Logout}>
             <ListItemIcon>
               <ExitToAppIcon />
             </ListItemIcon>
@@ -209,7 +232,7 @@ const Header = ({
           </MenuItem>
         </Menu>
       </Toolbar>
-      <Hidden smUp>
+      {/* <Hidden smUp>
         <Collapse in={searchExpanded} timeout="auto" unmountOnExit>
           <Toolbar className={classes.toolBar}>
             <div className={classes.searchWrapper}>
@@ -227,7 +250,7 @@ const Header = ({
             </div>
           </Toolbar>
         </Collapse>
-      </Hidden>
+      </Hidden> */}
     </AppBar>
   );
 };

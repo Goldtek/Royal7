@@ -26,10 +26,10 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     maxHeight: "100%",
   },
-  typehead: {
-    fontWeight: "400",
-    fontSize: "1em ! important",
-  },
+  // typehead: {
+  //   fontWeight: "400",
+  //   fontSize: "1em ! important",
+  // },
   textfont: {
     fontWeight: "bold",
   },

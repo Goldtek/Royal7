@@ -14,11 +14,9 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
-// import Toolbar from "@material-ui/core/Toolbar";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SaveIcon from "@material-ui/icons/Save";
 import { ToastContainer, toast } from "react-toastify";
-// import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 import { Role } from "../../_helpers";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -75,19 +73,19 @@ const CreateStudent = (props) => {
   // console.log(Role.student);
   // const [randPassWord, setRandPassword] = useState("")
 
-  const getRandomString = (length) => {
-    const randomChars =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let result = "";
-    for (let i = 0; i < length; i++) {
-      result += randomChars.charAt(
-        Math.floor(Math.random() * randomChars.length)
-      );
-    }
+  // const getRandomString = (length) => {
+  //   const randomChars =
+  //     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  //   let result = "";
+  //   for (let i = 0; i < length; i++) {
+  //     result += randomChars.charAt(
+  //       Math.floor(Math.random() * randomChars.length)
+  //     );
+  //   }
 
-    // this.setState({ random: result });
-    // console.log(this.state.random);
-  };
+  //   // this.setState({ random: result });
+  //   // console.log(this.state.random);
+  // };
   return (
     <Wrapper>
       <ToastContainer />
@@ -412,309 +410,6 @@ const CreateStudent = (props) => {
                   </Grid>
                 </CardContent>
               </Card>
-              {/* <Card className={classes.card} style={{ marginBottom: "20px" }}>
-                                    <AppBar position="static" color="primary" className={classes.appBar}>
-                                        <Toolbar>
-                                            <Typography color="inherit" className="flexs={12}pacer" component="h4">
-                                                PARENT INFO
-                                            </Typography>
-
-                                        </Toolbar>
-                                    </AppBar>
-                                    <CardContent>
-
-
-                                        <Grid container spacing={3}>
-                                            <Grid item xs={12} sm={12} md={3} lg={3}>
-
-                                                <TextField
-                                                    label="Fathter Name"
-                                                    placeholder="Father Name"
-                                                    fullWidth
-                                                    margin="normal"
-                                                    name="fatherName"
-                                                    value={values.fatherName}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    error={errors.fatherName && touched.fatherName}
-                                                    helperText={(errors.fatherName && touched.fatherName) && errors.fatherName}
-                                                />
-
-                                            </Grid>
-                                            <Grid item xs={12} sm={12} md={3} lg={3}>
-
-                                                <TextField
-                                                    label="Mother Name"
-                                                    placeholder="Mother Name"
-                                                    fullWidth
-                                                    margin="normal"
-                                                    name="motherName"
-                                                    value={values.motherName}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    error={errors.motherName && touched.motherName}
-                                                    helperText={(errors.motherName && touched.motherName) && errors.motherName}
-                                                />
-
-                                            </Grid>
-                                            <Grid item xs={12} sm={6} md={4} lg={4}>
-
-
-                                                <TextField
-                                                    fullWidth
-                                                    id="occupation"
-                                                    select
-                                                    label="occupation"
-                                                    SelectProps={{
-                                                        MenuProps: {
-                                                            className: classes.menu,
-                                                        },
-                                                    }}
-
-                                                    margin="normal"
-                                                    name="occupation"
-                                                    value={values.occupation}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    error={errors.occupation && touched.occupation}
-                                                    helperText={(errors.occupation && touched.occupation) && errors.occupation}
-                                                >
-                                                    <MenuItem value="doctor">Doctor</MenuItem>
-                                                    <MenuItem value="Nurse">Nurse</MenuItem>
-                                                </TextField>
-                                            </Grid>
-                                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                                                <TextField
-                                                    label="Contact"
-                                                    placeholder="Contact"
-                                                    fullWidth
-                                                    margin="normal"
-                                                    name="contact"
-                                                    value={values.contact}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    error={errors.contact && touched.contact}
-                                                    helperText={(errors.contact && touched.contact) && errors.contact}
-                                                />
-
-                                            </Grid>
-
-                                        </Grid>
-                                        <Grid container spacing={3}>
-                                            <Grid item xs={12} sm={6} md={4} lg={4}>
-
-                                                <TextField
-                                                    fullWidth
-                                                    id="email"
-                                                    label="Email"
-                                                    margin="normal"
-                                                    name="email"
-                                                    value={values.email}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    error={errors.email && touched.email}
-                                                    helperText={(errors.email && touched.zip) && errors.email}
-                                                />
-
-                                            </Grid>
-                                            <Grid item xs={12} sm={6} md={4} lg={4}>
-
-
-                                                <TextField
-                                                    fullWidth
-                                                    id="religion"
-                                                    select
-                                                    label="Religion"
-                                                    SelectProps={{
-                                                        MenuProps: {
-                                                            className: classes.menu,
-                                                        },
-                                                    }}
-
-                                                    margin="normal"
-                                                    name="parentReligion"
-                                                    value={values.parentReligion}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    error={errors.parentReligion && touched.parentReligion}
-                                                    helperText={(errors.parentReligion && touched.parentReligion) && errors.parentReligion}
-                                                >
-                                                    <MenuItem value="christian">Christian</MenuItem>
-                                                    <MenuItem value="islamic">Islamic</MenuItem>
-                                                </TextField>
-
-                                            </Grid>
-                                            <Grid item xs={12} sm={6} md={4} lg={4}>
-
-
-                                                <TextField
-                                                    fullWidth
-                                                    id="nationality"
-                                                    select
-                                                    label="Nationality"
-                                                    SelectProps={{
-                                                        MenuProps: {
-                                                            className: classes.menu,
-                                                        },
-                                                    }}
-
-                                                    margin="normal"
-                                                    name="nationality"
-                                                    value={values.nationality}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    error={errors.nationality && touched.nationality}
-                                                    helperText={(errors.nationality && touched.nationality) && errors.nationality}
-                                                >
-                                                    <MenuItem value="Nigeria">Nigeria</MenuItem>
-                                                    <MenuItem value="Ghana">Ghana</MenuItem>
-                                                </TextField>
-
-                                            </Grid>
-                                        </Grid>
-                                    </CardContent>
-
-                                </Card> */}
-
-              {/* <Card className={classes.card} style={{ marginBottom: "20px" }}>
-                                    <AppBar position="static" color="primary" className={classes.appBar}>
-                                        <Toolbar>
-                                            <Typography color="inherit" className="flexs={12}pacer" component="h4">
-                                                ACADEMIC INFO
-
-                                            </Typography>
-                                        </Toolbar>
-                                    </AppBar>
-                                    <CardContent>
-
-
-                                        <Grid container spacing={3}>
-                                            <Grid item xs={12} sm={6} md={4} lg={4}>
-
-                                                <TextField
-                                                    label="Registration #"
-                                                    placeholder="Registration"
-                                                    name="registration"
-                                                    fullWidth
-                                                    margin="normal"
-                                                    value={values.registration}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    error={errors.registration && touched.registration}
-                                                    helperText={(errors.registration && touched.registration) && errors.registration}
-                                                />
-
-                                            </Grid>
-                                            <Grid item xs={12} sm={6} md={4} lg={4}>
-
-                                                <TextField
-                                                    label="Class"
-                                                    placeholder="Class"
-                                                    name="stdclass"
-                                                    fullWidth
-                                                    margin="normal"
-                                                    value={values.stdclass}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    error={errors.stdclass && touched.stdclass}
-                                                    helperText={(errors.stdclass && touched.stdclass) && errors.stdclass}
-                                                />
-
-                                            </Grid>
-                                            <Grid item xs={12} sm={6} md={4} lg={4}>
-
-                                                <TextField
-                                                    fullWidth
-                                                    id="stdSection"
-                                                    select
-                                                    label="Nationality"
-                                                    SelectProps={{
-                                                        MenuProps: {
-                                                            className: classes.menu,
-                                                        },
-                                                    }}
-
-                                                    margin="normal"
-                                                    name="stdSection"
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    error={errors.stdSection && touched.stdSection}
-                                                    helperText={(errors.stdSection && touched.stdSection) && errors.stdSection}
-                                                >
-                                                    <MenuItem value="">sample</MenuItem>
-                                                    <MenuItem value="">sample</MenuItem>
-                                                </TextField>
-
-                                            </Grid>
-                                            <Grid item xs={12} sm={6} md={4} lg={4}>
-
-                                                <TextField
-                                                    fullWidth
-                                                    id="CGPA"
-                                                    label="CGPA"
-                                                    margin="normal"
-                                                    name="cgpa"
-                                                    value={values.cgpa}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    error={errors.cgpa && touched.cgpa}
-                                                    helperText={(errors.cgpa && touched.cgpa) && errors.cgpa}
-                                                />
-
-                                            </Grid>
-
-                                        </Grid>
-                                        <Grid container spacing={3}>
-                                            <Grid item xs={12} sm={6} md={4} lg={4}>
-
-                                                <TextField
-                                                    label="Role"
-                                                    placeholder="Role"
-                                                    name="stdRole"
-                                                    fullWidth
-                                                    margin="normal"
-                                                    value={values.stdRole}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    error={errors.stdRole && touched.stdRole}
-                                                    helperText={(errors.stdRole && touched.stdRole) && errors.stdRole}
-                                                />
-
-                                            </Grid>
-                                            <Grid item xs={12} sm={6} md={4} lg={4}>
-
-                                                <TextField
-                                                    label="Last School"
-                                                    placeholder="Last School"
-                                                    name="lastSchool"
-                                                    fullWidth
-                                                    margin="normal"
-                                                    value={values.lastSchool}
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    error={errors.lastSchool && touched.lastSchool}
-                                                    helperText={(errors.lastSchool && touched.lastSchool) && errors.lastSchool}
-                                                />
-
-                                            </Grid>
-                                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                                                <TextField
-                                                    fullWidth
-                                                    label="Sports"
-                                                    margin="normal"
-                                                    name="sport"
-                                                    onChange={handleChange}
-                                                    onBlur={handleBlur}
-                                                    error={errors.sport && touched.sport}
-                                                    helperText={(errors.sport && touched.sport) && errors.sport}
-
-                                                />
-
-                                            </Grid>
-                                             </Grid>
-                                    </CardContent>
-
-                                </Card> */}
 
               <Card>
                 <Wrapper>
@@ -725,16 +420,18 @@ const CreateStudent = (props) => {
                     type="submit"
                     disabled={isSubmitting}
                   >
-                    <SaveIcon className={classes.rightIcon} /> Save
+                    {/* <SaveIcon className={classes.rightIcon} />  */}
+                    Save
                   </Button>{" "}
                   <Button
                     variant="contained"
                     color="secondary"
                     className={classes.button}
                     type="button"
-                    onClick={() => getRandomString(6)}
+                    // onClick={() => getRandomString(6)}
                   >
-                    <DeleteIcon className={classes.rightIcon} /> Cancel
+                    {/* <DeleteIcon className={classes.rightIcon} /> */}
+                    Cancel
                   </Button>
                 </Wrapper>
               </Card>

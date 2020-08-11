@@ -16,7 +16,7 @@
       "idno": "22222",
       "section": "3",
       "shortbio": "",
-      "role": "teacher",
+      "role": "Teacher",
       "id": 12
     },
     {
@@ -35,13 +35,13 @@
       "idno": "ddddd",
       "section": "3",
       "shortbio": "",
-      "role": "teacher",
+      "role": "Teacher",
       "id": 13
     },
     {
       "email": "joe@gmail.com",
       "password": "abc111",
-      "role": "admin",
+      "role": "Admin",
       "id": 14
     },
     {
@@ -60,7 +60,7 @@
       "idno": "2222",
       "section": "3",
       "shortbio": "This is a short bio",
-      "role": "teacher",
+      "role": "Teacher",
       "id": 15
     },
     {
@@ -79,7 +79,7 @@
       "idno": "12",
       "section": "3",
       "shortbio": "my short bio",
-      "role": "teacher",
+      "role": "Teacher",
       "id": 16
     },
     {
@@ -98,7 +98,7 @@
       "idno": "2234",
       "section": "2",
       "shortbio": "my short bio",
-      "role": "teacher",
+      "role": "Teacher",
       "id": 17
     },
     {
@@ -117,7 +117,7 @@
       "idno": "22",
       "section": "3",
       "shortbio": "big fat man",
-      "role": "teacher",
+      "role": "Teacher",
       "id": 18
     },
     {
@@ -129,7 +129,7 @@
       "bloodgrp": "2",
       "stdclass": "4",
       "admissionID": "2020/01",
-      "role": "student",
+      "role": "Student",
       "id": 19
     },
     {
@@ -141,8 +141,8 @@
       "bloodgrp": "2",
       "stdclass": "4",
       "admissionID": "345",
-      "role": "student",
-      "id": 21
+      "role": "Student",
+      "id": 20
     },
     {
       "firstName": "Ola",
@@ -153,8 +153,8 @@
       "bloodgrp": "2",
       "stdclass": "4",
       "admissionID": "345",
-      "role": "student",
-      "id": 22
+      "role": "Student",
+      "id": 21
     },
     {
       "firstName": "Maya",
@@ -165,8 +165,8 @@
       "bloodgrp": "2",
       "stdclass": "4",
       "admissionID": "305",
-      "role": "student",
-      "id": 23
+      "role": "Student",
+      "id": 22
     },
     {
       "firstName": "Seal",
@@ -177,8 +177,8 @@
       "bloodgrp": "2",
       "stdclass": "4",
       "admissionID": "045",
-      "role": "student",
-      "id": 24
+      "role": "Student",
+      "id": 23
     },
     {
       "firstName": "Kelechi",
@@ -189,8 +189,8 @@
       "bloodgrp": "2",
       "stdclass": "4",
       "admissionID": "315",
-      "role": "student",
-      "id": 25
+      "role": "Student",
+      "id": 24
     },
     {
       "firstName": "Chukube",
@@ -201,8 +201,8 @@
       "bloodgrp": "2",
       "stdclass": "4",
       "admissionID": "350",
-      "role": "student",
-      "id": 20
+      "role": "Student",
+      "id": 25
     },
     {
       "firstName": "Chris",
@@ -213,8 +213,8 @@
       "bloodgrp": "2",
       "stdclass": "4",
       "admissionID": "345",
-      "role": "student",
-      "id": 20
+      "role": "Student",
+      "id": 26
     },
     {
       "firstName": "Elemson",
@@ -226,16 +226,39 @@
       "bloodgrp": "2",
       "stdclass": "4",
       "admissionID": "3234",
-      "role": "admin",
-      "id": 26
+      "role": "Admin",
+      "id": 27
     },
     {
+      "firstName": "Jonbosco",
+      "lastName": "Ihunaya",
+      "middleName": "umudim",
       "email": "ihunaya@gmail.com",
-      "id": 27
+      "gender": "male",
+      "dob": "2017-05-25",
+      "phone": 8067453333,
+      "occupation": "Civil Service",
+      "address": "Ogba GRA Lagos",
+      "bio": "My short bio\n",
+      "id": 28
+    },
+    {
+      "firstName": "James",
+      "lastName": "Imeh",
+      "middleName": "Attah",
+      "email": "imeh@gmail.com",
+      "gender": "male",
+      "dob": "1980-02-29",
+      "phone": 807670655,
+      "occupation": "Teacher",
+      "address": "Lake Chad Lagoon Lagos",
+      "bio": "",
+      "role": "parent",
+      "id": 29
     }
   ],
   "schools": [],
-  "newadmin": [
+  "newAdmin": [
     {
       "email": "ielemson@gmail.com",
       "schoolName": "soft school",
@@ -250,6 +273,21 @@
     {
       "email": "kiss@gmail.com",
       "created": 1596784308092,
+      "id": 1
+    }
+  ],
+  "class_schedule": [
+    {
+      "TeacherName": "Ebere Soft",
+      "TeacherIdNo": "012202",
+      "email": "ebere@gmail.com",
+      "gender": "male",
+      "phone": "080675077",
+      "tclass": "1",
+      "classTime": "09:18",
+      "section": "2",
+      "classDate": "2020-02-02",
+      "subject": "1",
       "id": 1
     }
   ]

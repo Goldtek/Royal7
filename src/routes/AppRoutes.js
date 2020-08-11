@@ -24,7 +24,7 @@ const AppRoutes = () => {
         <PrivateRoute
           path="/dashboard"
           component={Dashboard}
-          roles={[Role.admin, Role.student, Role.teacher]}
+          roles={[Role.Admin, Role.Student, Role.Teacher]}
         />
         {/*SCREEN ROUTES */}
         <Route exact path="/create" component={ValidateEmail} />

@@ -732,7 +732,8 @@ const CreateTeacher = (props) => {
                     type="submit"
                     disabled={isSubmitting}
                   >
-                    <SaveIcon className={classes.rightIcon} /> Save
+                    {/* <SaveIcon className={classes.rightIcon} />  */}
+                    Save
                   </Button>{" "}
                   <Button
                     variant="contained"
@@ -740,7 +741,8 @@ const CreateTeacher = (props) => {
                     className={classes.button}
                     type="reset"
                   >
-                    <DeleteIcon className={classes.rightIcon} /> Reset
+                    {/* <DeleteIcon className={classes.rightIcon} /> */}
+                    Cancel
                   </Button>
                 </Wrapper>
               </Card>

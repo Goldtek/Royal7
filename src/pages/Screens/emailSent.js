@@ -63,10 +63,10 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     maxHeight: "100%",
   },
-  typehead: {
-    fontWeight: "200",
-    fontSize: "1.8em ! important",
-  },
+  // typehead: {
+  //   fontWeight: "200",
+  //   fontSize: "1.8em ! important",
+  // },
   email: {
     color: "black",
     fontWeight: "600",

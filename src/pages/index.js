@@ -19,6 +19,9 @@ import StudentLists from "./Students/StudentLists";
 //PARENT
 import CreateParent from "./Parent/CreateParent";
 
+//CLASS/SECTION
+import CreateClass from "./Class/CreateClass";
+import CreateSection from "./Class/AddSection";
 // SCREENS
 import CreateAccount from "./Screens/createAccount";
 import ValidateEmail from "./Screens/validateEmail";
@@ -41,4 +44,6 @@ export {
   EmailConfirmation,
   CreateParent,
   StudentLists,
+  CreateClass,
+  CreateSection,
 };

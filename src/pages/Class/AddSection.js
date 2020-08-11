@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-// import { useHistory } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { withStyles } from "@material-ui/core/styles";
@@ -16,9 +15,7 @@ import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
-// import DeleteIcon from "@material-ui/icons/Delete";
-// import SaveIcon from "@material-ui/icons/Save";
-import { Role } from "../../_helpers";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -50,25 +47,22 @@ const styles = (theme) => ({
 });
 
 const validationSchema = Yup.object().shape({
-  firstName: Yup.string().required("required"),
-  middleName: Yup.string().required("required"),
-  lastName: Yup.string().required("required"),
+  tname: Yup.string().required("required"),
+  idNo: Yup.string().required("required"),
+  subject: Yup.string().required("required"),
   phone: Yup.number("must be a phone number").required("required"),
-  dob: Yup.string().required("required"),
-  occupation: Yup.string().required("required"),
+  tclass: Yup.string().required("required"),
+  classTime: Yup.string().required("required"),
   gender: Yup.string().required("required"),
-  address: Yup.string().required("required"),
-  bio: Yup.string().nullable(),
-  photo: Yup.string().required("required"),
+  section: Yup.string().required("required"),
+  classDate: Yup.string().required("required"),
   email: Yup.string().email("invalid email").required("required"),
 });
 
 //API URL
 const API_URL = process.env.REACT_APP_BASEURL;
 
-const CreateParent = (props) => {
-  // let history = useHistory();
-  console.log(Role.parent);
+const CreateSection = (props) => {
   const { classes } = props;
   return (
     <Wrapper>
@@ -78,24 +72,22 @@ const CreateParent = (props) => {
           setSubmitting(false);
           axios({
             method: "POST",
-            url: `${API_URL}/users`,
+            url: `${API_URL}/class_schedule`,
             data: {
-              firstName: values.firstName,
-              lastName: values.lastName,
-              middleName: values.middleName,
+              teacherName: values.tname,
+              teacherIdNo: values.idNo,
               email: values.email,
               gender: values.gender,
-              dob: values.dob,
               phone: values.phone,
-              occupation: values.occupation,
-              photo: values.file,
-              address: values.address,
-              bio: values.bio,
-              role: Role.parent,
+              tclass: values.tclass,
+              classTime: values.classTime,
+              section: values.section,
+              classDate: values.classDate,
+              subject: values.subject,
             },
           })
             .then((response) => {
-              toast.success(`🚀 Parent Added!`, {
+              toast.success(`🚀 Class Created Succesfully!`, {
                 position: "top-right",
                 autoClose: 15000,
                 hideProgressBar: false,
@@ -124,17 +116,16 @@ const CreateParent = (props) => {
             });
         }}
         initialValues={{
-          firstName: "",
-          lastName: "",
-          middleName: "",
+          tname: "",
+          idNo: "",
           email: "",
           gender: "",
-          dob: "",
           phone: "",
-          occupation: "",
-          photo: "",
-          address: "",
-          bio: "",
+          tclass: "",
+          classTime: "",
+          section: "",
+          classDate: "",
+          subject: "",
         }}
         validationSchema={validationSchema}
       >
@@ -155,10 +146,10 @@ const CreateParent = (props) => {
               <Card>
                 <Wrapper>
                   <Breadcrumbs aria-label="breadcrumb">
-                    <Link color="inherit" href="/dashboard">
-                      Dashboard
+                    <Link color="inherit" href="/dashboard/class">
+                      Class
                     </Link>
-                    <Typography color="textPrimary">Create Parent</Typography>
+                    <Typography color="textPrimary">New Section</Typography>
                   </Breadcrumbs>
                 </Wrapper>
               </Card>
@@ -173,7 +164,7 @@ const CreateParent = (props) => {
                   className={classes.appBar}
                 >
                   <Typography color="inherit" className="flexs={12}pacer">
-                    CREATE PARENT
+                    Section
                   </Typography>
                 </AppBar>
 
@@ -181,59 +172,34 @@ const CreateParent = (props) => {
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
-                        label="First Name"
-                        placeholder="First Name"
+                        label="Teacher Name"
+                        placeholder="Teacher Name"
                         fullWidth
                         margin="normal"
-                        name="firstName"
-                        value={values.firstName}
+                        name="tname"
+                        value={values.tname}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        error={errors.firstName && touched.firstName}
+                        error={errors.tname && touched.tname}
                         helperText={
-                          errors.firstName &&
-                          touched.firstName &&
-                          errors.firstName
+                          errors.tname && touched.tname && errors.tname
                         }
                       />
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
-                        label="Middle Name"
-                        placeholder="Middle Name"
+                        label="ID NO"
+                        placeholder="ID NO"
                         fullWidth
                         margin="normal"
-                        name="middleName"
-                        value={values.middleName}
+                        name="idNo"
+                        value={values.idNo}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        error={errors.middleName && touched.middleName}
-                        helperText={
-                          errors.middleName &&
-                          touched.middleName &&
-                          errors.middleName
-                        }
+                        error={errors.idNo && touched.idNo}
+                        helperText={errors.idNo && touched.idNo && errors.idNo}
                       />
                     </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={4}>
-                      <TextField
-                        label="Last Name"
-                        placeholder="Last Name"
-                        fullWidth
-                        margin="normal"
-                        name="lastName"
-                        value={values.lastName}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={errors.lastName && touched.lastName}
-                        helperText={
-                          errors.lastName && touched.lastName && errors.lastName
-                        }
-                      />
-                    </Grid>
-                  </Grid>
-
-                  <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
                         fullWidth
@@ -259,37 +225,116 @@ const CreateParent = (props) => {
                         <MenuItem value="female">Female</MenuItem>
                       </TextField>
                     </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={4}>
-                      <TextField
-                        fullWidth
-                        id="date"
-                        label="Birthday"
-                        type="date"
-                        defaultValue="2017-05-24"
-                        margin="normal"
-                        name="dob"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={errors.dob && touched.dob}
-                        helperText={errors.dob && touched.dob && errors.dob}
-                      />
+                    <Grid container spacing={3}>
+                      <Grid item xs={12} sm={12} md={4} lg={4}>
+                        <TextField
+                          label="Class"
+                          select
+                          placeholder="Class"
+                          fullWidth
+                          margin="normal"
+                          name="tclass"
+                          value={values.tclass}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          error={errors.tclass && touched.tclass}
+                          helperText={
+                            errors.tclass && touched.tclass && errors.tclass
+                          }
+                        >
+                          <MenuItem value="1">One</MenuItem>
+                          <MenuItem value="2">Two</MenuItem>
+                          <MenuItem value="3">Three</MenuItem>
+                        </TextField>
+                      </Grid>
+                      <Grid item xs={12} sm={12} md={4} lg={4}>
+                        <TextField
+                          label="Subject"
+                          select
+                          placeholder="Class"
+                          fullWidth
+                          margin="normal"
+                          name="subject"
+                          value={values.subject}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          error={errors.subject && touched.subject}
+                          helperText={
+                            errors.subject && touched.subject && errors.subject
+                          }
+                        >
+                          <MenuItem value="1">One</MenuItem>
+                          <MenuItem value="2">Two</MenuItem>
+                          <MenuItem value="3">Three</MenuItem>
+                        </TextField>
+                      </Grid>
+                      {/* <Grid item xs={12} sm={12} md={4} lg={4}>
+                        <TextField
+                          fullWidth
+                          margin="normal"
+                          id="datetime-local"
+                          label="Date"
+                          type="date"
+                          name="classDate"
+                          defaultValue="2017-05-24T10:30"
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                          value={values.classDate}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          error={errors.classDate && touched.classDate}
+                          helperText={
+                            errors.classDate &&
+                            touched.classDate &&
+                            errors.classDate
+                          }
+                        />
+                      </Grid> */}
                     </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={4}>
+                    {/* <Grid item xs={12} sm={12} md={4} lg={4}>
                       <TextField
-                        type="number"
-                        label="Phone Number"
-                        placeholder="Phone Number"
                         fullWidth
                         margin="normal"
-                        name="phone"
-                        value={values.phone}
+                        id="datetime-local"
+                        label="Time"
+                        type="time"
+                        name="classTime"
+                        defaultValue="2017-05-24T10:30"
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                        value={values.classTime}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        error={errors.phone && touched.phone}
+                        error={errors.classTime && touched.classTime}
                         helperText={
-                          errors.phone && touched.phone && errors.phone
+                          errors.classTime &&
+                          touched.classTime &&
+                          errors.classTime
                         }
                       />
+                    </Grid> */}
+
+                    <Grid item xs={12} sm={12} md={4} lg={4}>
+                      <TextField
+                        label="Section"
+                        select
+                        placeholder="Section"
+                        fullWidth
+                        margin="normal"
+                        name="section"
+                        value={values.section}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={errors.section && touched.section}
+                        helperText={
+                          errors.section && touched.section && errors.section
+                        }
+                      >
+                        <MenuItem value="1">One</MenuItem>
+                        <MenuItem value="2">Two</MenuItem>
+                      </TextField>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
@@ -308,74 +353,22 @@ const CreateParent = (props) => {
                         }
                       />
                     </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={4}>
-                      <TextField
-                        fullWidth
-                        id="Occupation"
-                        label="Occupation"
-                        margin="normal"
-                        name="occupation"
-                        value={values.occupation}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={errors.occupation && touched.occupation}
-                        helperText={
-                          errors.occupation &&
-                          touched.occupation &&
-                          errors.occupation
-                        }
-                      />
-                    </Grid>
 
                     <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
                         fullWidth
                         multiline
                         rowsMax="4"
-                        id="address"
-                        label="Address"
+                        id="phone"
+                        label="Phone"
                         margin="normal"
-                        name="address"
-                        value={values.address}
+                        name="phone"
+                        value={values.phone}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        error={errors.address && touched.address}
+                        error={errors.phone && touched.phone}
                         helperText={
-                          errors.address && touched.address && errors.address
-                        }
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={4}>
-                      <TextField
-                        fullWidth
-                        multiline
-                        rowsMax="4"
-                        id="bio"
-                        label="Short BIO"
-                        margin="normal"
-                        name="bio"
-                        value={values.bio}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={errors.bio && touched.bio}
-                        helperText={errors.bio && touched.bio && errors.bio}
-                      />
-                    </Grid>
-
-                    <Grid item xs={12} sm={6} md={4} lg={4}>
-                      <TextField
-                        type="file"
-                        fullWidth
-                        id="Photo"
-                        label="Photo"
-                        margin="normal"
-                        name="photo"
-                        value={values.photo}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={errors.photo && touched.photo}
-                        helperText={
-                          errors.photo && touched.photo && errors.photo
+                          errors.phone && touched.phone && errors.phone
                         }
                       />
                     </Grid>
@@ -391,10 +384,6 @@ const CreateParent = (props) => {
                     className={classes.button}
                     type="submit"
                   >
-                    {/* <SaveIcon
-                      className={classes.rightIcon}
-                      disabled={isSubmitting}
-                    />{" "} */}
                     Save
                   </Button>{" "}
                   <Button
@@ -403,7 +392,7 @@ const CreateParent = (props) => {
                     className={classes.button}
                     type="reset"
                   >
-                    {/* <DeleteIcon className={classes.rightIcon} /> */}
+                    {" "}
                     Cancel
                   </Button>
                 </Wrapper>
@@ -416,8 +405,8 @@ const CreateParent = (props) => {
   );
 };
 
-CreateParent.propTypes = {
+CreateSection.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CreateParent);
+export default withStyles(styles)(CreateSection);

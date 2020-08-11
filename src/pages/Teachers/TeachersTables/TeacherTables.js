@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import clsx from 'clsx';
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import { withStyles } from "@material-ui/core/styles";

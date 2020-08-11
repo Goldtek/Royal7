@@ -36,19 +36,19 @@ input {
   vertical-align: baseline;
 }
 
-html[dir=rtl],
-html[dir=ltr],
-body[dir=rtl],
-body[dir=ltr] {
+html[dir="rtl"],
+html[dir="ltr"],
+body[dir="rtl"],
+body[dir="ltr"] {
   unicode-bidi: embed;
 }
 
-bdo[dir=rtl] {
+bdo[dir="rtl"] {
   direction: rtl;
   unicode-bidi: bidi-override;
 }
 
-bdo[dir=ltr] {
+bdo[dir="ltr"] {
   direction: ltr;
   unicode-bidi: bidi-override;
 }
@@ -613,27 +613,27 @@ b {
 }
 
 .table-responsive {
-  min-height: .01%;
+  min-height: 0.01%;
   overflow-x: auto;
 }
 
-@media screen and (max-width:960px) {
+@media screen and (max-width: 960px) {
   .table-responsive {
     width: 100%;
     overflow-y: hidden;
     -ms-overflow-style: -ms-autohiding-scrollbar;
   }
 
-  .table-responsive>table {
-    margin-bottom: 0
+  .table-responsive > table {
+    margin-bottom: 0;
   }
 
-  .table-responsive>table>tbody>tr>td,
-  .table-responsive>table>tbody>tr>th,
-  .table-responsive>table>tfoot>tr>td,
-  .table-responsive>table>tfoot>tr>th,
-  .table-responsive>table>thead>tr>td,
-  .table-responsive>table>thead>tr>th {
-    white-space: nowrap
+  .table-responsive > table > tbody > tr > td,
+  .table-responsive > table > tbody > tr > th,
+  .table-responsive > table > tfoot > tr > td,
+  .table-responsive > table > tfoot > tr > th,
+  .table-responsive > table > thead > tr > td,
+  .table-responsive > table > thead > tr > th {
+    white-space: nowrap;
   }
 }

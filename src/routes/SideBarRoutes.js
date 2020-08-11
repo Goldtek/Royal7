@@ -6,9 +6,11 @@ import {
   CreateStudents,
   CreateParent,
   StudentLists,
+  CreateClass,
+  CreateSection,
 } from "../pages";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import SchoolIcon from "@material-ui/icons/School";
+// import SchoolIcon from "@material-ui/icons/School";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import LocalLibraryIcon from "@material-ui/icons/LocalLibrary";
@@ -20,7 +22,8 @@ import GroupIcon from "@material-ui/icons/Group";
 import BorderColorIcon from "@material-ui/icons/BorderColor";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
-import ConfirmationNumberIcon from "@material-ui/icons/ConfirmationNumber";
+// import ConfirmationNumberIcon from "@material-ui/icons/ConfirmationNumber";
+
 export default {
   items: [
     {
@@ -60,6 +63,7 @@ export default {
       name: "Students",
       type: "submenu",
       icon: SupervisedUserCircleIcon,
+      roles: ["Student"],
 
       children: [
         {
@@ -156,18 +160,14 @@ export default {
         {
           path: "/create",
           name: "Add Class",
-          component: CreateStudents,
+          component: CreateClass,
         },
         {
-          path: "/view",
+          path: "/section",
           name: "Add Section",
-          component: CreateStudents,
+          component: CreateSection,
         },
-        {
-          path: "/view",
-          name: "View Section",
-          component: CreateStudents,
-        },
+
         {
           path: "/view",
           name: "View Class",
@@ -259,11 +259,11 @@ export default {
       type: "link",
       icon: MessageIcon,
     },
-    {
-      path: "/signin",
-      name: "Sign out",
-      type: "link",
-      icon: ExitToAppIcon,
-    },
+    // {
+    //   path: "/signin",
+    //   name: "Sign out",
+    //   type: "link",
+    //   icon: ExitToAppIcon,
+    // },
   ],
 };

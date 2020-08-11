@@ -1,6 +1,7 @@
 import { Header, NotificationCenter, Sidebar, Workspace } from "../components";
 import React, { useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+
 import FormatTextdirectionLToRIcon from "@material-ui/icons/FormatTextdirectionLToR";
 import FormatTextdirectionRToLIcon from "@material-ui/icons/FormatTextdirectionRToL";
 import Hidden from "@material-ui/core/Hidden";
@@ -15,7 +16,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import routes from "../routes/SideBarRoutes";
 import { useAppState } from "../components/AppProvider/AppProvider";
 import useMountEffect from "../mountEffect";
-import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   panel: {
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Dashboard = (props) => {
+const Dashboard = ({ history }) => {
   const classes = useStyles();
   const [state, dispatch] = useAppState();
   const [opened, setOpened] = useState(true);
@@ -143,7 +143,7 @@ const Dashboard = (props) => {
       }, 300);
     });
 
-    const unlisten = props.history.listen(() => {
+    const unlisten = history.listen(() => {
       if (mediaMatcher.matches) setOpened(false);
       document.querySelector("#root > div > main").scrollTop = 0;
     });
@@ -162,8 +162,8 @@ const Dashboard = (props) => {
   return (
     <>
       <Header
-        logoAltText="edcollab"
-        logo={`${process.env.PUBLIC_URL}/static/images/logo/logo-single-dark.png`}
+        logoAltText="Primer Admin Template"
+        logo={`${process.env.PUBLIC_URL}/static/images/logo.svg`}
         toggleDrawer={handleDrawerToggle}
         toogleNotifications={handleNotificationToggle}
         toggleFullscreen={handleFullscreenToggle}
@@ -215,8 +215,4 @@ const Dashboard = (props) => {
   );
 };
 
-// export default Dashboard;
-const mapStateToProps = (state) => ({
-  User: state.User,
-});
-export default connect(mapStateToProps, null)(Dashboard);
+export default Dashboard;

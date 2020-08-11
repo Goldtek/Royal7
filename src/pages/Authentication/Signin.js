@@ -112,20 +112,18 @@ const LoginPage = (props) => {
   const classes = useStyles();
   const loggingIn = useSelector((state) => state.authentication.loggingIn);
   const alert = useSelector((state) => state.alert);
-  const [statInfo, setSateInfo] = React.useState("");
-  const dispatch = useDispatch();
-
-  let stateAlert = props.location.state;
-  let alerts = stateAlert === undefined ? null : stateAlert;
-  // console.log(statInfo);
-
+  const [statInfo, setSateInfo] = React.useState(undefined);
   const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
+  // console.log(statInfo);
   // reset login status
   useEffect(() => {
+    let stateAlert = props.location.state;
+    let alerts = stateAlert === undefined ? undefined : stateAlert;
     dispatch(userLogout());
     setSateInfo(alerts);
     setOpen(true);
-  }, [dispatch]);
+  }, [dispatch, props.location.state]);
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -165,7 +163,7 @@ const LoginPage = (props) => {
               <form onSubmit={handleSubmit}>
                 <div>
                   <img
-                    src={`${process.env.PUBLIC_URL}/static/images/logo/logo-single-dark.png`}
+                    src={`${process.env.PUBLIC_URL}/static/images/logo/logo-clear.png`}
                     alt=""
                     // className="block"
                   />
@@ -188,7 +186,7 @@ const LoginPage = (props) => {
                         </Alert>
                       </Snackbar>
                     </React.Fragment>
-                  ) : statInfo !== null ? (
+                  ) : statInfo !== undefined ? (
                     <React.Fragment>
                       <Snackbar
                         open={open}
@@ -199,7 +197,7 @@ const LoginPage = (props) => {
                         autoHideDuration={6000}
                       >
                         <Alert severity="error">
-                          {statInfo ? statInfo.info : ""}
+                          {statInfo ? statInfo.info : null}
                         </Alert>
                       </Snackbar>
                     </React.Fragment>
@@ -258,9 +256,13 @@ const LoginPage = (props) => {
                     />
                   )}
                 </div>
-                <div className="pt-1 text-md-center">
+                <div className="pt-1 text-sm-center">
                   <Link to="/forgot">
-                    <Button>Forgot password?</Button>
+                    <Button>
+                      <Typography variant="p" className="flexSpacer">
+                        Forgot password?
+                      </Typography>
+                    </Button>
                   </Link>
                 </div>
               </form>
