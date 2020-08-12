@@ -259,7 +259,10 @@ const LoginPage = (props) => {
                 <div className="pt-1 text-sm-center">
                   <Link to="/forgot">
                     <Button>
-                      <Typography variant="p" className="flexSpacer">
+                      <Typography
+                        className="flexSpacer"
+                        style={{ fontSize: "0.875rem" }}
+                      >
                         Forgot password?
                       </Typography>
                     </Button>

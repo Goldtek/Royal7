@@ -78,12 +78,13 @@ const useStyles = makeStyles((theme) => ({
 const SidebarItem = ({
   route,
   index,
+  role,
   activeRoute,
   toggleMenu,
   currentPath,
 }) => {
   const classes = useStyles();
-
+  // console.log(role);
   useMountEffect(() => {
     if (!currentPath || activeRoute === index || route.path === "/") return;
     toggleMenu(index);
@@ -104,27 +105,27 @@ const SidebarItem = ({
     );
   };
 
-  if (route.type === "external") {
-    return (
-      <a
-        href={route.path}
-        target="_blank"
-        rel="noopener noreferrer"
-        key={index}
-        className={classes.menuLink}
-      >
-        <ListItem className={classes.menuItem} button>
-          <ListItemIcon>
-            <route.icon className={classes.menuIcon} />
-          </ListItemIcon>
-          <Typography variant="body1" className="flexSpacer">
-            {capitalize(route.name)}
-          </Typography>
-          {badge(route.badge)}
-        </ListItem>
-      </a>
-    );
-  }
+  // if (route.type === "external") {
+  //   return (
+  //     <a
+  //       href={route.path}
+  //       target="_blank"
+  //       rel="noopener noreferrer"
+  //       key={index}
+  //       className={classes.menuLink}
+  //     >
+  //       <ListItem className={classes.menuItem} button>
+  //         <ListItemIcon>
+  //           <route.icon className={classes.menuIcon} />
+  //         </ListItemIcon>
+  //         <Typography variant="body1" className="flexSpacer">
+  //           {capitalize(route.name)}
+  //         </Typography>
+  //         {badge(route.badge)}
+  //       </ListItem>
+  //     </a>
+  //   );
+  // }
 
   if (route.type === "submenu") {
     return (

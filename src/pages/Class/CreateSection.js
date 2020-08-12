@@ -47,13 +47,13 @@ const styles = (theme) => ({
 });
 
 const validationSchema = Yup.object().shape({
-  tname: Yup.string().required("required"),
-  idNo: Yup.string().required("required"),
+  section: Yup.string().required("required"),
+  sectionCode: Yup.string().required("required"),
   subject: Yup.string().required("required"),
-  phone: Yup.number("must be a phone number").required("required"),
+  description: Yup.number("must be a description number").required("required"),
   tclass: Yup.string().required("required"),
   classTime: Yup.string().required("required"),
-  gender: Yup.string().required("required"),
+  sectionClass: Yup.string().required("required"),
   section: Yup.string().required("required"),
   classDate: Yup.string().required("required"),
   email: Yup.string().email("invalid email").required("required"),
@@ -74,11 +74,11 @@ const CreateSection = (props) => {
             method: "POST",
             url: `${API_URL}/class_schedule`,
             data: {
-              teacherName: values.tname,
-              teacherIdNo: values.idNo,
+              teacherName: values.section,
+              teachersectionCode: values.sectionCode,
               email: values.email,
-              gender: values.gender,
-              phone: values.phone,
+              sectionClass: values.sectionClass,
+              description: values.description,
               tclass: values.tclass,
               classTime: values.classTime,
               section: values.section,
@@ -116,11 +116,11 @@ const CreateSection = (props) => {
             });
         }}
         initialValues={{
-          tname: "",
-          idNo: "",
+          section: "",
+          sectionCode: "",
           email: "",
-          gender: "",
-          phone: "",
+          sectionClass: "",
+          description: "",
           tclass: "",
           classTime: "",
           section: "",
@@ -172,155 +172,8 @@ const CreateSection = (props) => {
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
-                        label="Teacher Name"
-                        placeholder="Teacher Name"
-                        fullWidth
-                        margin="normal"
-                        name="tname"
-                        value={values.tname}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={errors.tname && touched.tname}
-                        helperText={
-                          errors.tname && touched.tname && errors.tname
-                        }
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={4}>
-                      <TextField
-                        label="ID NO"
-                        placeholder="ID NO"
-                        fullWidth
-                        margin="normal"
-                        name="idNo"
-                        value={values.idNo}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={errors.idNo && touched.idNo}
-                        helperText={errors.idNo && touched.idNo && errors.idNo}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={4}>
-                      <TextField
-                        fullWidth
-                        id="Gender"
-                        name="gender"
-                        select
-                        label="Gender"
-                        SelectProps={{
-                          MenuProps: {
-                            className: classes.menu,
-                          },
-                        }}
-                        margin="normal"
-                        value={values.gender}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={errors.gender && touched.gender}
-                        helperText={
-                          errors.gender && touched.gender && errors.gender
-                        }
-                      >
-                        <MenuItem value="male">Male</MenuItem>
-                        <MenuItem value="female">Female</MenuItem>
-                      </TextField>
-                    </Grid>
-                    <Grid container spacing={3}>
-                      <Grid item xs={12} sm={12} md={4} lg={4}>
-                        <TextField
-                          label="Class"
-                          select
-                          placeholder="Class"
-                          fullWidth
-                          margin="normal"
-                          name="tclass"
-                          value={values.tclass}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.tclass && touched.tclass}
-                          helperText={
-                            errors.tclass && touched.tclass && errors.tclass
-                          }
-                        >
-                          <MenuItem value="1">One</MenuItem>
-                          <MenuItem value="2">Two</MenuItem>
-                          <MenuItem value="3">Three</MenuItem>
-                        </TextField>
-                      </Grid>
-                      <Grid item xs={12} sm={12} md={4} lg={4}>
-                        <TextField
-                          label="Subject"
-                          select
-                          placeholder="Class"
-                          fullWidth
-                          margin="normal"
-                          name="subject"
-                          value={values.subject}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.subject && touched.subject}
-                          helperText={
-                            errors.subject && touched.subject && errors.subject
-                          }
-                        >
-                          <MenuItem value="1">One</MenuItem>
-                          <MenuItem value="2">Two</MenuItem>
-                          <MenuItem value="3">Three</MenuItem>
-                        </TextField>
-                      </Grid>
-                      {/* <Grid item xs={12} sm={12} md={4} lg={4}>
-                        <TextField
-                          fullWidth
-                          margin="normal"
-                          id="datetime-local"
-                          label="Date"
-                          type="date"
-                          name="classDate"
-                          defaultValue="2017-05-24T10:30"
-                          InputLabelProps={{
-                            shrink: true,
-                          }}
-                          value={values.classDate}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.classDate && touched.classDate}
-                          helperText={
-                            errors.classDate &&
-                            touched.classDate &&
-                            errors.classDate
-                          }
-                        />
-                      </Grid> */}
-                    </Grid>
-                    {/* <Grid item xs={12} sm={12} md={4} lg={4}>
-                      <TextField
-                        fullWidth
-                        margin="normal"
-                        id="datetime-local"
-                        label="Time"
-                        type="time"
-                        name="classTime"
-                        defaultValue="2017-05-24T10:30"
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
-                        value={values.classTime}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={errors.classTime && touched.classTime}
-                        helperText={
-                          errors.classTime &&
-                          touched.classTime &&
-                          errors.classTime
-                        }
-                      />
-                    </Grid> */}
-
-                    <Grid item xs={12} sm={12} md={4} lg={4}>
-                      <TextField
-                        label="Section"
-                        select
-                        placeholder="Section"
+                        label="Section Name"
+                        placeholder="Section Name"
                         fullWidth
                         margin="normal"
                         name="section"
@@ -331,44 +184,74 @@ const CreateSection = (props) => {
                         helperText={
                           errors.section && touched.section && errors.section
                         }
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4} lg={4}>
+                      <TextField
+                        fullWidth
+                        id="sectionClass"
+                        name="sectionClass"
+                        select
+                        label="Section Class"
+                        SelectProps={{
+                          MenuProps: {
+                            className: classes.menu,
+                          },
+                        }}
+                        margin="normal"
+                        value={values.sectionClass}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={errors.sectionClass && touched.sectionClass}
+                        helperText={
+                          errors.sectionClass &&
+                          touched.sectionClass &&
+                          errors.sectionClass
+                        }
                       >
-                        <MenuItem value="1">One</MenuItem>
-                        <MenuItem value="2">Two</MenuItem>
+                        <MenuItem value="STD5">STD5</MenuItem>
+                        <MenuItem value="STD6">STD6</MenuItem>
                       </TextField>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
-                        type="email"
-                        label="Email"
-                        placeholder="Email"
+                        label="Section Code"
+                        placeholder="Section Code"
                         fullWidth
                         margin="normal"
-                        name="email"
-                        value={values.email}
+                        name="sectionCode"
+                        value={values.sectionCode}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        error={errors.email && touched.email}
+                        error={errors.sectionCode && touched.sectionCode}
                         helperText={
-                          errors.email && touched.email && errors.email
+                          errors.sectionCode &&
+                          touched.sectionCode &&
+                          errors.sectionCode
                         }
                       />
                     </Grid>
+
+                    <Grid container spacing={3}></Grid>
 
                     <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
                         fullWidth
                         multiline
                         rowsMax="4"
-                        id="phone"
-                        label="Phone"
+                        placeholder="Description"
+                        id="description"
+                        label="Description"
                         margin="normal"
-                        name="phone"
-                        value={values.phone}
+                        name="description"
+                        value={values.description}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        error={errors.phone && touched.phone}
+                        error={errors.description && touched.description}
                         helperText={
-                          errors.phone && touched.phone && errors.phone
+                          errors.description &&
+                          touched.description &&
+                          errors.description
                         }
                       />
                     </Grid>
@@ -384,7 +267,7 @@ const CreateSection = (props) => {
                     className={classes.button}
                     type="submit"
                   >
-                    Save
+                    Create
                   </Button>{" "}
                   <Button
                     variant="contained"

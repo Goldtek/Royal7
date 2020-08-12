@@ -1,7 +1,7 @@
 import { Header, NotificationCenter, Sidebar, Workspace } from "../components";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 import FormatTextdirectionLToRIcon from "@material-ui/icons/FormatTextdirectionLToR";
 import FormatTextdirectionRToLIcon from "@material-ui/icons/FormatTextdirectionRToL";
 import Hidden from "@material-ui/core/Hidden";
@@ -13,7 +13,7 @@ import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
-import routes from "../routes/SideBarRoutes";
+import { AllRoutes, TeacherRoutes } from "../routes/SideBar/";
 import { useAppState } from "../components/AppProvider/AppProvider";
 import useMountEffect from "../mountEffect";
 
@@ -53,7 +53,22 @@ const Dashboard = ({ history }) => {
   const [opened, setOpened] = useState(true);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [openSpeedDial, setOpenSpeedDial] = useState(false);
+  const userAuth = useSelector((state) => state.authentication);
+  // let [routes, setRoutes] = useState([]);
+  const { role } = userAuth.user;
 
+  useEffect(() => {
+    // setRoutes()
+  }, []);
+  let routes = [];
+  if (role === "Admin") {
+    routes = AllRoutes;
+    // return routes;
+  }
+  if (role === "Teacher") {
+    routes = TeacherRoutes;
+    // return routes;
+  }
   const mediaMatcher = matchMedia(`(max-width: ${MobileBreakpoint}px)`);
 
   const resizeDispatch = () => {

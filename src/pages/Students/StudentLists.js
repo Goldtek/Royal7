@@ -16,9 +16,9 @@ const useStyles = makeStyles((theme) => ({
   container: {
     maxHeight: "440",
   },
-  // typo: {
-  //   fontSize: "1rem",
-  // },
+  typo: {
+    fontSize: "1rem",
+  },
   appBar: {
     padding: "10px",
   },

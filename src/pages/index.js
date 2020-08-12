@@ -21,7 +21,16 @@ import CreateParent from "./Parent/CreateParent";
 
 //CLASS/SECTION
 import CreateClass from "./Class/CreateClass";
-import CreateSection from "./Class/AddSection";
+import CreateSection from "./Class/CreateSection";
+
+//SUBJECT ROUTES
+import CreateSubject from "./Subject/CreateSubject";
+
+//EXAM ROUTES
+import ExamSchedule from "./Exam/ExamSchedule";
+
+//TIMETABLE ROUTES
+import CreateTimeTable from "./TimeTable/CreateTimeTable";
 // SCREENS
 import CreateAccount from "./Screens/createAccount";
 import ValidateEmail from "./Screens/validateEmail";
@@ -46,4 +55,7 @@ export {
   StudentLists,
   CreateClass,
   CreateSection,
+  CreateSubject,
+  ExamSchedule,
+  CreateTimeTable,
 };

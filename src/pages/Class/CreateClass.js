@@ -56,6 +56,7 @@ const validationSchema = Yup.object().shape({
   gender: Yup.string().required("required"),
   section: Yup.string().required("required"),
   classDate: Yup.string().required("required"),
+  classCode: Yup.string().required("required"),
   email: Yup.string().email("invalid email").required("required"),
 });
 
@@ -84,6 +85,7 @@ const CreateClass = (props) => {
               section: values.section,
               classDate: values.classDate,
               subject: values.subject,
+              classCode: values.classCode,
             },
           })
             .then((response) => {
@@ -126,6 +128,7 @@ const CreateClass = (props) => {
           section: "",
           classDate: "",
           subject: "",
+          classCode: "",
         }}
         validationSchema={validationSchema}
       >
@@ -249,6 +252,26 @@ const CreateClass = (props) => {
                           <MenuItem value="3">Three</MenuItem>
                         </TextField>
                       </Grid>
+
+                      <Grid item xs={12} sm={12} md={4} lg={4}>
+                        <TextField
+                          fullWidth
+                          margin="normal"
+                          id="classCode"
+                          label="Class Code"
+                          placeholder="Class Code"
+                          name="classCode"
+                          value={values.classCode}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          error={errors.classCode && touched.classCode}
+                          helperText={
+                            errors.classCode &&
+                            touched.classCode &&
+                            errors.classCode
+                          }
+                        />
+                      </Grid>
                       <Grid item xs={12} sm={12} md={4} lg={4}>
                         <TextField
                           label="Subject"
@@ -270,29 +293,29 @@ const CreateClass = (props) => {
                           <MenuItem value="3">Three</MenuItem>
                         </TextField>
                       </Grid>
-                      <Grid item xs={12} sm={12} md={4} lg={4}>
-                        <TextField
-                          fullWidth
-                          margin="normal"
-                          id="datetime-local"
-                          label="Date"
-                          type="date"
-                          name="classDate"
-                          defaultValue="2017-05-24T10:30"
-                          InputLabelProps={{
-                            shrink: true,
-                          }}
-                          value={values.classDate}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.classDate && touched.classDate}
-                          helperText={
-                            errors.classDate &&
-                            touched.classDate &&
-                            errors.classDate
-                          }
-                        />
-                      </Grid>
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={4} lg={4}>
+                      <TextField
+                        fullWidth
+                        margin="normal"
+                        id="datetime-local"
+                        label="Date"
+                        type="date"
+                        name="classDate"
+                        defaultValue="2017-05-24T10:30"
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                        value={values.classDate}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={errors.classDate && touched.classDate}
+                        helperText={
+                          errors.classDate &&
+                          touched.classDate &&
+                          errors.classDate
+                        }
+                      />
                     </Grid>
                     <Grid item xs={12} sm={12} md={4} lg={4}>
                       <TextField
@@ -386,7 +409,7 @@ const CreateClass = (props) => {
                     className={classes.button}
                     type="submit"
                   >
-                    Save
+                    Create
                   </Button>{" "}
                   <Button
                     variant="contained"

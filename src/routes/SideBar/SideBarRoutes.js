@@ -8,8 +8,11 @@ import {
   StudentLists,
   CreateClass,
   CreateSection,
-} from "../pages";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+  CreateSubject,
+  ExamSchedule,
+  CreateTimeTable,
+} from "../../pages";
+// import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 // import SchoolIcon from "@material-ui/icons/School";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import DashboardIcon from "@material-ui/icons/Dashboard";
@@ -184,7 +187,7 @@ export default {
         {
           path: "/create",
           name: "Add Subjects",
-          component: CreateStudents,
+          component: CreateSubject,
         },
         {
           path: "/view",
@@ -202,7 +205,7 @@ export default {
         {
           path: "/schedule",
           name: "Exam Schedule",
-          component: CreateStudents,
+          component: ExamSchedule,
         },
         {
           path: "/grades",
@@ -219,13 +222,13 @@ export default {
       children: [
         {
           path: "/create",
-          name: "Create ",
-          component: CreateStudents,
+          name: "Create TimeTable",
+          component: CreateTimeTable,
         },
         {
           path: "/view",
-          name: "View ",
-          component: CreateStudents,
+          name: "View TimeTable",
+          component: CreateTimeTable,
         },
       ],
     },

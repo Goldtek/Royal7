@@ -16,7 +16,7 @@ export const fetchTeachers = () => {
       .then((response) => {
         // response.data is the users
         const teachersList = response.data.filter(
-          (el) => el.role === "teacher"
+          (el) => el.role === "Teacher"
         );
         // const teachersList = response.data;
         dispatch(sucess(teachersList));
