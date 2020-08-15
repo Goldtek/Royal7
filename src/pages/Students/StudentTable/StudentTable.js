@@ -2,7 +2,7 @@ import React from "react";
 import Avatar from "react-avatar";
 import MaterialTable from "material-table";
 import { useDispatch } from "react-redux";
-import { delteStudent } from "../../../redux/actions/studentActions";
+import { deleteStudent } from "../../../redux/actions/studentActions";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -29,7 +29,7 @@ const StudentsTable = (props) => {
       },
     }).then((result) => {
       if (result.value) {
-        dispatch(delteStudent(id));
+        dispatch(deleteStudent(id));
         // dispatch(fetchStudents());
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
       }

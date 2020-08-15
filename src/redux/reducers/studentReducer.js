@@ -2,9 +2,9 @@ import {
   FETCH_STUDENTS_REQUEST,
   FETCH_STUDENTS_SUCCESS,
   FETCH_STUDENTS_FAILURE,
-  DELETE_STUDENT_REQUEST,
-  DELETE_STUDENT_SUCCESS,
-  DELETE_STUDENT_FAILURE,
+  // DELETE_STUDENT_REQUEST,
+  // DELETE_STUDENT_SUCCESS,
+  // DELETE_STUDENT_FAILURE,
   FETCH_SINGLE_STUDENT_FAILURE,
   FETCH_SINGLE_STUDENT_SUCCESS,
   FETCH_SINGLE_STUDENT_REQUEST,
@@ -43,31 +43,31 @@ export const studentsReucer = (state = initialState, action) => {
       return state;
   }
 };
-export const delStudentReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case DELETE_STUDENT_REQUEST:
-      return {
-        ...state,
-        loading: true,
-      };
-    case DELETE_STUDENT_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        students: action.payload,
-        error: "",
-      };
-    case DELETE_STUDENT_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        students: [],
-        error: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+// export const deleStudentReducer = (state = initialState, action) => {
+//   switch (action.type) {
+//     case DELETE_STUDENT_REQUEST:
+//       return {
+//         ...state,
+//         loading: true,
+//       };
+//     case DELETE_STUDENT_SUCCESS:
+//       return {
+//         ...state,
+//         loading: false,
+//         students: action.payload,
+//         error: "",
+//       };
+//     case DELETE_STUDENT_FAILURE:
+//       return {
+//         ...state,
+//         loading: false,
+//         students: [],
+//         error: action.payload,
+//       };
+//     default:
+//       return state;
+//   }
+// };
 
 export const singleStudentReducer = (state = initialState, action) => {
   switch (action.type) {

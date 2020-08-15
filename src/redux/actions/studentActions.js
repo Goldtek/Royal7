@@ -71,15 +71,48 @@ export const singleFailure = (error) => {
 // FETCH SINGLE STUDENT :::::::::::::::::::::::
 
 // DELETE STUDENT ::::::::::::::::::::::::::::
-export const delteStudent = (id) => {
+export const deleteStudent = (id) => {
   return (dispatch) => {
-    console.log(id);
     dispatch(request(id));
     axios
       .delete(`${API_URL}/users/${id}`)
       .then((res) => {
         dispatch(fetchStudents());
         // console.log(res);
+      })
+      .catch((error) => {
+        // error.message is the error message
+        const errormsg = error.message;
+        dispatch(failure(errormsg));
+      });
+  };
+};
+// DELETE STUDENT ::::::::::::::::::::::::::::
+export const updateStudent = (userDetails) => {
+  const { userId } = userDetails;
+  return (dispatch) => {
+    dispatch(request());
+    axios({
+      method: "patch",
+      url: `${API_URL}/users/${userId}`,
+      data: {
+        firstName: userDetails.firstName,
+        middleName: userDetails.middleName,
+        lastName: userDetails.lastName,
+        email: userDetails.email,
+        dob: userDetails.dob,
+        admissionId: userDetails.admissionId,
+        stdlcass: userDetails.stdlcass,
+        bloodgrp: userDetails.bloodgrp,
+        gender: userDetails.gender,
+        phone: userDetails.phone,
+        shortbio: userDetails.shortbio,
+        // created: Date.now(),
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        dispatch(fetchSingleStudent(userId));
       })
       .catch((error) => {
         // error.message is the error message

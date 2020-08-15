@@ -15,7 +15,7 @@ import TeacherLists from "./Teachers/TeacherLists";
 //STUDENT
 import CreateStudents from "./Students/CreateStudent";
 import StudentLists from "./Students/StudentLists";
-import EditStudentDetail from "./Students/EditStudent";
+import EditStudent from "./Students/EditStudent";
 
 //PARENT
 import CreateParent from "./Parent/CreateParent";
@@ -50,7 +50,7 @@ export {
   CreateTeachers,
   TeacherLists,
   CreateStudents,
-  EditStudentDetail,
+  EditStudent,
   ValidateEmail,
   CreateAccount,
   EmailSent,
