@@ -4,21 +4,19 @@ import axios from "axios";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { withStyles } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import { Wrapper } from "../../components";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import AppBar from "@material-ui/core/AppBar";
-import Typography from "@material-ui/core/Typography";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
-// import DeleteIcon from "@material-ui/icons/Delete";
-// import SaveIcon from "@material-ui/icons/Save";
-import { Role } from "../../_helpers";
+import Typography from "@material-ui/core/Typography";
+import AppBar from "@material-ui/core/AppBar";
+import StudentTable from "./StudentTable/StudentTable";
 import { ToastContainer, toast } from "react-toastify";
+import { Role } from "../../_helpers";
 import "react-toastify/dist/ReactToastify.css";
 
 const styles = (theme) => ({
@@ -43,6 +41,7 @@ const styles = (theme) => ({
     flexGrow: 1,
     paddingBottom: theme.spacing(1),
   },
+
   appBar: {
     padding: "10px",
   },
@@ -52,64 +51,77 @@ const validationSchema = Yup.object().shape({
   firstName: Yup.string().required("required"),
   middleName: Yup.string().required("required"),
   lastName: Yup.string().required("required"),
-  phone: Yup.number("must be a phone number").required("required"),
+  phone: Yup.number().required("required"),
   dob: Yup.string().required("required"),
-  occupation: Yup.string().required("required"),
-  gender: Yup.string().required("required"),
-  address: Yup.string().required("required"),
+  religion: Yup.string().nullable(),
+  admissionId: Yup.string().required("required"),
+  stdclass: Yup.string().required("required"),
+  gender: Yup.string().nullable(),
+  address: Yup.string().nullable(),
+  photo: Yup.string().nullable(),
   bio: Yup.string().nullable(),
-  photo: Yup.string().required("required"),
+  bloodgrp: Yup.string().required("required"),
   email: Yup.string().email("invalid email").required("required"),
 });
 
 //API URL
 const API_URL = process.env.REACT_APP_BASEURL;
-
-const CreateParent = (props) => {
-  // let history = useHistory();
-  console.log(Role.parent);
+const CreateStudent = (props) => {
+  let history = useHistory();
   const { classes } = props;
+  // console.log(Role.student);
+  // const [randPassWord, setRandPassword] = useState("")
+
+  // const getRandomString = (length) => {
+  //   const randomChars =
+  //     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  //   let result = "";
+  //   for (let i = 0; i < length; i++) {
+  //     result += randomChars.charAt(
+  //       Math.floor(Math.random() * randomChars.length)
+  //     );
+  //   }
+
+  //   // this.setState({ random: result });
+  //   // console.log(this.state.random);
+  // };
   return (
     <Wrapper>
       <ToastContainer />
       <Formik
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          setSubmitting(false);
+          setSubmitting(true);
           axios({
             method: "POST",
             url: `${API_URL}/users`,
             data: {
               firstName: values.firstName,
               lastName: values.lastName,
-              middleName: values.middleName,
               email: values.email,
-              gender: values.gender,
-              dob: values.dob,
               phone: values.phone,
-              occupation: values.occupation,
               photo: values.file,
-              address: values.address,
               bio: values.bio,
-              role: Role.parent,
+              bloodgrp: values.bloodgrp,
+              stdclass: values.stdclass,
+              admissionId: values.admissionId,
+              role: Role.Student,
             },
           })
             .then((response) => {
-              toast.success(`🚀 Parent Added!`, {
+              toast.success(`🚀 Student Added!`, {
                 position: "top-right",
                 autoClose: 15000,
                 hideProgressBar: false,
                 closeOnClick: true,
-                pauseOnHover: true,
+                pauseOnHover: false,
                 draggable: true,
                 progress: undefined,
+                onClose: () => history.push(`/dashboard/student/create`, true),
               });
-
               resetForm();
-              setSubmitting(true);
-              // history.push(`/sent/${values.email}`, true);
             })
             .catch((error) => {
-              toast.error(`${error}`, {
+              toast.error(`Error Adding Studentt`, {
                 position: "top-right",
                 autoClose: 15000,
                 hideProgressBar: false,
@@ -119,7 +131,6 @@ const CreateParent = (props) => {
                 progress: undefined,
               });
               resetForm();
-              setSubmitting(true);
             });
         }}
         initialValues={{
@@ -130,10 +141,13 @@ const CreateParent = (props) => {
           gender: "",
           dob: "",
           phone: "",
-          occupation: "",
+          religion: "",
           photo: "",
           address: "",
+          bloodgrp: "",
           bio: "",
+          stdclass: "",
+          admissionId: "",
         }}
         validationSchema={validationSchema}
       >
@@ -149,19 +163,6 @@ const CreateParent = (props) => {
           } = props;
           return (
             <Form noValidate autoComplete="off" onSubmit={handleSubmit}>
-              <br />
-              <br />
-              <Card>
-                <Wrapper>
-                  <Breadcrumbs aria-label="breadcrumb">
-                    <Link color="inherit" href="/dashboard">
-                      Dashboard
-                    </Link>
-                    <Typography color="textPrimary">Create Parent</Typography>
-                  </Breadcrumbs>
-                </Wrapper>
-              </Card>
-
               <Card
                 className={classes.card}
                 style={{ marginTop: "5px", marginBottom: "20px" }}
@@ -171,11 +172,13 @@ const CreateParent = (props) => {
                   color="primary"
                   className={classes.appBar}
                 >
-                  <Typography color="inherit" className="flexs={12}pacer">
-                    CREATE PARENT
+                  <Typography
+                    color="inherit"
+                    className={`${classes.typo} flexs={12}pacer`}
+                  >
+                    FILL STUDENT INFO
                   </Typography>
                 </AppBar>
-
                 <CardContent>
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} md={4} lg={4}>
@@ -231,33 +234,7 @@ const CreateParent = (props) => {
                       />
                     </Grid>
                   </Grid>
-
                   <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6} md={4} lg={4}>
-                      <TextField
-                        fullWidth
-                        id="Gender"
-                        name="gender"
-                        select
-                        label="Gender"
-                        SelectProps={{
-                          MenuProps: {
-                            className: classes.menu,
-                          },
-                        }}
-                        margin="normal"
-                        value={values.gender}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={errors.gender && touched.gender}
-                        helperText={
-                          errors.gender && touched.gender && errors.gender
-                        }
-                      >
-                        <MenuItem value="male">Male</MenuItem>
-                        <MenuItem value="female">Female</MenuItem>
-                      </TextField>
-                    </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
                         fullWidth
@@ -275,7 +252,6 @@ const CreateParent = (props) => {
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
-                        type="number"
                         label="Phone Number"
                         placeholder="Phone Number"
                         fullWidth
@@ -310,40 +286,68 @@ const CreateParent = (props) => {
                     <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
                         fullWidth
-                        id="Occupation"
-                        label="Occupation"
+                        id="stdclass"
+                        select
+                        label="Class"
                         margin="normal"
-                        name="occupation"
-                        value={values.occupation}
+                        name="stdclass"
+                        value={values.stdclass}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        error={errors.occupation && touched.occupation}
+                        error={errors.stdclass && touched.stdclass}
                         helperText={
-                          errors.occupation &&
-                          touched.occupation &&
-                          errors.occupation
+                          errors.stdclass && touched.roleId && errors.stdclass
                         }
-                      />
+                      >
+                        <MenuItem value="STD 5">STD 5</MenuItem>
+                        <MenuItem value="STD 6">STD 6</MenuItem>
+                      </TextField>
                     </Grid>
-
+                    <Grid item xs={12} sm={6} md={4} lg={4}>
+                      <TextField
+                        fullWidth
+                        id="BloodGroup"
+                        select
+                        label="Blood Group"
+                        margin="normal"
+                        name="bloodgrp"
+                        value={values.bloodgrp}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={errors.bloodgrp && touched.bloodgrp}
+                        helperText={
+                          errors.bloodgrp && touched.bloodgrp && errors.bloodgrp
+                        }
+                      >
+                        <MenuItem value="1">A+</MenuItem>
+                        <MenuItem value="2">A-</MenuItem>
+                        <MenuItem value="3">B+</MenuItem>
+                        <MenuItem value="4">B-</MenuItem>
+                        <MenuItem value="5">O+</MenuItem>
+                        <MenuItem value="6">O-</MenuItem>
+                      </TextField>
+                    </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
                         fullWidth
                         multiline
                         rowsMax="4"
-                        id="address"
-                        label="Address"
+                        id="admissionId"
+                        label="Admission ID"
                         margin="normal"
-                        name="address"
-                        value={values.address}
+                        name="admissionId"
+                        value={values.admissionId}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        error={errors.address && touched.address}
+                        error={errors.admissionId && touched.admissionId}
                         helperText={
-                          errors.address && touched.address && errors.address
+                          errors.admissionId &&
+                          touched.admissionId &&
+                          errors.admissionId
                         }
                       />
                     </Grid>
+
                     <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
                         fullWidth
@@ -361,6 +365,31 @@ const CreateParent = (props) => {
                       />
                     </Grid>
 
+                    <Grid item xs={12} sm={6} md={4} lg={4}>
+                      <TextField
+                        fullWidth
+                        id="Gender"
+                        name="gender"
+                        select
+                        label="Gender"
+                        SelectProps={{
+                          MenuProps: {
+                            className: classes.menu,
+                          },
+                        }}
+                        margin="normal"
+                        value={values.gender}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={errors.gender && touched.gender}
+                        helperText={
+                          errors.gender && touched.gender && errors.gender
+                        }
+                      >
+                        <MenuItem value="male">Male</MenuItem>
+                        <MenuItem value="female">Female</MenuItem>
+                      </TextField>
+                    </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
                         type="file"
@@ -389,18 +418,17 @@ const CreateParent = (props) => {
                     color="primary"
                     className={classes.button}
                     type="submit"
+                    disabled={isSubmitting}
                   >
-                    {/* <SaveIcon
-                      className={classes.rightIcon}
-                      disabled={isSubmitting}
-                    />{" "} */}
+                    {/* <SaveIcon className={classes.rightIcon} />  */}
                     Save
                   </Button>{" "}
                   <Button
                     variant="contained"
                     color="secondary"
                     className={classes.button}
-                    type="reset"
+                    type="button"
+                    // onClick={() => getRandomString(6)}
                   >
                     {/* <DeleteIcon className={classes.rightIcon} /> */}
                     Cancel
@@ -415,8 +443,8 @@ const CreateParent = (props) => {
   );
 };
 
-CreateParent.propTypes = {
+CreateStudent.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CreateParent);
+export default withStyles(styles)(CreateStudent);

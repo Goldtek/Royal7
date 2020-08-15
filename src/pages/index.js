@@ -15,6 +15,7 @@ import TeacherLists from "./Teachers/TeacherLists";
 //STUDENT
 import CreateStudents from "./Students/CreateStudent";
 import StudentLists from "./Students/StudentLists";
+import EditStudentDetail from "./Students/EditStudent";
 
 //PARENT
 import CreateParent from "./Parent/CreateParent";
@@ -26,6 +27,8 @@ import CreateSection from "./Class/CreateSection";
 //SUBJECT ROUTES
 import CreateSubject from "./Subject/CreateSubject";
 
+// USER PROFILE
+import UserProfile from "./Profile/UserProfile";
 //EXAM ROUTES
 import ExamSchedule from "./Exam/ExamSchedule";
 
@@ -47,6 +50,7 @@ export {
   CreateTeachers,
   TeacherLists,
   CreateStudents,
+  EditStudentDetail,
   ValidateEmail,
   CreateAccount,
   EmailSent,
@@ -58,4 +62,5 @@ export {
   CreateSubject,
   ExamSchedule,
   CreateTimeTable,
+  UserProfile,
 };

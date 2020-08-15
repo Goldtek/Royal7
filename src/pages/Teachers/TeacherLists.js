@@ -1,12 +1,16 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+// import { useSelector } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 import { Wrapper } from "../../components";
 import { connect } from "react-redux";
 import { fetchTeachers } from "../../redux/actions/teachersAction";
-import TeacherTables from "./TeachersTables/TeacherTables";
+import TeachersTable from "./TeachersTables/TeacherTable";
 import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import Card from "@material-ui/core/Card";
 import { Helmet } from "react-helmet";
 const styles = (theme) => ({
   container: {
@@ -45,15 +49,24 @@ const TeacherLists = ({ fetchTeachers, teachers, classes }) => {
       <Helmet>
         <title>Teachers List</title>
       </Helmet>
-
-      <React.Fragment>
-        <AppBar position="static" color="primary" className={classes.appBar}>
-          <Typography color="inherit" className="flexs={12}pacer">
-            TEACHERS LIST
-          </Typography>
-        </AppBar>
-        <TeacherTables teachers={teachers.teachersList} />
-      </React.Fragment>
+      <br />
+      <br />
+      <Card>
+        <Wrapper>
+          <Breadcrumbs aria-label="breadcrumb">
+            <Link color="inherit" to="/dashboard/teachers/view">
+              Teachers
+            </Link>
+            <Typography color="textPrimary">Teacher List</Typography>
+          </Breadcrumbs>
+        </Wrapper>
+      </Card>
+      <AppBar position="static" color="primary" className={classes.appBar}>
+        {/* <Typography color="inherit" className="flexs={12}pacer">
+          TEACHERS LIST
+        </Typography> */}
+      </AppBar>
+      <TeachersTable teachers={teachers.teachers} />
     </Wrapper>
   );
 };

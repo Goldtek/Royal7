@@ -159,7 +159,7 @@ const Header = ({
             aria-expanded={searchExpanded}
             aria-label="Show searchbar"
           >
-            <SearchIcon />
+            {/* <SearchIcon /> */}
           </IconButton>
         </Hidden>
 

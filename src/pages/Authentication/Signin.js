@@ -15,6 +15,11 @@ import { userLogin, userLogout } from "../../redux/actions/userActions";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import IconButton from "@material-ui/core/IconButton";
+// import Button from '@material-ui/core/Button';
+import CloseIcon from "@material-ui/icons/Close";
+import Swal from "sweetalert2";
+// import withReactContent from "sweetalert2-react-content";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
@@ -115,15 +120,44 @@ const LoginPage = (props) => {
   const [statInfo, setSateInfo] = React.useState(undefined);
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
+
+  // const [counter, setCounter] = React.useState(10);
   // console.log(statInfo);
   // reset login status
+
+  // const Toast = Swal.mixin({
+  //   toast: true,
+  //   position: "top-end",
+  //   showConfirmButton: false,
+  //   timer: 3000,
+  //   timerProgressBar: true,
+  //   onOpen: (toast) => {
+  //     toast.addEventListener("mouseenter", Swal.stopTimer);
+  //     toast.addEventListener("mouseleave", Swal.resumeTimer);
+  //   },
+  // });
+
+  const Clear = () => {
+    const { history } = props;
+    //use the state via location.state
+    //and replace the state via
+    history.replace();
+    console.log(props);
+  };
+
   useEffect(() => {
     let stateAlert = props.location.state;
     let alerts = stateAlert === undefined ? undefined : stateAlert;
     dispatch(userLogout());
     setSateInfo(alerts);
     setOpen(true);
+    //set timer for error display
+    // const timer =
+    //   counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+    // return () => clearInterval(timer);
   }, [dispatch, props.location.state]);
+
+  // counter ? console.log(counter) : props.history.replace();
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -180,7 +214,21 @@ const LoginPage = (props) => {
                         }}
                         autoHideDuration={6000}
                       >
-                        <Alert severity="error">
+                        <Alert
+                          severity="error"
+                          action={
+                            <IconButton
+                              aria-label="close"
+                              color="inherit"
+                              size="small"
+                              onClick={() => {
+                                setOpen(false);
+                              }}
+                            >
+                              <CloseIcon fontSize="inherit" />
+                            </IconButton>
+                          }
+                        >
                           {"Error: Email or Password is incorrect, try again"}
                           {/* {dispatch(alertActions.clear())} */}
                         </Alert>
@@ -196,14 +244,27 @@ const LoginPage = (props) => {
                         }}
                         autoHideDuration={6000}
                       >
-                        <Alert severity="error">
+                        <Alert
+                          severity="error"
+                          action={
+                            <IconButton
+                              aria-label="close"
+                              color="inherit"
+                              size="small"
+                              onClick={() => {
+                                setOpen(false);
+                                Clear();
+                              }}
+                            >
+                              <CloseIcon fontSize="inherit" />
+                            </IconButton>
+                          }
+                        >
                           {statInfo ? statInfo.info : null}
                         </Alert>
                       </Snackbar>
                     </React.Fragment>
-                  ) : (
-                    ""
-                  )}
+                  ) : null}
                 </div>
                 <TextField
                   id="email"

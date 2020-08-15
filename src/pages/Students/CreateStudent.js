@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { withStyles } from "@material-ui/core/styles";
@@ -14,8 +15,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
-import DeleteIcon from "@material-ui/icons/Delete";
-import SaveIcon from "@material-ui/icons/Save";
 import { ToastContainer, toast } from "react-toastify";
 import { Role } from "../../_helpers";
 import "react-toastify/dist/ReactToastify.css";
@@ -55,7 +54,7 @@ const validationSchema = Yup.object().shape({
   phone: Yup.number().required("required"),
   dob: Yup.string().required("required"),
   religion: Yup.string().nullable(),
-  admissionID: Yup.string().required("required"),
+  admissionId: Yup.string().required("required"),
   stdclass: Yup.string().required("required"),
   gender: Yup.string().nullable(),
   address: Yup.string().nullable(),
@@ -96,20 +95,26 @@ const CreateStudent = (props) => {
             method: "POST",
             url: `${API_URL}/users`,
             data: {
+              id: uuidv4(),
               firstName: values.firstName,
+              middleName: values.middleName,
               lastName: values.lastName,
+              gender: values.gender,
+              address: values.address,
+              dob: values.dob,
               email: values.email,
               phone: values.phone,
-              photo: values.file,
-              bio: values.bio,
+              img: values.file,
+              shortbio: values.bio,
               bloodgrp: values.bloodgrp,
               stdclass: values.stdclass,
-              admissionID: values.admissionID,
-              role: Role.student,
+              admissionId: values.admissionId,
+              role: Role.Student,
+              created: Date.now(),
             },
           })
             .then((response) => {
-              toast.success(`🚀 Student Added!`, {
+              toast.success(`✅ Student Added!`, {
                 position: "top-right",
                 autoClose: 15000,
                 hideProgressBar: false,
@@ -122,7 +127,7 @@ const CreateStudent = (props) => {
               resetForm();
             })
             .catch((error) => {
-              toast.error(`Error Adding Studentt`, {
+              toast.error(` ❌ Error Adding Studentt`, {
                 position: "top-right",
                 autoClose: 15000,
                 hideProgressBar: false,
@@ -143,12 +148,12 @@ const CreateStudent = (props) => {
           dob: "",
           phone: "",
           religion: "",
-          photo: "",
+          file: "",
           address: "",
           bloodgrp: "",
           bio: "",
           stdclass: "",
-          admissionID: "",
+          admissionId: "",
         }}
         validationSchema={validationSchema}
       >
@@ -300,7 +305,8 @@ const CreateStudent = (props) => {
                           errors.stdclass && touched.roleId && errors.stdclass
                         }
                       >
-                        <MenuItem value="4">Student</MenuItem>
+                        <MenuItem value="STD 5">STD 5</MenuItem>
+                        <MenuItem value="STD 6">STD 6</MenuItem>
                       </TextField>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={4}>
@@ -332,18 +338,18 @@ const CreateStudent = (props) => {
                         fullWidth
                         multiline
                         rowsMax="4"
-                        id="admissionID"
+                        id="admissionId"
                         label="Admission ID"
                         margin="normal"
-                        name="admissionID"
-                        value={values.admissionID}
+                        name="admissionId"
+                        value={values.admissionId}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        error={errors.admissionID && touched.admissionID}
+                        error={errors.admissionId && touched.admissionId}
                         helperText={
-                          errors.admissionID &&
-                          touched.admissionID &&
-                          errors.admissionID
+                          errors.admissionId &&
+                          touched.admissionId &&
+                          errors.admissionId
                         }
                       />
                     </Grid>
@@ -386,8 +392,8 @@ const CreateStudent = (props) => {
                           errors.gender && touched.gender && errors.gender
                         }
                       >
-                        <MenuItem value="male">Male</MenuItem>
-                        <MenuItem value="female">Female</MenuItem>
+                        <MenuItem value="Male">Male</MenuItem>
+                        <MenuItem value="Female">Female</MenuItem>
                       </TextField>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={4}>
@@ -397,8 +403,8 @@ const CreateStudent = (props) => {
                         id="Photo"
                         label="Photo"
                         margin="normal"
-                        name="photo"
-                        value={values.photo}
+                        name="file"
+                        value={values.file}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         error={errors.photo && touched.photo}

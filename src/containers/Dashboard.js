@@ -57,9 +57,9 @@ const Dashboard = ({ history }) => {
   // let [routes, setRoutes] = useState([]);
   const { role } = userAuth.user;
 
-  useEffect(() => {
-    // setRoutes()
-  }, []);
+  // useEffect(() => {
+  //   setRoutes()
+  // }, []);
   let routes = [];
   if (role === "Admin") {
     routes = AllRoutes;
@@ -177,7 +177,7 @@ const Dashboard = ({ history }) => {
   return (
     <>
       <Header
-        logoAltText="Primer Admin Template"
+        logoAltText="Edcollab"
         logo={`${process.env.PUBLIC_URL}/static/images/logo.svg`}
         toggleDrawer={handleDrawerToggle}
         toogleNotifications={handleNotificationToggle}

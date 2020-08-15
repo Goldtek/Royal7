@@ -33,7 +33,7 @@ const PrivateRoute = ({ component: Component, userauth, roles, ...rest }) => (
               pathname: "/signin",
               state: {
                 from: props.location,
-                info: "Your are not authorized to access the page",
+                info: "You are not authorized!",
               },
             }}
           />

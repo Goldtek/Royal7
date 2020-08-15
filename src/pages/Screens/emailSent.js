@@ -98,7 +98,7 @@ const EmailValidate = (props) => {
   const classes = useStyles();
   let history = useHistory();
   const [useremail, setEmail] = useState("");
-  console.log(props);
+  // console.log(props);
   useEffect(() => {
     if (props.location.state !== undefined) {
       setEmail(props.location.state.email);

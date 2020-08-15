@@ -8,12 +8,15 @@ import {
   CreateAccount,
   EmailSent,
   EmailConfirmation,
+  UserProfile,
+  // EditStudentDetail,
   IndexPage,
 } from "../pages";
 import { Role } from "../_helpers/role";
 import { Helmet } from "react-helmet";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../containers/Dashboard";
+// import UserProfile from "../containers/UserProfile";
 
 const AppRoutes = () => {
   return (
@@ -21,6 +24,11 @@ const AppRoutes = () => {
       <Switch>
         <Route exact path="/" component={IndexPage} />
 
+        <PrivateRoute
+          path="/student/:id/edit"
+          component={UserProfile}
+          roles={[Role.Admin, Role.Student, Role.Teacher]}
+        />
         <PrivateRoute
           path="/dashboard"
           component={Dashboard}

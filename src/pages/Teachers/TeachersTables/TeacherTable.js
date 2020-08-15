@@ -2,12 +2,12 @@ import React from "react";
 import Avatar from "react-avatar";
 import MaterialTable from "material-table";
 import { useDispatch } from "react-redux";
-import { delteStudent } from "../../../redux/actions/studentActions";
+import { deleteTeacher } from "../../../redux/actions/teachersAction";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const StudentsTable = (props) => {
-  const { students } = props;
+  const { teachers } = props;
   const dispatch = useDispatch();
   let history = useHistory();
   const [selectedRow, setSelectedRow] = React.useState(null);
@@ -29,7 +29,7 @@ const StudentsTable = (props) => {
       },
     }).then((result) => {
       if (result.value) {
-        dispatch(delteStudent(id));
+        dispatch(deleteTeacher(id));
         // dispatch(fetchStudents());
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
       }
@@ -51,29 +51,29 @@ const StudentsTable = (props) => {
     { title: "Name", field: "firstName" },
     { title: "Surname", field: "lastName" },
     { title: "Phone", field: "phone" },
-    { title: "Admission ID", field: "admissionId" },
-    { title: "Class", field: "stdclass" },
+    { title: "ID", field: "idno" },
+    { title: "Section", field: "section" },
     { title: "Email", field: "email" },
   ];
   return (
     <React.Fragment>
       <MaterialTable
-        title="STUDENT LIST"
+        title="TEACHERS LIST"
         columns={columns}
-        data={students}
+        data={teachers}
         onRowClick={(evt, selectedRow) =>
           setSelectedRow(selectedRow.tableData.id)
         }
         actions={[
           {
             icon: "edit",
-            tooltip: "Edit Student",
+            tooltip: "Edit Teacher",
             onClick: (event, rowData) =>
               history.push(`/student/${rowData.id}/edit`),
           },
           (rowData) => ({
             icon: "delete",
-            tooltip: "Delete User",
+            tooltip: "Delete Teacher",
             onClick: (event, rowData) => handleCLickDelete(rowData.id),
             disabled: rowData.birthYear < 2000,
           }),

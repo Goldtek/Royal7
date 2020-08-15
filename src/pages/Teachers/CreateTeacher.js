@@ -19,7 +19,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Role } from "../../_helpers";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import Swal from "sweetalert2";
 const styles = (theme) => ({
   container: {
     display: "flex",
@@ -80,6 +80,24 @@ const API_URL = process.env.REACT_APP_BASEURL;
 const CreateTeacher = (props) => {
   const { classes } = props;
   let history = useHistory();
+  // SWAL ALERT
+
+  // const Toast = Swal.mixin({
+  //   toast: true,
+  //   position: "top-end",
+  //   showConfirmButton: false,
+  //   timer: 3000,
+  //   timerProgressBar: true,
+  //   onOpen: (toast) => {
+  //     toast.addEventListener("mouseenter", Swal.stopTimer);
+  //     toast.addEventListener("mouseleave", Swal.resumeTimer);
+  //   },
+  // });
+
+  // Toast.fire({
+  //   icon: "error",
+  //   title: "Signed in successfully",
+  // });
   return (
     <Wrapper>
       <Formik

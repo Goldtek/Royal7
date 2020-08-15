@@ -6,6 +6,7 @@ import {
   CreateStudents,
   CreateParent,
   StudentLists,
+  // EditStudentDetail,
   CreateClass,
   CreateSection,
   CreateSubject,
@@ -14,6 +15,7 @@ import {
 } from "../../pages";
 // import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 // import SchoolIcon from "@material-ui/icons/School";
+import PersonIcon from "@material-ui/icons/Person";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import LocalLibraryIcon from "@material-ui/icons/LocalLibrary";
@@ -79,6 +81,7 @@ export default {
           name: "All Students",
           component: StudentLists,
         },
+
         {
           path: "/grade",
           name: "Grade",
@@ -263,10 +266,10 @@ export default {
       icon: MessageIcon,
     },
     // {
-    //   path: "/signin",
-    //   name: "Sign out",
+    //   path: "/dashboard/:id/user",
+    //   name: "Profile",
     //   type: "link",
-    //   icon: ExitToAppIcon,
+    //   icon: PersonIcon,
     // },
   ],
 };
