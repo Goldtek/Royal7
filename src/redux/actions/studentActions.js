@@ -88,6 +88,8 @@ export const deleteStudent = (id) => {
   };
 };
 // DELETE STUDENT ::::::::::::::::::::::::::::
+
+// UPDATE STUDENT INFORMATION :::::::::::::::::::::::::::::::::::::::::::
 export const updateStudent = (userDetails) => {
   const { userId } = userDetails;
   return (dispatch) => {
@@ -107,12 +109,13 @@ export const updateStudent = (userDetails) => {
         gender: userDetails.gender,
         phone: userDetails.phone,
         shortbio: userDetails.shortbio,
-        // created: Date.now(),
+        updated: Date.now(),
       },
     })
       .then((res) => {
         console.log(res);
         dispatch(fetchSingleStudent(userId));
+        dispatch(fetchStudents());
       })
       .catch((error) => {
         // error.message is the error message
@@ -121,6 +124,8 @@ export const updateStudent = (userDetails) => {
       });
   };
 };
+
+// UPDATE STUDENT INFORMATION :::::::::::::::::::::::::::::::::::::::::::
 
 export const request = () => ({ type: FETCH_STUDENTS_REQUEST });
 

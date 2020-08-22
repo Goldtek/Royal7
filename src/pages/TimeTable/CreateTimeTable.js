@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import { Wrapper } from "../../components";
@@ -19,7 +19,7 @@ import Button from "@material-ui/core/Button";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
     flexWrap: "wrap",
@@ -44,8 +44,7 @@ const styles = (theme) => ({
   appBar: {
     padding: "10px",
   },
-});
-
+}));
 const validationSchema = Yup.object().shape({
   class: Yup.string().required("required"),
   day: Yup.string().required("required"),
@@ -60,7 +59,7 @@ const validationSchema = Yup.object().shape({
 const API_URL = process.env.REACT_APP_BASEURL;
 
 const CreateTimeTable = (props) => {
-  const { classes } = props;
+  const classes = useStyles();
   return (
     <Wrapper>
       <ToastContainer />
@@ -125,7 +124,7 @@ const CreateTimeTable = (props) => {
             values,
             touched,
             errors,
-            isSubmitting,
+            // isSubmitting,
             handleChange,
             handleBlur,
             handleSubmit,
@@ -351,4 +350,4 @@ CreateTimeTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CreateTimeTable);
+export default CreateTimeTable;

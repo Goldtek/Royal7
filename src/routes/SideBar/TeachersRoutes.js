@@ -1,27 +1,27 @@
 // Pages
 import {
   Home,
-  CreateTeachers,
-  TeacherLists,
+  // CreateTeachers,
+  // TeacherLists,
   CreateStudents,
-  CreateParent,
-  StudentLists,
+  // CreateParent,
+  // StudentLists,
   CreateClass,
   CreateSection,
 } from "../../pages";
 // import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 // import SchoolIcon from "@material-ui/icons/School";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+// import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import LocalLibraryIcon from "@material-ui/icons/LocalLibrary";
 import TableChartIcon from "@material-ui/icons/TableChart";
-import AssessmentIcon from "@material-ui/icons/Assessment";
-import AnnouncementIcon from "@material-ui/icons/Announcement";
-import MessageIcon from "@material-ui/icons/Message";
-import GroupIcon from "@material-ui/icons/Group";
+// import AssessmentIcon from "@material-ui/icons/Assessment";
+// import AnnouncementIcon from "@material-ui/icons/Announcement";
+// import MessageIcon from "@material-ui/icons/Message";
+// import GroupIcon from "@material-ui/icons/Group";
 import BorderColorIcon from "@material-ui/icons/BorderColor";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
-import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
+// import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
 // import ConfirmationNumberIcon from "@material-ui/icons/ConfirmationNumber";
 
 export default {

@@ -159,8 +159,8 @@ const PasswordReset = () => {
               <form onSubmit={handleSubmit}>
                 <div>
                   <img
-                    src={`${process.env.PUBLIC_URL}/static/images/logo/logo-single-dark.png`}
-                    alt=""
+                    src={`${process.env.PUBLIC_URL}/static/images/logo/logo-clear.png`}
+                    alt="edcollab logo"
                     // className="block"
                   />
                   <Typography variant="h6">

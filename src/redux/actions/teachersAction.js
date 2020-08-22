@@ -23,7 +23,7 @@ export const fetchTeachers = () => {
           (el) => el.role === "Teacher"
         );
         // const teachersList = response.data;
-        dispatch(sucess(teachersList));
+        dispatch(success(teachersList));
       })
       .catch((error) => {
         // error.message is the error message
@@ -35,7 +35,7 @@ export const fetchTeachers = () => {
 
 export const request = () => ({ type: FETCH_TEACHERS_REQUEST });
 
-export const sucess = (teachersList) => ({
+export const success = (teachersList) => ({
   type: FETCH_TEACHERS_SUCCESS,
   payload: teachersList,
 });
@@ -56,6 +56,7 @@ export const fetchSingleTeacher = (id) => {
       .get(`${API_URL}/users/${id}`)
       .then((res) => {
         const teacher = res.data;
+        console.log(res);
         dispatch(singleSuccess(teacher));
       })
       .catch((error) => {
@@ -81,7 +82,44 @@ export const singleFailure = (error) => {
 };
 // FETCH SINGLE TEACHER ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-// DELETE TEACHER :::::::::::::::::::::::::::::::::::::::::::::::
+// UPDATE TEACHER INFORMATION ::::::::::::::::::::::::::::::::::::::::::::::::
+export const updateTeacher = (userDetails) => {
+  const { userId } = userDetails;
+
+  return (dispatch) => {
+    dispatch(request());
+    axios({
+      method: "patch",
+      url: `${API_URL}/users/${userId}`,
+      data: {
+        firstName: userDetails.firstName,
+        middleName: userDetails.middleName,
+        lastName: userDetails.lastName,
+        email: userDetails.email,
+        dob: userDetails.dob,
+        idno: userDetails.idno,
+        stdlcass: userDetails.stdlcass,
+        bloodgrp: userDetails.bloodgrp,
+        gender: userDetails.gender,
+        phone: userDetails.phone,
+        shortbio: userDetails.shortbio,
+        updated: Date.now(),
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        dispatch(fetchSingleTeacher(userId));
+        dispatch(fetchTeachers());
+      })
+      .catch((error) => {
+        // error.message is the error message
+        const errormsg = error.message;
+        dispatch(failure(errormsg));
+      });
+  };
+};
+
+// UPDATE TEACHER INFORMATION ::::::::::::::::::::::::::::::::::::::::::::::::
 
 // DELETE STUDENT :::::::::::::::::::::::::::::::::::::::::::
 export const deleteTeacher = (id) => {

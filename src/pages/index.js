@@ -12,10 +12,13 @@ import NotFound from "./Errors/NotFound";
 // TEACHER
 import CreateTeachers from "./Teachers/CreateTeacher";
 import TeacherLists from "./Teachers/TeacherLists";
-//STUDENT
+import AssignTeachers from "./Teachers/AssignTeachers";
+// import EditTeacher from "./Teachers/EditTeacher";
+
+//        <--  STUDENT ROUTES -->
 import CreateStudents from "./Students/CreateStudent";
 import StudentLists from "./Students/StudentLists";
-import EditStudent from "./Students/EditStudent";
+// import ScheduleExams from "./Students/ScheduleExams";
 
 //PARENT
 import CreateParent from "./Parent/CreateParent";
@@ -27,18 +30,22 @@ import CreateSection from "./Class/CreateSection";
 //SUBJECT ROUTES
 import CreateSubject from "./Subject/CreateSubject";
 
-// USER PROFILE
-import UserProfile from "./Profile/UserProfile";
-//EXAM ROUTES
-import ExamSchedule from "./Exam/ExamSchedule";
+// EXAMS
+import ScheduleExams from "./Exams/ScheduleExams";
 
 //TIMETABLE ROUTES
 import CreateTimeTable from "./TimeTable/CreateTimeTable";
+
+// USER PROFILE
+import UserProfile from "./Profile/UserProfile";
+//EXAM ROUTES
+
 // SCREENS
 import CreateAccount from "./Screens/createAccount";
 import ValidateEmail from "./Screens/validateEmail";
 import EmailSent from "./Screens/emailSent";
 import EmailConfirmation from "./Screens/emailConfirmation";
+
 // sCUSTOM IMPORTS :::::::::::::::::::::::::::::::::::
 
 export {
@@ -48,9 +55,10 @@ export {
   NotFound,
   IndexPage,
   CreateTeachers,
+  AssignTeachers,
   TeacherLists,
   CreateStudents,
-  EditStudent,
+  ScheduleExams,
   ValidateEmail,
   CreateAccount,
   EmailSent,
@@ -60,7 +68,6 @@ export {
   CreateClass,
   CreateSection,
   CreateSubject,
-  ExamSchedule,
   CreateTimeTable,
   UserProfile,
 };

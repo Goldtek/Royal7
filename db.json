@@ -1,144 +1,146 @@
 {
+  "schools": [
+    {
+      "schoolName": "CodeAcademy",
+      "email": "ielemson@gmail.com",
+      "address": "Lekki Lagos Nigeria",
+      "about": "The school was founded on the rock that never fails",
+      "created": 1597930655859,
+      "id": 1
+    },
+    {
+      "schoolName": "fff",
+      "email": "ielemson@gmail.com",
+      "address": "fffff",
+      "about": "ffff",
+      "created": 1597995680683,
+      "id": 2
+    }
+  ],
   "users": [
     {
-      "firstName": "Bone",
-      "lastName": "Ebele",
-      "middleName": "ifeanyi",
-      "email": "bone@gmail.com",
-      "gender": "male",
-      "dob": "2017-05-25",
-      "phone": 333223333,
-      "religion": "christian",
-      "photo": "C:\\fakepath\\logo.jpeg",
-      "address": "1222222 aba aia",
-      "bloodgrp": "3",
-      "tclass": "3",
-      "idno": "22222",
-      "section": "3",
-      "shortshortbio": "",
-      "role": "Teacher",
-      "id": 12
-    },
-    {
-      "email": "joe@gmail.com",
-      "password": "abc111",
+      "firstName": "",
+      "lastName": "",
+      "email": "ielemson@gmail.com",
+      "password": "abc1234@1",
+      "phone": "08067407355",
+      "schoolId": 1,
       "role": "Admin",
-      "id": 14
+      "created": 1597930656252,
+      "id": 1
     },
     {
-      "firstName": "Franca",
-      "lastName": "C",
-      "middleName": "Chinasa",
-      "email": "chinasa@gmail.com",
+      "id": "6fe83d5f-2a88-4d50-8c90-185c4438b486",
+      "firstName": "James",
+      "middleName": "Obasanjo",
+      "lastName": "Jonathan",
+      "gender": "Male",
+      "address": "",
+      "dob": "1996-02-24",
+      "email": "obasanjo@gmail.com",
+      "phone": "080654567889",
+      "img": "C:\\fakepath\\Profile.png",
+      "shortbio": "short bio about obasanjo",
+      "bloodgrp": "2",
+      "stdclass": "STD 6",
+      "admissionId": "234/2020",
+      "schoolId": 1,
+      "role": "Student",
+      "created": 1597935255445
+    },
+    {
+      "firstName": "John",
+      "lastName": "Eze",
+      "middleName": "Paul",
+      "email": "john@gmail.com",
       "gender": "Female",
-      "dob": "2017-05-31",
-      "phone": 907650455,
+      "dob": "1933-02-02",
+      "phone": "08076507455",
       "religion": "christian",
-      "photo": "C:\\fakepath\\logo.jpeg",
-      "address": "Chinasa address",
-      "bloodgrp": "3",
-      "tclass": "3",
-      "idno": "12",
-      "section": "3",
-      "shortshortbio": "my short shortbio",
+      "photo": "C:\\fakepath\\me.jpg",
+      "address": "Sodipo Close Ajara Ogba Lagos",
+      "bloodgrp": "B+",
+      "idno": "IDNO-02",
+      "shortbio": "Lorem ipsum short bio ipium delium,Lorem ipsum short bio ipium delium,Lorem ipsum short bio ipium delium,Lorem ipsum short bio ipium delium",
       "role": "Teacher",
-      "id": 16
+      "schoolId": 1,
+      "created": 1597954141069,
+      "id": 2,
+      "updated": 1598028446830
+    },
+    {
+      "firstName": "",
+      "lastName": "",
+      "email": "ielemson@gmail.com",
+      "password": "fffff",
+      "phone": "ff",
+      "schoolId": 2,
+      "role": "Admin",
+      "created": 1597995681249,
+      "id": 3
     },
     {
       "firstName": "Chisom",
-      "lastName": "Ibe",
-      "middleName": "Ibe",
-      "email": "ibe@gmail.com",
-      "gender": "male",
-      "dob": "1997-02-25",
-      "phone": 807607544,
-      "religion": "christian",
-      "photo": "C:\\fakepath\\logo.jpeg",
-      "address": "my address",
-      "bloodgrp": "2",
-      "tclass": "3",
-      "idno": "2234",
-      "section": "2",
-      "shortshortbio": "my short shortbio",
-      "role": "Teacher",
-      "id": 17
-    },
-    {
-      "firstName": "Jonbosco",
-      "lastName": "Ihunaya",
-      "middleName": "umudim",
-      "email": "ihunaya@gmail.com",
-      "gender": "male",
-      "dob": "2017-05-25",
-      "phone": 8067453333,
-      "occupation": "Civil Service",
-      "address": "Ogba GRA Lagos",
-      "shortbio": "My short shortbio\n",
-      "role": "Parent",
-      "id": 28
-    },
-    {
-      "firstName": "James",
-      "lastName": "Imeh",
-      "middleName": "Attah",
-      "email": "imeh@gmail.com",
-      "gender": "male",
-      "dob": "1980-02-29",
-      "phone": 807670655,
-      "occupation": "Teacher",
-      "address": "Lake Chad Lagoon Lagos",
-      "shortbio": "",
-      "role": "Parent",
-      "id": 29
-    },
-    {
-      "firstName": "Hope Love",
-      "middleName": "Joy",
-      "lastName": "Ekenem",
-      "email": "joy@yahoo.com",
-      "dob": "1998-03-24",
-      "admissionId": "23H/2020",
-      "bloodgrp": "A-",
+      "lastName": "Eze-Ndu",
+      "middleName": "Dike",
+      "email": "dike@gmail.com",
       "gender": "Male",
-      "phone": "08067407344",
-      "created": 1596398149516,
-      "role": "Student",
-      "id": "94634d73-5c03-40e0-ac59-f45bcbd86c79",
-      "shortbio": "What is Lorem Ipsum?\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
-    }
-  ],
-  "schools": [],
-  "newAdmin": [
-    {
-      "email": "ielemson@gmail.com",
-      "schoolName": "soft school",
-      "phone": "08067406444",
-      "address": "my address",
-      "about": "my school",
-      "password": "abc1234",
-      "id": 1
+      "dob": "1985-08-01",
+      "phone": "80323245679",
+      "religion": "christian",
+      "photo": "C:\\fakepath\\Profile.png",
+      "address": "1 Sodipo Close Olusossun Oregun Lagos",
+      "bloodgrp": "A+",
+      "idno": "IDNO-03",
+      "shortbio": "This is a cool biography of Chisom Dike .....",
+      "role": "Teacher",
+      "schoolId": 1,
+      "created": 1598027856198,
+      "id": 4,
+      "updated": 1598041405801
     }
   ],
   "sendEmail": [
     {
-      "email": "kiss@gmail.com",
-      "created": 1596784308092,
+      "email": "ielemson@gmail.com",
+      "created": 1597996769601,
       "id": 1
     }
   ],
-  "class_schedule": [
+  "class_schedule": [],
+  "schoolClasses": [
     {
-      "TeacherName": "Ebere Soft",
-      "TeacherIdNo": "012202",
-      "email": "ebere@gmail.com",
-      "gender": "male",
-      "phone": "080675077",
-      "tclass": "1",
-      "classTime": "09:18",
-      "section": "2",
-      "classDate": "2020-02-02",
-      "subject": "1",
+      "stdClass": "Standard 6",
+      "sessionName": "2019/2020",
+      "classCode": "STD 6",
+      "created": 1597991747993,
       "id": 1
+    }
+  ],
+  "subjects": [
+    {
+      "name": "Mathematics",
+      "code": "Math101",
+      "schoolId": 1,
+      "userId": 1,
+      "created": 1597954294015,
+      "id": 1
+    },
+    {
+      "name": "English",
+      "code": "Eng101",
+      "schoolId": 1,
+      "userId": 1,
+      "created": 1597993541694,
+      "id": 2
+    },
+    {
+      "name": "Computer",
+      "code": "Comp101",
+      "schoolId": 1,
+      "userId": 1,
+      "created": 1597993573099,
+      "id": 3
     }
   ]
 }

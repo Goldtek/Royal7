@@ -4,18 +4,18 @@ import {
   CreateTeachers,
   TeacherLists,
   CreateStudents,
-  CreateParent,
+  // CreateParent,
   StudentLists,
-  // EditStudentDetail,
   CreateClass,
-  CreateSection,
+  // CreateSection,
   CreateSubject,
-  ExamSchedule,
+  ScheduleExams,
   CreateTimeTable,
+  AssignTeachers,
 } from "../../pages";
 // import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 // import SchoolIcon from "@material-ui/icons/School";
-import PersonIcon from "@material-ui/icons/Person";
+// import PersonIcon from "@material-ui/icons/Person";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import LocalLibraryIcon from "@material-ui/icons/LocalLibrary";
@@ -23,7 +23,7 @@ import TableChartIcon from "@material-ui/icons/TableChart";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 import AnnouncementIcon from "@material-ui/icons/Announcement";
 import MessageIcon from "@material-ui/icons/Message";
-import GroupIcon from "@material-ui/icons/Group";
+// import GroupIcon from "@material-ui/icons/Group";
 import BorderColorIcon from "@material-ui/icons/BorderColor";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
 import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
@@ -37,6 +37,32 @@ export default {
       type: "link",
       icon: DashboardIcon,
       component: Home,
+    },
+    {
+      path: "/dashboard/subject",
+      name: "Subjects",
+      type: "submenu",
+      icon: MenuBookIcon,
+      children: [
+        {
+          path: "/create",
+          name: "Add Subjects",
+          component: CreateSubject,
+        },
+      ],
+    },
+    {
+      path: "/dashboard/class",
+      name: "Classes",
+      type: "submenu",
+      icon: LocalLibraryIcon,
+      children: [
+        {
+          path: "/create",
+          name: "Add Class",
+          component: CreateClass,
+        },
+      ],
     },
     {
       path: "/dashboard/teachers",
@@ -58,7 +84,7 @@ export default {
         {
           path: "/assign",
           name: "Assign Teachers",
-          component: CreateStudents,
+          component: AssignTeachers,
         },
       ],
     },
@@ -89,116 +115,7 @@ export default {
         },
       ],
     },
-    // {
-    //   path: "/dashboard/student",
-    //   name: "Grade",
-    //   type: "submenu",
-    //   icon: ConfirmationNumberIcon,
 
-    //   children: [
-    //     {
-    //       path: "/create",
-    //       name: "Add",
-    //       component: CreateStudents,
-    //     },
-    //     {
-    //       path: "/view",
-    //       name: "All Students",
-    //       component: StudentLists,
-    //     },
-    //     {
-    //       path: "/grade",
-    //       name: "Grade",
-    //       component: CreateStudents,
-    //     },
-    //   ],
-    // },
-    // {
-    //   path: "/dashboard/student",
-    //   name: "Assignment",
-    //   type: "submenu",
-    //   icon: SchoolIcon,
-
-    //   children: [
-    //     {
-    //       path: "/create",
-    //       name: "Add",
-    //       component: CreateStudents,
-    //     },
-    //     {
-    //       path: "/view",
-    //       name: "All Students",
-    //       component: StudentLists,
-    //     },
-    //     {
-    //       path: "/grade",
-    //       name: "Grade",
-    //       component: CreateStudents,
-    //     },
-    //   ],
-    // },
-    {
-      path: "/dashboard/parent",
-      name: "Parents",
-      type: "submenu",
-      icon: GroupIcon,
-
-      children: [
-        {
-          path: "/create",
-          name: "Add Parents",
-          component: CreateParent,
-        },
-        {
-          path: "/view",
-          name: "All Parent",
-          component: CreateStudents,
-        },
-      ],
-    },
-
-    {
-      path: "/dashboard/class",
-      name: "Classes",
-      type: "submenu",
-      icon: LocalLibraryIcon,
-      children: [
-        {
-          path: "/create",
-          name: "Add Class",
-          component: CreateClass,
-        },
-        {
-          path: "/section",
-          name: "Add Section",
-          component: CreateSection,
-        },
-
-        {
-          path: "/view",
-          name: "View Class",
-          component: CreateStudents,
-        },
-      ],
-    },
-    {
-      path: "/dashboard/subject",
-      name: "Subjects",
-      type: "submenu",
-      icon: MenuBookIcon,
-      children: [
-        {
-          path: "/create",
-          name: "Add Subjects",
-          component: CreateSubject,
-        },
-        {
-          path: "/view",
-          name: "View Subjects",
-          component: CreateStudents,
-        },
-      ],
-    },
     {
       path: "/dashboard/exam",
       name: "Exams",
@@ -207,13 +124,8 @@ export default {
       children: [
         {
           path: "/schedule",
-          name: "Exam Schedule",
-          component: ExamSchedule,
-        },
-        {
-          path: "/grades",
-          name: "Exam Grades",
-          component: CreateStudents,
+          name: "Schedule Exam",
+          component: ScheduleExams,
         },
       ],
     },

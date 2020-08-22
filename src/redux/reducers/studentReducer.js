@@ -13,12 +13,12 @@ import {
 
 const initialState = {
   loading: false,
-  error: "",
+  error: null,
   students: [],
   student: {},
 };
 
-export const studentsReucer = (state = initialState, action) => {
+export const studentsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_STUDENTS_REQUEST:
       return {
@@ -30,7 +30,7 @@ export const studentsReucer = (state = initialState, action) => {
         ...state,
         loading: false,
         students: action.payload,
-        error: "",
+        error: null,
       };
     case FETCH_STUDENTS_FAILURE:
       return {
@@ -55,7 +55,7 @@ export const studentsReucer = (state = initialState, action) => {
 //         ...state,
 //         loading: false,
 //         students: action.payload,
-//         error: "",
+//         error: null,
 //       };
 //     case DELETE_STUDENT_FAILURE:
 //       return {
@@ -81,7 +81,7 @@ export const singleStudentReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         student: action.payload,
-        error: "",
+        error: null,
       };
     case FETCH_SINGLE_STUDENT_FAILURE:
       return {

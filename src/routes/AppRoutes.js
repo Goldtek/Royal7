@@ -8,8 +8,6 @@ import {
   CreateAccount,
   EmailSent,
   EmailConfirmation,
-  UserProfile,
-  EditStudent,
   IndexPage,
 } from "../pages";
 import { Role } from "../_helpers/role";
@@ -24,11 +22,6 @@ const AppRoutes = () => {
       <Switch>
         <Route exact path="/" component={IndexPage} />
 
-        <PrivateRoute
-          path="/student/:id/edit"
-          component={EditStudent}
-          roles={[Role.Admin, Role.Student, Role.Teacher]}
-        />
         <PrivateRoute
           path="/dashboard"
           component={Dashboard}

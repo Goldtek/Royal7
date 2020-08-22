@@ -5,7 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { withStyles } from "@material-ui/core/styles";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import { Wrapper } from "../../components";
@@ -15,9 +16,8 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
-import { ToastContainer, toast } from "react-toastify";
 import { Role } from "../../_helpers";
-import "react-toastify/dist/ReactToastify.css";
+import cogoToast from "cogo-toast";
 
 const styles = (theme) => ({
   container: {
@@ -67,8 +67,10 @@ const validationSchema = Yup.object().shape({
 //API URL
 const API_URL = process.env.REACT_APP_BASEURL;
 const CreateStudent = (props) => {
-  let history = useHistory();
   const { classes } = props;
+  // let history = useHistory();
+  const userAuth = useSelector((state) => state.authentication);
+  const schoolID = userAuth.user.schoolId;
   // console.log(Role.student);
   // const [randPassWord, setRandPassword] = useState("")
 
@@ -87,7 +89,6 @@ const CreateStudent = (props) => {
   // };
   return (
     <Wrapper>
-      <ToastContainer />
       <Formik
         onSubmit={(values, { setSubmitting, resetForm }) => {
           setSubmitting(true);
@@ -109,33 +110,36 @@ const CreateStudent = (props) => {
               bloodgrp: values.bloodgrp,
               stdclass: values.stdclass,
               admissionId: values.admissionId,
+              schoolId: schoolID,
               role: Role.Student,
               created: Date.now(),
             },
           })
-            .then((response) => {
-              toast.success(`✅ Student Added!`, {
-                position: "top-right",
-                autoClose: 15000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                onClose: () => history.push(`/dashboard/student/create`, true),
-              });
+            .then(() => {
+              // toast.success(`✅ Student Added!`, {
+              //   position: "top-right",
+              //   autoClose: 15000,
+              //   hideProgressBar: false,
+              //   closeOnClick: true,
+              //   pauseOnHover: false,
+              //   draggable: true,
+              //   progress: undefined,
+              //   onClose: () => history.push(`/dashboard/student/create`, true),
+              // });
+              cogoToast.success("Student Added Successfully!");
               resetForm();
             })
             .catch((error) => {
-              toast.error(` ❌ Error Adding Studentt`, {
-                position: "top-right",
-                autoClose: 15000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
+              // toast.error(` ❌ Error Adding Studentt`, {
+              //   position: "top-right",
+              //   autoClose: 15000,
+              //   hideProgressBar: false,
+              //   closeOnClick: true,
+              //   pauseOnHover: true,
+              //   draggable: true,
+              //   progress: undefined,
+              // });
+              cogoToast.error(error);
               resetForm();
             });
         }}

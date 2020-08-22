@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { history } from "../_helpers";
+// import { history } from "../_helpers";
 
 const PrivateRoute = ({ component: Component, userauth, roles, ...rest }) => (
   <Route
@@ -14,13 +14,16 @@ const PrivateRoute = ({ component: Component, userauth, roles, ...rest }) => (
         // not logged in so redirect to login page with the return url
         // return <Redirect to={{ pathname: "/signin" }} />;
 
-        // return (
-        //   <Redirect
-        //     to={{ pathname: "/signin", state: { from: props.location } }}
-        //   />
-        // );
+        return (
+          <Redirect
+            to={{
+              pathname: "/signin",
+              state: { from: props.location, info: "You are not authorized" },
+            }}
+          />
+        );
 
-        history.push("/signin");
+        // history.push("/signin");
       }
 
       // check if route is restricted by role

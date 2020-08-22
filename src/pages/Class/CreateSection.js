@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import { Wrapper } from "../../components";
@@ -19,7 +19,7 @@ import Button from "@material-ui/core/Button";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
     flexWrap: "wrap",
@@ -44,8 +44,7 @@ const styles = (theme) => ({
   appBar: {
     padding: "10px",
   },
-});
-
+}));
 const validationSchema = Yup.object().shape({
   section: Yup.string().required("required"),
   sectionCode: Yup.string().required("required"),
@@ -54,7 +53,6 @@ const validationSchema = Yup.object().shape({
   tclass: Yup.string().required("required"),
   classTime: Yup.string().required("required"),
   sectionClass: Yup.string().required("required"),
-  section: Yup.string().required("required"),
   classDate: Yup.string().required("required"),
   email: Yup.string().email("invalid email").required("required"),
 });
@@ -62,8 +60,8 @@ const validationSchema = Yup.object().shape({
 //API URL
 const API_URL = process.env.REACT_APP_BASEURL;
 
-const CreateSection = (props) => {
-  const { classes } = props;
+const CreateSection = () => {
+  const classes = useStyles();
   return (
     <Wrapper>
       <ToastContainer />
@@ -123,7 +121,6 @@ const CreateSection = (props) => {
           description: "",
           tclass: "",
           classTime: "",
-          section: "",
           classDate: "",
           subject: "",
         }}
@@ -134,7 +131,6 @@ const CreateSection = (props) => {
             values,
             touched,
             errors,
-            isSubmitting,
             handleChange,
             handleBlur,
             handleSubmit,
@@ -292,4 +288,4 @@ CreateSection.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CreateSection);
+export default CreateSection;

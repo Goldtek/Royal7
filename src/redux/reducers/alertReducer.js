@@ -1,8 +1,8 @@
 import { SUCCESS, ERROR, CLEAR } from "../actions/action-types";
 
 const initialState = {
-  type: "",
-  message: "",
+  type: null,
+  message: null,
 };
 
 const alertReducer = (state = initialState, action) => {

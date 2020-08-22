@@ -131,7 +131,7 @@ const UserProfile = () => {
     gender,
     dob,
     phone,
-    photo,
+    // photo,
     shortbio,
     admissionId,
     stdclass,
@@ -140,7 +140,7 @@ const UserProfile = () => {
   } = student;
   React.useEffect(() => {
     dispatch(fetchSingleStudent(params.id));
-  }, [fetchSingleStudent, dispatch]);
+  }, [dispatch, params.id]);
   let routes = [];
   if (role === "Admin") {
     routes = AllRoutes;

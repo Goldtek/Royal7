@@ -1,26 +1,25 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import PropTypes from "prop-types";
 import axios from "axios";
-import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { Formik, Form } from "formik";
+import { useSelector } from "react-redux";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import { Wrapper } from "../../components";
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
-import DeleteIcon from "@material-ui/icons/Delete";
-import SaveIcon from "@material-ui/icons/Save";
-import { withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Role } from "../../_helpers";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Swal from "sweetalert2";
-const styles = (theme) => ({
+import cogoToast from "cogo-toast";
+
+const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
     flexWrap: "wrap",
@@ -45,8 +44,7 @@ const styles = (theme) => ({
   appBar: {
     padding: "10px",
   },
-});
-
+}));
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required("required"),
   middleName: Yup.string().required("required"),
@@ -56,48 +54,22 @@ const validationSchema = Yup.object().shape({
   religion: Yup.string().required("required"),
   bloodgrp: Yup.string().required("required"),
   idno: Yup.string().required("required"),
-  tclass: Yup.string().required("required"),
-  section: Yup.string().required("required"),
+  // tclass: Yup.string().required("required"),
+  // section: Yup.string().required("required"),
   shortbio: Yup.string().nullable(),
-  // state: Yup.string().required("required"),
   gender: Yup.string().required("required"),
   address: Yup.string().required("required"),
-  // country: Yup.string().required("required"),
   photo: Yup.string().required("required"),
-  // institution: Yup.string().required("required"),
-  // institution1: Yup.string().nullable(),
-  // degree: Yup.string().required("required"),
-  // degree1: Yup.string().nullable(),
-  // yrPassedOut: Yup.string().nullable(),
-  // yrPassedOut1: Yup.string().nullable(),
-  // cgpa: Yup.string().nullable(),
-  // cgpa1: Yup.string().nullable(),
   email: Yup.string().email("invalid email").required("required"),
 });
 
 //API URL
 const API_URL = process.env.REACT_APP_BASEURL;
-const CreateTeacher = (props) => {
-  const { classes } = props;
-  let history = useHistory();
-  // SWAL ALERT
+const CreateTeacher = () => {
+  const classes = useStyles();
+  const userAuth = useSelector((state) => state.authentication);
+  const schoolID = userAuth.user.schoolId;
 
-  // const Toast = Swal.mixin({
-  //   toast: true,
-  //   position: "top-end",
-  //   showConfirmButton: false,
-  //   timer: 3000,
-  //   timerProgressBar: true,
-  //   onOpen: (toast) => {
-  //     toast.addEventListener("mouseenter", Swal.stopTimer);
-  //     toast.addEventListener("mouseleave", Swal.resumeTimer);
-  //   },
-  // });
-
-  // Toast.fire({
-  //   icon: "error",
-  //   title: "Signed in successfully",
-  // });
   return (
     <Wrapper>
       <Formik
@@ -118,37 +90,22 @@ const CreateTeacher = (props) => {
               photo: values.photo,
               address: values.address,
               bloodgrp: values.bloodgrp,
-              tclass: values.tclass,
+              // tclass: values.tclass,
               idno: values.idno,
-              section: values.section,
+              // section: values.section,
               shortbio: values.shortbio,
-              role: Role.teacher,
+              role: Role.Teacher,
+              schoolId: schoolID,
+              created: Date.now(),
             },
           })
-            .then((response) => {
-              toast.success(`🚀 Teacher Added Successfully!`, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
-
+            .then(() => {
+              cogoToast.success("Teacher Added Successfully!");
               resetForm();
-              history.push("/dashboard/teachers/view", true);
+              // history.push("/dashboard/teachers/view", true);
             })
             .catch((error) => {
-              toast.error(`${error}`, {
-                position: "top-right",
-                autoClose: 15000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
+              cogoToast.error(error);
               resetForm();
             });
         }}
@@ -183,12 +140,35 @@ const CreateTeacher = (props) => {
           } = props;
           return (
             <Form noValidate autoComplete="off" onSubmit={handleSubmit}>
-              <ToastContainer />
+              {/* <ToastContainer /> */}
+              <br />
+              <br />
+              <Card>
+                <Wrapper>
+                  <Breadcrumbs aria-label="breadcrumb">
+                    <Link color="inherit" to="/dashboard/teachers/view">
+                      Teachers
+                    </Link>
+                    <Typography color="textPrimary">
+                      Create Teacher Account
+                    </Typography>
+                  </Breadcrumbs>
+                </Wrapper>
+              </Card>
+              <AppBar
+                position="static"
+                color="primary"
+                className={classes.appBar}
+              >
+                {/* <Typography color="inherit" className="flexs={12}pacer">
+          TEACHERS LIST
+        </Typography> */}
+              </AppBar>
               <Card
                 className={classes.card}
                 style={{ marginTop: "5px", marginBottom: "20px" }}
               >
-                <AppBar
+                {/* <AppBar
                   position="static"
                   color="primary"
                   className={classes.appBar}
@@ -196,7 +176,7 @@ const CreateTeacher = (props) => {
                   <Typography color="inherit" className="flexs={12}pacer">
                     ADD NEW TEACHER
                   </Typography>
-                </AppBar>
+                </AppBar> */}
                 <CardContent>
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} md={3} lg={3}>
@@ -272,8 +252,8 @@ const CreateTeacher = (props) => {
                           errors.gender && touched.gender && errors.gender
                         }
                       >
-                        <MenuItem value="male">Male</MenuItem>
-                        <MenuItem value="female">Female</MenuItem>
+                        <MenuItem value="Male">Male</MenuItem>
+                        <MenuItem value="Female">Female</MenuItem>
                       </TextField>
                     </Grid>
                   </Grid>
@@ -345,10 +325,12 @@ const CreateTeacher = (props) => {
                       >
                         <MenuItem value="1">A+</MenuItem>
                         <MenuItem value="2">A-</MenuItem>
-                        <MenuItem value="3">B+</MenuItem>
-                        <MenuItem value="3">B-</MenuItem>
-                        <MenuItem value="3">O+</MenuItem>
-                        <MenuItem value="3">O-</MenuItem>
+                        <MenuItem value="3">AB+</MenuItem>
+                        <MenuItem value="4">AB-</MenuItem>
+                        <MenuItem value="5">B+</MenuItem>
+                        <MenuItem value="6">B-</MenuItem>
+                        <MenuItem value="7">O+</MenuItem>
+                        <MenuItem value="8">O-</MenuItem>
                       </TextField>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3} lg={3}>
@@ -365,7 +347,7 @@ const CreateTeacher = (props) => {
                         helperText={errors.idno && touched.idno && errors.idno}
                       />
                     </Grid>
-                    <Grid item xs={12} sm={6} md={3} lg={3}>
+                    {/* <Grid item xs={12} sm={6} md={3} lg={3}>
                       <TextField
                         label="Class"
                         select
@@ -388,8 +370,8 @@ const CreateTeacher = (props) => {
                         <MenuItem value="3">Five</MenuItem>
                         <MenuItem value="3">Six</MenuItem>
                       </TextField>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={3} lg={3}>
+                    </Grid> */}
+                    {/* <Grid item xs={12} sm={6} md={3} lg={3}>
                       <TextField
                         label="Section"
                         select
@@ -412,7 +394,7 @@ const CreateTeacher = (props) => {
                         <MenuItem value="3">Five</MenuItem>
                         <MenuItem value="3">Six</MenuItem>
                       </TextField>
-                    </Grid>
+                    </Grid> */}
                     <Grid item xs={12} sm={6} md={3} lg={3}>
                       <TextField
                         fullWidth
@@ -452,8 +434,8 @@ const CreateTeacher = (props) => {
                     </Grid>
                     <Grid item xs={12} sm={12} md={6} lg={6}>
                       <TextField
-                        label="SHORT BIO"
-                        placeholder="SHORT BIO"
+                        label="Short Bio"
+                        placeholder="Short Bio"
                         multiline
                         fullWidth
                         margin="normal"
@@ -487,258 +469,6 @@ const CreateTeacher = (props) => {
                   </Grid>
                 </CardContent>
               </Card>
-              {/* <Card className={classes.card} style={{ marginBottom: "20px" }}>
-                  <AppBar
-                    position="static"
-                    color="primary"
-                    className={classes.appBar}
-                  >
-                    <Typography color="inherit" className="flexs={12}pacer">
-                      CONTACT INFORMATION
-                    </Typography>
-                  </AppBar>
-                  <CardContent>
-                    <Grid container spacing={3}>
-                      <Grid item xs={12} sm={6} md={6} lg={6}>
-                        <TextField
-                          label="Address"
-                          placeholder="Address"
-                          fullWidth
-                          margin="normal"
-                          name="address"
-                          value={values.address}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.address && touched.address}
-                          helperText={
-                            errors.address && touched.address && errors.address
-                          }
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={3} lg={3}>
-                        <TextField
-                          fullWidth
-                          id="Country"
-                          select
-                          label="Country"
-                          SelectProps={{
-                            MenuProps: {
-                              className: classes.menu,
-                            },
-                          }}
-                          margin="normal"
-                          name="country"
-                          value={values.country}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.country && touched.country}
-                          helperText={
-                            errors.country && touched.country && errors.country
-                          }
-                        >
-                          <MenuItem value="male">Nigeria</MenuItem>
-                          <MenuItem value="female">Ghana</MenuItem>
-                        </TextField>
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={3} lg={3}>
-                        <TextField
-                          fullWidth
-                          id="State"
-                          select
-                          label="State"
-                          SelectProps={{
-                            MenuProps: {
-                              className: classes.menu,
-                            },
-                          }}
-                          margin="normal"
-                          name="state"
-                          value={values.state}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.state && touched.state}
-                          helperText={
-                            errors.state && touched.state && errors.state
-                          }
-                        >
-                          <MenuItem value="male">Lagos</MenuItem>
-                          <MenuItem value="female">Accra</MenuItem>
-                        </TextField>
-                      </Grid>
-                    </Grid>
-                    <Grid container spacing={3}>
-                      <Grid item xs={12} sm={6} md={3} lg={3}>
-                        <TextField
-                          fullWidth
-                          id="zip"
-                          label="ZIP"
-                          margin="normal"
-                          name="zip"
-                          value={values.zip}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.zip && touched.zip}
-                          helperText={errors.zip && touched.zip && errors.zip}
-                        />
-                      </Grid>
-                    </Grid>
-                  </CardContent>
-                </Card>
-                <Card className={classes.card} style={{ marginBottom: "20px" }}>
-                  <AppBar
-                    position="static"
-                    color="primary"
-                    className={classes.appBar}
-                  >
-                    <Typography color="inherit" className="flexs={12}pacer">
-                      ACADEMIC INFORMATION
-                    </Typography>
-                  </AppBar>
-                  <CardContent>
-                    <Grid container spacing={3}>
-                      <Grid item xs={12} sm={6} md={3} lg={3}>
-                        <TextField
-                          label="Highest Degree"
-                          placeholder="Highest Degree"
-                          name="degree"
-                          fullWidth
-                          margin="normal"
-                          value={values.degree}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.degree && touched.degree}
-                          helperText={
-                            errors.degree && touched.degree && errors.degree
-                          }
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={3} lg={3}>
-                        <TextField
-                          label="University/College"
-                          placeholder="University/College"
-                          fullWidth
-                          margin="normal"
-                          name="institution"
-                          value={values.institution}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.institution && touched.institution}
-                          helperText={
-                            errors.institution &&
-                            touched.institution &&
-                            errors.institution
-                          }
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={3} lg={3}>
-                        <TextField
-                          fullWidth
-                          id="date"
-                          label="Year Attended"
-                          type="date"
-                          defaultValue="2017-05-24"
-                          margin="normal"
-                          name="yrPassedOut"
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.yrPassedOut && touched.yrPassedOut}
-                          helperText={
-                            errors.yrPassedOut &&
-                            touched.yrPassedOut &&
-                            errors.yrPassedOut
-                          }
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={3} lg={3}>
-                        <TextField
-                          fullWidth
-                          id="CGPA"
-                          label="CGPA"
-                          margin="normal"
-                          name="cgpa"
-                          value={values.cgpa}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.cgpa && touched.cgpa}
-                          helperText={
-                            errors.cgpa && touched.cgpa && errors.cgpa
-                          }
-                        />
-                      </Grid>
-                    </Grid>
-                    <Grid container spacing={3}>
-                      <Grid item xs={12} sm={6} md={3} lg={3}>
-                        <TextField
-                          label="Other Degree"
-                          placeholder="Highest Degree"
-                          name="degree1"
-                          fullWidth
-                          margin="normal"
-                          value={values.degree1}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.degree1 && touched.degree1}
-                          helperText={
-                            errors.degree1 && touched.degree1 && errors.degree1
-                          }
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={3} lg={3}>
-                        <TextField
-                          label="University/College"
-                          placeholder="University/College"
-                          fullWidth
-                          margin="normal"
-                          name="institution1"
-                          value={values.institution1}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.institution1 && touched.institution1}
-                          helperText={
-                            errors.institution1 &&
-                            touched.institution1 &&
-                            errors.institution1
-                          }
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={3} lg={3}>
-                        <TextField
-                          fullWidth
-                          id="date"
-                          label="Year Attended"
-                          type="date"
-                          defaultValue="2017-05-24"
-                          margin="normal"
-                          name="yrPassedOut1"
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.yrPassedOut1 && touched.yrPassedOut1}
-                          helperText={
-                            errors.yrPassedOut1 &&
-                            touched.yrPassedOut1 &&
-                            errors.yrPassedOut1
-                          }
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={6} md={3} lg={3}>
-                        <TextField
-                          fullWidth
-                          id="CGPA"
-                          label="CGPA"
-                          margin="normal"
-                          name="cgpa1"
-                          value={values.cgpa1}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.cgpa1 && touched.cgpa1}
-                          helperText={
-                            errors.cgpa1 && touched.cgpa1 && errors.cgpa1
-                          }
-                        />
-                      </Grid>
-                    </Grid>
-                  </CardContent>
-                </Card> */}
 
               <Card>
                 {" "}
@@ -751,7 +481,7 @@ const CreateTeacher = (props) => {
                     disabled={isSubmitting}
                   >
                     {/* <SaveIcon className={classes.rightIcon} />  */}
-                    Save
+                    Create Teacher
                   </Button>{" "}
                   <Button
                     variant="contained"
@@ -776,4 +506,4 @@ CreateTeacher.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CreateTeacher);
+export default CreateTeacher;

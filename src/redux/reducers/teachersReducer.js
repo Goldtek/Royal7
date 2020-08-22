@@ -13,7 +13,7 @@ import {
 
 const initialState = {
   loading: false,
-  error: "",
+  error: null,
   teachers: [],
   teacher: {},
 };
@@ -30,7 +30,7 @@ export const allTeachersReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         teachers: action.payload,
-        error: "",
+        error: null,
       };
     case FETCH_TEACHERS_FAILURE:
       return {
@@ -56,7 +56,7 @@ export const singleTeacherReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         teacher: action.payload,
-        error: "",
+        error: null,
       };
     case FETCH_SINGLE_TEACHER_FAILURE:
       return {

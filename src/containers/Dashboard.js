@@ -1,5 +1,5 @@
 import { Header, NotificationCenter, Sidebar, Workspace } from "../components";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { useSelector } from "react-redux";
 import FormatTextdirectionLToRIcon from "@material-ui/icons/FormatTextdirectionLToR";
@@ -46,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
     right: theme.spacing(1) * 3,
   },
 }));
-
 const Dashboard = ({ history }) => {
   const classes = useStyles();
   const [state, dispatch] = useAppState();

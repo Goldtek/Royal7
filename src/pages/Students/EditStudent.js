@@ -20,11 +20,11 @@ import { AllRoutes, TeacherRoutes } from "../../routes/SideBar/";
 import useMountEffect from "../../mountEffect";
 import ProfileCard from "./Card/ProfileCard";
 import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
+import Card from "@material-ui/core/Card";
 import AppBar from "@material-ui/core/AppBar";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -35,7 +35,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import serializeForm from "form-serialize";
-import "./dropdown.css";
 
 const useStyles = makeStyles((theme) => ({
   panel: {
@@ -441,14 +440,14 @@ const StudentProfile = () => {
                             <Grid container spacing={3}>
                               <Grid item xs={12} sm={6} md={4} lg={4}>
                                 <label
-                                  htmlFor="defaultFormCardNameEx"
+                                  htmlFor="firstName"
                                   className="grey-text font-weight-light"
                                 >
                                   First Name
                                 </label>
                                 <input
                                   type="text"
-                                  id="defaultFormCardNameEx"
+                                  id="firstName"
                                   className="form-control"
                                   name="firstName"
                                   required
@@ -457,14 +456,14 @@ const StudentProfile = () => {
                               </Grid>
                               <Grid item xs={12} sm={6} md={4} lg={4}>
                                 <label
-                                  htmlFor="defaultFormCardNameEx"
+                                  htmlFor="middleName"
                                   className="grey-text font-weight-light"
                                 >
                                   Middle Name
                                 </label>
                                 <input
                                   type="text"
-                                  id="defaultFormCardNameEx"
+                                  id="middleName"
                                   className="form-control"
                                   defaultValue={middleName}
                                   name="middleName"
@@ -473,14 +472,14 @@ const StudentProfile = () => {
                               </Grid>
                               <Grid item xs={12} sm={6} md={4} lg={4}>
                                 <label
-                                  htmlFor="defaultFormCardNameEx"
+                                  htmlFor="lastName"
                                   className="grey-text font-weight-light"
                                 >
                                   Last Name
                                 </label>
                                 <input
                                   type="text"
-                                  id="defaultFormCardNameEx"
+                                  id="lastName"
                                   className="form-control"
                                   defaultValue={lastName}
                                   name="lastName"
@@ -491,14 +490,14 @@ const StudentProfile = () => {
                             <Grid container spacing={3}>
                               <Grid item xs={12} sm={6} md={4} lg={4}>
                                 <label
-                                  htmlFor="defaultFormCardNameEx"
+                                  htmlFor="email"
                                   className="grey-text font-weight-light"
                                 >
                                   Email
                                 </label>
                                 <input
                                   type="email"
-                                  id="defaultFormCardNameEx"
+                                  id="email"
                                   className="form-control"
                                   defaultValue={email}
                                   name="email"
@@ -507,14 +506,14 @@ const StudentProfile = () => {
                               </Grid>
                               <Grid item xs={12} sm={6} md={4} lg={4}>
                                 <label
-                                  htmlFor="defaultFormCardNameEx"
+                                  htmlFor="dob"
                                   className="grey-text font-weight-light"
                                 >
                                   Date Of Birth
                                 </label>
                                 <input
                                   type="text"
-                                  id="defaultFormCardNameEx"
+                                  id="dob"
                                   className="form-control"
                                   defaultValue={dob}
                                   name="dob"
@@ -523,14 +522,14 @@ const StudentProfile = () => {
                               </Grid>
                               <Grid item xs={12} sm={6} md={4} lg={4}>
                                 <label
-                                  htmlFor="defaultFormCardNameEx"
+                                  htmlFor="admissionId"
                                   className="grey-text font-weight-light"
                                 >
                                   Admission ID
                                 </label>
                                 <input
                                   type="text"
-                                  id="defaultFormCardNameEx"
+                                  id="admissionId"
                                   className="form-control"
                                   defaultValue={admissionId}
                                   name="admissionId"
@@ -542,14 +541,14 @@ const StudentProfile = () => {
                                   <div className="input-group-prepend">
                                     <label
                                       className="input-group-text"
-                                      htmlFor="inputGroupSelect01"
+                                      htmlFor="class"
                                     >
                                       Class
                                     </label>
                                   </div>
                                   <select
                                     className="custom-select"
-                                    id="inputGroupSelect01"
+                                    id="class"
                                     defaultValue={stdclass}
                                     name="stdclass"
                                   >
@@ -564,14 +563,14 @@ const StudentProfile = () => {
                                   <div className="input-group-prepend">
                                     <label
                                       className="input-group-text"
-                                      htmlFor="inputGroupSelect01"
+                                      htmlFor="bloodgrp"
                                     >
                                       Blood Group
                                     </label>
                                   </div>
                                   <select
                                     className="custom-select"
-                                    id="inputGroupSelect01"
+                                    id="bloodgrp"
                                     name="bloodgrp"
                                     defaultValue={bloodgrp}
                                   >
@@ -589,14 +588,14 @@ const StudentProfile = () => {
                                   <div className="input-group-prepend">
                                     <label
                                       className="input-group-text"
-                                      htmlFor="inputGroupSelect01"
+                                      htmlFor="gender"
                                     >
                                       Gender
                                     </label>
                                   </div>
                                   <select
                                     className="custom-select"
-                                    id="inputGroupSelect01"
+                                    id="gender"
                                     name="gender"
                                     defaultValue={gender}
                                   >
@@ -614,14 +613,14 @@ const StudentProfile = () => {
 
                               <Grid item xs={12} sm={6} md={4} lg={4}>
                                 <label
-                                  htmlFor="defaultFormCardNameEx"
+                                  htmlFor="phone"
                                   className="grey-text font-weight-light"
                                 >
                                   Phone
                                 </label>
                                 <input
                                   type="text"
-                                  id="defaultFormCardNameEx"
+                                  id="phone"
                                   className="form-control"
                                   name="phone"
                                   defaultValue={phone}
@@ -630,12 +629,10 @@ const StudentProfile = () => {
                               </Grid>
 
                               <Grid item xs={12} sm={6} md={8} lg={8}>
-                                <label htmlFor="defaultFormMessageModalEx">
-                                  Your message
-                                </label>
+                                <label htmlFor="textarea">Your message</label>
                                 <textarea
                                   type="text"
-                                  id="defaultFormMessageModalEx"
+                                  id="textarea"
                                   className="lg-textarea form-control rounded-0"
                                   name="shortbio"
                                   row="3"

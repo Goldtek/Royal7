@@ -187,7 +187,7 @@ export default function ValidateEmail() {
               <form onSubmit={handleSubmit}>
                 <div>
                   <img
-                    src={`${process.env.PUBLIC_URL}/static/images/logo/logo-single-dark.png`}
+                    src={`${process.env.PUBLIC_URL}/static/images/logo/logo-clear.png`}
                     alt=""
                     // className="block"
                   />

@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-// import { useSelector } from "react-redux";
-import { withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { Wrapper } from "../../components";
 import { connect } from "react-redux";
 import { fetchTeachers } from "../../redux/actions/teachersAction";
 import TeachersTable from "./TeachersTables/TeacherTable";
 import AppBar from "@material-ui/core/AppBar";
-import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import { Helmet } from "react-helmet";
-const styles = (theme) => ({
+
+const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
     flexWrap: "wrap",
@@ -37,13 +38,19 @@ const styles = (theme) => ({
   appBar: {
     padding: "10px",
   },
-});
-
-const TeacherLists = ({ fetchTeachers, teachers, classes }) => {
+  loader: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    marginTop: "10vh",
+  },
+}));
+const TeacherLists = ({ fetchTeachers, teachers }) => {
+  const classes = useStyles();
   useEffect(() => {
     fetchTeachers();
   }, [fetchTeachers]);
-
+  const teacherArray = teachers.teachers;
   return (
     <Wrapper>
       <Helmet>
@@ -66,13 +73,24 @@ const TeacherLists = ({ fetchTeachers, teachers, classes }) => {
           TEACHERS LIST
         </Typography> */}
       </AppBar>
-      <TeachersTable teachers={teachers.teachers} />
+      {teachers.loading ? (
+        <div className={classes.loader}>
+          {" "}
+          <CircularProgress className={classes.progress} size={60} />
+          <Typography color="inherit" className="flexs={12}pacer">
+            Loading...
+          </Typography>
+        </div>
+      ) : Array.isArray(teacherArray) && !teacherArray.length ? (
+        <div>No array</div>
+      ) : (
+        <TeachersTable teachers={teacherArray} />
+      )}
     </Wrapper>
   );
 };
 
 TeacherLists.propTypes = {
-  classes: PropTypes.object.isRequired,
   teachers: PropTypes.object.isRequired,
   fetchTeachers: PropTypes.func.isRequired,
 };
@@ -81,6 +99,4 @@ const mapStateToProps = (state) => ({
   teachers: state.teachers,
 });
 
-export default connect(mapStateToProps, { fetchTeachers })(
-  withStyles(styles)(TeacherLists)
-);
+export default connect(mapStateToProps, { fetchTeachers })(TeacherLists);

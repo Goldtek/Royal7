@@ -57,7 +57,7 @@ const ProcfileCard = ({
   email,
   role,
   bio,
-  admissionid,
+  idno,
   sex,
 }) => {
   const classes = useStyles();
@@ -77,7 +77,7 @@ const ProcfileCard = ({
               {role}
             </Typography>
             <Typography variant="body1" gutterBottom>
-              {admissionid}
+              {idno}
             </Typography>
             <Typography variant="body1" gutterBottom>
               <Link to="/">{email}</Link>
@@ -90,7 +90,10 @@ const ProcfileCard = ({
                 src={`${process.env.PUBLIC_URL}/static/images/avatar.jpg`}
                 className={classNames(classes.avatar)}
               />
-
+              {/* 
+              <Button variant="contained" color="primary" size="small">
+                Update Photo
+              </Button> */}
               <input
                 accept="image/*"
                 className={classes.input}

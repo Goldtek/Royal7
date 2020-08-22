@@ -1,10 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useEffect } from "react";
+// import PropTypes from "prop-types";
 import axios from "axios";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { withStyles } from "@material-ui/core/styles";
-import MenuItem from "@material-ui/core/MenuItem";
+// import MenuItem from "@material-ui/core/MenuItem";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchschoolClasses,
+  deleteClass,
+} from "../../redux/actions/schoolClassActions";
+import { makeStyles } from "@material-ui/core/styles";
+import MaterialTable from "material-table";
 import TextField from "@material-ui/core/TextField";
 import { Wrapper } from "../../components";
 import Grid from "@material-ui/core/Grid";
@@ -15,11 +21,10 @@ import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
+import Swal from "sweetalert2";
+import cogoToast from "cogo-toast";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-const styles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
     flexWrap: "wrap",
@@ -44,91 +49,86 @@ const styles = (theme) => ({
   appBar: {
     padding: "10px",
   },
-});
-
+}));
 const validationSchema = Yup.object().shape({
-  tname: Yup.string().required("required"),
-  idNo: Yup.string().required("required"),
-  subject: Yup.string().required("required"),
-  phone: Yup.number("must be a phone number").required("required"),
-  tclass: Yup.string().required("required"),
-  classTime: Yup.string().required("required"),
-  gender: Yup.string().required("required"),
-  section: Yup.string().required("required"),
-  classDate: Yup.string().required("required"),
+  sessionName: Yup.string().required("required"),
+  stdClass: Yup.string().required("required"),
   classCode: Yup.string().required("required"),
-  email: Yup.string().email("invalid email").required("required"),
 });
 
 //API URL
 const API_URL = process.env.REACT_APP_BASEURL;
 
 const CreateClass = (props) => {
-  const { classes } = props;
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const getClasses = useSelector((state) => state.schoolClasses.schoolClasses);
+  // const currDate = Date.now().format("MMMM Do YYYY");
+  // console.log(currDate);
+  // const mymon = Moment(currDate).format("dddd, MMMM Do YYYY, h:mm:ss a");
+
+  // REMOVE CLASS FUNCTION ::::::::::::::::::::::::::::::::
+  const handleCLickDelete = async (id) => {
+    Swal.fire({
+      title: `Are you sure ?`,
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+      width: "auto",
+      showClass: {
+        popup: "animate__animated animate__fadeInDown",
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp",
+      },
+    }).then((result) => {
+      if (result.value) {
+        dispatch(deleteClass(id));
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      }
+    });
+  };
+  // REMOVE CLASS FUNCTION ::::::::::::::::::::::::::::::::
+
+  useEffect(() => {
+    dispatch(fetchschoolClasses());
+  }, [dispatch]);
+
   return (
     <Wrapper>
-      <ToastContainer />
       <Formik
         onSubmit={(values, { setSubmitting, resetForm }) => {
           setSubmitting(false);
           axios({
             method: "POST",
-            url: `${API_URL}/class_schedule`,
+            url: `${API_URL}/schoolClasses`,
             data: {
-              teacherName: values.tname,
-              teacherIdNo: values.idNo,
-              email: values.email,
-              gender: values.gender,
-              phone: values.phone,
-              tclass: values.tclass,
-              classTime: values.classTime,
-              section: values.section,
-              classDate: values.classDate,
-              subject: values.subject,
+              stdClass: values.stdClass,
+              sessionName: values.sessionName,
               classCode: values.classCode,
+              created: Date.now(),
             },
           })
-            .then((response) => {
-              toast.success(`🚀 Class Created Succesfully!`, {
-                position: "top-right",
-                autoClose: 15000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
-
+            .then(() => {
+              cogoToast.success("Class Created Successfully");
               resetForm();
               setSubmitting(true);
               // history.push(`/sent/${values.email}`, true);
+              dispatch(fetchschoolClasses());
             })
             .catch((error) => {
-              toast.error(`${error}`, {
-                position: "top-right",
-                autoClose: 15000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
+              cogoToast.error(`${error}`);
               resetForm();
               setSubmitting(true);
             });
         }}
         initialValues={{
-          tname: "",
-          idNo: "",
-          email: "",
-          gender: "",
-          phone: "",
-          tclass: "",
-          classTime: "",
-          section: "",
-          classDate: "",
-          subject: "",
+          stdClass: "",
           classCode: "",
+          sessionName: "",
         }}
         validationSchema={validationSchema}
       >
@@ -137,7 +137,7 @@ const CreateClass = (props) => {
             values,
             touched,
             errors,
-            isSubmitting,
+            // isSubmitting,
             handleChange,
             handleBlur,
             handleSubmit,
@@ -145,16 +145,14 @@ const CreateClass = (props) => {
           return (
             <Form noValidate autoComplete="off" onSubmit={handleSubmit}>
               <br />
-              <br />
+
               <Card>
                 <Wrapper>
                   <Breadcrumbs aria-label="breadcrumb">
                     <Link color="inherit" href="/dashboard/class">
                       Class
                     </Link>
-                    <Typography color="textPrimary">
-                      New Class Schedule
-                    </Typography>
+                    <Typography color="textPrimary">New Class</Typography>
                   </Breadcrumbs>
                 </Wrapper>
               </Card>
@@ -169,49 +167,19 @@ const CreateClass = (props) => {
                   className={classes.appBar}
                 >
                   <Typography color="inherit" className="flexs={12}pacer">
-                    Add New Class Schedule
+                    Create New Class
                   </Typography>
                 </AppBar>
 
                 <CardContent>
                   <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6} md={4} lg={4}>
-                      <TextField
-                        label="Teacher Name"
-                        placeholder="Teacher Name"
-                        fullWidth
-                        margin="normal"
-                        name="tname"
-                        value={values.tname}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={errors.tname && touched.tname}
-                        helperText={
-                          errors.tname && touched.tname && errors.tname
-                        }
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={4}>
-                      <TextField
-                        label="ID NO"
-                        placeholder="ID NO"
-                        fullWidth
-                        margin="normal"
-                        name="idNo"
-                        value={values.idNo}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={errors.idNo && touched.idNo}
-                        helperText={errors.idNo && touched.idNo && errors.idNo}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={4}>
+                    {/* <Grid item xs={12} sm={6} md={3} lg={3}>
                       <TextField
                         fullWidth
                         id="Gender"
                         name="gender"
                         select
-                        label="Gender"
+                        label="Choose Department"
                         SelectProps={{
                           MenuProps: {
                             className: classes.menu,
@@ -226,174 +194,63 @@ const CreateClass = (props) => {
                           errors.gender && touched.gender && errors.gender
                         }
                       >
-                        <MenuItem value="male">Male</MenuItem>
-                        <MenuItem value="female">Female</MenuItem>
+                        <MenuItem value="male">Science</MenuItem>
+                        <MenuItem value="female">Arts</MenuItem>
+                        <MenuItem value="female">Commercial</MenuItem>
                       </TextField>
-                    </Grid>
-                    <Grid container spacing={3}>
-                      <Grid item xs={12} sm={12} md={4} lg={4}>
-                        <TextField
-                          label="Class"
-                          select
-                          placeholder="Class"
-                          fullWidth
-                          margin="normal"
-                          name="tclass"
-                          value={values.tclass}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.tclass && touched.tclass}
-                          helperText={
-                            errors.tclass && touched.tclass && errors.tclass
-                          }
-                        >
-                          <MenuItem value="1">One</MenuItem>
-                          <MenuItem value="2">Two</MenuItem>
-                          <MenuItem value="3">Three</MenuItem>
-                        </TextField>
-                      </Grid>
+                    </Grid> */}
 
-                      <Grid item xs={12} sm={12} md={4} lg={4}>
-                        <TextField
-                          fullWidth
-                          margin="normal"
-                          id="classCode"
-                          label="Class Code"
-                          placeholder="Class Code"
-                          name="classCode"
-                          value={values.classCode}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.classCode && touched.classCode}
-                          helperText={
-                            errors.classCode &&
-                            touched.classCode &&
-                            errors.classCode
-                          }
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={12} md={4} lg={4}>
-                        <TextField
-                          label="Subject"
-                          select
-                          placeholder="Class"
-                          fullWidth
-                          margin="normal"
-                          name="subject"
-                          value={values.subject}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          error={errors.subject && touched.subject}
-                          helperText={
-                            errors.subject && touched.subject && errors.subject
-                          }
-                        >
-                          <MenuItem value="1">One</MenuItem>
-                          <MenuItem value="2">Two</MenuItem>
-                          <MenuItem value="3">Three</MenuItem>
-                        </TextField>
-                      </Grid>
-                    </Grid>
                     <Grid item xs={12} sm={12} md={4} lg={4}>
                       <TextField
+                        label="Class"
+                        placeholder="Class"
                         fullWidth
                         margin="normal"
-                        id="datetime-local"
-                        label="Date"
-                        type="date"
-                        name="classDate"
-                        defaultValue="2017-05-24T10:30"
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
-                        value={values.classDate}
+                        name="stdClass"
+                        value={values.stdClass}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        error={errors.classDate && touched.classDate}
+                        error={errors.stdClass && touched.stdClass}
                         helperText={
-                          errors.classDate &&
-                          touched.classDate &&
-                          errors.classDate
-                        }
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={4} lg={4}>
-                      <TextField
-                        fullWidth
-                        margin="normal"
-                        id="datetime-local"
-                        label="Time"
-                        type="time"
-                        name="classTime"
-                        defaultValue="2017-05-24T10:30"
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
-                        value={values.classTime}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={errors.classTime && touched.classTime}
-                        helperText={
-                          errors.classTime &&
-                          touched.classTime &&
-                          errors.classTime
+                          errors.stdClass && touched.stdClass && errors.stdClass
                         }
                       />
                     </Grid>
 
                     <Grid item xs={12} sm={12} md={4} lg={4}>
                       <TextField
-                        label="Section"
-                        select
-                        placeholder="Section"
                         fullWidth
                         margin="normal"
-                        name="section"
-                        value={values.section}
+                        id="classCode"
+                        label="Class Code"
+                        placeholder="Class Code"
+                        name="classCode"
+                        value={values.classCode}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        error={errors.section && touched.section}
+                        error={errors.classCode && touched.classCode}
                         helperText={
-                          errors.section && touched.section && errors.section
-                        }
-                      >
-                        <MenuItem value="1">One</MenuItem>
-                        <MenuItem value="2">Two</MenuItem>
-                      </TextField>
-                    </Grid>
-                    <Grid item xs={12} sm={6} md={4} lg={4}>
-                      <TextField
-                        type="email"
-                        label="Email"
-                        placeholder="Email"
-                        fullWidth
-                        margin="normal"
-                        name="email"
-                        value={values.email}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={errors.email && touched.email}
-                        helperText={
-                          errors.email && touched.email && errors.email
+                          errors.classCode &&
+                          touched.classCode &&
+                          errors.classCode
                         }
                       />
                     </Grid>
-
-                    <Grid item xs={12} sm={6} md={4} lg={4}>
+                    <Grid item xs={12} sm={12} md={4} lg={4}>
                       <TextField
+                        label="Session"
+                        placeholder="Session"
                         fullWidth
-                        multiline
-                        rowsMax="4"
-                        id="phone"
-                        label="Phone"
                         margin="normal"
-                        name="phone"
-                        value={values.phone}
+                        name="sessionName"
+                        value={values.sessionName}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        error={errors.phone && touched.phone}
+                        error={errors.sessionName && touched.sessionName}
                         helperText={
-                          errors.phone && touched.phone && errors.phone
+                          errors.sessionName &&
+                          touched.sessionName &&
+                          errors.sessionName
                         }
                       />
                     </Grid>
@@ -409,7 +266,7 @@ const CreateClass = (props) => {
                     className={classes.button}
                     type="submit"
                   >
-                    Create
+                    Create Class
                   </Button>{" "}
                   <Button
                     variant="contained"
@@ -426,12 +283,41 @@ const CreateClass = (props) => {
           );
         }}
       </Formik>
+      <br />
+      <Grid item xs={12} sm={12} md={12} lg={12}>
+        <Grid item xs={12} sm={12} md={12} lg={12}>
+          <MaterialTable
+            title="View Classes"
+            columns={[
+              { title: "Class", field: "stdClass" },
+              { title: "Class Code", field: "classCode" },
+              { title: "Session", field: "sessionName" },
+              { title: "Created", field: "created" },
+            ]}
+            data={getClasses}
+            actions={[
+              {
+                icon: "edit",
+                tooltip: "Edit Class",
+                onClick: (event, rowData) => alert("You saved " + rowData.name),
+              },
+              {
+                icon: "delete",
+                tooltip: "Delete Class",
+                onClick: (event, rowData) => handleCLickDelete(rowData.id),
+              },
+            ]}
+            options={{
+              headerStyle: {
+                backgroundColor: "#3f51b5",
+                color: "#FFF",
+              },
+            }}
+          />
+        </Grid>
+      </Grid>
     </Wrapper>
   );
 };
 
-CreateClass.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CreateClass);
+export default CreateClass;

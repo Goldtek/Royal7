@@ -18,7 +18,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import NotificationsOffIcon from "@material-ui/icons/NotificationsOff";
 import PropTypes from "prop-types";
-import SearchIcon from "@material-ui/icons/Search";
+// import SearchIcon from "@material-ui/icons/Search";
 import SettingsIcon from "@material-ui/icons/Settings";
 import Toolbar from "@material-ui/core/Toolbar";
 import Tooltip from "@material-ui/core/Tooltip";
