@@ -343,6 +343,7 @@ const TeacherTable = (props) => {
           }),
         ]}
         options={{
+          actionsColumnIndex: -1,
           filtering: false,
           sorting: true,
           headerStyle: {

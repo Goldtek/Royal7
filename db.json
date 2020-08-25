@@ -115,6 +115,20 @@
       "classCode": "STD 6",
       "created": 1597991747993,
       "id": 1
+    },
+    {
+      "stdClass": "Standard 1",
+      "sessionName": "2019/2020",
+      "classCode": "STD 1",
+      "created": 1598137426109,
+      "id": 2
+    },
+    {
+      "stdClass": "Standard 2",
+      "sessionName": "2019/2020",
+      "classCode": "STD 2",
+      "created": 1598137445927,
+      "id": 3
     }
   ],
   "subjects": [
@@ -141,6 +155,29 @@
       "userId": 1,
       "created": 1597993573099,
       "id": 3
+    }
+  ],
+  "examSchedule": [],
+  "assignTeacher": [
+    {
+      "id": "1a7e9f2c-96e7-4792-b246-5947286e3b89",
+      "teacherId": "Chisom Eze-Ndu",
+      "classId": 2,
+      "subjectId": 2,
+      "session": "2019/2020",
+      "schoolId": 1,
+      "role": "Student",
+      "created": 1598139620571
+    },
+    {
+      "id": "b39c360e-de60-4a96-bbbb-5b50dead6497",
+      "teacherId": "Chisom Eze-Ndu",
+      "classId": "STD 1",
+      "subjectId": "English",
+      "session": "2019/2020",
+      "schoolId": 1,
+      "role": "Student",
+      "created": 1598143131148
     }
   ]
 }

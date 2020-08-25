@@ -7,7 +7,10 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { withStyles } from "@material-ui/core/styles";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchTeachers } from "../../redux/actions/teachersAction";
+import {
+  fetchTeachers,
+  fetchAssignedTeachers,
+} from "../../redux/actions/teachersAction";
 import { fetchSchoolSubjects } from "../../redux/actions/subjectActions";
 import { fetchschoolClasses } from "../../redux/actions/schoolClassActions";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -21,6 +24,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import AssignedTeachersList from "./TeachersTables/AssignedTeachersTable";
 import { Role } from "../../_helpers";
 import cogoToast from "cogo-toast";
 
@@ -60,7 +64,7 @@ const styles = (theme) => ({
 });
 
 const validationSchema = Yup.object().shape({
-  subjectId: Yup.number().required("required"),
+  subjectId: Yup.string().required("required"),
   session: Yup.string().required("required"),
   classId: Yup.string().required("required"),
   teacherId: Yup.string().required("required"),
@@ -70,12 +74,17 @@ const validationSchema = Yup.object().shape({
 const API_URL = process.env.REACT_APP_BASEURL;
 const AssignTeachers = (props) => {
   const { classes } = props;
+  const dispatch = useDispatch();
   const userAuth = useSelector((state) => state.authentication);
   const teachers = useSelector((state) => state.teachers.teachers);
   const subjects = useSelector((state) => state.subjects.subjects);
   const Classes = useSelector((state) => state.schoolClasses.schoolClasses);
-  const dispatch = useDispatch();
+  const assignTeachersList = useSelector(
+    (state) => state.assignedTeachers.assignedTeachers
+  );
+
   const schoolID = userAuth.user.schoolId;
+
   // console.log(teachers);
   // const [randPassWord, setRandPassword] = useState("")
 
@@ -97,6 +106,7 @@ const AssignTeachers = (props) => {
     dispatch(fetchTeachers());
     dispatch(fetchSchoolSubjects());
     dispatch(fetchschoolClasses());
+    dispatch(fetchAssignedTeachers());
   }, [dispatch]);
   return (
     <Wrapper>
@@ -108,17 +118,22 @@ const AssignTeachers = (props) => {
           setSubmitting(true);
           axios({
             method: "POST",
-            url: `${API_URL}/users`,
+            url: `${API_URL}/assignTeacher`,
             data: {
               id: uuidv4(),
+              teacherId: values.teacherId,
+              classId: values.classId,
+              subjectId: values.subjectId,
+              session: values.session,
               schoolId: schoolID,
               role: Role.Student,
               created: Date.now(),
             },
           })
             .then(() => {
-              cogoToast.success("Student Added Successfully!");
+              cogoToast.success("Teacher Assigned Added Successfully!");
               resetForm();
+              dispatch(fetchAssignedTeachers());
             })
             .catch((error) => {
               cogoToast.error(error);
@@ -205,7 +220,7 @@ const AssignTeachers = (props) => {
                         {teachers.map(({ firstName, lastName, id }) => (
                           <MenuItem
                             key={id}
-                            value={id}
+                            value={`${firstName} ${lastName}`}
                           >{`${firstName} ${lastName}`}</MenuItem>
                         ))}
                       </TextField>
@@ -229,7 +244,7 @@ const AssignTeachers = (props) => {
                         {Classes.map(({ classCode, id }) => (
                           <MenuItem
                             key={id}
-                            value={id}
+                            value={classCode}
                           >{`${classCode}`}</MenuItem>
                         ))}
                       </TextField>
@@ -253,7 +268,7 @@ const AssignTeachers = (props) => {
                         }
                       >
                         {subjects.map(({ name, id }) => (
-                          <MenuItem key={id} value={id}>{`${name}`}</MenuItem>
+                          <MenuItem key={id} value={name}>{`${name}`}</MenuItem>
                         ))}
                       </TextField>
                     </Grid>
@@ -309,6 +324,8 @@ const AssignTeachers = (props) => {
           );
         }}
       </Formik>
+      <br />
+      <AssignedTeachersList assigned={assignTeachersList} />
     </Wrapper>
   );
 };

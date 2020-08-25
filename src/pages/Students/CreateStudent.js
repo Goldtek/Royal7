@@ -116,29 +116,10 @@ const CreateStudent = (props) => {
             },
           })
             .then(() => {
-              // toast.success(`✅ Student Added!`, {
-              //   position: "top-right",
-              //   autoClose: 15000,
-              //   hideProgressBar: false,
-              //   closeOnClick: true,
-              //   pauseOnHover: false,
-              //   draggable: true,
-              //   progress: undefined,
-              //   onClose: () => history.push(`/dashboard/student/create`, true),
-              // });
               cogoToast.success("Student Added Successfully!");
               resetForm();
             })
             .catch((error) => {
-              // toast.error(` ❌ Error Adding Studentt`, {
-              //   position: "top-right",
-              //   autoClose: 15000,
-              //   hideProgressBar: false,
-              //   closeOnClick: true,
-              //   pauseOnHover: true,
-              //   draggable: true,
-              //   progress: undefined,
-              // });
               cogoToast.error(error);
               resetForm();
             });

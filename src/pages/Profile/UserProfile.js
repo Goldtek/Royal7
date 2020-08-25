@@ -13,7 +13,7 @@ import { fetchSingleStudent } from "../../redux/actions/studentActions";
 import { MobileBreakpoint } from "../../styleVariables";
 import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
-import { AllRoutes, TeacherRoutes } from "../../routes/SideBar/";
+import { AdminRoutes, TeacherRoutes } from "../../routes/SideBar/";
 import useMountEffect from "../../mountEffect";
 import ProfileCard from "./ProfileCard";
 import Grid from "@material-ui/core/Grid";
@@ -143,7 +143,7 @@ const UserProfile = () => {
   }, [dispatch, params.id]);
   let routes = [];
   if (role === "Admin") {
-    routes = AllRoutes;
+    routes = AdminRoutes;
     // return routes;
   }
   if (role === "Teacher") {

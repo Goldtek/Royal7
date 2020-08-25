@@ -7,6 +7,9 @@ import {
   FETCH_SINGLE_TEACHER_REQUEST,
   FETCH_SINGLE_TEACHER_SUCCESS,
   FETCH_SINGLE_TEACHER_FAILURE,
+  FETCH_ASSIGNED_TEACHER_REQUEST,
+  FETCH_ASSIGNED_TEACHER_SUCCESS,
+  FETCH_ASSIGNED_TEACHER_FAILURE,
 } from "./action-types";
 
 const API_URL = process.env.REACT_APP_BASEURL;
@@ -81,6 +84,42 @@ export const singleFailure = (error) => {
   };
 };
 // FETCH SINGLE TEACHER ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// FETCH ASSIGNED TEACHER ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+export const fetchAssignedTeachers = (id) => {
+  return (dispatch) => {
+    dispatch(fetchAssignedTeacherRequest());
+    axios
+      .get(`${API_URL}/assignTeacher`)
+      .then((res) => {
+        const assignedTeachers = res.data;
+
+        dispatch(fetchAssignedTeacherSuccess(assignedTeachers));
+      })
+      .catch((error) => {
+        // error.message is the error message
+        const errormsg = error.message;
+        dispatch(fetchAssignedTeacherFailure(errormsg));
+      });
+  };
+};
+
+export const fetchAssignedTeacherRequest = () => ({
+  type: FETCH_ASSIGNED_TEACHER_REQUEST,
+});
+
+export const fetchAssignedTeacherSuccess = (assignedTeachers) => ({
+  type: FETCH_ASSIGNED_TEACHER_SUCCESS,
+  payload: assignedTeachers,
+});
+
+export const fetchAssignedTeacherFailure = (error) => {
+  return {
+    type: FETCH_ASSIGNED_TEACHER_FAILURE,
+    payload: error,
+  };
+};
+// FETCH ASSIGNED TEACHERS ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 // UPDATE TEACHER INFORMATION ::::::::::::::::::::::::::::::::::::::::::::::::
 export const updateTeacher = (userDetails) => {

@@ -13,7 +13,7 @@ import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
-import { AllRoutes, TeacherRoutes } from "../routes/SideBar/";
+import { AdminRoutes, TeacherRoutes } from "../routes/SideBar/";
 import { useAppState } from "../components/AppProvider/AppProvider";
 import useMountEffect from "../mountEffect";
 
@@ -61,7 +61,7 @@ const Dashboard = ({ history }) => {
   // }, []);
   let routes = [];
   if (role === "Admin") {
-    routes = AllRoutes;
+    routes = AdminRoutes;
     // return routes;
   }
   if (role === "Teacher") {

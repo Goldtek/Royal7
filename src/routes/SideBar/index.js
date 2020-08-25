@@ -1,3 +1,3 @@
-import AllRoutes from "./SideBarRoutes";
+import AdminRoutes from "./AdminRoutes";
 import TeacherRoutes from "./TeachersRoutes";
-export { AllRoutes, TeacherRoutes };
+export { AdminRoutes, TeacherRoutes };
