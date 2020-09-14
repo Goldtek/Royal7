@@ -110,8 +110,8 @@ const Copyright = () => {
 
 export default function ValidateEmail() {
   const classes = useStyles();
-  const [RedirectPage, setRedirect] = useState("");
-  const [useremail, setEmail] = useState("");
+  const [RedirectPage, setRedirect] = useState(false);
+  const [useremail, setEmail] = useState(null);
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -145,19 +145,10 @@ export default function ValidateEmail() {
                 data,
               })
                 .then((res) => {
-                  toast.success(`email sent`, {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                  });
+                  setEmail(res.data.email);
                   resetForm();
                   setSubmitting(false);
                   setRedirect(true);
-                  setEmail(res.data.email);
                 })
                 .catch((err) => {
                   toast.error(`${err}`, {
@@ -194,7 +185,7 @@ export default function ValidateEmail() {
                   <Typography variant="h6">
                     {RedirectPage ? (
                       <React.Fragment>
-                        We will require your email to proceed. <br /> Please
+                        We will require your details to proceed. <br /> Please
                         fill in your email below to get started.
                         <Redirect
                           push
@@ -207,7 +198,7 @@ export default function ValidateEmail() {
                     ) : (
                       <div>
                         {" "}
-                        We will require your email to proceed. <br /> Please
+                        We will require your details to proceed. <br /> Please
                         fill in your email below to get started.
                       </div>
                     )}

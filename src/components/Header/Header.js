@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import AppBar from "@material-ui/core/AppBar";
 import Badge from "@material-ui/core/Badge";
-// import Collapse from "@material-ui/core/Collapse";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
 import Hidden from "@material-ui/core/Hidden";
@@ -13,20 +14,16 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Menu from "@material-ui/core/Menu";
 import MenuIcon from "@material-ui/icons/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-// import MoreVertIcon from '@material-ui/icons/MoreVert';
-// import { green } from "@material-ui/core/colors";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import NotificationsOffIcon from "@material-ui/icons/NotificationsOff";
-import PropTypes from "prop-types";
-// import SearchIcon from "@material-ui/icons/Search";
-import SettingsIcon from "@material-ui/icons/Settings";
 import Toolbar from "@material-ui/core/Toolbar";
 import Tooltip from "@material-ui/core/Tooltip";
-// import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 import PersonIcon from "@material-ui/icons/Person";
+import Button from "@material-ui/core/Button";
 import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded";
 import Typography from "@material-ui/core/Typography";
+import { id } from "date-fns/esm/locale";
+
 const useStyles = makeStyles((theme) => ({
   appBar: {
     boxShadow: "0 1px 8px rgba(0,0,0,.3)",
@@ -35,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       position: "fixed",
     },
-    // backgroundColor: "#343a40",
   },
   toolBar: {
     paddingLeft: theme.spacing(1) / 2,
@@ -68,26 +64,6 @@ const useStyles = makeStyles((theme) => ({
     display: "block",
     maxWidth: "800px",
   },
-  // searchInput: {
-  //   fontSize: "1rem",
-  //   padding: theme.spacing(1) * 1.9,
-  //   [theme.breakpoints.down("xs")]: {
-  //     padding: theme.spacing(1) * 1.2,
-  //   },
-  //   cursor: "text",
-  //   textIndent: "30px",
-  //   border: "none",
-  //   background: "transparent",
-  //   width: "100%",
-  //   outline: "0",
-  // },
-  // searchIcon: {
-  //   position: "absolute",
-  //   top: "50%",
-  //   left: "0",
-  //   marginTop: "-24px",
-  //   color: "rgba(0,0,0,.87)",
-  // },
 }));
 
 const Header = ({
@@ -100,6 +76,8 @@ const Header = ({
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [searchExpanded, setSearchExpanded] = useState(false);
+  const userAuth = useSelector((state) => state.authentication.user.id);
+  // console.log(userAuth);
   let history = useHistory();
   const handleSettingdToggle = (event) => setAnchorEl(event.currentTarget);
 
@@ -112,14 +90,15 @@ const Header = ({
     if (searchExpanded) handleSearchExpandToggle();
   };
 
-  const handleNotificationToggle = () => {
-    toogleNotifications();
-    if (searchExpanded) handleSearchExpandToggle();
-  };
+  // const handleNotificationToggle = () => {
+  //   toogleNotifications();
+  //   if (searchExpanded) handleSearchExpandToggle();
+  // };
 
-  const Logout = () => {
-    history.push("/signin");
-  };
+  const Logout = () => history.push("/signin");
+
+  const navigate = (id) => history.push(`/profile/${id}/view`);
+
   return (
     <AppBar
       position="static"
@@ -168,16 +147,16 @@ const Header = ({
             <FullscreenIcon />
           </IconButton>
         </Hidden>
-        <Tooltip title="Notfication">
+        {/* <Tooltip title="Notfication">
           <IconButton color="inherit" onClick={handleNotificationToggle}>
             <Badge badgeContent={5} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
-        </Tooltip>
+        </Tooltip> */}
         <Tooltip title="Profile">
           <IconButton
-            aria-label="User Settings"
+            aria-label="View Profile"
             aria-owns={anchorEl ? "user-menu" : null}
             aria-haspopup="true"
             color="inherit"
@@ -187,18 +166,23 @@ const Header = ({
           </IconButton>
         </Tooltip>
         <Tooltip title="Logout">
-          <IconButton
+          <Button
+            aria-label="Logout"
+            className={classes.button}
             color="inherit"
             onClick={Logout}
             style={{
-              backgroundColor: "white",
-              fontSize: "0.875rem",
-              fontWeight: "800",
+              // background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+              // borderRadius: 2,
+              border: 0,
+              color: "white",
             }}
             size="small"
           >
-            <ExitToAppRoundedIcon color="primary" />
-          </IconButton>
+            <ExitToAppRoundedIcon />
+            Logout
+            {/* <IconButton /> */}
+          </Button>
         </Tooltip>
         <Menu
           id="user-menu"
@@ -206,51 +190,51 @@ const Header = ({
           open={Boolean(anchorEl)}
           onClose={handleCloseMenu}
         >
-          <MenuItem onClick={handleCloseMenu}>
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Settings" />
-          </MenuItem>
-          <MenuItem onClick={handleCloseMenu}>
+          {/* <MenuItem onClick={handleCloseMenu}>
+<ListItemIcon>
+<SettingsIcon />
+</ListItemIcon>
+<ListItemText primary="Settings" />
+</MenuItem> */}
+          <MenuItem onClick={() => navigate(userAuth)}>
             <ListItemIcon>
               <AccountBoxIcon />
             </ListItemIcon>
             <ListItemText primary="Profile" />
           </MenuItem>
-          <MenuItem onClick={handleCloseMenu}>
-            <ListItemIcon>
-              <NotificationsOffIcon />
-            </ListItemIcon>
-            <ListItemText primary="Disable notifications" />
-          </MenuItem>
+          {/* <MenuItem onClick={handleCloseMenu}>
+<ListItemIcon>
+<NotificationsOffIcon />
+</ListItemIcon>
+<ListItemText primary="Disable notifications" />
+</MenuItem> */}
           <MenuItem onClick={Logout}>
             <ListItemIcon>
               <ExitToAppIcon />
             </ListItemIcon>
-            <ListItemText primary="Sign out" />
+            <ListItemText primary="Exit App" />
           </MenuItem>
         </Menu>
       </Toolbar>
       {/* <Hidden smUp>
-        <Collapse in={searchExpanded} timeout="auto" unmountOnExit>
-          <Toolbar className={classes.toolBar}>
-            <div className={classes.searchWrapper}>
-              <form className={classNames(classes.searchForm, "mr-0")}>
-                <IconButton aria-label="Search" className={classes.searchIcon}>
-                  <SearchIcon />
-                </IconButton>
-                <input
-                  className={classes.searchInput}
-                  type="text"
-                  placeholder="Search"
-                  autoFocus="true"
-                />
-              </form>
-            </div>
-          </Toolbar>
-        </Collapse>
-      </Hidden> */}
+<Collapse in={searchExpanded} timeout="auto" unmountOnExit>
+<Toolbar className={classes.toolBar}>
+<div className={classes.searchWrapper}>
+<form className={classNames(classes.searchForm, "mr-0")}>
+<IconButton aria-label="Search" className={classes.searchIcon}>
+<SearchIcon />
+</IconButton>
+<input
+className={classes.searchInput}
+type="text"
+placeholder="Search"
+autoFocus="true"
+/>
+</form>
+</div>
+</Toolbar>
+</Collapse>
+</Hidden> */}
     </AppBar>
   );
 };

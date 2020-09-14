@@ -14,8 +14,8 @@ import { Role } from "../_helpers/role";
 import { Helmet } from "react-helmet";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../containers/Dashboard";
-// import UserProfile from "../containers/UserProfile";
-
+import UserProfile from "../containers/Profile";
+import ExamTimeTable from "../pages/Exams/EXamTimeTable";
 const AppRoutes = () => {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
@@ -25,6 +25,16 @@ const AppRoutes = () => {
         <PrivateRoute
           path="/dashboard"
           component={Dashboard}
+          roles={[Role.Admin, Role.Student, Role.Teacher]}
+        />
+        <PrivateRoute
+          path="/profile/:id/view"
+          component={UserProfile}
+          roles={[Role.Admin, Role.Student, Role.Teacher]}
+        />
+        <PrivateRoute
+          path="/exam/:id/schedule"
+          component={ExamTimeTable}
           roles={[Role.Admin, Role.Student, Role.Teacher]}
         />
         {/*SCREEN ROUTES */}

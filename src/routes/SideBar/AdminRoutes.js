@@ -9,13 +9,15 @@ import {
   CreateClass,
   // CreateSection,
   CreateSubject,
-  ScheduleExams,
+  // ScheduleExams,
+  // ExamTable,
+  CreateExamSession,
   CreateTimeTable,
   AssignTeachers,
 } from "../../pages";
 // import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 // import SchoolIcon from "@material-ui/icons/School";
-// import PersonIcon from "@material-ui/icons/Person";
+import PersonIcon from "@material-ui/icons/Person";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import LocalLibraryIcon from "@material-ui/icons/LocalLibrary";
@@ -83,7 +85,7 @@ export default {
         },
         {
           path: "/assign",
-          name: "Assign Teachers",
+          name: "Assign Teacher",
           component: AssignTeachers,
         },
       ],
@@ -94,7 +96,6 @@ export default {
       name: "Students",
       type: "submenu",
       icon: SupervisedUserCircleIcon,
-      roles: ["Student"],
 
       children: [
         {
@@ -108,11 +109,11 @@ export default {
           component: StudentLists,
         },
 
-        {
-          path: "/grade",
-          name: "Grade",
-          component: CreateStudents,
-        },
+        // {
+        //   path: "/grade",
+        //   name: "Grade",
+        //   component: CreateStudents,
+        // },
       ],
     },
 
@@ -123,15 +124,26 @@ export default {
       icon: BorderColorIcon,
       children: [
         {
-          path: "/schedule",
-          name: "Schedule Exam",
-          component: ScheduleExams,
+          path: "/create",
+          name: "Create Exam",
+          component: CreateExamSession,
         },
+        // {
+        //   path: "/schedule",
+        //   name: "Schedule Exam",
+        //   component: ScheduleExams,
+        // },
+
+        // {
+        //   path: "/examtable",
+        //   name: "Exam Table",
+        //   component: ExamTable,
+        // },
       ],
     },
     {
       path: "/dashboard/timetable",
-      name: "TimeTables",
+      name: "Class Routine",
       type: "submenu",
       icon: TableChartIcon,
       children: [
@@ -177,11 +189,11 @@ export default {
       type: "link",
       icon: MessageIcon,
     },
-    // {
-    //   path: "/dashboard/:id/user",
-    //   name: "Profile",
-    //   type: "link",
-    //   icon: PersonIcon,
-    // },
+    {
+      path: "/dashboard/:id/user",
+      name: "Account",
+      type: "link",
+      icon: PersonIcon,
+    },
   ],
 };

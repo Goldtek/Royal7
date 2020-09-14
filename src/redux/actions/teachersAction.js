@@ -86,11 +86,11 @@ export const singleFailure = (error) => {
 // FETCH SINGLE TEACHER ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 // FETCH ASSIGNED TEACHER ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-export const fetchAssignedTeachers = (id) => {
+export const fetchAssignedTeachers = () => {
   return (dispatch) => {
     dispatch(fetchAssignedTeacherRequest());
     axios
-      .get(`${API_URL}/assignTeacher`)
+      .get(`${API_URL}/assignedTeachers`)
       .then((res) => {
         const assignedTeachers = res.data;
 
@@ -163,7 +163,7 @@ export const updateTeacher = (userDetails) => {
 // DELETE STUDENT :::::::::::::::::::::::::::::::::::::::::::
 export const deleteTeacher = (id) => {
   return (dispatch) => {
-    console.log(id);
+    // console.log(id);
     dispatch(request(id));
     axios
       .delete(`${API_URL}/users/${id}`)

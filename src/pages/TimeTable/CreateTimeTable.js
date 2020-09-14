@@ -185,7 +185,7 @@ const CreateTimeTable = (props) => {
                     <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
                         label="Time Slot"
-                        placeholder="09-11am"
+                        placeholder="10.00 am-11.00 am"
                         fullWidth
                         margin="normal"
                         name="timeSlot"

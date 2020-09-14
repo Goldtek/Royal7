@@ -119,7 +119,7 @@ const CreateAccount = (props) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [counter, setCounter] = useState(10);
-  const [userEmail, setEmail] = useState("");
+  const [userEmail, setEmail] = useState("ielemson@outlook.com");
   const alert = useAlert();
 
   useEffect(() => {

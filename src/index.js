@@ -11,7 +11,7 @@ import { store, persistor } from "./store";
 import AppRoutes from "./routes/AppRoutes.js";
 // position: positions.BOTTOM_CENTER
 const options = {
-  position: "bottom center",
+  position: "top center",
   timeout: 5000,
   offset: "50px",
   transition: "scale",

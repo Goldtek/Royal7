@@ -57,7 +57,6 @@ const TeacherLists = ({ fetchTeachers, teachers }) => {
         <title>Teachers List</title>
       </Helmet>
       <br />
-      <br />
       <Card>
         <Wrapper>
           <Breadcrumbs aria-label="breadcrumb">

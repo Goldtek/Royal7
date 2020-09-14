@@ -1,20 +1,19 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import axios from "axios";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
+import useMountEffect from "../../mountEffect";
+import { fetchSchoolSubjects } from "../../redux/actions/subjectActions";
+import { fetchschoolClasses } from "../../redux/actions/schoolClassActions";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import { Wrapper } from "../../components";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import AppBar from "@material-ui/core/AppBar";
-import Typography from "@material-ui/core/Typography";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
 import cogoToast from "cogo-toast";
 
@@ -45,11 +44,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const validationSchema = Yup.object().shape({
-  class: Yup.string().required("required"),
-  day: Yup.string().required("required"),
+  examClass: Yup.string().required("required"),
   session: Yup.string().required("required"),
   subject: Yup.string().required("required"),
-  timeSlot: Yup.string().required("required"),
+  startTime: Yup.string().required("required"),
+  stopTime: Yup.string().required("required"),
+  examDate: Yup.string().required("required"),
   teacher: Yup.string().required("required"),
   description: Yup.string().nullable(),
 });
@@ -57,10 +57,20 @@ const validationSchema = Yup.object().shape({
 //API URL
 const API_URL = process.env.REACT_APP_BASEURL;
 
-const ScheduleExams = () => {
+const ScheduleExams = (props) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const userAuth = useSelector((state) => state.authentication);
+  const subjects = useSelector((state) => state.subjects.subjects);
+  const avalaibleClasses = useSelector(
+    (state) => state.schoolClasses.schoolClasses
+  );
   const schoolID = userAuth.user.schoolId;
+
+  useMountEffect(() => {
+    dispatch(fetchSchoolSubjects());
+    dispatch(fetchschoolClasses());
+  });
   return (
     <Wrapper>
       <Formik
@@ -70,25 +80,19 @@ const ScheduleExams = () => {
             method: "POST",
             url: `${API_URL}/examSchedule`,
             data: {
-              examName: values.examName,
+              examClass: values.examClass,
+              examDate: values.examDate,
+              startTime: values.startTime,
+              stopTime: values.stopTime,
+              teacher: values.teacher,
               description: values.description,
-              timeSlot: values.timeSlot,
-              supervisor: values.supervisor,
               subject: values.subject,
+              examTableId: props.id,
               schoolId: schoolID,
               created: Date.now(),
             },
           })
             .then(() => {
-              // toast.success(`🚀 Class Created Succesfully!`, {
-              //   position: "top-right",
-              //   autoClose: 15000,
-              //   hideProgressBar: false,
-              //   closeOnClick: true,
-              //   pauseOnHover: true,
-              //   draggable: true,
-              //   progress: undefined,
-              // });
               cogoToast.success("Exams Schedule Successfully Created!");
 
               resetForm();
@@ -96,27 +100,17 @@ const ScheduleExams = () => {
               // history.push(`/sent/${values.description}`, true);
             })
             .catch((error) => {
-              // toast.error(`${error}`, {
-              //   position: "top-right",
-              //   autoClose: 15000,
-              //   hideProgressBar: false,
-              //   closeOnClick: true,
-              //   pauseOnHover: true,
-              //   draggable: true,
-              //   progress: undefined,
-              // });
               cogoToast.success("Error Occured,Please try again");
               resetForm();
               setSubmitting(true);
             });
         }}
         initialValues={{
-          class: "",
-          day: "",
+          examClass: "",
           description: "",
-          timeSlot: "",
+          startTime: "",
+          stopTime: "",
           session: "",
-          supervisor: "",
           examDate: "",
           subject: "",
           teacher: "",
@@ -135,108 +129,106 @@ const ScheduleExams = () => {
           } = props;
           return (
             <Form noValidate autoComplete="off" onSubmit={handleSubmit}>
-              <br />
-              <br />
-              <Card>
-                <Wrapper>
-                  <Breadcrumbs aria-label="breadcrumb">
-                    <Link color="inherit" href="/dashboard/">
-                      TimeTable
-                    </Link>
-                    <Typography color="textPrimary">Schedule Exam</Typography>
-                  </Breadcrumbs>
-                </Wrapper>
-              </Card>
-
               <Card
                 className={classes.card}
                 style={{ marginTop: "5px", marginBottom: "20px" }}
               >
-                <AppBar
-                  position="static"
-                  color="primary"
-                  className={classes.appBar}
-                >
-                  <Typography color="inherit" className="flexs={12}pacer">
-                    Create TimeTable
-                  </Typography>
-                </AppBar>
-
                 <CardContent>
                   <Grid container spacing={3}>
-                    <Grid item xs={12} sm={12} md={4} lg={4}>
+                    <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
-                        label="Day"
-                        select
-                        placeholder="Day"
                         fullWidth
+                        id="examClass"
+                        select
+                        label="Select Class"
                         margin="normal"
-                        name="day"
-                        value={values.day}
+                        name="examClass"
+                        value={values.examClass}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        error={errors.day && touched.day}
-                        helperText={errors.day && touched.day && errors.day}
+                        error={errors.examClass && touched.examClass}
+                        helperText={
+                          errors.examClass && touched.roleId && errors.examClass
+                        }
                       >
-                        <MenuItem value="Monday">Monday</MenuItem>
-                        <MenuItem value="Tuesday">Tuesday</MenuItem>
-                        <MenuItem value="Wednesday">Wednesday</MenuItem>
-                        <MenuItem value="Thursday">Thursday</MenuItem>
-                        <MenuItem value="Friday">Friday</MenuItem>
+                        {avalaibleClasses.map(({ classCode, id }) => (
+                          <MenuItem
+                            key={id}
+                            value={classCode}
+                          >{`${classCode}`}</MenuItem>
+                        ))}
                       </TextField>
                     </Grid>
-
                     <Grid item xs={12} sm={6} md={4} lg={4}>
-                      {/* <TextField
-                        type="time"
-                        defaultValue="07:30"
-                        // label="Time Slot"
-                        // placeholder="09-11am"
-                        fullWidth
-                        margin="normal"
-                        name="timeSlot"
-                        value={values.timeSlot}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={errors.timeSlot && touched.timeSlot}
-                        helperText={
-                          errors.timeSlot && touched.timeSlot && errors.timeSlot
-                        }
-                      /> */}
                       <TextField
                         fullWidth
                         margin="normal"
                         id="time"
+                        name="startTime"
                         label="Exam Start Time"
                         type="time"
-                        defaultValue="07:30"
+                        // defaultValue="07:30"
                         InputLabelProps={{
                           shrink: true,
                         }}
                         inputProps={{
                           step: 300, // 5 min
                         }}
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={12} md={4} lg={4}>
-                      <TextField
-                        label="Class"
-                        select
-                        placeholder="Class"
-                        fullWidth
-                        margin="normal"
-                        name="day"
-                        value={values.class}
+                        value={values.startTime}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        error={errors.class && touched.class}
+                        error={errors.startTime && touched.startTime}
                         helperText={
-                          errors.class && touched.class && errors.class
+                          errors.startTime &&
+                          touched.startTime &&
+                          errors.startTime
                         }
-                      >
-                        <MenuItem value="STD5">STD5</MenuItem>
-                        <MenuItem value="STD6">STD6</MenuItem>
-                      </TextField>
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4} lg={4}>
+                      <TextField
+                        fullWidth
+                        margin="normal"
+                        id="time"
+                        label="Exam Stop Time"
+                        type="time"
+                        name="stopTime"
+                        // defaultValue="07:30"
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                        inputProps={{
+                          step: 300, // 5 min
+                        }}
+                        value={values.stopTime}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={errors.stopTime && touched.stopTime}
+                        helperText={
+                          errors.stopTime && touched.stopTime && errors.stopTime
+                        }
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={4} lg={4}>
+                      <TextField
+                        fullWidth
+                        margin="normal"
+                        id="date"
+                        label="Exam Date"
+                        type="date"
+                        name="examDate"
+                        // defaultValue="2017-05-24"
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                        value={values.examDate}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={errors.examDate && touched.examDate}
+                        helperText={
+                          errors.examDate && touched.examDate && errors.examDate
+                        }
+                      />
                     </Grid>
 
                     <Grid item xs={12} sm={12} md={4} lg={4}>
@@ -260,12 +252,12 @@ const ScheduleExams = () => {
                       </TextField>
                     </Grid>
 
-                    <Grid item xs={12} sm={12} md={4} lg={4}>
+                    <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
-                        label="Subject"
-                        select
-                        placeholder="Subject"
                         fullWidth
+                        id="subject"
+                        select
+                        label="Select Subject"
                         margin="normal"
                         name="subject"
                         value={values.subject}
@@ -275,7 +267,11 @@ const ScheduleExams = () => {
                         helperText={
                           errors.subject && touched.subject && errors.subject
                         }
-                      />
+                      >
+                        {subjects.map(({ name, id }) => (
+                          <MenuItem key={id} value={name}>{`${name}`}</MenuItem>
+                        ))}
+                      </TextField>
                     </Grid>
                     <Grid item xs={12} sm={12} md={4} lg={4}>
                       <TextField
@@ -298,22 +294,22 @@ const ScheduleExams = () => {
                       </TextField>
                     </Grid>
                     {/* <Grid item xs={12} sm={12} md={4} lg={4}>
-                      <TextField
-                        fullWidth
-                        margin="normal"
-                        label="Class Room"
-                        name="classRoom"
-                        value={values.classRoom}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={errors.classRoom && touched.classRoom}
-                        helperText={
-                          errors.classRoom &&
-                          touched.classRoom &&
-                          errors.classRoom
-                        }
-                      />
-                    </Grid> */}
+<TextField
+fullWidth
+margin="normal"
+label="Class Room"
+name="classRoom"
+value={values.classRoom}
+onChange={handleChange}
+onBlur={handleBlur}
+error={errors.classRoom && touched.classRoom}
+helperText={
+errors.classRoom &&
+touched.classRoom &&
+errors.classRoom
+}
+/>
+</Grid> */}
                     <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
                         label="Description"
@@ -345,7 +341,7 @@ const ScheduleExams = () => {
                     className={classes.button}
                     type="submit"
                   >
-                    Create
+                    Schedule Exam
                   </Button>{" "}
                   <Button
                     variant="contained"

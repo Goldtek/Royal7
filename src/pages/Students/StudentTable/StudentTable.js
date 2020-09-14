@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { Wrapper } from "../../../components";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteStudent } from "../../../redux/actions/studentActions";
-import Swal from "sweetalert2";
 
 // MODAL DIALGOUE IMPORT :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 import Dialog from "@material-ui/core/Dialog";
@@ -20,7 +19,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import ProfileCard from "../Card/ProfileCard";
 import Grid from "@material-ui/core/Grid";
 import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import GridList from "@material-ui/core/GridList";
@@ -28,6 +26,7 @@ import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import IconButton from "@material-ui/core/IconButton";
 import Card from "@material-ui/core/Card";
+import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Tab from "@material-ui/core/Tab";
@@ -168,32 +167,7 @@ const StudentsTable = (props) => {
     dispatch(updateStudent(userDetails));
     // console.log(userDetails);
   };
-  // HANDLE FORM SUBMIT :::::::::::::::::::::::::::::::::::::::::
 
-  const handleCLickDelete = async (id) => {
-    Swal.fire({
-      title: `Are you sure ?`,
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-      width: "auto",
-      showClass: {
-        popup: "animate__animated animate__fadeInDown",
-      },
-      hideClass: {
-        popup: "animate__animated animate__fadeOutUp",
-      },
-    }).then((result) => {
-      if (result.value) {
-        dispatch(deleteStudent(id));
-        // dispatch(fetchStudents());
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
-      }
-    });
-  };
   const columns = [
     { title: "id", field: "id", hidden: true },
     {
@@ -223,18 +197,21 @@ const StudentsTable = (props) => {
         onRowClick={(evt, selectedRow) =>
           setSelectedRow(selectedRow.tableData.id)
         }
+        editable={{
+          onRowDelete: (oldData) =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                dispatch(deleteStudent(oldData.id));
+                resolve();
+              }, 1000);
+            }),
+        }}
         actions={[
           {
             icon: "edit",
             tooltip: "Edit Student",
             onClick: (event, rowData) => handleClickOpen(rowData.id),
           },
-          (rowData) => ({
-            icon: "delete",
-            tooltip: "Delete User",
-            onClick: (event, rowData) => handleCLickDelete(rowData.id),
-            disabled: rowData.birthYear < 2000,
-          }),
         ]}
         options={{
           filtering: false,
@@ -662,18 +639,16 @@ const StudentsTable = (props) => {
                         </CardContent>
                       </Card>
 
-                      <Card>
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          className={classes.button}
-                          type="submit"
-                          // disabled={isSubmitting}
-                        >
-                          {/* <SaveIcon className={classes.rightIcon} />  */}
-                          Update Profile
-                        </Button>{" "}
-                      </Card>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        className={classes.button}
+                        type="submit"
+                        // disabled={isSubmitting}
+                      >
+                        {/* <SaveIcon className={classes.rightIcon} />  */}
+                        Update Profile
+                      </Button>
                     </form>
                   </CardContent>
                 </TabContainer>

@@ -9,6 +9,11 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import StarIcon from "@material-ui/icons/Star";
 import "./styles.js";
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -48,9 +53,9 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 500,
   },
   image: {
-    backgroundImage: `url(${process.env.PUBLIC_URL}/static/images/screens/download.png)`,
+    backgroundImage: `url(${process.env.PUBLIC_URL}/static/images/screens/envelope-email.jpg)`,
     backgroundRepeat: "no-repeat",
-    backgroundSize: "fit",
+    backgroundSize: "cover",
     backgroundPosition: "center",
     width: 200,
     height: 200,
@@ -63,10 +68,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     maxHeight: "100%",
   },
-  // typehead: {
-  //   fontWeight: "200",
-  //   fontSize: "1.8em ! important",
-  // },
+
   email: {
     color: "black",
     fontWeight: "600",
@@ -84,7 +86,7 @@ const Copyright = () => {
       style={{ color: "#fff !mportant" }}
     >
       {"Copyright © "}
-      <Link color="white" href="/">
+      <Link color="white" to="/">
         edcollab
       </Link>{" "}
       {new Date().getFullYear()}
@@ -98,7 +100,7 @@ const EmailValidate = (props) => {
   const classes = useStyles();
   let history = useHistory();
   const [useremail, setEmail] = useState("");
-  // console.log(props);
+  console.log(props);
   useEffect(() => {
     if (props.location.state !== undefined) {
       setEmail(props.location.state.email);
@@ -135,18 +137,22 @@ const EmailValidate = (props) => {
                       </Typography>
                       <br />
                       <br />
-                      <Typography
-                        style={{ fontSize: "0.9rem", fontWeight: "nomral" }}
-                      >
-                        <b>Didn't receive the email?</b>
-                        <ul>
-                          <li>
-                            Make sure your email address is entered correctly
-                          </li>
 
-                          <li>Check your email spam or junk folder</li>
-                        </ul>
-                      </Typography>
+                      <b>Didn't receive the email?</b>
+
+                      <List
+                        component="nav"
+                        className={classes.root}
+                        aria-label="contacts"
+                      >
+                        <ListItem>
+                          <ListItemText primary="Make sure your email address is entered correctly" />
+                        </ListItem>
+                        <ListItem>
+                          <ListItemText primary="Check your email spam or junk folder" />
+                        </ListItem>
+                      </List>
+
                       <Button
                         onClick={() => history.push("/create")}
                         variant="contained"

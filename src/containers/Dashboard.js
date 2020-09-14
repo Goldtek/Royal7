@@ -1,21 +1,38 @@
-import { Header, NotificationCenter, Sidebar, Workspace } from "../components";
 import React, { useState } from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
-import { useSelector } from "react-redux";
-import FormatTextdirectionLToRIcon from "@material-ui/icons/FormatTextdirectionLToR";
-import FormatTextdirectionRToLIcon from "@material-ui/icons/FormatTextdirectionRToL";
-import Hidden from "@material-ui/core/Hidden";
+import axios from "axios";
+import { Header, Sidebar, Workspace } from "../components";
+import { Redirect, Route, Switch, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogout } from "../redux/actions/userActions";
+// import FormatTextdirectionLToRIcon from "@material-ui/icons/FormatTextdirectionLToR";
+// import FormatTextdirectionRToLIcon from "@material-ui/icons/FormatTextdirectionRToL";
+// import Hidden from "@material-ui/core/Hidden";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 import { MobileBreakpoint } from "../styleVariables";
-import SettingsIcon from "@material-ui/icons/Settings";
-import SpeedDial from "@material-ui/lab/SpeedDial";
-import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
-import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
-import WbSunnyIcon from "@material-ui/icons/WbSunny";
+import NotificationImportantIcon from "@material-ui/icons/NotificationImportant";
+// import SettingsIcon from "@material-ui/icons/Settings";
+// import SpeedDial from "@material-ui/lab/SpeedDial";
+// import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
+// import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
+// import WbSunnyIcon from "@material-ui/icons/WbSunny";
+import TextField from "@material-ui/core/TextField";
 import classNames from "classnames";
+import Button from "@material-ui/core/Button";
+import DialogActions from "@material-ui/core/DialogActions";
 import { makeStyles } from "@material-ui/core/styles";
 import { AdminRoutes, TeacherRoutes } from "../routes/SideBar/";
-import { useAppState } from "../components/AppProvider/AppProvider";
+// import { useAppState } from "../components/AppProvider/AppProvider";
+import CustomModal from "./Dialogue/CustomModal";
 import useMountEffect from "../mountEffect";
+import { Typography } from "@material-ui/core";
+import { Formik, Form } from "formik";
+import cogoToast from "cogo-toast";
+import * as Yup from "yup";
+
+const API_URL = process.env.REACT_APP_BASEURL;
 
 const useStyles = makeStyles((theme) => ({
   panel: {
@@ -45,21 +62,46 @@ const useStyles = makeStyles((theme) => ({
     bottom: theme.spacing(1) * 2,
     right: theme.spacing(1) * 3,
   },
+  link: {
+    color: "#fff",
+  },
+  snackAlert: {
+    cursor: "pointer",
+  },
 }));
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 const Dashboard = ({ history }) => {
   const classes = useStyles();
-  const [state, dispatch] = useAppState();
+  const dispatch = useDispatch();
+  // const [state, dispatch] = useAppState();
   const [opened, setOpened] = useState(true);
-  const [notificationsOpen, setNotificationsOpen] = useState(false);
-  const [openSpeedDial, setOpenSpeedDial] = useState(false);
+  // const [notificationsOpen, setNotificationsOpen] = useState(false);
+  // const [openSpeedDial, setOpenSpeedDial] = useState(false);
+  const [OpenModal, SetOpenModal] = useState(false);
   const userAuth = useSelector((state) => state.authentication);
-  // let [routes, setRoutes] = useState([]);
-  const { role } = userAuth.user;
+  const { role, id, password } = userAuth.user;
 
   // useEffect(() => {
   //   setRoutes()
   // }, []);
   let routes = [];
+
+  const Schema = Yup.object().shape({
+    password: Yup.string().required("required"),
+    changepassword: Yup.string()
+      .required("required")
+      .when("password", {
+        is: (val) => (val && val.length > 0 ? true : false),
+        then: Yup.string().oneOf(
+          [Yup.ref("password")],
+          "Password doesn't match"
+        ),
+      }),
+  });
   if (role === "Admin") {
     routes = AdminRoutes;
     // return routes;
@@ -85,8 +127,8 @@ const Dashboard = ({ history }) => {
     resizeDispatch();
   };
 
-  const handleNotificationToggle = () =>
-    setNotificationsOpen(!notificationsOpen);
+  // const handleNotificationToggle = () =>
+  //   setNotificationsOpen(!notificationsOpen);
 
   const handleFullscreenToggle = () => {
     const element = document.querySelector("#root");
@@ -110,10 +152,13 @@ const Dashboard = ({ history }) => {
     isFullscreen ? document.cancelFullScreen() : element.requestFullScreen();
   };
 
-  const handleSpeedDialOpen = () => setOpenSpeedDial(true);
+  // const handleSpeedDialOpen = () => setOpenSpeedDial(true);
 
-  const handleSpeedDialClose = () => setOpenSpeedDial(false);
+  // const handleSpeedDialClose = () => setOpenSpeedDial(false);
 
+  const handleDialogOpen = () => SetOpenModal(true);
+
+  const handleDialogClose = () => SetOpenModal(false);
   const getRoutes = (
     <Switch>
       {routes.items.map((item, index) =>
@@ -172,14 +217,17 @@ const Dashboard = ({ history }) => {
       });
     };
   });
-
+  let isOpen = false;
+  if (password === "%tempPassword!") {
+    isOpen = true;
+  }
   return (
     <>
       <Header
         logoAltText="Edcollab"
         logo={`${process.env.PUBLIC_URL}/static/images/logo.svg`}
         toggleDrawer={handleDrawerToggle}
-        toogleNotifications={handleNotificationToggle}
+        // toogleNotifications={handleNotificationToggle}
         toggleFullscreen={handleFullscreenToggle}
       />
       <div className={classNames(classes.panel, "theme-dark")}>
@@ -189,42 +237,128 @@ const Dashboard = ({ history }) => {
           toggleDrawer={handleDrawerToggle}
         />
         <Workspace opened={opened}>{getRoutes}</Workspace>
-        <NotificationCenter
+        {/* <NotificationCenter
           notificationsOpen={notificationsOpen}
           toogleNotifications={handleNotificationToggle}
-        />
+        /> */}
       </div>
 
-      <Hidden xsDown>
-        <SpeedDial
-          ariaLabel="Settings"
-          className={classes.speedDial}
-          icon={<SpeedDialIcon icon={<SettingsIcon />} />}
-          onBlur={handleSpeedDialClose}
-          onClose={handleSpeedDialClose}
-          onFocus={handleSpeedDialOpen}
-          onMouseEnter={handleSpeedDialOpen}
-          onMouseLeave={handleSpeedDialClose}
-          open={openSpeedDial}
+      <Snackbar
+        open={isOpen}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        onClick={handleDialogOpen}
+        className={classes.snackAlert}
+      >
+        <Alert
+          severity="error"
+          action={
+            <IconButton aria-label="close" color="inherit">
+              <NotificationImportantIcon fontSize="inherit" />
+            </IconButton>
+          }
         >
-          <SpeedDialAction
-            icon={<WbSunnyIcon />}
-            tooltipTitle="Toggle light/dark theme"
-            onClick={() => dispatch({ type: "type" })}
-          />
-          <SpeedDialAction
-            icon={
-              state.direction === "rtl" ? (
-                <FormatTextdirectionLToRIcon />
-              ) : (
-                <FormatTextdirectionRToLIcon />
-              )
-            }
-            tooltipTitle="Toggle LTR/RTL direction"
-            onClick={() => dispatch({ type: "direction" })}
-          />
-        </SpeedDial>
-      </Hidden>
+          <Typography>Click here to change password</Typography>
+        </Alert>
+      </Snackbar>
+      <CustomModal
+        OpenModal={OpenModal}
+        handleDialogClose={handleDialogClose}
+        title={"Please Provide your new password in the fields below"}
+        dialogWidth="xs"
+      >
+        <Formik
+          initialValues={{
+            password: "",
+            changepassword: "",
+          }}
+          validationSchema={Schema}
+          onSubmit={(values, { resetForm }) => {
+            axios({
+              method: "patch",
+              url: `${API_URL}/users/${id}`,
+              data: {
+                password: values.changepassword,
+                updated: Date.now(),
+              },
+            })
+              .then(() => {
+                cogoToast.success("Please Login with your new password");
+                resetForm();
+                handleDialogClose();
+                dispatch(userLogout());
+              })
+              .catch((error) => {
+                cogoToast.success(`${error}`);
+              });
+          }}
+        >
+          {({
+            values,
+            errors,
+            handleSubmit,
+            handleChange,
+            handleBlur,
+            touched,
+          }) => {
+            return (
+              <Form onSubmit={handleSubmit}>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="password"
+                  name="password"
+                  label="Enter New Password"
+                  type="password"
+                  fullWidth
+                  onChange={handleChange}
+                  value={values.password}
+                  onBlur={handleBlur}
+                  error={errors.password && touched.password}
+                  helperText={
+                    errors.password && touched.password && errors.password
+                  }
+                />
+                <TextField
+                  margin="dense"
+                  id="changepassword"
+                  name="changepassword"
+                  label="Re-Enter Password"
+                  type="password"
+                  fullWidth
+                  onChange={handleChange}
+                  value={values.changepassword}
+                  onBlur={handleBlur}
+                  error={errors.changepassword && touched.changepassword}
+                  helperText={
+                    errors.changepassword &&
+                    touched.changepassword &&
+                    errors.changepassword
+                  }
+                />
+                <DialogActions>
+                  <Button
+                    type="button"
+                    variant="outlined"
+                    color="secondary"
+                    onClick={handleDialogClose}
+                  >
+                    Close
+                  </Button>
+                  <Button type="reset" variant="outlined" color="primary">
+                    Clear
+                  </Button>
+                  <Button type="submit" variant="outlined" color="primary">
+                    Update
+                  </Button>
+                </DialogActions>
+              </Form>
+            );
+          }}
+        </Formik>
+      </CustomModal>
     </>
   );
 };

@@ -5,20 +5,21 @@ import IndexPage from "./Index/IndexPage";
 // Authentication
 import PasswordReset from "./Authentication/PasswordReset";
 import Signin from "./Authentication/Signin";
-// Error
+// Error ------------------------------------>>>>
 import NotFound from "./Errors/NotFound";
+// Error ------------------------------------>>>>
 
-//CUSTOM IMPORTS :::::::::::::::::::::::::::::::::::
-// TEACHER
+// TEACHER ------------------------------------>>>>
 import CreateTeachers from "./Teachers/CreateTeacher";
 import TeacherLists from "./Teachers/TeacherLists";
 import AssignTeachers from "./Teachers/AssignTeachers";
 // import EditTeacher from "./Teachers/EditTeacher";
+// TEACHER ------------------------------------>>>>
 
-//        <--  STUDENT ROUTES -->
+// STUDENT ------------------------------------->>>>
 import CreateStudents from "./Students/CreateStudent";
 import StudentLists from "./Students/StudentLists";
-// import ScheduleExams from "./Students/ScheduleExams";
+// STUDENT ------------------------------------->>>>
 
 //PARENT
 import CreateParent from "./Parent/CreateParent";
@@ -29,9 +30,12 @@ import CreateSection from "./Class/CreateSection";
 
 //SUBJECT ROUTES
 import CreateSubject from "./Subject/CreateSubject";
+import AssignedSubject from "./Subject/AssignedSubjects";
 
 // EXAMS
-import ScheduleExams from "./Exams/ScheduleExams";
+// import ScheduleExams from "./Exams/sample";
+// import ExamTable from "./Exams/Table/ExamTable";
+import CreateExamSession from "./Exams/CreateExamSession";
 
 //TIMETABLE ROUTES
 import CreateTimeTable from "./TimeTable/CreateTimeTable";
@@ -54,11 +58,15 @@ export {
   PasswordReset,
   NotFound,
   IndexPage,
+  // TEACHERS ---->
   CreateTeachers,
   AssignTeachers,
   TeacherLists,
+  AssignedSubject,
+  // TEACHERS ---->
+
   CreateStudents,
-  ScheduleExams,
+  CreateExamSession,
   ValidateEmail,
   CreateAccount,
   EmailSent,

@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import * as Yup from "yup";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Formik, Form } from "formik";
 import { useSelector } from "react-redux";
@@ -13,6 +13,7 @@ import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
 import { makeStyles } from "@material-ui/core/styles";
@@ -60,6 +61,7 @@ const validationSchema = Yup.object().shape({
   gender: Yup.string().required("required"),
   address: Yup.string().required("required"),
   photo: Yup.string().required("required"),
+  password: Yup.string().required("required"),
   email: Yup.string().email("invalid email").required("required"),
 });
 
@@ -70,6 +72,23 @@ const CreateTeacher = () => {
   const userAuth = useSelector((state) => state.authentication);
   const schoolID = userAuth.user.schoolId;
 
+  // let keylist =
+  //   "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  // let temp = "";
+  // const generatepass = (plength) => {
+  //   temp = "";
+  //   for (let i = 0; i < plength; i++)
+  //     temp += keylist.charAt(Math.floor(Math.random() * keylist.length));
+  //   return temp;
+  // };
+
+  // const populateTextfield = (enterlength) => {
+  //   // document.pgenerate.password.value = generatepass(enterlength);
+  //   document.getElementById("password").defaultValue = generatepass(
+  //     enterlength
+  //   );
+  //   console.log(document.getElementById("password"));
+  // };
   return (
     <Wrapper>
       <Formik
@@ -83,6 +102,7 @@ const CreateTeacher = () => {
               lastName: values.lastName,
               middleName: values.middleName,
               email: values.email,
+              password: values.password,
               gender: values.gender,
               dob: values.dob,
               phone: values.phone,
@@ -125,6 +145,7 @@ const CreateTeacher = () => {
           idno: "",
           section: "",
           shortbio: "",
+          password: "%tempPassword!",
         }}
         validationSchema={validationSchema}
       >
@@ -140,8 +161,6 @@ const CreateTeacher = () => {
           } = props;
           return (
             <Form noValidate autoComplete="off" onSubmit={handleSubmit}>
-              {/* <ToastContainer /> */}
-              <br />
               <br />
               <Card>
                 <Wrapper>
@@ -159,24 +178,11 @@ const CreateTeacher = () => {
                 position="static"
                 color="primary"
                 className={classes.appBar}
-              >
-                {/* <Typography color="inherit" className="flexs={12}pacer">
-          TEACHERS LIST
-        </Typography> */}
-              </AppBar>
+              ></AppBar>
               <Card
                 className={classes.card}
                 style={{ marginTop: "5px", marginBottom: "20px" }}
               >
-                {/* <AppBar
-                  position="static"
-                  color="primary"
-                  className={classes.appBar}
-                >
-                  <Typography color="inherit" className="flexs={12}pacer">
-                    ADD NEW TEACHER
-                  </Typography>
-                </AppBar> */}
                 <CardContent>
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} md={3} lg={3}>
@@ -184,7 +190,6 @@ const CreateTeacher = () => {
                         label="First Name"
                         placeholder="First Name"
                         fullWidth
-                        margin="normal"
                         name="firstName"
                         value={values.firstName}
                         onChange={handleChange}
@@ -202,7 +207,6 @@ const CreateTeacher = () => {
                         label="Middle Name"
                         placeholder="Middle Name"
                         fullWidth
-                        margin="normal"
                         name="middleName"
                         value={values.middleName}
                         onChange={handleChange}
@@ -220,7 +224,6 @@ const CreateTeacher = () => {
                         label="Last Name"
                         placeholder="Last Name"
                         fullWidth
-                        margin="normal"
                         name="lastName"
                         value={values.lastName}
                         onChange={handleChange}
@@ -265,7 +268,6 @@ const CreateTeacher = () => {
                         label="Birthday"
                         type="date"
                         defaultValue="2017-05-24"
-                        margin="normal"
                         name="dob"
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -279,7 +281,6 @@ const CreateTeacher = () => {
                         label="Phone Number"
                         placeholder="Phone Number"
                         fullWidth
-                        margin="normal"
                         name="phone"
                         value={values.phone}
                         onChange={handleChange}
@@ -296,7 +297,6 @@ const CreateTeacher = () => {
                         label="Email"
                         placeholder="Email"
                         fullWidth
-                        margin="normal"
                         name="email"
                         value={values.email}
                         onChange={handleChange}
@@ -310,11 +310,16 @@ const CreateTeacher = () => {
                     <Grid item xs={12} sm={6} md={3} lg={3}>
                       <TextField
                         fullWidth
+                        margin="normal"
                         id="bloodgroup"
                         select
                         label="Blood Group"
-                        margin="normal"
                         name="bloodgrp"
+                        SelectProps={{
+                          MenuProps: {
+                            className: classes.menu,
+                          },
+                        }}
                         value={values.bloodgrp}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -338,7 +343,6 @@ const CreateTeacher = () => {
                         label="ID NO"
                         placeholder="ID NO"
                         fullWidth
-                        margin="normal"
                         name="idno"
                         value={values.idno}
                         onChange={handleChange}
@@ -347,54 +351,6 @@ const CreateTeacher = () => {
                         helperText={errors.idno && touched.idno && errors.idno}
                       />
                     </Grid>
-                    {/* <Grid item xs={12} sm={6} md={3} lg={3}>
-                      <TextField
-                        label="Class"
-                        select
-                        placeholder="Class"
-                        fullWidth
-                        margin="normal"
-                        name="tclass"
-                        value={values.tclass}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={errors.tclass && touched.tclass}
-                        helperText={
-                          errors.tclass && touched.tclass && errors.tclass
-                        }
-                      >
-                        <MenuItem value="1">One</MenuItem>
-                        <MenuItem value="2">Two</MenuItem>
-                        <MenuItem value="3">Three</MenuItem>
-                        <MenuItem value="3">Four</MenuItem>
-                        <MenuItem value="3">Five</MenuItem>
-                        <MenuItem value="3">Six</MenuItem>
-                      </TextField>
-                    </Grid> */}
-                    {/* <Grid item xs={12} sm={6} md={3} lg={3}>
-                      <TextField
-                        label="Section"
-                        select
-                        placeholder="Section"
-                        fullWidth
-                        margin="normal"
-                        name="section"
-                        value={values.section}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={errors.section && touched.section}
-                        helperText={
-                          errors.section && touched.section && errors.section
-                        }
-                      >
-                        <MenuItem value="1">One</MenuItem>
-                        <MenuItem value="2">Two</MenuItem>
-                        <MenuItem value="3">Three</MenuItem>
-                        <MenuItem value="3">Four</MenuItem>
-                        <MenuItem value="3">Five</MenuItem>
-                        <MenuItem value="3">Six</MenuItem>
-                      </TextField>
-                    </Grid> */}
                     <Grid item xs={12} sm={6} md={3} lg={3}>
                       <TextField
                         fullWidth
@@ -432,7 +388,26 @@ const CreateTeacher = () => {
                         }
                       />
                     </Grid>
-                    <Grid item xs={12} sm={12} md={6} lg={6}>
+                    <Grid item xs={12} sm={12} md={4} lg={4}>
+                      <TextField
+                        fullWidth
+                        label="Temporary Password"
+                        id="password"
+                        placeholder="Temporary Password"
+                        name="password"
+                        value={values.password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        InputProps={{
+                          readOnly: true,
+                        }}
+                        error={errors.password && touched.password}
+                        helperText={
+                          errors.password && touched.password && errors.password
+                        }
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={4} lg={4}>
                       <TextField
                         label="Short Bio"
                         placeholder="Short Bio"
@@ -465,33 +440,33 @@ const CreateTeacher = () => {
                           errors.photo && touched.photo && errors.photo
                         }
                       />
-                    </Grid>{" "}
+                    </Grid>
                   </Grid>
                 </CardContent>
               </Card>
 
               <Card>
-                {" "}
                 <Wrapper>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    className={classes.button}
-                    type="submit"
-                    disabled={isSubmitting}
-                  >
-                    {/* <SaveIcon className={classes.rightIcon} />  */}
-                    Create Teacher
-                  </Button>{" "}
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    className={classes.button}
-                    type="reset"
-                  >
-                    {/* <DeleteIcon className={classes.rightIcon} /> */}
-                    Cancel
-                  </Button>
+                  <ButtonGroup aria-label="teacher button">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={classes.button}
+                      type="submit"
+                      disabled={isSubmitting}
+                    >
+                      Create Teacher
+                    </Button>
+
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      className={classes.button}
+                      type="reset"
+                    >
+                      Reset Form
+                    </Button>
+                  </ButtonGroup>
                 </Wrapper>
               </Card>
             </Form>
@@ -502,8 +477,8 @@ const CreateTeacher = () => {
   );
 };
 
-CreateTeacher.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+// CreateTeacher.propTypes = {
+//   classes: PropTypes.object.isRequired,
+// };
 
 export default CreateTeacher;

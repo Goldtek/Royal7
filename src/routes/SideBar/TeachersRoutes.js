@@ -1,28 +1,16 @@
 // Pages
 import {
   Home,
-  // CreateTeachers,
-  // TeacherLists,
   CreateStudents,
-  // CreateParent,
-  // StudentLists,
   CreateClass,
   CreateSection,
+  AssignedSubject,
 } from "../../pages";
-// import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-// import SchoolIcon from "@material-ui/icons/School";
-// import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import LocalLibraryIcon from "@material-ui/icons/LocalLibrary";
 import TableChartIcon from "@material-ui/icons/TableChart";
-// import AssessmentIcon from "@material-ui/icons/Assessment";
-// import AnnouncementIcon from "@material-ui/icons/Announcement";
-// import MessageIcon from "@material-ui/icons/Message";
-// import GroupIcon from "@material-ui/icons/Group";
 import BorderColorIcon from "@material-ui/icons/BorderColor";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
-// import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
-// import ConfirmationNumberIcon from "@material-ui/icons/ConfirmationNumber";
 
 export default {
   items: [
@@ -33,7 +21,19 @@ export default {
       icon: DashboardIcon,
       component: Home,
     },
-
+    {
+      path: "/dashboard/subject",
+      name: "Subjects",
+      type: "submenu",
+      icon: MenuBookIcon,
+      children: [
+        {
+          path: "/view",
+          name: "View Subjects",
+          component: AssignedSubject,
+        },
+      ],
+    },
     {
       path: "/dashboard/class",
       name: "Classes",
@@ -54,24 +54,6 @@ export default {
         {
           path: "/view",
           name: "View Class",
-          component: CreateStudents,
-        },
-      ],
-    },
-    {
-      path: "/dashboard/subject",
-      name: "Subjects",
-      type: "submenu",
-      icon: MenuBookIcon,
-      children: [
-        {
-          path: "/create",
-          name: "Add Subjects",
-          component: CreateStudents,
-        },
-        {
-          path: "/view",
-          name: "View Subjects",
           component: CreateStudents,
         },
       ],

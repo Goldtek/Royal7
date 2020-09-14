@@ -9,11 +9,11 @@
       "id": 1
     },
     {
-      "schoolName": "fff",
-      "email": "ielemson@gmail.com",
-      "address": "fffff",
-      "about": "ffff",
-      "created": 1597995680683,
+      "schoolName": "Zeekay Group Of Schools",
+      "email": "ielemson@outlook.com",
+      "address": "\tHome Of Grace Street, Off Ezekiel Oyeyemi Street, Agbede Olosugbo, Ikorodu, Lagos, Nigeria.",
+      "about": "Zeek Zeek Zeek Zeekay College Standing on the Grace of God Shining the bright light of knowledge Shining for the world to see Grace and power is our helmet Knowledge is our weapon everyday To conquer the world is our goal Brilliance is our story Zeek Zeek Zeek, Zeekay College Shining for the world to see God is our strength and our shield His grace is our shelter Success is our reward Diligence is our style Zeek Zeek Zeek, Zeekay College Shining for the world to see",
+      "created": 1599688495883,
       "id": 2
     }
   ],
@@ -30,59 +30,29 @@
       "id": 1
     },
     {
-      "id": "6fe83d5f-2a88-4d50-8c90-185c4438b486",
-      "firstName": "James",
-      "middleName": "Obasanjo",
-      "lastName": "Jonathan",
-      "gender": "Male",
-      "address": "",
-      "dob": "1996-02-24",
-      "email": "obasanjo@gmail.com",
-      "phone": "080654567889",
-      "img": "C:\\fakepath\\Profile.png",
-      "shortbio": "short bio about obasanjo",
-      "bloodgrp": "2",
-      "stdclass": "STD 6",
-      "admissionId": "234/2020",
-      "schoolId": 1,
-      "role": "Student",
-      "created": 1597935255445
-    },
-    {
-      "firstName": "John",
-      "lastName": "Eze",
+      "firstName": "Johns",
+      "lastName": "Ezechi",
       "middleName": "Paul",
       "email": "john@gmail.com",
-      "gender": "Female",
+      "gender": "Male",
       "dob": "1933-02-02",
       "phone": "08076507455",
       "religion": "christian",
       "photo": "C:\\fakepath\\me.jpg",
       "address": "Sodipo Close Ajara Ogba Lagos",
-      "bloodgrp": "B+",
+      "bloodgrp": "0+",
       "idno": "IDNO-02",
       "shortbio": "Lorem ipsum short bio ipium delium,Lorem ipsum short bio ipium delium,Lorem ipsum short bio ipium delium,Lorem ipsum short bio ipium delium",
       "role": "Teacher",
       "schoolId": 1,
       "created": 1597954141069,
       "id": 2,
-      "updated": 1598028446830
-    },
-    {
-      "firstName": "",
-      "lastName": "",
-      "email": "ielemson@gmail.com",
-      "password": "fffff",
-      "phone": "ff",
-      "schoolId": 2,
-      "role": "Admin",
-      "created": 1597995681249,
-      "id": 3
+      "updated": 1599553870400
     },
     {
       "firstName": "Chisom",
       "lastName": "Eze-Ndu",
-      "middleName": "Dike",
+      "middleName": "Dike-Chi",
       "email": "dike@gmail.com",
       "gender": "Male",
       "dob": "1985-08-01",
@@ -97,7 +67,60 @@
       "schoolId": 1,
       "created": 1598027856198,
       "id": 4,
-      "updated": 1598041405801
+      "updated": 1598824935247
+    },
+    {
+      "firstName": "",
+      "lastName": "",
+      "email": "ielemson@outlook.com",
+      "password": "abc1234@5",
+      "phone": "080678856354",
+      "schoolId": 2,
+      "role": "Admin",
+      "created": 1599688496370,
+      "id": 5
+    },
+    {
+      "firstName": "Destiny",
+      "lastName": "Ehonubare",
+      "middleName": "Brotobor",
+      "email": "db@gmail.com",
+      "password": "abc1234@5",
+      "gender": "Male",
+      "dob": "1995-06-06",
+      "phone": 8067545675,
+      "religion": "christian",
+      "photo": "C:\\fakepath\\envelope-email.jpg",
+      "address": "Federal Polytechnic Nekede",
+      "bloodgrp": "2",
+      "idno": "22-2020/AB",
+      "shortbio": "",
+      "role": "Teacher",
+      "schoolId": 1,
+      "created": 1599701242740,
+      "id": 6,
+      "updated": 1599892037827
+    },
+    {
+      "firstName": "Silver",
+      "lastName": "Iwuji",
+      "middleName": "Pretty",
+      "email": "silver@hotmail.com",
+      "password": "%tempPassword!",
+      "gender": "Female",
+      "dob": "1995-05-25",
+      "phone": "8065494744",
+      "religion": "christian",
+      "photo": "C:\\fakepath\\envelope-email.jpg",
+      "address": "Nekede Road Ihiagwa Owerri Imo State Nigeria",
+      "bloodgrp": "A+",
+      "idno": "2020-01-SID",
+      "shortbio": "This is about Silver Pretty Iwuji",
+      "role": "Teacher",
+      "schoolId": 1,
+      "created": 1599701990940,
+      "id": 7,
+      "updated": 1599939891572
     }
   ],
   "sendEmail": [
@@ -105,79 +128,194 @@
       "email": "ielemson@gmail.com",
       "created": 1597996769601,
       "id": 1
+    },
+    {
+      "email": "ielemson@outlook.com",
+      "created": 1599688210217,
+      "id": 2
     }
   ],
   "class_schedule": [],
   "schoolClasses": [
     {
-      "stdClass": "Standard 6",
-      "sessionName": "2019/2020",
-      "classCode": "STD 6",
-      "created": 1597991747993,
-      "id": 1
-    },
-    {
       "stdClass": "Standard 1",
       "sessionName": "2019/2020",
       "classCode": "STD 1",
-      "created": 1598137426109,
-      "id": 2
+      "schoolId": 1,
+      "created": 1599909171243,
+      "id": 1
     },
     {
       "stdClass": "Standard 2",
       "sessionName": "2019/2020",
       "classCode": "STD 2",
-      "created": 1598137445927,
-      "id": 3
-    }
-  ],
-  "subjects": [
-    {
-      "name": "Mathematics",
-      "code": "Math101",
       "schoolId": 1,
-      "userId": 1,
-      "created": 1597954294015,
-      "id": 1
-    },
-    {
-      "name": "English",
-      "code": "Eng101",
-      "schoolId": 1,
-      "userId": 1,
-      "created": 1597993541694,
+      "created": 1599909256272,
       "id": 2
     },
     {
-      "name": "Computer",
-      "code": "Comp101",
+      "stdClass": "Standard 3",
+      "sessionName": "2019/2020",
+      "classCode": "STD 3",
       "schoolId": 1,
-      "userId": 1,
-      "created": 1597993573099,
+      "created": 1599909274227,
       "id": 3
     }
   ],
-  "examSchedule": [],
-  "assignTeacher": [
+  "schoolSubjects": [
     {
-      "id": "1a7e9f2c-96e7-4792-b246-5947286e3b89",
-      "teacherId": "Chisom Eze-Ndu",
-      "classId": 2,
-      "subjectId": 2,
-      "session": "2019/2020",
+      "name": "English Language",
+      "code": "Eng-2020",
+      "schClass": "STD 2",
       "schoolId": 1,
-      "role": "Student",
-      "created": 1598139620571
+      "userId": 1,
+      "created": 1600033172471,
+      "id": 1
     },
     {
-      "id": "b39c360e-de60-4a96-bbbb-5b50dead6497",
-      "teacherId": "Chisom Eze-Ndu",
-      "classId": "STD 1",
-      "subjectId": "English",
+      "name": "Mathematics",
+      "code": "Math-202",
+      "schClass": "STD 2",
+      "schoolId": 1,
+      "userId": 1,
+      "created": 1600033392571,
+      "id": 2
+    },
+    {
+      "name": "Biology",
+      "code": "Bio-201",
+      "schClass": "STD 2",
+      "schoolId": 1,
+      "userId": 1,
+      "created": 1600033426913,
+      "id": 3
+    },
+    {
+      "name": "Physics",
+      "code": "Phy-202",
+      "schClass": "STD 2",
+      "schoolId": 1,
+      "userId": 1,
+      "created": 1600033446392,
+      "id": 4
+    }
+  ],
+  "examSessions": [
+    {
+      "id": "528b7200-826e-490a-924c-bcca5f77b86d",
+      "section": "Senior Section",
+      "session": "2018/2019",
+      "term": "First Term",
+      "schoolId": 1,
+      "created": 1599554927044,
+      "updated": 1600029439254
+    },
+    {
+      "id": "456a0b36-f417-4831-9f6c-63398d399231",
+      "section": "Senior Section",
+      "session": "2018/2020",
+      "term": "Second Term",
+      "schoolId": 1,
+      "created": 1599567948222
+    }
+  ],
+  "examTables": [
+    {
+      "examClass": "STD 1",
+      "examDate": "2020-09-14",
+      "startTime": "09:00",
+      "stopTime": "12:00",
+      "teacher": "Chisom Eze-Ndu",
+      "description": "",
+      "subject": "Mathemetics",
+      "schoolId": 1,
+      "session": "528b7200-826e-490a-924c-bcca5f77b86d",
+      "created": 1599674711412,
+      "id": 1
+    },
+    {
+      "examClass": "STD 2",
+      "examDate": "2020-09-13",
+      "startTime": "07:18",
+      "stopTime": "22:18",
+      "teacher": "Chisom Eze-Ndu",
+      "description": "",
+      "subject": "Biology",
+      "schoolId": 1,
+      "session": "456a0b36-f417-4831-9f6c-63398d399231",
+      "created": 1599675529862,
+      "id": 2
+    },
+    {
+      "examClass": "STD 1",
+      "examDate": "2020-09-19",
+      "startTime": "09:30",
+      "stopTime": "11:30",
+      "teacher": "Chisom Eze-Ndu",
+      "description": "",
+      "subject": "Further Mathematics",
+      "schoolId": 1,
+      "session": "456a0b36-f417-4831-9f6c-63398d399231",
+      "created": 1599798637521,
+      "id": 3
+    },
+    {
+      "examClass": "STD 4",
+      "examDate": "2020-09-11",
+      "startTime": "09:30",
+      "stopTime": "12:30",
+      "teacher": "Destiny Ehonubare",
+      "description": "",
+      "subject": "Further Mathematics",
+      "schoolId": 1,
+      "session": "456a0b36-f417-4831-9f6c-63398d399231",
+      "created": 1599798669465,
+      "id": 4
+    },
+    {
+      "examClass": "STD 3",
+      "examDate": "2020-09-15",
+      "startTime": "09:00",
+      "stopTime": "00:00",
+      "teacher": "Destiny Ehonubare",
+      "description": "",
+      "subject": "Physics",
+      "schoolId": 1,
+      "session": "528b7200-826e-490a-924c-bcca5f77b86d",
+      "created": 1600028572464,
+      "id": 5
+    }
+  ],
+  "assignedTeachers": [
+    {
+      "id": "cc9d8aef-6654-4b52-96d6-9b554b5609b1",
+      "userId": "4",
+      "classId": "STD 2",
+      "subjectId": "Mathemetics",
       "session": "2019/2020",
       "schoolId": 1,
-      "role": "Student",
-      "created": 1598143131148
+      "role": "Teacher",
+      "created": 1599914678680
+    },
+    {
+      "id": "d9e13922-0ba1-4fa2-858d-4d06c22cbfa3",
+      "userId": "6",
+      "classId": "STD 2",
+      "subjectId": "Mathemetics",
+      "session": "2019/2020",
+      "schoolId": 1,
+      "role": "Teacher",
+      "created": 1599924029084
+    },
+    {
+      "id": "1150458f-0026-4bdf-a2db-aeb22110e7ac",
+      "userId": "6",
+      "classId": "STD 3",
+      "subjectId": "Chemistry",
+      "session": "2019/2020",
+      "schoolId": 1,
+      "role": "Teacher",
+      "created": 1599944605631
     }
   ]
 }

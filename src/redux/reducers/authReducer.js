@@ -65,6 +65,7 @@ export function authentication(state = initialState, action) {
         ...state,
         loggingIn: false,
         isAuthenticated: false,
+        error: null,
         user: {},
       };
     default:

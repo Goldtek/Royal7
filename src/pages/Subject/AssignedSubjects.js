@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import { Wrapper } from "../../components";
-import { connect } from "react-redux";
-import { fetchTeachers } from "../../redux/actions/teachersAction";
-import TeachersTable from "./TeachersTables/TeacherTable";
+import { useDispatch, useSelector } from "react-redux";
+import { assignedSubjects } from "../../redux/actions/subjectActions";
+import AssignedSubjectTable from "./SubjectTables/AssignedSubjectTable";
 import AppBar from "@material-ui/core/AppBar";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Typography from "@material-ui/core/Typography";
@@ -45,16 +45,20 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10vh",
   },
 }));
-const TeacherSubjects = ({ fetchTeachers, teachers }) => {
+const AssignedSubject = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const userAuth = useSelector((state) => state.authentication);
+  const assTeachers = useSelector((state) => state.assignedSubjects);
+  const userID = userAuth.user.id;
   useEffect(() => {
-    fetchTeachers();
-  }, [fetchTeachers]);
-  const teacherArray = teachers.teachers;
+    dispatch(assignedSubjects(userID));
+  }, [dispatch]);
+  const teacherArray = assTeachers.assignedSubjects;
   return (
     <Wrapper>
       <Helmet>
-        <title>Teachers List</title>
+        <title>Assigned Subjects</title>
       </Helmet>
       <br />
       <br />
@@ -62,9 +66,9 @@ const TeacherSubjects = ({ fetchTeachers, teachers }) => {
         <Wrapper>
           <Breadcrumbs aria-label="breadcrumb">
             <Link color="inherit" to="/dashboard/teachers/view">
-              Teachers
+              Teacher
             </Link>
-            <Typography color="textPrimary">Teacher's Subject</Typography>
+            <Typography color="textPrimary">Assigned Subjects</Typography>
           </Breadcrumbs>
         </Wrapper>
       </Card>
@@ -73,7 +77,7 @@ const TeacherSubjects = ({ fetchTeachers, teachers }) => {
           TEACHERS LIST
         </Typography> */}
       </AppBar>
-      {teachers.loading ? (
+      {assTeachers.loading ? (
         <div className={classes.loader}>
           {" "}
           <CircularProgress className={classes.progress} size={60} />
@@ -84,19 +88,15 @@ const TeacherSubjects = ({ fetchTeachers, teachers }) => {
       ) : Array.isArray(teacherArray) && !teacherArray.length ? (
         <div>No array</div>
       ) : (
-        <TeachersTable teachers={teacherArray} />
+        <AssignedSubjectTable subjects={teacherArray} />
       )}
     </Wrapper>
   );
 };
 
-TeacherLists.propTypes = {
+AssignedSubject.propTypes = {
   teachers: PropTypes.object.isRequired,
   fetchTeachers: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  teachers: state.teachers,
-});
-
-export default connect(mapStateToProps, { fetchTeachers })(TeacherLists);
+export default AssignedSubject;

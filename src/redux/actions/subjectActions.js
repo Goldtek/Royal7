@@ -4,6 +4,9 @@ import {
   FETCH_SUBJECTS_REQUEST,
   FETCH_SUBJECTS_SUCCESS,
   FETCH_SUBJECTS_FAILURE,
+  FETCH_ASSIGNED_SUBJECTS_REQUEST,
+  FETCH_ASSIGNED_SUBJECTS_SUCCESS,
+  FETCH_ASSIGNED_SUBJECTS_FAILURE,
 } from "./action-types";
 
 const API_URL = process.env.REACT_APP_BASEURL;
@@ -13,7 +16,7 @@ export const fetchSchoolSubjects = () => {
   return (dispatch) => {
     dispatch(request());
     axios
-      .get(`${API_URL}/subjects`)
+      .get(`${API_URL}/schoolSubjects`)
       .then((response) => {
         // response.data is the users
         const subjects = response.data;
@@ -32,7 +35,7 @@ export const deleteSubject = (id) => {
     //   console.log(id);
     dispatch(request(id));
     axios
-      .delete(`${API_URL}/subjects/${id}`)
+      .delete(`${API_URL}/schoolSubjects/${id}`)
       .then((res) => {
         dispatch(fetchSchoolSubjects());
         // console.log(res);
@@ -56,6 +59,42 @@ export const success = (subjects) => ({
 export const failure = (error) => {
   return {
     type: FETCH_SUBJECTS_FAILURE,
+    payload: error,
+  };
+};
+
+// ----- FETCH ASSIGNED SUBJECT
+export const assignedSubjects = (id) => {
+  return (dispatch) => {
+    //   console.log(id);
+    dispatch(requestAssigned());
+    axios
+      .get(`${API_URL}/assignedTeachers`)
+      .then((res) => {
+        dispatch(fetchSchoolSubjects());
+        // console.log(res);
+        const data = res.data.filter((el) => el.userId === `${id}`);
+        dispatch(successAssigned(data));
+      })
+      .catch((error) => {
+        // error.message is the error message
+        const errormsg = error.message;
+        dispatch(failureAssigned(errormsg));
+      });
+  };
+};
+
+export const requestAssigned = () => ({
+  type: FETCH_ASSIGNED_SUBJECTS_REQUEST,
+});
+export const successAssigned = (assignedSubjects) => ({
+  type: FETCH_ASSIGNED_SUBJECTS_SUCCESS,
+  payload: assignedSubjects,
+});
+
+export const failureAssigned = (error) => {
+  return {
+    type: FETCH_ASSIGNED_SUBJECTS_FAILURE,
     payload: error,
   };
 };

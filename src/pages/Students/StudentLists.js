@@ -6,12 +6,11 @@ import { Helmet } from "react-helmet";
 import { Wrapper } from "../../components";
 import { fetchStudents } from "../../redux/actions/studentActions";
 import { Link } from "react-router-dom";
-import AppBar from "@material-ui/core/AppBar";
-// import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import StudentTable from "./StudentTable/StudentTable";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Card from "@material-ui/core/Card";
+import AppBar from "@material-ui/core/AppBar";
+import Typography from "@material-ui/core/Typography";
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import StudentTable from "./StudentTable/StudentTable";
 import CircularProgress from "@material-ui/core/CircularProgress";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,9 +49,9 @@ const StudentLists = ({ fetchStudents, students }) => {
   return (
     <Wrapper>
       <Helmet>
-        <title>Teachers List</title>
+        <title>Student List</title>
       </Helmet>
-      <br />
+
       <br />
       <Card>
         <Wrapper>

@@ -22,7 +22,7 @@ const initialState = {
   assignedTeachers: [],
 };
 
-export const allTeachersReducer = (state = initialState, action) => {
+export const TeachersReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_TEACHERS_REQUEST:
       return {
@@ -48,7 +48,7 @@ export const allTeachersReducer = (state = initialState, action) => {
   }
 };
 
-export const singleTeacherReducer = (state = initialState, action) => {
+export const TeacherReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_SINGLE_TEACHER_REQUEST:
       return {
@@ -73,6 +73,7 @@ export const singleTeacherReducer = (state = initialState, action) => {
       return state;
   }
 };
+
 export const assignedTeacherReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_ASSIGNED_TEACHER_REQUEST:
@@ -98,30 +99,3 @@ export const assignedTeacherReducer = (state = initialState, action) => {
       return state;
   }
 };
-
-// DELETE TEACHER
-// export const delTeacherReducer = (state = initialState, action) => {
-//   switch (action.type) {
-//     case DELETE_TEACHER_REQUEST:
-//       return {
-//         ...state,
-//         loading: true,
-//       };
-//     case DELETE_TEACHER_SUCCESS:
-//       return {
-//         ...state,
-//         loading: false,
-//         teachers: action.payload,
-//         error: "",
-//       };
-//     case DELETE_TEACHER_FAILURE:
-//       return {
-//         ...state,
-//         loading: false,
-//         teachers: [],
-//         error: action.payload,
-//       };
-//     default:
-//       return state;
-//   }
-// };

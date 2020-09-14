@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
+import * as Yup from "yup";
 import { v4 as uuidv4 } from "uuid";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { withStyles } from "@material-ui/core/styles";
-// import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import { Wrapper } from "../../components";
@@ -16,6 +17,8 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import { fetchschoolClasses } from "../../redux/actions/schoolClassActions";
 import { Role } from "../../_helpers";
 import cogoToast from "cogo-toast";
 
@@ -56,7 +59,7 @@ const validationSchema = Yup.object().shape({
   religion: Yup.string().nullable(),
   admissionId: Yup.string().required("required"),
   stdclass: Yup.string().required("required"),
-  gender: Yup.string().nullable(),
+  gender: Yup.string().required("required"),
   address: Yup.string().nullable(),
   photo: Yup.string().nullable(),
   bio: Yup.string().nullable(),
@@ -69,8 +72,15 @@ const API_URL = process.env.REACT_APP_BASEURL;
 const CreateStudent = (props) => {
   const { classes } = props;
   // let history = useHistory();
+  const dispatch = useDispatch();
   const userAuth = useSelector((state) => state.authentication);
+  const Classes = useSelector((state) => state.schoolClasses.schoolClasses);
   const schoolID = userAuth.user.schoolId;
+
+  useEffect(() => {
+    dispatch(fetchschoolClasses());
+  }, [dispatch]);
+
   // console.log(Role.student);
   // const [randPassWord, setRandPassword] = useState("")
 
@@ -89,6 +99,24 @@ const CreateStudent = (props) => {
   // };
   return (
     <Wrapper>
+      <Helmet>
+        <title>Teachers List</title>
+      </Helmet>
+      <br />
+      <Card>
+        <Wrapper>
+          <Breadcrumbs aria-label="breadcrumb">
+            <Link color="inherit" to="/dashboard/student/view">
+              Student
+            </Link>
+            <Typography color="textPrimary">Create Student</Typography>
+          </Breadcrumbs>
+        </Wrapper>
+      </Card>
+
+      <AppBar position="static" className={classes.appBar}>
+        <Typography color="inherit" className="flexs={12}pacer"></Typography>
+      </AppBar>
       <Formik
         onSubmit={(values, { setSubmitting, resetForm }) => {
           setSubmitting(true);
@@ -158,7 +186,7 @@ const CreateStudent = (props) => {
                 className={classes.card}
                 style={{ marginTop: "5px", marginBottom: "20px" }}
               >
-                <AppBar
+                {/* <AppBar
                   position="static"
                   color="primary"
                   className={classes.appBar}
@@ -169,7 +197,7 @@ const CreateStudent = (props) => {
                   >
                     FILL STUDENT INFO
                   </Typography>
-                </AppBar>
+                </AppBar> */}
                 <CardContent>
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} md={4} lg={4}>
@@ -290,8 +318,12 @@ const CreateStudent = (props) => {
                           errors.stdclass && touched.roleId && errors.stdclass
                         }
                       >
-                        <MenuItem value="STD 5">STD 5</MenuItem>
-                        <MenuItem value="STD 6">STD 6</MenuItem>
+                        {Classes.map(({ classCode, id }) => (
+                          <MenuItem
+                            key={id}
+                            value={classCode}
+                          >{`${classCode}`}</MenuItem>
+                        ))}
                       </TextField>
                     </Grid>
                     <Grid item xs={12} sm={6} md={4} lg={4}>
@@ -338,24 +370,6 @@ const CreateStudent = (props) => {
                         }
                       />
                     </Grid>
-
-                    <Grid item xs={12} sm={6} md={4} lg={4}>
-                      <TextField
-                        fullWidth
-                        multiline
-                        rowsMax="4"
-                        id="bio"
-                        label="Short BIO"
-                        margin="normal"
-                        name="bio"
-                        value={values.bio}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        error={errors.bio && touched.bio}
-                        helperText={errors.bio && touched.bio && errors.bio}
-                      />
-                    </Grid>
-
                     <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
                         fullWidth
@@ -381,6 +395,23 @@ const CreateStudent = (props) => {
                         <MenuItem value="Female">Female</MenuItem>
                       </TextField>
                     </Grid>
+                    <Grid item xs={12} sm={6} md={4} lg={4}>
+                      <TextField
+                        fullWidth
+                        multiline
+                        rowsMax="4"
+                        id="bio"
+                        label="Short BIO"
+                        margin="normal"
+                        name="bio"
+                        value={values.bio}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        error={errors.bio && touched.bio}
+                        helperText={errors.bio && touched.bio && errors.bio}
+                      />
+                    </Grid>
+
                     <Grid item xs={12} sm={6} md={4} lg={4}>
                       <TextField
                         type="file"
@@ -412,13 +443,13 @@ const CreateStudent = (props) => {
                     disabled={isSubmitting}
                   >
                     {/* <SaveIcon className={classes.rightIcon} />  */}
-                    Save
+                    Create Student
                   </Button>{" "}
                   <Button
                     variant="contained"
                     color="secondary"
                     className={classes.button}
-                    type="button"
+                    type="reset"
                     // onClick={() => getRandomString(6)}
                   >
                     {/* <DeleteIcon className={classes.rightIcon} /> */}

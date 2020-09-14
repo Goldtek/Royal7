@@ -7,9 +7,9 @@ import MaterialTable from "material-table";
 const AssignedTeachersList = ({ assigned }) => {
   return (
     <MaterialTable
-      title="List Of Assigned Teachers"
+      title="Assigned Teachers"
       columns={[
-        { title: "Name", field: "teacherId" },
+        { title: "Name", field: "userId" },
         { title: "Class", field: "classId" },
         { title: "Subject", field: "subjectId" },
         { title: "Session", field: "session" },
@@ -28,8 +28,17 @@ const AssignedTeachersList = ({ assigned }) => {
           disabled: rowData.birthYear < 2000,
         }),
       ]}
+      // options={{
+      //   actionsColumnIndex: -1,
+      // }}
       options={{
-        actionsColumnIndex: -1,
+        headerStyle: {
+          backgroundColor: "#EEE",
+          fontWeight: "600",
+          textTransform: "uppercase",
+          color: "#292b2c",
+          fontFamily: "Helvetica",
+        },
       }}
     />
   );

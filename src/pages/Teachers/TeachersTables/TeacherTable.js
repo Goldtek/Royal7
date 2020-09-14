@@ -13,7 +13,7 @@ import {
   updateTeacher,
 } from "../../../redux/actions/teachersAction";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
+
 // GENERAL IMPORT ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 // MODAL DIALGOUE IMPORT :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -21,6 +21,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 import Slide from "@material-ui/core/Slide";
+
 // MODAL DIALGOUE IMPORT :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 // PROFILE CARD ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -30,10 +31,10 @@ import Grid from "@material-ui/core/Grid";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
+// import FavoriteIcon from "@material-ui/icons/Favorite";
+// import GridList from "@material-ui/core/GridList";
+// import GridListTile from "@material-ui/core/GridListTile";
+// import GridListTileBar from "@material-ui/core/GridListTileBar";
 import IconButton from "@material-ui/core/IconButton";
 import Card from "@material-ui/core/Card";
 import AppBar from "@material-ui/core/AppBar";
@@ -51,7 +52,7 @@ import ErrorIcon from "@material-ui/icons/Error";
 import WarningIcon from "@material-ui/icons/Warning";
 import { withStyles } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
-import MuiAlert from "@material-ui/lab/Alert";
+// import MuiAlert from "@material-ui/lab/Alert";
 import serializeForm from "form-serialize";
 import { DialogContent } from "@material-ui/core";
 
@@ -93,10 +94,10 @@ const useStyles = makeStyles((theme) => ({
   },
   goback: {
     background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-    borderRadius: 3,
+    borderRadius: 0,
     border: 0,
     color: "white",
-    height: 35,
+    height: 30,
     padding: "0 30px",
     boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
   },
@@ -224,7 +225,7 @@ const TeacherTable = (props) => {
   const [selectedRow, setSelectedRow] = React.useState(null);
   const teacherObj = useSelector((state) => state.teacher);
   const { teacher, loading, error } = teacherObj;
-  console.log(teacherObj);
+  // console.log(teacherObj);
   const [tab, setTab] = React.useState(0);
   const handleTabToggle = (event, tab) => setTab(tab);
 
@@ -271,33 +272,6 @@ const TeacherTable = (props) => {
   };
   // HANDLE FORM SUBMIT :::::::::::::::::::::::::::::::::::::::::
 
-  //  TEACHER DELETE FUNCTION :::::::::::::::::::::::::::::::::::::::
-  const handleCLickDelete = async (id) => {
-    Swal.fire({
-      title: `Are you sure ?`,
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-      width: "auto",
-      showClass: {
-        popup: "animate__animated animate__fadeInDown",
-      },
-      hideClass: {
-        popup: "animate__animated animate__fadeOutUp",
-      },
-    }).then((result) => {
-      if (result.value) {
-        dispatch(deleteTeacher(id));
-        // dispatch(fetchStudents());
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
-      }
-    });
-  };
-  //  TEACHER DELETE FUNCTION :::::::::::::::::::::::::::::::::::::::
-
   //  TABLE INFORMATION ::::::::::::::::::::::::::::::::::::::::::::::
   const columns = [
     { title: "id", field: "id", hidden: true },
@@ -329,21 +303,24 @@ const TeacherTable = (props) => {
         onRowClick={(evt, selectedRow) =>
           setSelectedRow(selectedRow.tableData.id)
         }
+        editable={{
+          onRowDelete: (oldData) =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                dispatch(deleteTeacher(oldData.id));
+                resolve();
+              }, 1000);
+            }),
+        }}
         actions={[
           {
             icon: "edit",
             tooltip: "Edit Teacher",
             onClick: (event, rowData) => handleClickOpen(rowData.id),
           },
-          (rowData) => ({
-            icon: "delete",
-            tooltip: "Delete Teacher",
-            onClick: (event, rowData) => handleCLickDelete(rowData.id),
-            disabled: rowData.birthYear < 2000,
-          }),
         ]}
         options={{
-          actionsColumnIndex: -1,
+          // actionsColumnIndex: -1,
           filtering: false,
           sorting: true,
           headerStyle: {
@@ -395,11 +372,12 @@ const TeacherTable = (props) => {
             disableBackdropClick
             disableEscapeKeyDown
             open={open}
+            scroll="paper"
             onClose={handleClose}
             TransitionComponent={Transition}
-            // fullScreen
-            maxWidth="xl"
-            aria-labelledby="form-dialog-title"
+            fullScreen
+            // maxWidth="lg"
+            aria-labelledby="Teacher Details"
           >
             <Card>
               <Wrapper>
@@ -450,9 +428,11 @@ const TeacherTable = (props) => {
               <Grid item xs={12} sm={12} md={6} lg={7}>
                 <Card>
                   <Tabs value={tab} onChange={handleTabToggle}>
-                    <Tab label="Bio" classes={{ root: classes.tabRoot }} />
-                    <Tab label="Edit Bio" classes={{ root: classes.tabRoot }} />
-                    <Tab label="Photos" classes={{ root: classes.tabRoot }} />
+                    <Tab label="Basic" classes={{ root: classes.tabRoot }} />
+                    <Tab
+                      label="Edit Information"
+                      classes={{ root: classes.tabRoot }}
+                    />
                   </Tabs>
                   <Divider />
                   {tab === 0 && (
@@ -495,7 +475,7 @@ const TeacherTable = (props) => {
 
                             <div className="mb-1">
                               <Typography variant="caption" gutterBottom>
-                                Occupation
+                                Role
                               </Typography>
                               <Typography
                                 variant="body1"
@@ -790,51 +770,25 @@ const TeacherTable = (props) => {
                                     id="textarea"
                                     className="lg-textarea form-control rounded-0"
                                     name="shortbio"
-                                    row="3"
+                                    row="5"
                                     defaultValue={shortbio}
                                   ></textarea>
                                 </Grid>
                               </Grid>
                             </CardContent>
                           </Card>
-
-                          <Card>
-                            <Button
-                              variant="contained"
-                              color="primary"
-                              className={classes.button}
-                              type="submit"
-                              // disabled={isSubmitting}
-                            >
-                              {/* <SaveIcon className={classes.rightIcon} />  */}
-                              Update Profile
-                            </Button>{" "}
-                          </Card>
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            className={classes.button}
+                            type="submit"
+                            // disabled={isSubmitting}
+                          >
+                            {/* <SaveIcon className={classes.rightIcon} />  */}
+                            Update Profile
+                          </Button>{" "}
                         </form>
                       </CardContent>
-                    </TabContainer>
-                  )}
-                  {tab === 2 && (
-                    <TabContainer>
-                      <GridList cols={3} spacing={1} cellHeight={180}>
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((tile) => (
-                          <GridListTile key={tile}>
-                            <img
-                              src={`${process.env.PUBLIC_URL}/static/images/unsplash/${tile}.jpg`}
-                              alt={tile}
-                            />
-                            <GridListTileBar
-                              title={tile}
-                              subtitle={<span>Gallery image: {tile}</span>}
-                              actionIcon={
-                                <IconButton>
-                                  <FavoriteIcon />
-                                </IconButton>
-                              }
-                            />
-                          </GridListTile>
-                        ))}
-                      </GridList>
                     </TabContainer>
                   )}
                 </Card>
