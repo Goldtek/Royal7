@@ -165,6 +165,7 @@ const StudentsTable = (props) => {
     const formDetails = serializeForm(e.target, { hash: true });
     const userDetails = { ...formDetails, userId };
     dispatch(updateStudent(userDetails));
+    
     // console.log(userDetails);
   };
 

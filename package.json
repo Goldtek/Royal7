@@ -40,6 +40,7 @@
     "react-dom": "16.13.0",
     "react-emotion": "10.0.0",
     "react-helmet": "^6.1.0",
+    "react-hook-form": "^6.8.2",
     "react-jss": "10.0.4",
     "react-leaflet": "2.6.1",
     "react-moment": "^0.9.7",

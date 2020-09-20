@@ -7,7 +7,11 @@ import {
   assignedTeacherReducer,
 } from "./teachersReducer";
 import { studentsReducer, singleStudentReducer } from "./studentReducer";
-import { schoolClassReducers } from "./schoolClassReducer";
+import {
+  schoolClassReducers,
+  classStudentsReducers,
+  classRoutines,
+} from "./schoolClassReducer";
 import { subjectReducers, assignedSubjectsReducers } from "./subjectReducer";
 import { examSessioneReducer } from "./examReducers";
 const rootReducer = combineReducers({
@@ -22,6 +26,8 @@ const rootReducer = combineReducers({
   schoolClasses: schoolClassReducers,
   subjects: subjectReducers,
   exams: examSessioneReducer,
+  classStudents: classStudentsReducers,
+  classRoutines,
   // examTimeTable: examTimeTableReducer,
 });
 export default rootReducer;

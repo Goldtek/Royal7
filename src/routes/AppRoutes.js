@@ -16,6 +16,8 @@ import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../containers/Dashboard";
 import UserProfile from "../containers/Profile";
 import ExamTimeTable from "../pages/Exams/EXamTimeTable";
+import StudentAssessment from "../pages/Students/StudentAssesment";
+
 const AppRoutes = () => {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
@@ -35,6 +37,11 @@ const AppRoutes = () => {
         <PrivateRoute
           path="/exam/:id/schedule"
           component={ExamTimeTable}
+          roles={[Role.Admin, Role.Student, Role.Teacher]}
+        />
+        <PrivateRoute
+          path="/student/:stdId/:subj/assessment"
+          component={StudentAssessment}
           roles={[Role.Admin, Role.Student, Role.Teacher]}
         />
         {/*SCREEN ROUTES */}

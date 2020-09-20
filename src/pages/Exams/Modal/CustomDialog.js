@@ -1,17 +1,7 @@
 import React from "react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-// import Slide from "@material-ui/core/Slide";
 import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
-
-const API_URL = process.env.REACT_APP_BASEURL;
-// function Transition(props) {
-//   return <Slide direction="left" {...props} />;
-// }
 
 const styles = (theme) => ({
   panel: {
@@ -87,7 +77,7 @@ const styles = (theme) => ({
 });
 class CustomDialog extends React.Component {
   render() {
-    const { classes, dialogWidth } = this.props;
+    const { dialogWidth } = this.props;
     return (
       <React.Fragment>
         <Dialog
@@ -100,15 +90,6 @@ class CustomDialog extends React.Component {
           maxWidth={dialogWidth}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">
-            <Button
-              color="secondary"
-              variant="outlined"
-              onClick={this.props.handleClose}
-            >
-              Close
-            </Button>
-          </DialogTitle>
           <DialogContent>{this.props.children}</DialogContent>
         </Dialog>
       </React.Fragment>

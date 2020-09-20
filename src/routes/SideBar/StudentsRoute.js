@@ -2,9 +2,8 @@
 import {
   Home,
   CreateStudents,
-  TeacherClasses,
   CreateClass,
-  // CreateSection,
+  CreateSection,
   AssignedSubject,
 } from "../../pages";
 import DashboardIcon from "@material-ui/icons/Dashboard";
@@ -42,9 +41,20 @@ export default {
       icon: LocalLibraryIcon,
       children: [
         {
+          path: "/create",
+          name: "Add Class",
+          component: CreateClass,
+        },
+        {
+          path: "/section",
+          name: "Add Section",
+          component: CreateSection,
+        },
+
+        {
           path: "/view",
           name: "View Class",
-          component: CreateClass,
+          component: CreateStudents,
         },
       ],
     },
@@ -56,20 +66,30 @@ export default {
       children: [
         {
           path: "/schedule",
-          name: "Exam TimeTable",
+          name: "Exam Schedule",
+          component: CreateStudents,
+        },
+        {
+          path: "/grades",
+          name: "Exam Grades",
           component: CreateStudents,
         },
       ],
     },
     {
       path: "/dashboard/timetable",
-      name: "Class Routines",
+      name: "TimeTables",
       type: "submenu",
       icon: TableChartIcon,
       children: [
         {
+          path: "/create",
+          name: "Create ",
+          component: CreateStudents,
+        },
+        {
           path: "/view",
-          name: "View Routine",
+          name: "View ",
           component: CreateStudents,
         },
       ],

@@ -21,7 +21,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import Grid from "@material-ui/core/Grid";
 import ExamSessionTable from "./Table/ExamSessionTable";
 import cogoToast from "cogo-toast";
-import CustomDialog from "./Modal/CustomDialog";
+import CustomDialog from "../../components/Modal/CustomDialog";
 // <-- MODAL DIALOGUE IMPORTS-->
 
 const styles = (theme) => ({
@@ -152,9 +152,9 @@ class CreateExamSession extends React.Component {
         {/* MATERIAL TABLE :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */}
         {/* MODAL DIALOG::::::::::::::::::::::::::::::::: */}
         <CustomDialog
-          isOpen={this.state.isOpen}
+          OpenModal={this.state.isOpen}
           handleClose={this.handleDialogClose}
-          title={""}
+          title={"Create ExamTime Table Session"}
           dialogWidth="sm"
         >
           <Formik
@@ -212,7 +212,6 @@ class CreateExamSession extends React.Component {
               handleChange,
               handleBlur,
               handleSubmit,
-              isSubmitting,
               /* and other goodies */
             }) => (
               <Form onSubmit={handleSubmit}>
@@ -279,10 +278,10 @@ class CreateExamSession extends React.Component {
                   <Button
                     variant="outlined"
                     color="secondary"
-                    // onClick={this.handleDialogClose}
-                    type="reset"
+                    onClick={this.handleDialogClose}
+                    type="button"
                   >
-                    Clear
+                    Close
                   </Button>
                   <Button type="submit" variant="outlined" color="primary">
                     Submit

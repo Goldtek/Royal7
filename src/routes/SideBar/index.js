@@ -1,3 +1,4 @@
 import AdminRoutes from "./AdminRoutes";
 import TeacherRoutes from "./TeachersRoutes";
-export { AdminRoutes, TeacherRoutes };
+import StudentRoutes from "./TeachersRoutes";
+export { AdminRoutes, TeacherRoutes, StudentRoutes };

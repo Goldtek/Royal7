@@ -7,12 +7,15 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 // import AppBar from "@material-ui/core/AppBar";
 
 // const API_URL = process.env.REACT_APP_BASEURL;
-// function Transition(props) {
-//   return <Slide direction="left" {...props} />;
-// }
 
 const CustomModal = (props) => {
-  const { children, dialogWidth, OpenModal, handleDialogClose } = props;
+  const {
+    children,
+    dialogWidth,
+    OpenModal,
+    handleDialogClose,
+    Transition,
+  } = props;
   return (
     <React.Fragment>
       <Dialog

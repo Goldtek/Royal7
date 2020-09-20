@@ -162,9 +162,9 @@ const AssignTeachers = (props) => {
       </AppBar>
       <AssignedTeachersList assigned={assignTeachersList} />
       <CustomDialog
-        isOpen={isOpen}
+        OpenModal={isOpen}
         handleClose={handleDialogClose}
-        title={""}
+        title={"Create Class Teachers"}
         dialogWidth="sm"
       >
         <Formik

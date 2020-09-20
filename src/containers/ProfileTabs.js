@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
+// import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -10,7 +10,7 @@ import Box from "@material-ui/core/Box";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Card from "@material-ui/core/Card";
 import { Wrapper } from "../components";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
@@ -57,15 +57,15 @@ function LinkTab(props) {
   );
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     flexGrow: 1,
+//     backgroundColor: theme.palette.background.paper,
+//   },
+// }));
 
 export const ProfileTabs = () => {
-  const classes = useStyles();
+  // const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {

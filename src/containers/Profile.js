@@ -1,6 +1,5 @@
 import { Header, NotificationCenter, Sidebar, Workspace } from "../components";
 import React, { useState } from "react";
-import { Route, Switch } from "react-router-dom";
 import { useSelector } from "react-redux";
 import FormatTextdirectionLToRIcon from "@material-ui/icons/FormatTextdirectionLToR";
 import FormatTextdirectionRToLIcon from "@material-ui/icons/FormatTextdirectionRToL";
@@ -114,40 +113,6 @@ const Dashboard = ({ history }) => {
   const handleSpeedDialOpen = () => setOpenSpeedDial(true);
 
   const handleSpeedDialClose = () => setOpenSpeedDial(false);
-
-  const getRoutes = (
-    <Switch>
-      {routes.items.map((item, index) =>
-        item.type === "external" ? (
-          <Route
-            exact
-            path={item.path}
-            component={item.component}
-            name={item.name}
-            key={index}
-          />
-        ) : item.type === "submenu" ? (
-          item.children.map((subItem) => (
-            <Route
-              exact
-              path={`${item.path}${subItem.path}`}
-              component={subItem.component}
-              name={subItem.name}
-            />
-          ))
-        ) : (
-          <Route
-            exact
-            path={item.path}
-            component={item.component}
-            name={item.name}
-            key={index}
-          />
-        )
-      )}
-      {/* <Redirect to="/404" /> */}
-    </Switch>
-  );
 
   useMountEffect(() => {
     if (mediaMatcher.matches) setOpened(false);

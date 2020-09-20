@@ -51,7 +51,7 @@ const ExamSessionTable = () => {
             new Promise((resolve, reject) => {
               setTimeout(() => {
                 dispatch(deleteExamSessionTable(oldData.id));
-                console.log(oldData.id);
+                // console.log(oldData.id);
                 resolve();
               }, 1000);
             }),

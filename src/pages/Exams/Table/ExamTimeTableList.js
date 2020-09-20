@@ -21,7 +21,7 @@ const ExamSessionTable = () => {
     return () => {
       dispatch(fetchExamTimeTable(params.id));
     };
-  }, [dispatch]);
+  }, [dispatch, params.id]);
 
   return (
     <React.Fragment>

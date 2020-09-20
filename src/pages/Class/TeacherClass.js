@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Wrapper } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import { assignedSubjects } from "../../redux/actions/subjectActions";
-import AssignedSubjectTable from "./SubjectTables/AssignedSubjectTable";
+import TeacherClassTable from "./ClassTables/TeacherClassTable";
 import AppBar from "@material-ui/core/AppBar";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Typography from "@material-ui/core/Typography";
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10vh",
   },
 }));
-const AssignedSubject = () => {
+const TeacherClasses = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const userAuth = useSelector((state) => state.authentication);
@@ -87,7 +87,7 @@ const AssignedSubject = () => {
       ) : Array.isArray(teacherArray) && !teacherArray.length ? (
         <div>No array</div>
       ) : (
-        <AssignedSubjectTable subjects={teacherArray} />
+        <TeacherClassTable teacherClassArr={teacherArray} />
       )}
     </Wrapper>
   );
@@ -97,4 +97,4 @@ const AssignedSubject = () => {
 //   assignedSubjects: PropTypes.func.isRequired,
 // };
 
-export default AssignedSubject;
+export default TeacherClasses;

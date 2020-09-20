@@ -113,7 +113,6 @@ const CreateStudent = (props) => {
           </Breadcrumbs>
         </Wrapper>
       </Card>
-
       <AppBar position="static" className={classes.appBar}>
         <Typography color="inherit" className="flexs={12}pacer"></Typography>
       </AppBar>
@@ -186,18 +185,6 @@ const CreateStudent = (props) => {
                 className={classes.card}
                 style={{ marginTop: "5px", marginBottom: "20px" }}
               >
-                {/* <AppBar
-                  position="static"
-                  color="primary"
-                  className={classes.appBar}
-                >
-                  <Typography
-                    color="inherit"
-                    className={`${classes.typo} flexs={12}pacer`}
-                  >
-                    FILL STUDENT INFO
-                  </Typography>
-                </AppBar> */}
                 <CardContent>
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} md={4} lg={4}>

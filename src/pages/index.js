@@ -13,6 +13,7 @@ import NotFound from "./Errors/NotFound";
 import CreateTeachers from "./Teachers/CreateTeacher";
 import TeacherLists from "./Teachers/TeacherLists";
 import AssignTeachers from "./Teachers/AssignTeachers";
+import TeacherClasses from "./Class/TeacherClass";
 // import EditTeacher from "./Teachers/EditTeacher";
 // TEACHER ------------------------------------>>>>
 
@@ -27,10 +28,12 @@ import CreateParent from "./Parent/CreateParent";
 //CLASS/SECTION
 import CreateClass from "./Class/CreateClass";
 import CreateSection from "./Class/CreateSection";
+import ClassRoutine from "./Class/ClassRoutine";
 
 //SUBJECT ROUTES
 import CreateSubject from "./Subject/CreateSubject";
 import AssignedSubject from "./Subject/AssignedSubjects";
+// import ViewStudents from "./Subject/viewStudents";
 
 // EXAMS
 // import ScheduleExams from "./Exams/sample";
@@ -38,7 +41,7 @@ import AssignedSubject from "./Subject/AssignedSubjects";
 import CreateExamSession from "./Exams/CreateExamSession";
 
 //TIMETABLE ROUTES
-import CreateTimeTable from "./TimeTable/CreateTimeTable";
+// import CreateTimeTable from "./TimeTable/CreateTimeTable";
 
 // USER PROFILE
 import UserProfile from "./Profile/UserProfile";
@@ -63,6 +66,7 @@ export {
   AssignTeachers,
   TeacherLists,
   AssignedSubject,
+  TeacherClasses,
   // TEACHERS ---->
 
   CreateStudents,
@@ -74,8 +78,11 @@ export {
   CreateParent,
   StudentLists,
   CreateClass,
+  ClassRoutine,
   CreateSection,
+  //  <----SUBJECT COMP------>
   CreateSubject,
-  CreateTimeTable,
+  //  <----SUBJECT COMP------>
+  // CreateTimeTable,
   UserProfile,
 };

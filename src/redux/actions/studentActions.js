@@ -10,6 +10,11 @@ import {
   FETCH_SINGLE_STUDENT_FAILURE,
   FETCH_SINGLE_STUDENT_SUCCESS,
   FETCH_SINGLE_STUDENT_REQUEST,
+
+  //STUDENT ASSESSMENT ACTION
+  FETCH_STUDENT_ASSESSMENT_REQUEST,
+  FETCH_STUDENT_ASSESSMENT_SUCCESS,
+  FETCH_STUDENT_ASSESSMENT_FAILURE,
 } from "./action-types";
 
 const API_URL = process.env.REACT_APP_BASEURL;
@@ -34,9 +39,23 @@ export const fetchStudents = () => {
   };
 };
 
-// FETCH STUDENT ALL:::::::::::::::::::::::::::
+export const request = () => ({ type: FETCH_STUDENTS_REQUEST });
 
-// FETCH SINGLE STUDENT :::::::::::::::::::::::
+export const success = (students) => ({
+  type: FETCH_STUDENTS_SUCCESS,
+  payload: students,
+});
+
+export const failure = (error) => {
+  return {
+    type: FETCH_STUDENTS_FAILURE,
+    payload: error,
+  };
+};
+
+// FETCH STUDENT ALL:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+// FETCH SINGLE STUDENT :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 export const fetchSingleStudent = (id) => {
   return (dispatch) => {
     dispatch(singleRequest(id));
@@ -55,7 +74,6 @@ export const fetchSingleStudent = (id) => {
 };
 
 export const singleRequest = () => ({ type: FETCH_SINGLE_STUDENT_REQUEST });
-
 export const singleSuccess = (student) => ({
   type: FETCH_SINGLE_STUDENT_SUCCESS,
   payload: student,
@@ -68,9 +86,9 @@ export const singleFailure = (error) => {
   };
 };
 
-// FETCH SINGLE STUDENT :::::::::::::::::::::::
+// FETCH SINGLE STUDENT ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-// DELETE STUDENT ::::::::::::::::::::::::::::
+// DELETE STUDENT ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 export const deleteStudent = (id) => {
   return (dispatch) => {
     dispatch(request(id));
@@ -87,9 +105,9 @@ export const deleteStudent = (id) => {
       });
   };
 };
-// DELETE STUDENT ::::::::::::::::::::::::::::
+// DELETE STUDENT ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-// UPDATE STUDENT INFORMATION :::::::::::::::::::::::::::::::::::::::::::
+// UPDATE STUDENT INFORMATION ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 export const updateStudent = (userDetails) => {
   const { userId } = userDetails;
   return (dispatch) => {
@@ -125,18 +143,44 @@ export const updateStudent = (userDetails) => {
   };
 };
 
-// UPDATE STUDENT INFORMATION :::::::::::::::::::::::::::::::::::::::::::
+// UPDATE STUDENT INFORMATION ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-export const request = () => ({ type: FETCH_STUDENTS_REQUEST });
+// FETCH STUDENT ASSESSMENT ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-export const success = (students) => ({
-  type: FETCH_STUDENTS_SUCCESS,
-  payload: students,
+// FETCH STUDENT ASSESSMENT :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+export const fetchStudentAssessments = (stdID) => {
+  return (dispatch) => {
+    dispatch(requestAssessment());
+    axios
+      .get(`${API_URL}/ClassAssessment`)
+      .then((res) => {
+        // response.data is the users
+        const studentAssessment = res.data.filter(
+          (el) => el.studentId === stdID
+        );
+        // console.warn(students);
+        dispatch(successAssessment(studentAssessment));
+      })
+      .catch((error) => {
+        // error.message is the error message
+        const errormsg = error.message;
+        dispatch(failureAssessment(errormsg));
+      });
+  };
+};
+
+export const requestAssessment = () => ({
+  type: FETCH_STUDENT_ASSESSMENT_REQUEST,
 });
 
-export const failure = (error) => {
+export const successAssessment = (studentAssessment) => ({
+  type: FETCH_STUDENT_ASSESSMENT_SUCCESS,
+  payload: studentAssessment,
+});
+
+export const failureAssessment = (error) => {
   return {
-    type: FETCH_STUDENTS_FAILURE,
+    type: FETCH_STUDENT_ASSESSMENT_FAILURE,
     payload: error,
   };
 };

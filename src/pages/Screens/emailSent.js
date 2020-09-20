@@ -11,9 +11,8 @@ import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import StarIcon from "@material-ui/icons/Star";
+
 import "./styles.js";
 const useStyles = makeStyles((theme) => ({
   card: {

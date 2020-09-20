@@ -2,13 +2,10 @@ import React from "react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-const API_URL = process.env.REACT_APP_BASEURL;
 
 class CustomDialog extends React.Component {
   render() {
-    const { classes, dialogWidth } = this.props;
+    const { dialogWidth, subj } = this.props;
     return (
       <React.Fragment>
         <Dialog
@@ -21,6 +18,7 @@ class CustomDialog extends React.Component {
           maxWidth={dialogWidth}
           aria-labelledby="form-dialog-title"
         >
+          <DialogTitle id="confirmation-dialog-title">{subj}</DialogTitle>
           <DialogContent>{this.props.children}</DialogContent>
         </Dialog>
       </React.Fragment>

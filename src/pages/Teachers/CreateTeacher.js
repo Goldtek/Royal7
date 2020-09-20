@@ -367,7 +367,7 @@ const CreateTeacher = () => {
                           errors.religion && touched.religion && errors.religion
                         }
                       >
-                        <MenuItem value="christian">Christian</MenuItem>
+                        <MenuItem value="christian">Christianity</MenuItem>
                         <MenuItem value="islamic">Islamic</MenuItem>
                       </TextField>
                     </Grid>

@@ -8,21 +8,11 @@ import {
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import FormatTextdirectionLToRIcon from "@material-ui/icons/FormatTextdirectionLToR";
-// import FormatTextdirectionRToLIcon from "@material-ui/icons/FormatTextdirectionRToL";
-// import Hidden from "@material-ui/core/Hidden";
 import { MobileBreakpoint } from "../../styleVariables";
-// import SettingsIcon from "@material-ui/icons/Settings";
-// import SpeedDial from "@material-ui/lab/SpeedDial";
-// import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
-// import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
-// import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 import { AdminRoutes, TeacherRoutes } from "../../routes/SideBar/";
-// import { useAppState } from "../../components/AppProvider/AppProvider";
 import useMountEffect from "../../mountEffect";
-
 import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Card from "@material-ui/core/Card";
@@ -30,7 +20,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import ScheduleForm from "./ScheduleForm";
 import ExamTimeTableList from "./Table/ExamTimeTableList";
-import Modal from "./Modal/CustomDialog";
+import Modal from "../../components/Modal/CustomDialog";
 
 const useStyles = makeStyles((theme) => ({
   panel: {
@@ -72,15 +62,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 const ExamTimeTable = ({ history }) => {
   const classes = useStyles();
-  // const [state, dispatch] = useAppState();
   const [opened, setOpened] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
-  // const [openSpeedDial, setOpenSpeedDial] = useState(false);
 
   const userAuth = useSelector((state) => state.authentication);
   let params = useParams();
-  // let [routes, setRoutes] = useState([]);
+
   const handleDialogOpen = () => {
     setIsOpen(true);
   };
@@ -90,10 +78,6 @@ const ExamTimeTable = ({ history }) => {
   };
 
   const { role } = userAuth.user;
-
-  // useEffect(() => {
-  //   setRoutes()
-  // }, []);
   let routes = [];
   if (role === "Admin") {
     routes = AdminRoutes;
@@ -144,10 +128,6 @@ const ExamTimeTable = ({ history }) => {
       };
     isFullscreen ? document.cancelFullScreen() : element.requestFullScreen();
   };
-
-  // const handleSpeedDialOpen = () => setOpenSpeedDial(true);
-
-  // const handleSpeedDialClose = () => setOpenSpeedDial(false);
 
   useMountEffect(() => {
     if (mediaMatcher.matches) setOpened(false);
@@ -240,12 +220,14 @@ const ExamTimeTable = ({ history }) => {
 
             {/* CUSTOM DIALOG ::::::::::::::::::::::::::::::::::::::::: */}
             <Modal
-              isOpen={isOpen}
-              handleClose={handleDialogClose}
-              title={""}
+              OpenModal={isOpen}
+              title={"Create Exam TimeTable"}
               dialogWidth="md"
             >
-              <ScheduleForm sessionId={params.id} />
+              <ScheduleForm
+                sessionId={params.id}
+                handleClose={handleDialogClose}
+              />
             </Modal>
             {/* CUSTOM DIALOG ::::::::::::::::::::::::::::::::::::::::: */}
           </Wrapper>
@@ -255,37 +237,6 @@ const ExamTimeTable = ({ history }) => {
           toogleNotifications={handleNotificationToggle}
         />
       </div>
-
-      {/* <Hidden xsDown>
-        <SpeedDial
-          ariaLabel="Settings"
-          className={classes.speedDial}
-          icon={<SpeedDialIcon icon={<SettingsIcon />} />}
-          onBlur={handleSpeedDialClose}
-          onClose={handleSpeedDialClose}
-          onFocus={handleSpeedDialOpen}
-          onMouseEnter={handleSpeedDialOpen}
-          onMouseLeave={handleSpeedDialClose}
-          open={openSpeedDial}
-        >
-          <SpeedDialAction
-            icon={<WbSunnyIcon />}
-            tooltipTitle="Toggle light/dark theme"
-            onClick={() => dispatch({ type: "type" })}
-          />
-          <SpeedDialAction
-            icon={
-              state.direction === "rtl" ? (
-                <FormatTextdirectionLToRIcon />
-              ) : (
-                <FormatTextdirectionRToLIcon />
-              )
-            }
-            tooltipTitle="Toggle LTR/RTL direction"
-            onClick={() => dispatch({ type: "direction" })}
-          />
-        </SpeedDial>
-      </Hidden> */}
     </>
   );
 };

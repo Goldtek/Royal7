@@ -12,8 +12,9 @@ import {
   // ScheduleExams,
   // ExamTable,
   CreateExamSession,
-  CreateTimeTable,
+  // CreateTimeTable,
   AssignTeachers,
+  ClassRoutine,
 } from "../../pages";
 // import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 // import SchoolIcon from "@material-ui/icons/School";
@@ -21,7 +22,6 @@ import PersonIcon from "@material-ui/icons/Person";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import LocalLibraryIcon from "@material-ui/icons/LocalLibrary";
-import TableChartIcon from "@material-ui/icons/TableChart";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 import AnnouncementIcon from "@material-ui/icons/Announcement";
 import MessageIcon from "@material-ui/icons/Message";
@@ -63,6 +63,11 @@ export default {
           path: "/create",
           name: "Add Class",
           component: CreateClass,
+        },
+        {
+          path: "/routine",
+          name: "Class Routine",
+          component: ClassRoutine,
         },
       ],
     },
@@ -141,24 +146,7 @@ export default {
         // },
       ],
     },
-    {
-      path: "/dashboard/timetable",
-      name: "Class Routine",
-      type: "submenu",
-      icon: TableChartIcon,
-      children: [
-        {
-          path: "/create",
-          name: "Create TimeTable",
-          component: CreateTimeTable,
-        },
-        {
-          path: "/view",
-          name: "View TimeTable",
-          component: CreateTimeTable,
-        },
-      ],
-    },
+
     {
       path: "/dashboard/report",
       name: "Reports",

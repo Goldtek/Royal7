@@ -58,7 +58,7 @@ const validationSchema = Yup.object().shape({
 //API URL
 const API_URL = process.env.REACT_APP_BASEURL;
 
-const ScheduleExams = ({ sessionId }) => {
+const ScheduleExams = ({ sessionId, handleClose }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const userAuth = useSelector((state) => state.authentication);
@@ -315,8 +315,13 @@ const ScheduleExams = ({ sessionId }) => {
                 </Grid>
               </Grid>
               <DialogActions>
-                <Button type="reset" variant="outlined" color="secondary">
-                  Clear
+                <Button
+                  type="button"
+                  onClick={handleClose}
+                  variant="outlined"
+                  color="secondary"
+                >
+                  Close
                 </Button>
                 <Button type="submit" variant="outlined" color="primary">
                   Submit

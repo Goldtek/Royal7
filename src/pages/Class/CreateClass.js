@@ -10,7 +10,7 @@ import {
   fetchschoolClasses,
   deleteClass,
 } from "../../redux/actions/schoolClassActions";
-import CustomDialog from "../../components/Modal/CustomDialog";
+import CustomDialog from "../../containers/Dialogue/CustomModal";
 import { makeStyles } from "@material-ui/core/styles";
 import MaterialTable from "material-table";
 import TextField from "@material-ui/core/TextField";
@@ -75,9 +75,10 @@ const CreateClass = () => {
   const getClasses = useSelector((state) => state.schoolClasses.schoolClasses);
   const userAuth = useSelector((state) => state.authentication);
   const [isOpen, setIsOPen] = React.useState(false);
+  const [disable, setDisable] = React.useState(true);
   const schoolID = userAuth.user.schoolId;
   // const currDate = Date.now().format("MMMM Do YYYY");
-  // console.log(currDate);
+  console.log(disable);
   // const mymon = Moment(currDate).format("dddd, MMMM Do YYYY, h:mm:ss a");
 
   const handleDialogOpen = () => {
@@ -89,6 +90,7 @@ const CreateClass = () => {
   };
   useEffect(() => {
     dispatch(fetchschoolClasses());
+    setDisable(userAuth.user.role);
   }, [dispatch]);
 
   return (
@@ -112,15 +114,19 @@ const CreateClass = () => {
           color="inherit"
           className={`${classes.typo} flexs={12}pacer`}
         >
-          <Button
-            classes={{
-              root: classes.createbtn, // class name, e.g. `classes-nesting-root-x`
-              label: classes.label, // class name, e.g. `classes-nesting-label-x`
-            }}
-            onClick={handleDialogOpen}
-          >
-            Create Class
-          </Button>
+          {disable === "Admin" ? (
+            <Button
+              classes={{
+                root: classes.createbtn, // class name, e.g. `classes-nesting-root-x`
+                label: classes.label, // class name, e.g. `classes-nesting-label-x`
+              }}
+              onClick={handleDialogOpen}
+            >
+              Create Class
+            </Button>
+          ) : (
+            <Button></Button>
+          )}
         </Typography>
       </AppBar>
       <Grid item xs={12} sm={12} md={12} lg={12}>
@@ -179,9 +185,9 @@ const CreateClass = () => {
         </Grid>
       </Grid>
       <CustomDialog
-        isOpen={isOpen}
+        OpenModal={isOpen}
         handleClose={handleDialogClose}
-        title={""}
+        title={"Create School Classes"}
         dialogWidth="sm"
       >
         <Formik
