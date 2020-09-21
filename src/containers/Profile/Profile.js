@@ -1,21 +1,30 @@
-import { Header, NotificationCenter, Sidebar, Workspace } from "../components";
 import React, { useState } from "react";
+import {
+  Header,
+  NotificationCenter,
+  Sidebar,
+  Workspace,
+} from "../../components";
+import classNames from "classnames";
 import { useSelector } from "react-redux";
-import FormatTextdirectionLToRIcon from "@material-ui/icons/FormatTextdirectionLToR";
-import FormatTextdirectionRToLIcon from "@material-ui/icons/FormatTextdirectionRToL";
 import Hidden from "@material-ui/core/Hidden";
-import { MobileBreakpoint } from "../styleVariables";
-import SettingsIcon from "@material-ui/icons/Settings";
+import useMountEffect from "../../mountEffect";
 import SpeedDial from "@material-ui/lab/SpeedDial";
+import { colors } from "@material-ui/core";
+import WbSunnyIcon from "@material-ui/icons/WbSunny";
+import { makeStyles } from "@material-ui/core/styles";
+import { MobileBreakpoint } from "../../styleVariables";
+import SettingsIcon from "@material-ui/icons/Settings";
+import ProfileHeader from "../../components/ProfileHeader";
 import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
 import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
-import WbSunnyIcon from "@material-ui/icons/WbSunny";
-import classNames from "classnames";
-import { makeStyles } from "@material-ui/core/styles";
-import { AdminRoutes, TeacherRoutes } from "../routes/SideBar/";
-import { useAppState } from "../components/AppProvider/AppProvider";
-import { ProfileTabs } from "./ProfileTabs";
-import useMountEffect from "../mountEffect";
+import { Wrapper } from "../../components";
+import ProfileTab from "./ProfileTab";
+import { AdminRoutes, TeacherRoutes } from "../../routes/SideBar";
+import { useAppState } from "../../components/AppProvider/AppProvider";
+import FormatTextdirectionLToRIcon from "@material-ui/icons/FormatTextdirectionLToR";
+import FormatTextdirectionRToLIcon from "@material-ui/icons/FormatTextdirectionRToL";
+// import { ProfileTabs } from "./ProfileTabs";
 
 const useStyles = makeStyles((theme) => ({
   panel: {
@@ -45,7 +54,17 @@ const useStyles = makeStyles((theme) => ({
     bottom: theme.spacing(1) * 2,
     right: theme.spacing(1) * 3,
   },
+  inner: {
+    width: theme.breakpoints.values.lg,
+    maxWidth: "100%",
+    margin: "0 auto",
+    padding: theme.spacing(3),
+  },
+  divider: {
+    backgroundColor: colors.grey[300],
+  },
 }));
+
 const Dashboard = ({ history }) => {
   const classes = useStyles();
   const [state, dispatch] = useAppState();
@@ -155,7 +174,14 @@ const Dashboard = ({ history }) => {
           toggleDrawer={handleDrawerToggle}
         />
         <Workspace opened={opened}>
-          <ProfileTabs />
+          <ProfileHeader User={userAuth} />
+          <div className={classes.inner}>
+            {/* <Divider className={classes.divider} /> */}
+          </div>
+
+          <Wrapper>
+            <ProfileTab />
+          </Wrapper>
         </Workspace>
         <NotificationCenter
           notificationsOpen={notificationsOpen}

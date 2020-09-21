@@ -3,11 +3,7 @@ import MaterialTable from "material-table";
 // import useMountEffect from "../../../mountEffect";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  updateExamSessionTables,
-  fetchExamTimeTable,
-  deleteExamSessionTable,
-} from "../../../redux/actions/examActions.js";
+import { fetchExamTimeTable } from "../../../redux/actions/examActions.js";
 const ExamSessionTable = () => {
   const { useState } = React;
   const dispatch = useDispatch();
@@ -60,32 +56,6 @@ const ExamSessionTable = () => {
           },
         ]}
         data={examTables}
-        editable={{
-          onRowUpdate: (newData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                dispatch(updateExamSessionTables(newData));
-                resolve();
-              }, 1000);
-            }),
-          onRowDelete: (oldData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                dispatch(deleteExamSessionTable(oldData.id));
-                console.log(oldData.id);
-                resolve();
-              }, 1000);
-            }),
-        }}
-        // actions={[
-        //   (rowData) => ({
-        //     icon: "link",
-        //     tooltip: "Add Time Table",
-        //     onClick: (event, rowData) =>
-        //       history.push(`/exam/${rowData.id}/schedule`),
-        //     disabled: rowData.birthYear < 2000,
-        //   }),
-        // ]}
         options={{
           filtering: false,
           sorting: true,

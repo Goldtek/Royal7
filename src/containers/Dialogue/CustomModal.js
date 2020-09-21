@@ -9,13 +9,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 // const API_URL = process.env.REACT_APP_BASEURL;
 
 const CustomModal = (props) => {
-  const {
-    children,
-    dialogWidth,
-    OpenModal,
-    handleDialogClose,
-    Transition,
-  } = props;
+  const { children, dialogWidth, OpenModal, handleDialogClose } = props;
   return (
     <React.Fragment>
       <Dialog

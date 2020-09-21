@@ -4,7 +4,6 @@ import axios from "axios";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
 import useMountEffect from "../../mountEffect";
 import { fetchSchoolSubjects } from "../../redux/actions/subjectActions";
 import { fetchschoolClasses } from "../../redux/actions/schoolClassActions";
@@ -18,32 +17,6 @@ import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 import cogoToast from "cogo-toast";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
-  },
-  menu: {
-    width: 200,
-  },
-
-  card: {
-    minWidth: 275,
-  },
-
-  root: {
-    flexGrow: 1,
-    paddingBottom: theme.spacing(1),
-  },
-  appBar: {
-    padding: "10px",
-  },
-}));
 const validationSchema = Yup.object().shape({
   examClass: Yup.string().required("required"),
   session: Yup.string().required("required"),
@@ -59,7 +32,7 @@ const validationSchema = Yup.object().shape({
 const API_URL = process.env.REACT_APP_BASEURL;
 
 const ScheduleExams = ({ sessionId, handleClose }) => {
-  const classes = useStyles();
+  // const classes = useStyles();
   const dispatch = useDispatch();
   const userAuth = useSelector((state) => state.authentication);
   const subjects = useSelector((state) => state.subjects.subjects);

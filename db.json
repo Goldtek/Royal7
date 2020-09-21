@@ -31,23 +31,23 @@
     },
     {
       "firstName": "Johns",
-      "lastName": "Ezechi",
+      "lastName": "Eze-Ukwu",
       "middleName": "Paul",
       "email": "john@gmail.com",
-      "gender": "Male",
+      "gender": "Female",
       "dob": "1933-02-02",
       "phone": "08076507455",
       "religion": "christian",
       "photo": "C:\\fakepath\\me.jpg",
       "address": "Sodipo Close Ajara Ogba Lagos",
-      "bloodgrp": "0+",
+      "bloodgrp": "B+",
       "idno": "IDNO-02",
       "shortbio": "Lorem ipsum short bio ipium delium,Lorem ipsum short bio ipium delium,Lorem ipsum short bio ipium delium,Lorem ipsum short bio ipium delium",
       "role": "Teacher",
       "schoolId": 1,
       "created": 1597954141069,
       "id": 2,
-      "updated": 1599553870400
+      "updated": 1600618425830
     },
     {
       "firstName": "Chisom",
@@ -133,13 +133,14 @@
       "email": "joe@mail.com",
       "phone": "0807806788",
       "img": "C:\\fakepath\\68d48675013b0b96cd567d0810b97f97.jpg",
-      "shortbio": "",
-      "bloodgrp": "3",
+      "shortbio": "Oh, <textarea>‘s. How many quirks you posses. Here is a collection of nine things you might want to do related to textareas. Enjoy.",
+      "bloodgrp": "A+",
       "stdclass": "STD 1",
       "admissionId": "ID-2020-A",
       "schoolId": 1,
       "role": "Student",
-      "created": 1600076365435
+      "created": 1600076365435,
+      "updated": 1600621057061
     },
     {
       "id": "b0a6c5aa-a162-4aa9-bcf1-5a5322-b0a7c",
@@ -209,13 +210,14 @@
       "email": "acha@gmail.com",
       "phone": "08076585766",
       "img": "C:\\fakepath\\a464a5a7e34a92481d8c83f804eaebea.jpg",
-      "shortbio": "",
-      "bloodgrp": "3",
+      "shortbio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+      "bloodgrp": "A+",
       "stdclass": "STD 3",
       "admissionId": "ID-2020-C",
       "schoolId": 1,
       "role": "Student",
-      "created": 1600206645834
+      "created": 1600206645834,
+      "updated": 1600619940799
     },
     {
       "id": "0fedea48-8950-4435-8f71-098c73c6aee3",
@@ -312,6 +314,15 @@
       "userId": 1,
       "created": 1600033446392,
       "id": 4
+    },
+    {
+      "name": "Geography",
+      "code": "GHY-101",
+      "schClass": "STD 1",
+      "schoolId": 1,
+      "userId": 1,
+      "created": 1600612803094,
+      "id": 5
     }
   ],
   "examSessions": [

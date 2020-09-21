@@ -20,6 +20,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import ScheduleForm from "./ScheduleForm";
 import ExamTimeTableList from "./Table/ExamTimeTableList";
+import TeacherExamTimeTable from "./Table/TeacherExamTimeTable";
 import Modal from "../../components/Modal/CustomDialog";
 
 const useStyles = makeStyles((theme) => ({
@@ -191,15 +192,17 @@ const ExamTimeTable = ({ history }) => {
                 color="inherit"
                 className={`${classes.typo} flexs={12}pacer`}
               >
-                <Button
-                  classes={{
-                    root: classes.createbtn, // class name, e.g. `classes-nesting-root-x`
-                    label: classes.label, // class name, e.g. `classes-nesting-label-x`
-                  }}
-                  onClick={handleDialogOpen}
-                >
-                  Populate Table
-                </Button>{" "}
+                {role === "Admin" && (
+                  <Button
+                    classes={{
+                      root: classes.createbtn, // class name, e.g. `classes-nesting-root-x`
+                      label: classes.label, // class name, e.g. `classes-nesting-label-x`
+                    }}
+                    onClick={handleDialogOpen}
+                  >
+                    Populate Table
+                  </Button>
+                )}{" "}
                 <Button
                   classes={{
                     root: classes.createbtn, // class name, e.g. `classes-nesting-root-x`
@@ -215,7 +218,9 @@ const ExamTimeTable = ({ history }) => {
             {/* <ScheduleExams id={params.id} /> */}
             {/* SCHOOL EXAMS */}
             {/* EXAM TABLE ::::::::::::::::::::::::::::::::::::::: */}
-            <ExamTimeTableList />
+
+            {role === "Admin" && <ExamTimeTableList />}
+            {role === "Teacher" && <TeacherExamTimeTable />}
             {/* EXAM TABLE ::::::::::::::::::::::::::::::::::::::: */}
 
             {/* CUSTOM DIALOG ::::::::::::::::::::::::::::::::::::::::: */}

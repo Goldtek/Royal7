@@ -4,7 +4,7 @@ import IndexPage from "./Index/IndexPage";
 
 // Authentication
 import PasswordReset from "./Authentication/PasswordReset";
-import Signin from "./Authentication/Signin";
+import Login from "./Authentication/Signin";
 // Error ------------------------------------>>>>
 import NotFound from "./Errors/NotFound";
 // Error ------------------------------------>>>>
@@ -13,8 +13,7 @@ import NotFound from "./Errors/NotFound";
 import CreateTeachers from "./Teachers/CreateTeacher";
 import TeacherLists from "./Teachers/TeacherLists";
 import AssignTeachers from "./Teachers/AssignTeachers";
-import TeacherClasses from "./Class/TeacherClass";
-// import EditTeacher from "./Teachers/EditTeacher";
+
 // TEACHER ------------------------------------>>>>
 
 // STUDENT ------------------------------------->>>>
@@ -33,19 +32,8 @@ import ClassRoutine from "./Class/ClassRoutine";
 //SUBJECT ROUTES
 import CreateSubject from "./Subject/CreateSubject";
 import AssignedSubject from "./Subject/AssignedSubjects";
-// import ViewStudents from "./Subject/viewStudents";
 
-// EXAMS
-// import ScheduleExams from "./Exams/sample";
-// import ExamTable from "./Exams/Table/ExamTable";
 import CreateExamSession from "./Exams/CreateExamSession";
-
-//TIMETABLE ROUTES
-// import CreateTimeTable from "./TimeTable/CreateTimeTable";
-
-// USER PROFILE
-import UserProfile from "./Profile/UserProfile";
-//EXAM ROUTES
 
 // SCREENS
 import CreateAccount from "./Screens/createAccount";
@@ -57,7 +45,7 @@ import EmailConfirmation from "./Screens/emailConfirmation";
 
 export {
   Home,
-  Signin,
+  Login,
   PasswordReset,
   NotFound,
   IndexPage,
@@ -66,7 +54,7 @@ export {
   AssignTeachers,
   TeacherLists,
   AssignedSubject,
-  TeacherClasses,
+  // TeacherClasses,
   // TEACHERS ---->
 
   CreateStudents,
@@ -84,5 +72,4 @@ export {
   CreateSubject,
   //  <----SUBJECT COMP------>
   // CreateTimeTable,
-  UserProfile,
 };

@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import {
   NotFound,
   PasswordReset,
-  Signin,
+  Login,
   ValidateEmail,
   CreateAccount,
   EmailSent,
@@ -14,7 +14,7 @@ import { Role } from "../_helpers/role";
 import { Helmet } from "react-helmet";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../containers/Dashboard";
-import UserProfile from "../containers/Profile";
+import UserProfile from "../containers/Profile/Profile";
 import ExamTimeTable from "../pages/Exams/EXamTimeTable";
 import StudentAssessment from "../pages/Students/StudentAssesment";
 
@@ -74,7 +74,7 @@ const AppRoutes = () => {
         />
         {/*SCREEN ROUTES */}
         <Route exact path="/forgot" component={PasswordReset} />
-        <Route exact path="/signin" component={Signin} />
+        <Route exact path="/auth/login" component={Login} />
         <Route path="*">
           <Fragment>
             <title>Error 404 </title>

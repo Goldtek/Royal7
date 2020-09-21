@@ -4,8 +4,6 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import AppBar from "@material-ui/core/AppBar";
-import Badge from "@material-ui/core/Badge";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
@@ -14,7 +12,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Menu from "@material-ui/core/Menu";
 import MenuIcon from "@material-ui/icons/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import NotificationsIcon from "@material-ui/icons/Notifications";
 import Toolbar from "@material-ui/core/Toolbar";
 import Tooltip from "@material-ui/core/Tooltip";
 import { makeStyles } from "@material-ui/core/styles";
@@ -22,7 +19,6 @@ import PersonIcon from "@material-ui/icons/Person";
 import Button from "@material-ui/core/Button";
 import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded";
 import Typography from "@material-ui/core/Typography";
-import { id } from "date-fns/esm/locale";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -95,7 +91,7 @@ const Header = ({
   //   if (searchExpanded) handleSearchExpandToggle();
   // };
 
-  const Logout = () => history.push("/signin");
+  const Logout = () => history.push("/auth/login");
 
   const navigate = (id) => history.push(`/profile/${id}/view`);
 
@@ -208,12 +204,12 @@ const Header = ({
 </ListItemIcon>
 <ListItemText primary="Disable notifications" />
 </MenuItem> */}
-          <MenuItem onClick={Logout}>
+          {/* <MenuItem onClick={Logout}>
             <ListItemIcon>
               <ExitToAppIcon />
             </ListItemIcon>
             <ListItemText primary="Exit App" />
-          </MenuItem>
+          </MenuItem> */}
         </Menu>
       </Toolbar>
       {/* <Hidden smUp>

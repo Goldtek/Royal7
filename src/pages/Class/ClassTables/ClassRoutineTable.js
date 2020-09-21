@@ -1,31 +1,7 @@
 import React from "react";
 // import PropTypes from "prop-types";
-// import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import MaterialTable from "material-table";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    // maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-    position: "relative",
-    overflow: "auto",
-    maxHeight: 300,
-  },
-  listSection: {
-    backgroundColor: "inherit",
-  },
-  ul: {
-    backgroundColor: "inherit",
-    padding: 0,
-  },
-  loader: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-}));
+import MaterialTable from "material-table";
 
 const ClassRoutineTable = ({ classRoutinesArr }) => {
   return (

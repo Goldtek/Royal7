@@ -2,10 +2,10 @@
 import {
   Home,
   CreateStudents,
-  TeacherClasses,
+  CreateExamSession,
   CreateClass,
-  // CreateSection,
   AssignedSubject,
+  ClassRoutine,
 } from "../../pages";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import LocalLibraryIcon from "@material-ui/icons/LocalLibrary";
@@ -57,7 +57,7 @@ export default {
         {
           path: "/schedule",
           name: "Exam TimeTable",
-          component: CreateStudents,
+          component: CreateExamSession,
         },
       ],
     },
@@ -70,7 +70,7 @@ export default {
         {
           path: "/view",
           name: "View Routine",
-          component: CreateStudents,
+          component: ClassRoutine,
         },
       ],
     },

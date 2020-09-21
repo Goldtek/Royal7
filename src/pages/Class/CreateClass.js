@@ -91,7 +91,7 @@ const CreateClass = () => {
   useEffect(() => {
     dispatch(fetchschoolClasses());
     setDisable(userAuth.user.role);
-  }, [dispatch]);
+  }, [dispatch, userAuth.user.role]);
 
   return (
     <Wrapper>
@@ -131,57 +131,68 @@ const CreateClass = () => {
       </AppBar>
       <Grid item xs={12} sm={12} md={12} lg={12}>
         <Grid item xs={12} sm={12} md={12} lg={12}>
-          <MaterialTable
-            title="View Classes"
-            columns={[
-              { title: "Class", field: "stdClass" },
-              { title: "Class Code", field: "classCode" },
-              { title: "Session", field: "sessionName" },
-              { title: "Created", field: "created" },
-            ]}
-            data={getClasses}
-            // actions={[
-            //   {
-            //     icon: "edit",
-            //     tooltip: "Edit Class",
-            //     onClick: (event, rowData) => alert("You saved " + rowData.name),
-            //   },
-            //   {
-            //     icon: "delete",
-            //     tooltip: "Delete Class",
-            //     onClick: (event, rowData) => handleCLickDelete(rowData.id),
-            //   },
-            // ]}
-            editable={{
-              onRowUpdate: (newData, oldData) =>
-                new Promise((resolve, reject) => {
-                  setTimeout(() => {
-                    // const dataUpdate = [...data];
-                    // const index = oldData.tableData.id;
-                    // dataUpdate[index] = newData;
-                    // setData([...dataUpdate]);
+          {userAuth.user.role === "Admin" && (
+            <MaterialTable
+              title="View Classes"
+              columns={[
+                { title: "Class", field: "stdClass" },
+                { title: "Class Code", field: "classCode" },
+                { title: "Session", field: "sessionName" },
+                { title: "Created", field: "created" },
+              ]}
+              data={getClasses}
+              editable={{
+                onRowUpdate: (newData, oldData) =>
+                  new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                      // const dataUpdate = [...data];
+                      // const index = oldData.tableData.id;
+                      // dataUpdate[index] = newData;
+                      // setData([...dataUpdate]);
 
-                    resolve();
-                  }, 1000);
-                }),
-              onRowDelete: (oldData) =>
-                new Promise((resolve, reject) => {
-                  setTimeout(() => {
-                    dispatch(deleteClass(oldData.id));
-                    resolve();
-                  }, 1000);
-                }),
-            }}
-            options={{
-              headerStyle: {
-                backgroundColor: "#EEE",
-                fontWeight: "600",
-                textTransform: "uppercase",
-                color: "#292b2c",
-                fontFamily: "Helvetica",
-              },
-            }}
-          />
+                      resolve();
+                    }, 1000);
+                  }),
+                onRowDelete: (oldData) =>
+                  new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                      dispatch(deleteClass(oldData.id));
+                      resolve();
+                    }, 1000);
+                  }),
+              }}
+              options={{
+                headerStyle: {
+                  backgroundColor: "#EEE",
+                  fontWeight: "600",
+                  textTransform: "uppercase",
+                  color: "#292b2c",
+                  fontFamily: "Helvetica",
+                },
+              }}
+            />
+          )}
+          {userAuth.user.role === "Teacher" && (
+            <MaterialTable
+              title="View Classes"
+              columns={[
+                { title: "Class", field: "stdClass" },
+                { title: "Class Code", field: "classCode" },
+                { title: "Session", field: "sessionName" },
+                { title: "Created", field: "created" },
+              ]}
+              data={getClasses}
+              options={{
+                headerStyle: {
+                  backgroundColor: "#EEE",
+                  fontWeight: "600",
+                  textTransform: "uppercase",
+                  color: "#292b2c",
+                  fontFamily: "Helvetica",
+                },
+              }}
+            />
+          )}
         </Grid>
       </Grid>
       <CustomDialog

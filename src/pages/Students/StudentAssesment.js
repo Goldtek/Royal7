@@ -295,7 +295,6 @@ const StudentAssessment = ({ history }) => {
                     values,
                     touched,
                     errors,
-                    isSubmitting,
                     handleChange,
                     handleBlur,
                     handleSubmit,

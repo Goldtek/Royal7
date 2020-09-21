@@ -121,15 +121,18 @@ const ClassRoutine = () => {
           color="inherit"
           className={`${classes.typo} flexs={12}pacer`}
         >
-          <Button
-            classes={{
-              root: classes.createbtn, // class name, e.g. `classes-nesting-root-x`
-              label: classes.label, // class name, e.g. `classes-nesting-label-x`
-            }}
-            onClick={handleDialogOpen}
-          >
-            Create Routine Table
-          </Button>
+          {userAuth.user.role === "Admin" && (
+            <Button
+              classes={{
+                root: classes.createbtn, // class name, e.g. `classes-nesting-root-x`
+                label: classes.label, // class name, e.g. `classes-nesting-label-x`
+              }}
+              onClick={handleDialogOpen}
+            >
+              Create Routine Table
+            </Button>
+          )}
+          {userAuth.user.role === "Teacher" && <Button></Button>}
         </Typography>
       </AppBar>
       <ClassRoutineTable classRoutinesArr={classRoutines} />
@@ -156,7 +159,7 @@ const ClassRoutine = () => {
                 schoolId: schoolID,
               },
             })
-              .then((response) => {
+              .then(() => {
                 cogoToast.success("Routine Created Successfully");
                 dispatch(fetchschoolClassRoutine());
                 resetForm();

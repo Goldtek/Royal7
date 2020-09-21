@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import axios from "axios";
+import axios from "../../_helpers/axios";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import { Link } from "react-router-dom";

@@ -87,7 +87,7 @@ const ProcfileCard = ({
             <div className="text-xs-center">
               <Avatar
                 alt="Adelle Charles"
-                src={`${process.env.PUBLIC_URL}/static/images/avatar.jpg`}
+                src={`${process.env.PUBLIC_URL}/static/images/avatar/avatar.png`}
                 className={classNames(classes.avatar)}
               />
               {/* 

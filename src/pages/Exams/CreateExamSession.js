@@ -20,6 +20,7 @@ import TextField from "@material-ui/core/TextField";
 import DialogActions from "@material-ui/core/DialogActions";
 import Grid from "@material-ui/core/Grid";
 import ExamSessionTable from "./Table/ExamSessionTable";
+import TeacherExamSessionTable from "./Table/TeacherExamSessionTable";
 import cogoToast from "cogo-toast";
 import CustomDialog from "../../components/Modal/CustomDialog";
 // <-- MODAL DIALOGUE IMPORTS-->
@@ -113,6 +114,7 @@ class CreateExamSession extends React.Component {
 
   render() {
     const { classes, currUser, fetchExamSessionLists } = this.props;
+    console.log(currUser);
     return (
       <Wrapper>
         {" "}
@@ -148,7 +150,8 @@ class CreateExamSession extends React.Component {
           </Typography>
         </AppBar>
         {/* MATERIAL TABLE :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */}
-        <ExamSessionTable />
+        {currUser.user.role === "Admin" && <ExamSessionTable />}
+        {currUser.user.role === "Teacher" && <TeacherExamSessionTable />}
         {/* MATERIAL TABLE :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */}
         {/* MODAL DIALOG::::::::::::::::::::::::::::::::: */}
         <CustomDialog

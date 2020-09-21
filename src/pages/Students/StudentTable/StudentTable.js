@@ -11,7 +11,6 @@ import { deleteStudent } from "../../../redux/actions/studentActions";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
-import Slide from "@material-ui/core/Slide";
 // MODAL DIALGOUE IMPORT :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 // PROFILE CARD ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -19,12 +18,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import ProfileCard from "../Card/ProfileCard";
 import Grid from "@material-ui/core/Grid";
 import CardContent from "@material-ui/core/CardContent";
+import DialogContent from "@material-ui/core/DialogContent";
 import Divider from "@material-ui/core/Divider";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
-import IconButton from "@material-ui/core/IconButton";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
@@ -38,9 +33,6 @@ import {
   fetchSingleStudent,
   updateStudent,
 } from "../../../redux/actions/studentActions";
-function Transition(props) {
-  return <Slide direction="left" {...props} />;
-}
 
 // MODAL DIALGOUE IMPORT :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -74,10 +66,10 @@ const useStyles = makeStyles((theme) => ({
   },
   goback: {
     background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-    borderRadius: 3,
+    borderRadius: 0,
     border: 0,
     color: "white",
-    height: 35,
+    height: 30,
     padding: "0 30px",
     boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
   },
@@ -110,6 +102,21 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "13px",
     outline: 0,
     backgroundColor: theme.palette.background.paper,
+  },
+  textArea: {
+    minHeight: "80%",
+    maxHeight: "100%",
+    boxSizing: "border-box",
+    display: "block",
+    lineHeight: "1.5",
+    padding: "15px 15px 30px",
+    borderRadius: "3px",
+    border: "1px solid #F7E98D",
+    font: "13px Tahoma, cursive",
+    transition: "box-shadow 0.5s ease",
+    boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
+    fontSmoothing: "subpixel-antialiased",
+    textOverflow: "auto",
   },
 }));
 
@@ -165,7 +172,7 @@ const StudentsTable = (props) => {
     const formDetails = serializeForm(e.target, { hash: true });
     const userDetails = { ...formDetails, userId };
     dispatch(updateStudent(userDetails));
-    
+
     // console.log(userDetails);
   };
 
@@ -242,10 +249,9 @@ const StudentsTable = (props) => {
         disableEscapeKeyDown
         open={open}
         onClose={handleClose}
-        TransitionComponent={Transition}
-        // fullScreen
+        scroll="paper"
         maxWidth="xl"
-        aria-labelledby="form-dialog-title"
+        aria-labelledby="Student Details"
       >
         <Card>
           <Wrapper>
@@ -275,412 +281,397 @@ const StudentsTable = (props) => {
             </Button>
           </Typography>
         </AppBar>
-        <Grid container spacing={1}>
-          <Grid item xs={12} sm={12} md={6} lg={4}>
-            <ProfileCard
-              firstName={firstName}
-              lastName={lastName}
-              middleName={middleName}
-              email={email}
-              role={student.role}
-              bio={shortbio}
-              admissionid={admissionId}
-              sex={gender}
-            />
-          </Grid>
+        <DialogContent>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={12} md={6} lg={5}>
+              <ProfileCard
+                firstName={firstName}
+                lastName={lastName}
+                middleName={middleName}
+                email={email}
+                role={student.role}
+                bio={shortbio}
+                admissionid={admissionId}
+                sex={gender}
+              />
+            </Grid>
 
-          <Grid item xs={12} sm={12} md={6} lg={8}>
-            <Card>
-              <Tabs value={tab} onChange={handleTabToggle}>
-                <Tab label="Bio" classes={{ root: classes.tabRoot }} />
-                <Tab label="Edit Bio" classes={{ root: classes.tabRoot }} />
-                <Tab label="Photos" classes={{ root: classes.tabRoot }} />
-              </Tabs>
-              <Divider />
-              {tab === 0 && (
-                <TabContainer>
-                  <CardContent>
-                    <Typography variant="h6" gutterBottom>
-                      Basic Information
-                    </Typography>
-                    <Grid
-                      container
-                      spacing={3}
-                      alignItems="flex-start"
-                      direction="row"
-                      justify="space-between"
-                    >
-                      <Grid item>
-                        <div className="mb-1">
-                          <Typography variant="caption" gutterBottom>
-                            Mobile
-                          </Typography>
-                          <Typography
-                            variant="body1"
-                            className="font-weight-bold"
-                          >
-                            {phone}
-                          </Typography>
-                        </div>
-
-                        <div className="mb-1">
-                          <Typography variant="caption" gutterBottom>
-                            Birthday
-                          </Typography>
-                          <Typography
-                            variant="body1"
-                            className="font-weight-bold"
-                          >
-                            {dob}
-                          </Typography>
-                        </div>
-
-                        <div className="mb-1">
-                          <Typography variant="caption" gutterBottom>
-                            Occupation
-                          </Typography>
-                          <Typography
-                            variant="body1"
-                            className="font-weight-bold"
-                          >
-                            {student.role}
-                          </Typography>
-                        </div>
-
-                        <div>
-                          <Typography variant="caption" gutterBottom>
-                            Created
-                          </Typography>
-                          <Typography
-                            variant="body1"
-                            className="font-weight-bold"
-                          >
-                            {/* <Moment> {created}</Moment> */}
-                            <Moment date={created} format="YYYY-MM-DD" />
-                          </Typography>
-                        </div>
-                      </Grid>
-                      <Grid item>
-                        <div className="mb-1">
-                          <Typography variant="caption" gutterBottom>
-                            Extension
-                          </Typography>
-                          <Typography
-                            variant="body1"
-                            className="font-weight-bold"
-                          >
-                            94
-                          </Typography>
-                        </div>
-
-                        <div className="mb-1">
-                          <Typography variant="caption" gutterBottom>
-                            Mobile
-                          </Typography>
-                          <Typography
-                            variant="body1"
-                            className="font-weight-bold"
-                          >
-                            +123 456 7890
-                          </Typography>
-                        </div>
-
-                        <div className="mb-1">
-                          <Typography variant="caption" gutterBottom>
-                            Phone
-                          </Typography>
-                          <Typography
-                            variant="body1"
-                            className="font-weight-bold"
-                          >
-                            +123 456 7890
-                          </Typography>
-                        </div>
-
-                        <div>
-                          <Typography variant="caption" gutterBottom>
-                            Facebook
-                          </Typography>
-                          <Typography
-                            variant="body1"
-                            className="font-weight-bold"
-                          >
-                            @geraldmorris
-                          </Typography>
-                        </div>
-                      </Grid>
-                    </Grid>
-                  </CardContent>
-                  <Divider />
-                  {/* <CardContent>
+            <Grid item xs={12} sm={12} md={6} lg={7}>
+              <Card>
+                <Tabs value={tab} onChange={handleTabToggle}>
+                  <Tab
+                    label="Basic Information"
+                    classes={{ root: classes.tabRoot }}
+                  />
+                  <Tab
+                    label="Edit Information"
+                    classes={{ root: classes.tabRoot }}
+                  />
+                </Tabs>
+                <Divider />
+                {tab === 0 && (
+                  <TabContainer>
+                    <CardContent>
                       <Typography variant="h6" gutterBottom>
-                        Bio
+                        Basic Information
                       </Typography>
-                      <Typography variant="body1">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Vestibulum id ligula porta felis euismod semper. Nullam
-                        quis risus eget urna mollis ornare vel eu leo. Nullam
-                        quis risus eget urna mollis ornare vel eu leo.
-                      </Typography>
-                    </CardContent> */}
-                </TabContainer>
-              )}
-              {tab === 1 && (
-                <TabContainer>
-                  <CardContent>
-                    <form onSubmit={handleUpdate}>
-                      <Card
-                        className={classes.card}
-                        style={{ marginTop: "5px", marginBottom: "20px" }}
+                      <Grid
+                        container
+                        spacing={3}
+                        alignItems="flex-start"
+                        direction="row"
+                        justify="space-between"
                       >
-                        <CardContent>
-                          <Grid container spacing={3}>
-                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                              <label
-                                htmlFor="firstName"
-                                className="grey-text font-weight-light"
-                              >
-                                First Name
-                              </label>
-                              <input
-                                type="text"
-                                id="firstName"
-                                className="form-control"
-                                name="firstName"
-                                required
-                                defaultValue={firstName}
-                              />
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                              <label
-                                htmlFor="middleName"
-                                className="grey-text font-weight-light"
-                              >
-                                Middle Name
-                              </label>
-                              <input
-                                type="text"
-                                id="middleName"
-                                className="form-control"
-                                defaultValue={middleName}
-                                name="middleName"
-                                required
-                              />
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                              <label
-                                htmlFor="lastName"
-                                className="grey-text font-weight-light"
-                              >
-                                Last Name
-                              </label>
-                              <input
-                                type="text"
-                                id="lastName"
-                                className="form-control"
-                                defaultValue={lastName}
-                                name="lastName"
-                                required
-                              />
-                            </Grid>
-                          </Grid>
-                          <Grid container spacing={3}>
-                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                              <label
-                                htmlFor="email"
-                                className="grey-text font-weight-light"
-                              >
-                                Email
-                              </label>
-                              <input
-                                type="email"
-                                id="email"
-                                className="form-control"
-                                defaultValue={email}
-                                name="email"
-                                required
-                              />
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                              <label
-                                htmlFor="dob"
-                                className="grey-text font-weight-light"
-                              >
-                                Date Of Birth
-                              </label>
-                              <input
-                                type="text"
-                                id="dob"
-                                className="form-control"
-                                defaultValue={dob}
-                                name="dob"
-                                required
-                              />
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                              <label
-                                htmlFor="admissionId"
-                                className="grey-text font-weight-light"
-                              >
-                                Admission ID
-                              </label>
-                              <input
-                                type="text"
-                                id="admissionId"
-                                className="form-control"
-                                defaultValue={admissionId}
-                                name="admissionId"
-                                required
-                              />
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                              <div className="input-group mb-3">
-                                <div className="input-group-prepend">
-                                  <label
-                                    className="input-group-text"
-                                    htmlFor="stdclass"
-                                  >
-                                    Class
-                                  </label>
-                                </div>
-                                <select
-                                  className="custom-select"
-                                  id="stdclass"
-                                  defaultValue={stdclass}
-                                  name="stdclass"
-                                >
-                                  <option value="STD 5">STD 5</option>
-                                  <option value="STD 6">STD 6</option>
-                                  <option value="STD 7">STD 7</option>
-                                </select>
-                              </div>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                              <div className="input-group mb-3">
-                                <div className="input-group-prepend">
-                                  <label
-                                    className="input-group-text"
-                                    htmlFor="bloodgrp"
-                                  >
-                                    Blood Group
-                                  </label>
-                                </div>
-                                <select
-                                  className="custom-select"
-                                  id="bloodgrp"
-                                  name="bloodgrp"
-                                  defaultValue={bloodgrp}
-                                >
-                                  <option value="A+">A+</option>
-                                  <option value="A-">A-</option>
-                                  <option value="B+">B+</option>
-                                  <option value="B-">B-</option>
-                                  <option value="0+">O+</option>
-                                  <option value="0-">O-</option>
-                                </select>
-                              </div>
-                            </Grid>
-                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                              <div className="input-group mb-3">
-                                <div className="input-group-prepend">
-                                  <label
-                                    className="input-group-text"
-                                    htmlFor="gender"
-                                  >
-                                    Gender
-                                  </label>
-                                </div>
-                                <select
-                                  className="custom-select"
-                                  id="gender"
-                                  name="gender"
-                                  defaultValue={gender}
-                                >
-                                  <option defaultValue={gender}>
-                                    {gender}
-                                  </option>
-                                  {gender === "Male" ? (
-                                    <option value="Female">Female</option>
-                                  ) : (
-                                    <option value="Male">Male</option>
-                                  )}
-                                </select>
-                              </div>
-                            </Grid>
+                        <Grid item>
+                          <div className="mb-1">
+                            <Typography variant="caption" gutterBottom>
+                              Mobile
+                            </Typography>
+                            <Typography
+                              variant="body1"
+                              className="font-weight-bold"
+                            >
+                              {phone}
+                            </Typography>
+                          </div>
 
-                            <Grid item xs={12} sm={6} md={4} lg={4}>
-                              <label
-                                htmlFor="phone"
-                                className="grey-text font-weight-light"
-                              >
-                                Phone
-                              </label>
-                              <input
-                                type="text"
-                                id="phone"
-                                className="form-control"
-                                name="phone"
-                                defaultValue={phone}
-                                required
-                              />
-                            </Grid>
+                          <div className="mb-1">
+                            <Typography variant="caption" gutterBottom>
+                              Birthday
+                            </Typography>
+                            <Typography
+                              variant="body1"
+                              className="font-weight-bold"
+                            >
+                              {dob}
+                            </Typography>
+                          </div>
 
-                            <Grid item xs={12} sm={6} md={8} lg={8}>
-                              <label htmlFor="textarea">Your message</label>
-                              <textarea
-                                type="text"
-                                id="textarea"
-                                className="lg-textarea form-control rounded-0"
-                                name="shortbio"
-                                row="3"
-                                defaultValue={shortbio}
-                              ></textarea>
-                            </Grid>
-                          </Grid>
-                        </CardContent>
-                      </Card>
+                          <div className="mb-1">
+                            <Typography variant="caption" gutterBottom>
+                              Occupation
+                            </Typography>
+                            <Typography
+                              variant="body1"
+                              className="font-weight-bold"
+                            >
+                              {student.role}
+                            </Typography>
+                          </div>
 
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        className={classes.button}
-                        type="submit"
-                        // disabled={isSubmitting}
-                      >
-                        {/* <SaveIcon className={classes.rightIcon} />  */}
-                        Update Profile
-                      </Button>
-                    </form>
-                  </CardContent>
-                </TabContainer>
-              )}
-              {tab === 2 && (
-                <TabContainer>
-                  <GridList cols={3} spacing={1} cellHeight={180}>
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((tile) => (
-                      <GridListTile key={tile}>
-                        <img
-                          src={`${process.env.PUBLIC_URL}/static/images/unsplash/${tile}.jpg`}
-                          alt={tile}
-                        />
-                        <GridListTileBar
-                          title={tile}
-                          subtitle={<span>Gallery image: {tile}</span>}
-                          actionIcon={
-                            <IconButton>
-                              <FavoriteIcon />
-                            </IconButton>
-                          }
-                        />
-                      </GridListTile>
-                    ))}
-                  </GridList>
-                </TabContainer>
-              )}
-            </Card>
+                          <div>
+                            <Typography variant="caption" gutterBottom>
+                              Created
+                            </Typography>
+                            <Typography
+                              variant="body1"
+                              className="font-weight-bold"
+                            >
+                              {/* <Moment> {created}</Moment> */}
+                              <Moment date={created} format="YYYY-MM-DD" />
+                            </Typography>
+                          </div>
+                        </Grid>
+                        <Grid item>
+                          <div className="mb-1">
+                            <Typography variant="caption" gutterBottom>
+                              Extension
+                            </Typography>
+                            <Typography
+                              variant="body1"
+                              className="font-weight-bold"
+                            >
+                              94
+                            </Typography>
+                          </div>
+
+                          <div className="mb-1">
+                            <Typography variant="caption" gutterBottom>
+                              Mobile
+                            </Typography>
+                            <Typography
+                              variant="body1"
+                              className="font-weight-bold"
+                            >
+                              +123 456 7890
+                            </Typography>
+                          </div>
+
+                          <div className="mb-1">
+                            <Typography variant="caption" gutterBottom>
+                              Phone
+                            </Typography>
+                            <Typography
+                              variant="body1"
+                              className="font-weight-bold"
+                            >
+                              +123 456 7890
+                            </Typography>
+                          </div>
+
+                          <div>
+                            <Typography variant="caption" gutterBottom>
+                              Facebook
+                            </Typography>
+                            <Typography
+                              variant="body1"
+                              className="font-weight-bold"
+                            >
+                              @geraldmorris
+                            </Typography>
+                          </div>
+                        </Grid>
+                      </Grid>
+                    </CardContent>
+                    <Divider />
+                    {/* <CardContent>
+            <Typography variant="h6" gutterBottom>
+              Bio
+            </Typography>
+            <Typography variant="body1">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Vestibulum id ligula porta felis euismod semper. Nullam
+              quis risus eget urna mollis ornare vel eu leo. Nullam
+              quis risus eget urna mollis ornare vel eu leo.
+            </Typography>
+          </CardContent> */}
+                  </TabContainer>
+                )}
+                {tab === 1 && (
+                  <TabContainer>
+                    <CardContent>
+                      <form onSubmit={handleUpdate}>
+                        <Card
+                          className={classes.card}
+                          style={{ marginTop: "5px", marginBottom: "20px" }}
+                        >
+                          <CardContent>
+                            <Grid container spacing={3}>
+                              <Grid item xs={12} sm={6} md={4} lg={4}>
+                                <label
+                                  htmlFor="firstName"
+                                  className="grey-text font-weight-light"
+                                >
+                                  First Name
+                                </label>
+                                <input
+                                  type="text"
+                                  id="firstName"
+                                  className="form-control"
+                                  name="firstName"
+                                  required
+                                  defaultValue={firstName}
+                                />
+                              </Grid>
+                              <Grid item xs={12} sm={6} md={4} lg={4}>
+                                <label
+                                  htmlFor="middleName"
+                                  className="grey-text font-weight-light"
+                                >
+                                  Middle Name
+                                </label>
+                                <input
+                                  type="text"
+                                  id="middleName"
+                                  className="form-control"
+                                  defaultValue={middleName}
+                                  name="middleName"
+                                  required
+                                />
+                              </Grid>
+                              <Grid item xs={12} sm={6} md={4} lg={4}>
+                                <label
+                                  htmlFor="lastName"
+                                  className="grey-text font-weight-light"
+                                >
+                                  Last Name
+                                </label>
+                                <input
+                                  type="text"
+                                  id="lastName"
+                                  className="form-control"
+                                  defaultValue={lastName}
+                                  name="lastName"
+                                  required
+                                />
+                              </Grid>
+                            </Grid>
+                            <Grid container spacing={3}>
+                              <Grid item xs={12} sm={6} md={4} lg={4}>
+                                <label
+                                  htmlFor="email"
+                                  className="grey-text font-weight-light"
+                                >
+                                  Email
+                                </label>
+                                <input
+                                  type="email"
+                                  id="email"
+                                  className="form-control"
+                                  defaultValue={email}
+                                  name="email"
+                                  required
+                                />
+                              </Grid>
+                              <Grid item xs={12} sm={6} md={4} lg={4}>
+                                <label
+                                  htmlFor="dob"
+                                  className="grey-text font-weight-light"
+                                >
+                                  Date Of Birth
+                                </label>
+                                <input
+                                  type="text"
+                                  id="dob"
+                                  className="form-control"
+                                  defaultValue={dob}
+                                  name="dob"
+                                  required
+                                />
+                              </Grid>
+                              <Grid item xs={12} sm={6} md={4} lg={4}>
+                                <label
+                                  htmlFor="admissionId"
+                                  className="grey-text font-weight-light"
+                                >
+                                  Admission ID
+                                </label>
+                                <input
+                                  type="text"
+                                  id="admissionId"
+                                  className="form-control"
+                                  defaultValue={admissionId}
+                                  name="admissionId"
+                                  required
+                                />
+                              </Grid>
+                              <Grid item xs={12} sm={6} md={4} lg={4}>
+                                <div className="input-group mb-3">
+                                  <div className="input-group-prepend">
+                                    <label
+                                      className="input-group-text"
+                                      htmlFor="stdclass"
+                                    >
+                                      Class
+                                    </label>
+                                  </div>
+                                  <select
+                                    className="custom-select"
+                                    id="stdclass"
+                                    defaultValue={stdclass}
+                                    name="stdclass"
+                                  >
+                                    <option value="STD 5">STD 5</option>
+                                    <option value="STD 6">STD 6</option>
+                                    <option value="STD 7">STD 7</option>
+                                  </select>
+                                </div>
+                              </Grid>
+                              <Grid item xs={12} sm={6} md={4} lg={4}>
+                                <div className="input-group mb-3">
+                                  <div className="input-group-prepend">
+                                    <label
+                                      className="input-group-text"
+                                      htmlFor="bloodgrp"
+                                    >
+                                      Blood Group
+                                    </label>
+                                  </div>
+                                  <select
+                                    className="custom-select"
+                                    id="bloodgrp"
+                                    name="bloodgrp"
+                                    defaultValue={bloodgrp}
+                                  >
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="0+">O+</option>
+                                    <option value="0-">O-</option>
+                                  </select>
+                                </div>
+                              </Grid>
+                              <Grid item xs={12} sm={6} md={4} lg={4}>
+                                <div className="input-group mb-3">
+                                  <div className="input-group-prepend">
+                                    <label
+                                      className="input-group-text"
+                                      htmlFor="gender"
+                                    >
+                                      Gender
+                                    </label>
+                                  </div>
+                                  <select
+                                    className="custom-select"
+                                    id="gender"
+                                    name="gender"
+                                    defaultValue={gender}
+                                  >
+                                    <option defaultValue={gender}>
+                                      {gender}
+                                    </option>
+                                    {gender === "Male" ? (
+                                      <option value="Female">Female</option>
+                                    ) : (
+                                      <option value="Male">Male</option>
+                                    )}
+                                  </select>
+                                </div>
+                              </Grid>
+
+                              <Grid item xs={12} sm={6} md={4} lg={4}>
+                                <label
+                                  htmlFor="phone"
+                                  className="grey-text font-weight-light"
+                                >
+                                  Phone
+                                </label>
+                                <input
+                                  type="text"
+                                  id="phone"
+                                  className="form-control"
+                                  name="phone"
+                                  defaultValue={phone}
+                                  required
+                                />
+                              </Grid>
+
+                              <Grid item xs={12} sm={6} md={8} lg={8}>
+                                <label htmlFor="textarea">Your message</label>
+                                <textarea
+                                  type="text"
+                                  id="textarea"
+                                  // className="lg-textarea form-control rounded-0"
+                                  name="shortbio"
+                                  row="3"
+                                  defaultValue={shortbio}
+                                  className={classes.textArea}
+                                  // wrap="off"
+                                ></textarea>
+                              </Grid>
+                            </Grid>
+                          </CardContent>
+                        </Card>
+
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          className={classes.button}
+                          type="submit"
+                          // disabled={isSubmitting}
+                        >
+                          {/* <SaveIcon className={classes.rightIcon} />  */}
+                          Update Profile
+                        </Button>
+                      </form>
+                    </CardContent>
+                  </TabContainer>
+                )}
+              </Card>
+            </Grid>
           </Grid>
-        </Grid>
-
+        </DialogContent>
         <DialogActions>
           <Button
             onClick={handleClose}
